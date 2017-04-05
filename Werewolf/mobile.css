@@ -1,0 +1,66 @@
+BODY,TD,input,div,form,TEXTAREA,center,option,pre,blockquote {font-size:9pt;color:#666666;font-family:±¼¸²;}
+TD {line-height:140%}
+body 
+{
+	background-color:#000000;
+	scrollbar-face-color: #000000;
+	scrollbar-highlight-color: #000000;
+	scrollbar-3dlight-color: #555555;
+	scrollbar-shadow-color:#000000;
+	scrollbar-darkshadow-color:#404040;
+	scrollbar-track-color:#000000;
+	scrollbar-arrow-color: #555555;
+	text-align:center;
+}
+A:link    {color:666666;text-decoration:none;font-family:±¼¸²;font-size:9pt;}
+A:visited {color:666666;text-decoration:none;font-family:±¼¸²;font-size:9pt;}
+A:active  {color:ff6666;text-decoration:none;font-family:±¼¸²;font-size:9pt;}
+A:hover  {color:666666;text-decoration:none;font-family:±¼¸²;font-size:9pt;}
+#container{
+	margin:0px auto;
+}
+
+#header{
+	display:none;
+}
+#sidebar{
+	text-align:left;
+}
+
+#content{
+	border-left:1px solid #151515;
+	border-right:1px solid #151515;
+	float:right;
+}
+#submenu{
+	border:1px solid #151515;
+}
+#record{
+	width:100%;
+
+}
+.outter{
+	list-style-type:none;
+	margin:0px 0px ;
+	color:#A30;
+	font-size:12px;
+	font-weight: bold;
+}
+.inner{
+	color:#A50;
+	margin:0px 0px ;
+	list-style-type: square;
+	list-style-position:inside;
+	font-weight: normal;
+
+}
+
+#sidebar ul {
+	background: #111111;
+	border: solid 1px #151515;
+}
+
+#sidebar ul ul{
+	border: solid 1px #111111;
+}
+

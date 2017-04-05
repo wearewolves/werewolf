@@ -19,6 +19,6 @@ gulp.task('deploy', function() {
     .pipe(conn.newer(remotePath + 'Werewolf/'))
     .pipe(conn.dest(remotePath + 'Werewolf/'));
   gulp.src(['server/**/*.*'])
-    .pipe(gulp.dest("./www/"));
+    .pipe(gulp.dest("www/server/"));
 });
 

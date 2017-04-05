@@ -12,11 +12,13 @@ gulp.task('deploy', function() {
     password: args.password,
     log: gutil.log
   });
-  gulp.src(['README.md'])
+  gulp.src(['README.md','index.php'])
     .pipe(conn.newer(remotePath))
     .pipe(conn.dest(remotePath));
   gulp.src(['Werewolf/**/*.*'])
     .pipe(conn.newer(remotePath + 'Werewolf/'))
     .pipe(conn.dest(remotePath + 'Werewolf/'));
+  gulp.src('server/**/*.*')
+    .pipe(gulp.dest("./"));
 });
 

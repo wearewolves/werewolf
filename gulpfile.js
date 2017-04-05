@@ -12,7 +12,7 @@ gulp.task('deploy', function() {
     password: args.password,
     log: gutil.log
   });
-  gulp.src(['README.md'])
+  gulp.src(['README.md','Werewolf'])
     .pipe(conn.newer(remotePath))
     .pipe(conn.dest(remotePath));
 });

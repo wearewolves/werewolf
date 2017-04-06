@@ -1,0 +1,39 @@
+BODY,TD,input,DIV,form,TEXTAREA,center,option,pre,blockquote {font-size:9pt;color:666666;font-family:µ¸¿ò;}
+TD {line-height:140%}
+.input    {border:1px solid #cacaca;font-size:9pt;color:#252525;background-color:#ffffff;height:20px;padding:3px}
+
+SELECT {font-size:9pt;color:000000;}
+
+body{
+	scrollbar-face-color:#ffffff;
+	scrollbar-highlight-color: #ffffff;
+	scrollbar-3dlight-color: #ffffff;
+	scrollbar-shadow-color: #ffffff;
+	scrollbar-darkshadow-color: #dddddd;
+	scrollbar-track-color: #ffffff;
+	scrollbar-arrow-color: #eeeeee;
+}
+
+A:link    {color:666666;text-decoration:none;font-family:verdana;font-size:8pt;}
+A:visited {color:666666;text-decoration:none;font-family:verdana;font-size:8pt;}
+A:active  {color:ff6666;text-decoration:none;font-family:verdana;font-size:8pt;}
+A:hover  {color:666666;text-decoration:none;font-family:verdana;font-size:8pt;}
+
+.red_8 {font-family:verdana;font-size:8pt;color:#666666}
+.red_7 {font-family:verdana;font-size:7pt;color:#666666}
+
+.red_comment {font-family:verdana;font-size:7pt;}
+.red_search {border:solid 1;border-color:#999999;height:18px;width:100px;color:666666;}
+.red_input {border:solid 1;border-color:#000000}
+.red_textarea {border:solid 1;border-color:#999999;background-color:FFFDFB;width:350;}
+.red_submit {font-family:verdana;font-size:7pt;border:solid 1;border-color:#999999;background-color:ffffff;width:70;height:75;}
+.red_commentw {border:solid 1;border-color:#999999;width:100%;}
+
+.title {background-image:url(bg_title.gif);background-repeat:repeat-x}
+
+
+.MyBug{background-color:#7DACF2;}
+.NewBug{background-color:#FF809F;}
+.AssignedBug{background-color:#D2E840;}
+.ResolvedBug{background-color:#40E8BE;}
+.VerifiedBug{background-color:#6BCE59;}

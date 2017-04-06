@@ -1,0 +1,6 @@
+<?
+localhost
+username
+password
+database
+?>

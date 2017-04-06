@@ -1,0 +1,1 @@
+<a href="http://www.lovelet.com" target=_blank onfocus=blur()>Lovelet</a>

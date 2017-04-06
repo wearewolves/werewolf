@@ -1,0 +1,1 @@
+<A HREF=http://heyguess.mireene.com target=_blank onfocus=blur()>guess</A>

@@ -1,0 +1,14 @@
+BODY {COLOR: #000000; FONT-FAMILY: tahoma,±¼¸²; FONT-SIZE: 9pt}
+TABLE {COLOR: #000000; FONT-FAMILY: tahoma,±¼¸²; FONT-SIZE: 9pt}
+A:link {COLOR: black; TEXT-DECORATION: none}
+A:visited {COLOR: black; TEXT-DECORATION: none}
+A:active {COLOR: black; TEXT-DECORATION: none}
+A:hover {COLOR: #660325; TEXT-DECORATION: underline;}
+
+
+img 		{border:0;}
+
+
+.ver8		{font-size:8pt; font-family: tahoma ; color:#ffffff;}
+.ver8a		{font-size:8pt; font-family: tahoma ; color:#000000;}
+.smallno	{font-size:7pt; font-family: tahoma ; color:#ff6666;}

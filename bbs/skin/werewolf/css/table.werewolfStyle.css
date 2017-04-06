@@ -1,0 +1,32 @@
+.werewolfStyle{
+	margin-left:auto;
+	margin-right:auto;
+	width:95%;
+	margin-top:10px;
+}
+.werewolfStyle td{
+	padding:3px 1px;
+}
+.werewolfStyle thead{
+	background:#101010;
+	text-align:center;
+}
+.werewolfStyle thead td{
+	border:1px solid #151515;
+}
+
+.werewolfStyle tbody{
+/*	background:#555;*/
+	text-align:left;
+}
+.werewolfStyle tbody td{
+	border-bottom:1px solid #151515;
+}
+
+.blue{
+	color:#384887;
+}
+.red{
+	color:#B66;
+	
+}

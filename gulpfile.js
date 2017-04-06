@@ -16,6 +16,9 @@ gulp.task('deploy', function() {
   gulp.src(['README.md','index.php'])
     .pipe(conn.newer(remotePath))
     .pipe(conn.dest(remotePath));
+  gulp.src(['bbs/**/*.*'])
+    .pipe(conn.newer(remotePath + 'bbs/'))
+    .pipe(conn.dest(remotePath + 'bbs/'));
   gulp.src(['Werewolf/**/*.*'])
     .pipe(conn.newer(remotePath + 'Werewolf/'))
     .pipe(conn.dest(remotePath + 'Werewolf/'));

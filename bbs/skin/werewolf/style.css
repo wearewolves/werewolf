@@ -1,0 +1,357 @@
+.DisplayBoard{
+	margin:5px 10px;
+	padding: 10px 20px;
+	background: #111111;
+	border: solid 1px #151515;
+}
+.DisplayBoard ol {
+	margin:0px;
+	padding:10px 20px 0px 20px;
+}
+.DisplayBoard h1,#DisplayBoard h2 {
+	margin:0px;
+	color:#C00;
+	font-size:12px;
+}
+.DisplayBoard .head{
+	width:80px;
+	font-weight: bold;
+}
+
+.alignleft{
+	text-align:left;
+}
+
+#suddendeath{
+	margin:5px 20px;
+	padding: 10px 20px;
+	background: #111111;
+	border: solid 1px #151515;
+	text-align:center;
+}
+#suddendeath h1 {
+	font-size:12px;
+	margin:0px;
+	color:#800;
+}
+
+#notice{
+	margin:10px 10px;
+	padding: 0px 20px;
+	background: #111111;
+	border: solid 1px #151515;
+	text-align:left;
+	line-height:140%;
+}
+#notice h1 {
+	text-align:center;
+	font-size:12px;
+	margin:10px;
+	color:#A30;
+}
+#notice li{
+	margin:5px 0px;	
+}
+
+#notice a{
+	color:#999;
+	font:bold;
+}
+#notice a:hover{
+	color:#FFF;
+}
+#notice strong{
+	color:#999;
+}
+#notice .alert{
+	color:#A30;
+}
+
+#menu-foot{
+	border-top:solid 1px #222;
+	text-align:center;
+	padding:5px 0px;
+}
+#menu-foot span{
+	padding:0px 5px;
+}
+
+.viewDay, .viewMode{
+	text-align:left;
+	margin:10px;
+	line-height:1.5em;
+}
+.viewDay a,.viewMode a{
+	min-width:70px;
+	padding:2px 5px;
+	border-left:2px solid #111;
+	color:#FFF;
+}
+.viewDay .selectedMode,.viewMode .active{
+	color:RED;
+}
+.viewDay a:hover, .viewMode a:hover{
+	background:#111;
+	color:#AAA;
+}
+
+.noticeTop{
+	margin:10px 10px;
+	padding: 0px 20px;
+	background: #111111;
+	border: solid 1px #151515;
+	text-align:left;
+	line-height:140%;
+}
+.noticeTop h1 {
+	text-align:center;
+	font-size:12px;
+	margin:10px;
+	color:#A30;
+}
+
+.roomReady{
+	width:95%;
+	margin:10px 5px;
+	border-bottom: solid 1px #151515;
+}
+
+
+.roomReady .name{
+	width:80%;
+	font-weight: bold;
+	font-size:14px;
+	border: solid 1px #151515;
+	background: #111111;
+}
+.roomReady .name A{
+	color:#A50;
+}
+
+.roomPlaying{
+	width:95%;
+	margin:10px 5px;
+	border-bottom: solid 1px #151515;
+}
+.roomPlaying .enter {
+	font-size:25px;
+	color:#A30;
+}
+.roomPlaying .enter b{
+	font-size:12px;
+	color:#aaa;
+}
+
+.icons{
+	width: 14px;
+	height: 14px;
+	background-image: url(twotiny.png);
+	background-repeat: no-repeat;
+}
+
+.player {	   
+	background-position: -137px -2px;
+}
+
+.heart{	   
+	background-position: -70px -2px;
+}
+
+.death {	   
+	background-position: 0px -19px;
+}
+.clock{
+	background-position: -306px -19px;
+}
+
+
+
+.roomPlaying .name{
+	width:80%;
+	font-weight: bold;
+	font-size:14px;
+	border: solid 1px #151515;
+	background: #111111;
+}
+.roomPlaying .name A{
+	color:#A50;
+}
+
+
+.roomEnd{
+	border-bottom: solid 1px #151515;
+}
+
+#playerList{margin-left:auto;margin-right:auto;width:95%;margin-top:10px;}
+	#playerList thead {background:#101010;	text-align:center;}
+	#playerList tbody td{border-bottom:solid 1px #151515;}
+
+#deathPlayerList{margin-left:auto;margin-right:auto;width:95%;margin-bottom:10px;}
+	#deathPlayerList tbody td{color:#444;border-bottom:solid 1px #151515;}
+
+#tb{margin-left:auto;margin-right:auto;width:95%;margin-top:10px;}
+	#tb thead {background:#101010;	text-align:center;}
+	#tb tbody td{border-bottom:solid 1px #151515;}
+
+#viewStateAll{width:95%;margin:5px 0px;font-family:verdana;border-top: solid 1px #222;margin-left:auto;margin-right:auto;}
+	.viewState{border-bottom: solid 1px #222;text-align:left;min-height:25px;line-height:140%;width:100%;padding:5px 0px;}
+	.viewState .state{float:left;width:120px;height:18px;padding:2px 5px;background:#111;color:#A30;}
+	* html .viewState .state{float:left;width:130px;height:18px;padding:2px 5px;background:#111;color:#A30;}
+	.viewState .content{margin-left:135;width:75%;_width:100%;}
+
+#commentContainer{width:95%;text-align:left;margin-left:auto;	margin-right:auto;}
+	.comment{	padding:10px 5px;border-top: solid 1px #222;min-height:80px;_height:100%;}
+		.c_image{width:105px;height:105px;border-right: solid 1px #222;float:left;}
+		.c_info{width:100%;}
+				.c_Name{color:#aaa;padding:0px 5px 0px 0px;}
+				.reg_date{font-size:8pt;}
+				.playerInfo{font-size:9pt;}
+				.commentDel{color:red;}
+				.ip{font-size:8pt;}
+		.ct{margin:35px 0px 0px 0px;float:left;background:url(ctb.gif) no-repeat 0px 0px;width:10px;height:20px;}
+		.message{margin-left:116px;color:#000;padding :5px;text-align:justify;line-height:1.5em;font-size:12px;min-height:80px;max-width:100%;word-wrap:break-word; _width:100%;_height:80px;_position:relative;_top:0px;_left:-4px;}
+
+.normal	.ct,.normal .message{background-color:#ffffff}
+
+.memo .ct,.memo .message{background-color:#DEDB9C}
+
+.secret .ct,.secret .message{background-color:#FF7777}
+
+.telepathy .ct,.telepathy .message{background-color:#93B4B7}
+
+.grave .ct,.grave .message{background-color:#9D9D9D}
+
+.secretletter .ct,.secretletter .message{background-color:#A6E1C4}
+
+.secretanswer .ct,.secretanswer .message{background-color:#A6E1C4}
+
+	.commentNotice{border-top:1px solid  #222;padding:5px;margin:5px 0px;}
+	.commentNotice .notice{background:#121212;padding:10px;text-overflow : ellipsis; overflow : visible ;width:100%;word-break:break-all;}
+#commentContainer .buttonCommentPage{
+	width:100%;margin: 1px 0px; tbackground:#111;color:#A30;text-align:center;vertical-align: text-bottom;position:relative;
+	padding:5px 0px;height:25px;voice-family:"\"}\"";voice-family:inherit;height:15px;
+}
+label, .buttonCommentPage{cursor: pointer;}
+
+
+#commentContainer .buttonCommentPage{
+	background:url("image/background.gif") repeat;
+}
+#commentContainer .close span{
+	position:absolute;
+	top:4px;
+	right:10px;
+	width: 16px;
+	height: 16px;
+	display:inline-block;
+	background: url(image/webnav-active_header.gif) no-repeat -445px -10px;
+}
+#commentContainer .open span{
+	position:absolute;
+	top:4px;
+	right:10px;
+	width: 16px;
+	height: 16px;
+	display:inline-block;
+	background: url(image/webnav_header.gif) no-repeat -445px -10px;
+}
+
+
+
+
+#script{
+	float:left;
+	width:95%;
+	margin:0px;
+	color:black;
+	padding :5px;
+	text-align:justify;
+	
+	font-size:12px;
+	height:100%;
+	_height:80px;
+}
+
+.right{
+	float:right;
+}
+.left{
+	float:left;
+}
+#timer{
+}
+
+BODY,TD,input,div,form,TEXTAREA,center,option,pre,blockquote {font-size:9pt;color:#666666;font-family:±¼¸²;}
+TD {line-height:140%}
+input {border:solid 0;border-color:ffffff}
+
+SELECT {font-size:9pt;color:000000;}
+
+body{
+	overflow:auto;
+	scrollbar-face-color:#000000;
+	scrollbar-highlight-color:#303030;
+	scrollbar-3dlight-color:#191919;
+	scrollbar-shadow-color:#151515;
+	scrollbar-darkshadow-color:#101010;
+	scrollbar-track-color:#202020;
+	scrollbar-arrow-color:#454545;
+}
+
+A:link    {color:666666;text-decoration:none;font-family:±¼¸²;font-size:9pt;}
+A:visited {color:666666;text-decoration:none;font-family:±¼¸²;font-size:9pt;}
+A:active  {color:ff6666;text-decoration:none;font-family:±¼¸²;font-size:9pt;}
+A:hover  {color:666666;text-decoration:none;font-family:±¼¸²;font-size:9pt;}
+
+
+.red_8 {font-family:±¼¸²;font-size:9pt;color:#666666}
+.red_7 {font-family:±¼¸²;font-size:8pt;color:#666666}
+
+
+.red_comment {font-family:±¼¸²;font-size:7pt;}
+.red_search {border:solid 1;border-color:eeeeee;height:18px;width:100px;color:666666;}
+.red_input {border:solid 1;border-color:eeeeee}
+.red_textarea {border:solid 1;border-color:eeeeee;background-color:FFFDFB;width:350;}
+.red_submit {font-family:verdana;font-size:9pt;border:solid 1;border-color:#353535;background-color:#353535;width:100%;height:30;}
+.red_submit_s {font-family:verdana;font-size:8pt;border:solid 1;border-color:#353535;background-color:#353535;width:70;height:25;}
+.red_commentw {border:solid 1;border-color:222222;width:100%;}
+.input,textarea    {border:1px solid #252525;font-size:9pt;color:#a0a0a0;background-color:#161616;;padding:3px}
+
+#soundConfig{
+	/*
+	position:absolute;
+	top:0px;
+	left:0px;
+	*/
+
+	/*background:url("sound.jpg") no-repeat 0 50%;*/
+	text-align:left;
+	padding-left:20px;
+	width:140px;
+}
+
+.letter{
+	margin:5px 20px;
+	padding: 5px 5px;
+	background: #444444;
+	border: solid 1px #151515;
+	text-align:left;
+	color:#000000;
+}
+.letter h1{
+	color:#151515;
+	font-size:9pt;
+}
+.letter .message{
+	color:#000000;
+	font-size:11pt;
+	margin:5px 20px;
+}
+
+.redBorder, .wrappedElement {
+  border: solid red 1px;
+}
+
+.openPage {
+	background-color:#444444;
+}

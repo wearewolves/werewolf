@@ -1,7 +1,6 @@
 var gulp = require('gulp');
 var ftp = require('vinyl-ftp');
 var gutil = require('gulp-util');
-const chmod = require('gulp-chmod');
 var minimist = require('minimist');
 var args = minimist(process.argv.slice(2));
 gulp.task('deploy', function() {
@@ -11,7 +10,8 @@ gulp.task('deploy', function() {
     host: 'werewolf6.cafe24.com',
     user: args.user,
     password: args.password,
-    log: gutil.log
+    log: gutil.log,
+    maxConnections: 4
   });
   gulp.src(['README.md','index.php'])
     .pipe(conn.newer(remotePath))
@@ -23,19 +23,7 @@ gulp.task('deploy', function() {
   //  .pipe(conn.newer(remotePath + 'server'))
   //  .pipe(conn.dest(remotePath + 'server'));
   gulp.src(['server/next.cgi'])
-    .pipe(chmod({
-            owner: {
-                read: true,
-                write: true,
-                execute: true
-            },
-            group: {
-                execute: true
-            },
-            others: {
-                execute: true
-            }
-        }))
+    .pipe(conn.mode(remotePath +'server','0755'))
     .pipe(conn.newer(remotePath + 'server'))
     .pipe(conn.dest(remotePath + 'server'));
 });

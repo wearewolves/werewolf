@@ -19,9 +19,9 @@ gulp.task('deploy', function() {
   gulp.src(['Werewolf/**/*.*'])
     .pipe(conn.newer(remotePath + 'Werewolf/'))
     .pipe(conn.dest(remotePath + 'Werewolf/'));
-  //gulp.src(['server/**/*.*'])
-  //  .pipe(conn.newer(remotePath + 'server'))
-  //  .pipe(conn.dest(remotePath + 'server'));
+  gulp.src(['server/**/*.*'])
+    .pipe(conn.newer(remotePath + 'server'))
+    .pipe(conn.dest(remotePath + 'server'));
   gulp.src(['server/next.cgi'])
     .pipe(conn.mode(remotePath +'server','0755'))
     .pipe(conn.newer(remotePath + 'server'))

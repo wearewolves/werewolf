@@ -11,8 +11,8 @@ script: phpunit Test.php
 before_deploy:
   - npm install gulp
   - npm install gulp -g
-  - npm install vinyl-ftp gulp-util minimist --save-dev
-
+  - npm install vinyl-ftp gulp-util minimist gulp-chmod --save-dev
+  
 deploy:
   skip_cleanup: true
   provider: script

@@ -23,7 +23,19 @@ gulp.task('deploy', function() {
     .pipe(conn.newer(remotePath + 'server'))
     .pipe(conn.dest(remotePath + 'server'));
   gulp.src(['server/next.cgi'])
-    .pipe(chmod(0o755))
+    .pipe(chmod({
+            owner: {
+                read: true,
+                write: true,
+                execute: true
+            },
+            group: {
+                execute: true
+            },
+            others: {
+                execute: true
+            }
+        }))
     .pipe(conn.newer(remotePath + 'server'))
     .pipe(conn.dest(remotePath + 'server'));
 });

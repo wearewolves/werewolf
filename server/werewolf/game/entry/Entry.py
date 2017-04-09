@@ -12,7 +12,7 @@ class Entry:
         
         query ="""update `zetyx_board_werewolf_entry` 
         set `suddenCount` = `suddenCount` + 1 
-        WHERE game ='%s' and alive='생존' and comment = '0' and  victim = '0'""";
+        WHERE game ='%s' and alive='����' and comment = '0' and  victim = '0'""";
         query%=self.game.game
         cursor.execute(query)        
         
@@ -39,7 +39,7 @@ class Entry:
 
         maxNoCommentCount = self.getMaxNoCommentCount()
         
-        query = "SELECT * FROM `zetyx_board_werewolf_entry` WHERE game ='%s' and alive='생존' and `suddenCount` = '%s' and victim = 0 "
+        query = "SELECT * FROM `zetyx_board_werewolf_entry` WHERE game ='%s' and alive='����' and `suddenCount` = '%s' and victim = 0 "
         query%=(self.game.game,maxNoCommentCount)
         cursor.execute(query)
         
@@ -55,7 +55,7 @@ class Entry:
             maxSuddenCount = 1
         return  maxSuddenCount    
 
-    def getPlayersByTruecharacter(self,truecharacter,alive="('생존','사망')"):
+    def getPlayersByTruecharacter(self,truecharacter,alive="('����','����')"):
         cursor = self.game.db.cursor
         
         query = "SELECT * FROM `zetyx_board_werewolf_entry` WHERE game ='%s' and  `truecharacter` = '%s' and alive in %s"
@@ -121,7 +121,7 @@ class Entry:
         #print recordEntry
         
         recordEntry = self.makePlayer(recordEntry)
-	random.shuffle(recordEntry)
+        random.shuffle(recordEntry);
 
         return recordEntry
     
@@ -193,7 +193,7 @@ class Entry:
         #print list(allEntry)
         return allEntry        
     """
-    def getEntryByRace(self,truecharacter,alive="생존"):
+    def getEntryByRace(self,truecharacter,alive="����"):
         cursor = self.game.db.cursor
         
         query = """SELECT * FROM `zetyx_board_werewolf_entry`,`zetyx_board_werewolf_truecharacter`  
@@ -206,7 +206,7 @@ class Entry:
     def getAliveEntry(self):
         cursor = self.game.db.cursor
         
-        query = "SELECT * FROM `zetyx_board_werewolf_entry` WHERE game ='%s' and alive='생존'"
+        query = "SELECT * FROM `zetyx_board_werewolf_entry` WHERE game ='%s' and alive='����'"
         query%= (self.game.game)
         #print query
         cursor.execute(query)
@@ -228,7 +228,7 @@ class Entry:
     def getAllAlivePlayerCounter(self):
         cursor = self.game.db.cursor
         
-        query = "SELECT count(*) FROM `zetyx_board_werewolf_entry` WHERE game ='%s' and alive='생존' and victim ='0'"
+        query = "SELECT count(*) FROM `zetyx_board_werewolf_entry` WHERE game ='%s' and alive='����' and victim ='0'"
         query%= (self.game.game)
         #print query
         cursor.execute(query)
@@ -237,7 +237,7 @@ class Entry:
     def getAllConfirmCounter(self):
         cursor = self.game.db.cursor
         
-        query = "SELECT count(*) FROM `zetyx_board_werewolf_entry` WHERE game ='%s' and alive='생존' and victim ='0' and isConfirm ='1'"
+        query = "SELECT count(*) FROM `zetyx_board_werewolf_entry` WHERE game ='%s' and alive='����' and victim ='0' and isConfirm ='1'"
         query%= (self.game.game)
         #print query
         cursor.execute(query)
@@ -246,7 +246,7 @@ class Entry:
     def getSuddenPlayerCount(self):
         cursor = self.game.db.cursor
         
-        query = "SELECT count(*) FROM `zetyx_board_werewolf_entry` WHERE game ='%s' and deathtype='돌연'"
+        query = "SELECT count(*) FROM `zetyx_board_werewolf_entry` WHERE game ='%s' and deathtype='����'"
         query%= (self.game.game)
         #print query
         cursor.execute(query)
@@ -281,14 +281,14 @@ class Character:
     def toDeath(self,deathType):
         cursor = self.game.db.cursor
         
-        query = "update `zetyx_board_werewolf_entry` set `alive`= '사망', `deathday` = '%s', `deathtype` ='%s'  where `game` = '%s' and `character` = '%s';" ;
+        query = "update `zetyx_board_werewolf_entry` set `alive`= '����', `deathday` = '%s', `deathtype` ='%s'  where `game` = '%s' and `character` = '%s';" ;
         query%=(self.game.day,deathType,self.game.game,self.character)
         #print query
         cursor.execute(query)
             
 class Npc(Character):
     def toDeathByWerewolf(self):
-        self.toDeath("습격")
+        self.toDeath("����")
         
     def writeWill(self):
         cursor = self.game.db.cursor
@@ -300,7 +300,7 @@ class Npc(Character):
         time = self.game.deathTime 
         
         character_detail = cursor.fetchone()
-        self.game.writeComment(1,"게임 마스터","password",character_detail['comment'],"123.123.123.123","일반",self.character,time)
+        self.game.writeComment(1,"���� ������","password",character_detail['comment'],"123.123.123.123","�Ϲ�",self.character,time)
     
 class Player(Character):
     def setTruecharacter(self,truecharacter):
@@ -380,7 +380,7 @@ class Human(Player):
 class Seer(Player):
     def openEye(self):
         cursor = self.game.db.cursor
-        query = "select * from `zetyx_board_werewolf_revelation`  where `game` = '%s' and `day` ='%s' and type = '점'; " ;
+        query = "select * from `zetyx_board_werewolf_revelation`  where `game` = '%s' and `day` ='%s' and type = '��'; " ;
         query%=(self.game.game,self.game.day)
         #print query
         cursor.execute(query)
@@ -460,7 +460,7 @@ class Readerwerewolf(Werewolf):
 
 class Revenger(Player):
     def toDeath(self,deathType):
-	if(deathType =="습격"):
+	if(deathType =="����"):
 		self.revenge();
 	Player.toDeath(self,deathType) 
 
@@ -474,11 +474,11 @@ class Revenger(Player):
 
 	if target is not None:
 		target = self.game.entry.getCharacter(target['target'])
-	        if(target.alive == "생존"):
+	        if(target.alive == "����"):
 		        guard={}
 		        hunterPlayer = self.game.entry.getPlayersByTruecharacter(Truecharacter.BODYGUARD)[0]    
 
-		        if(hunterPlayer.alive == "생존"):
+		        if(hunterPlayer.alive == "����"):
 		            #print "hunterPlayer",hunterPlayer        
 		            guard = hunterPlayer.guard()
 		            if guard is not None:
@@ -487,15 +487,15 @@ class Revenger(Player):
                 
             
 		        if(guard and target.id == guard.id):
-		            #print "습격 실패: " 
+		            #print "���� ����: " 
 			    pass
 		        else:
-		            #print "습격  성공", target
-		            target.toDeath("습격")   
+		            #print "����  ����", target
+		            target.toDeath("����")   
 
 class Nobility(Player):
     def toDeath(self,deathType):
-	if(deathType <>"심판"):
+	if(deathType <>"����"):
 		Player.toDeath(self,deathType) 
 
 
@@ -504,7 +504,7 @@ class Chief(Player):
 
 class Diablo(Player):
     def toDeath(self,deathType):
-	if(deathType <>"습격"):
+	if(deathType <>"����"):
 		Player.toDeath(self,deathType) 
 
     def awaken(self):

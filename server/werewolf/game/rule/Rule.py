@@ -37,6 +37,7 @@ class WerewolfRule(Rule):
         truecharacterList = copy.copy(self.temp_truecharacter[len(novicePlayers) + len(expertPlayers)+1 ])
         print "players",len(novicePlayers) + len(expertPlayers)+1
         #마을 사람 배치
+        random.shuffle(novicePlayers)
         while(len(novicePlayers)>0):
             #print "len(novicePlayers)",len(novicePlayers)
             #print "truecharacterList",truecharacterList
@@ -45,18 +46,19 @@ class WerewolfRule(Rule):
             ram = random.randrange(0,len(novicePlayers))
             #print "random",ram
             player = novicePlayers.pop()
-            job = truecharacterList.pop(0)            
+            job = truecharacterList.pop(0) # 마을사람 pop 필요
             #print "player: ",player.id,"job: ",job
             player.setTruecharacter(job)
 
-        restPlayers =expertPlayers + novicePlayers
+        restPlayers = expertPlayers + novicePlayers
         #print "restEntry:", restPlayers
         #print "restJob:", truecharacterList
         
         #남은 직업 배치
+        random.shuffle(restPlayers)
         while(len(restPlayers)>0):
-            player = restPlayers.pop(0)
-            job = truecharacterList.pop(random.randrange(0,len(truecharacterList))  )            
+            player = restPlayers.pop()
+            job = truecharacterList.pop()            
             #print "player: ",player.id,"job: ",job
             player.setTruecharacter(job)
             

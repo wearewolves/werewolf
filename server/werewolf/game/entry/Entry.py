@@ -121,7 +121,6 @@ class Entry:
         #print recordEntry
         
         recordEntry = self.makePlayer(recordEntry)
-        random.shuffle(recordEntry)
 
         return recordEntry
     

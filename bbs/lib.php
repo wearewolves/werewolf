@@ -409,7 +409,7 @@ ini_set('session.auto_start','1');
 <head>
 	<title><?=$setup[title]?></title>
 	<meta http-equiv=Content-Type content=text/html; charset='EUC-KR'>
-	<meta name="keywords" content="인랑,타뷸라,마피아">
+	<meta name="keywords" content="인랑,타뷸라,마피아,타뷸라의 늑대,타뷸라의늑대,마피아 게임,마피아게임,추리 게임,추리게임,웹게임">
 	<link rel=StyleSheet HREF=<?=$stylefile?> type=text/css title=style>
 	<link rel="shortcut icon" type="image/x-icon" href="http://werewolf4.cafe24.com/favicon.ico" />
 	<?if($setup[use_formmail]) echo $zbLayerScript;?>

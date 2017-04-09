@@ -276,12 +276,14 @@ class BasicRule(WerewolfRule):
                 guard = self.game.entry.getCharacter(guard['purpose'])
                 #print "guard", guard
                 
-            
-        if((guard and assaultVictim.id == guard.id) or (assaultVictim.id ==  victim.id)):
-            #print "습격 실패: " 
-	    pass
+        if assaultVictim.id == victim.id:
+            #print "습격 실패: (고습실)"
+            pass
+        elif guard and assaultVictim.id == guard.id:
+            #print "습격 실패: (선방)" 
+            pass
         else:
-            #print "습격  성공", assaultVictim
+            #print "습격 성공", assaultVictim
             assaultVictim.toDeath("습격")       
 
         #print "guard: ",guard
@@ -465,12 +467,17 @@ class HamsterRule(BasicRule):
                 guard = self.game.entry.getCharacter(guard['purpose'])
                 #print "guard", guard
                 
-            
-        if((guard and assaultVictim.id == guard.id) or (assaultVictim.id ==  victim.id) or (assaultVictim.id == hamsterPlayer.id)):
-            #print "습격 실패: " 
-	    pass
+        if assaultVictim.id == victim.id:
+            #print "습격 실패: (고습실)"
+            pass
+        elif guard and assaultVictim.id == guard.id:
+            #print "습격 실패: (선방)"
+            pass
+        elif assaultVictim.id == hamsterPlayer.id:
+            #print "습격 실패: (햄습)"
+	        pass
         else:
-            #print "습격  성공", assaultVictim
+            #print "습격 성공", assaultVictim
             assaultVictim.toDeath("습격")       
 
         #print "guard: ",guard
@@ -600,12 +607,15 @@ class ExpansionRule(WerewolfRule):
                 guard = self.game.entry.getCharacter(guard['purpose'])
                 #print "guard", guard
                 
-            
-        if(guard and assaultVictim.id == guard.id):
+        
+        if assaultVictim.id == victim.id:
+            #print "습격 실패: (고습실)"
+            pass
+        elif guard and assaultVictim.id == guard.id:
             #print "습격 실패: " 
-	    pass
+	        pass
         else:
-            #print "습격  성공", assaultVictim
+            #print "습격 성공", assaultVictim
             assaultVictim.toDeath("습격")       
 
         #print "guard: ",guard

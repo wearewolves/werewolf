@@ -42,22 +42,21 @@ class WerewolfRule(Rule):
             #print "truecharacterList",truecharacterList
             if(truecharacterList[0] != Truecharacter.HUMAN):
                 break
-            ind = random.randrange(0,len(novicePlayers))
-            #print "random", ind
-            player = novicePlayers.pop(ind)
-            job = truecharacterList.pop(0) # 마을사람 pop 필요
+            ram = random.randrange(0,len(novicePlayers))
+            #print "random",ram
+            player = novicePlayers.pop()
+            job = truecharacterList.pop(0)            
             #print "player: ",player.id,"job: ",job
             player.setTruecharacter(job)
 
-        restPlayers = expertPlayers + novicePlayers
+        restPlayers =expertPlayers + novicePlayers
         #print "restEntry:", restPlayers
         #print "restJob:", truecharacterList
         
         #남은 직업 배치
         while(len(restPlayers)>0):
-            ind = random.randrange(0, len(restPlayers))
-            player = restPlayers.pop(ind)
-            job = truecharacterList.pop(0)            
+            player = restPlayers.pop(0)
+            job = truecharacterList.pop(random.randrange(0,len(truecharacterList))  )            
             #print "player: ",player.id,"job: ",job
             player.setTruecharacter(job)
             

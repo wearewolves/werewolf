@@ -396,7 +396,7 @@ class Werewolf(Player):
         # 투표사인 경우, 습격 설정 해제
         if (deathType == "심판") and self.hasAssault() is False:
             cursor = self.game.db.cursor
-            query = "DELETE `zetyx_board_werewolf_deathNote` where game = '%s' and day = '%s' and `werewolf` = '%s'"
+            query = "delete from `zetyx_board_werewolf_deathNote` where game = '%s' and day = '%s' and `werewolf` = '%s'"
             query %= (self.game.game, self.game.day, self.character)
             #print query
             cursor.execute(query)

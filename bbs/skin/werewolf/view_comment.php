@@ -38,24 +38,24 @@
 			}			
 	?>
 		<div class="comment <?=$memoStyle?> <?=$commentType['character']?>">
-			<?if($viewImage <>"off"){?>
+			<?if($viewImage <> "off") {?>
 				<div class="c_image"><img width='100' height='100' src="<?=$characterImageFolder.$commentType['half_image']?>"></div>
-			<?}?>
+			<? } ?>
 			<div class="c_info">
-				<!--<span><?if($commentType['type'] == "일반")echo "<a name='#".$i."'>".$i++."</a>";?></span>-->
-				<span class="c_Name "><label for="<?=$commentType['character']?>" title="<?=$character_list[$commentType['character']]?>님의 로그를 필터링 합니다."><?=$character_list[$commentType['character']]?></label></span>
+				<!--<span><?if($commentType['type'] == "일반") echo "<a name='#".$i."'>".$i++."</a>";?></span>-->
+				<span class="c_Name"><label for="<?=$commentType['character']?>" title="<?=$character_list[$commentType['character']]?>님의 로그를 필터링 합니다."><?=$character_list[$commentType['character']]?></label></span>
 				<span class="reg_date"><?=date("Y-m-d H:i:s",$c_data[reg_date])?></span>
-				<?if($viewMode == "all"){	
+				<?if($viewMode == "all"){
 					$writerTrueChar= mysql_fetch_array(mysql_query("select * from $DB_entry where game=$no and player = $c_data[ismember]"));
 					?>
 					<span class="playerInfo"><?=$comment_name?> / <?=$truecharacter_list[$writerTrueChar['truecharacter']];?></span>
 				<?}?>
 				<span class="ip"><?if($is_admin) echo $c_data[no]?></span>
 			</div>
-			<?if($viewImage <>"off"){?>
-				<div class="ct" ></div>
+			<?if($viewImage <> "off"){?>
+				<div class="ct"></div>
 			<?}?>
-			<div class="message" ><?=nl2br($c_memo)?></div>
+			<div class="message"><?=nl2br($c_memo)?></div>
 		</div>
 	<?	}?>
 <?	flush();?>

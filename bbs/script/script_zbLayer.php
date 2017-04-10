@@ -1,7 +1,9 @@
 <script language='JavaScript'>
 	var select_obj;
 	function ZB_layerAction(name,status) { 
-		var obj=document.all[name];
+		// For Chrome, Safari and Opera
+		//var obj=document.all[name];
+		var obj = document.getElementById(name);
 		var _tmpx,_tmpy, marginx, marginy;
 		_tmpx = event.clientX + parseInt(obj.offsetWidth);
 		_tmpy = event.clientY + parseInt(obj.offsetHeight);
@@ -15,8 +17,10 @@
 			_tmpy = event.clientY + document.body.scrollTop + _marginy +20;
 		else
 			_tmpy = event.clientY + document.body.scrollTop ;
-		obj.style.posLeft=_tmpx-13;
-		obj.style.posTop=_tmpy-12;
+		//obj.style.posLeft=_tmpx-13;
+		//obj.style.posTop=_tmpy-12;
+		obj.style.left=_tmpx-13;
+		obj.style.top=_tmpy-12;
 		if(status=='visible') {
 			if(select_obj) {
 				select_obj.style.visibility='hidden';

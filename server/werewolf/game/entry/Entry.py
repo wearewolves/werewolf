@@ -397,7 +397,7 @@ class Werewolf(Player):
         if (deathType == "½ÉÆÇ") and self.hasAssault() is False:
             cursor = self.game.db.cursor
             query = "delete from `zetyx_board_werewolf_deathNote` where game = '%s' and day = '%s' and `werewolf` = '%s'"
-            query %= (self.game.game, self.game.day, self.character)
+            query%= (self.game.game, self.game.day, self.character)
             #print query
             cursor.execute(query)
         Player.toDeath(self, deathType)

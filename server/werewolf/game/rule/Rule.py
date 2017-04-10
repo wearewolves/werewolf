@@ -45,7 +45,7 @@ class WerewolfRule(Rule):
                 break
             ram = random.randrange(0,len(novicePlayers))
             #print "random",ram
-            player = novicePlayers.pop()
+            player = novicePlayers.pop(0)
             job = truecharacterList.pop(0) # 마을사람 pop 필요
             #print "player: ",player.id,"job: ",job
             player.setTruecharacter(job)
@@ -57,8 +57,8 @@ class WerewolfRule(Rule):
         #남은 직업 배치
         random.shuffle(restPlayers)
         while(len(restPlayers)>0):
-            player = restPlayers.pop()
-            job = truecharacterList.pop()            
+            player = restPlayers.pop(0)
+            job = truecharacterList.pop(0)            
             #print "player: ",player.id,"job: ",job
             player.setTruecharacter(job)
             

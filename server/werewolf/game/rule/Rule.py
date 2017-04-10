@@ -280,11 +280,11 @@ class BasicRule(WerewolfRule):
             #print "습격 실패: (고습실)"
             pass
         elif guard and assaultVictim.id == guard.id:
-            #print "습격 실패: (선방)" 
+            #print "습격 실패: (선방)"
             pass
         else:
             #print "습격 성공", assaultVictim
-            assaultVictim.toDeath("습격")       
+            assaultVictim.toDeath("습격")
 
         #print "guard: ",guard
         #print "assaultVictim: ", assaultVictim
@@ -475,10 +475,10 @@ class HamsterRule(BasicRule):
             pass
         elif assaultVictim.id == hamsterPlayer.id:
             #print "습격 실패: (햄습)"
-	        pass
+			pass
         else:
             #print "습격 성공", assaultVictim
-            assaultVictim.toDeath("습격")       
+            assaultVictim.toDeath("습격")
 
         #print "guard: ",guard
         #print "assaultVictim: ", assaultVictim
@@ -612,11 +612,11 @@ class ExpansionRule(WerewolfRule):
             #print "습격 실패: (고습실)"
             pass
         elif guard and assaultVictim.id == guard.id:
-            #print "습격 실패: " 
-	        pass
+            #print "습격 실패: "
+			pass
         else:
             #print "습격 성공", assaultVictim
-            assaultVictim.toDeath("습격")       
+            assaultVictim.toDeath("습격")
 
         #print "guard: ",guard
         #print "assaultVictim: ", assaultVictim

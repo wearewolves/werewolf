@@ -123,7 +123,7 @@ class Entry:
         recordEntry = self.makePlayer(recordEntry)
 
         return recordEntry
-
+    
     
     def initComment(self):
         cursor = self.game.db.cursor

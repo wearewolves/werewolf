@@ -32,6 +32,8 @@ require_once("lib/lib.php");
 
 $GLOBALS['Database'] = new DB($id);
 
+$overlapIp = array();
+
 if($player or $ip){
 	if($player and $member[no] == 1){
 		echo "<a href='view_ip_overlap.php?id=".$id."&player=".($player-1)."'>이전</a>";
@@ -77,14 +79,14 @@ if($player or $ip){
 
 	if($state =="view"){
 		//검사된 ID 출력
-		$tableHead = array("ID","NAME","Level");
+		$tableHead = array("no","ID","NAME","Level");
 		$tableBody =array();
 
 		asort ($CheckOverlapIdByIp->checkedID); 
 		foreach($CheckOverlapIdByIp->checkedID as $playerId){
 			echo $prefix;
-			$temp_result=mysql_fetch_array(mysql_query("select name,level from `".$GLOBALS['Database']->member."` where no = '$playerId' "));
-			$tableBody[] = array($playerId,$temp_result[name],$temp_result[level]);
+			$temp_result=mysql_fetch_array(mysql_query("select user_id,name,level from `".$GLOBALS['Database']->member."` where no = '$playerId' "));
+			$tableBody[] = array($playerId, $temp_result[user_id],$temp_result[name],$temp_result[level]);
 		}
 
 		$tableMaker->printTable($tableHead,$tableBody);
@@ -97,6 +99,7 @@ if($player or $ip){
 			asort ($CheckOverlapIdByIp->overlapedIP); 
 			foreach($CheckOverlapIdByIp->overlapedIP as $ip){
 				$tableBody[] = array($ip);
+				$overlapIp[] = $ip;
 			}
 			$tableMaker->printTable($tableHead,$tableBody);
 		}
@@ -161,9 +164,10 @@ if($player or $ip){
 		$tableHead = array("no","접속 시간","ID","name","IP");
 		$tableBody =array();
 		$orderCondition = orderCondition($CheckOverlapIdByIp->checkedID);
-		$temp_result=mysql_query("select * from `".$GLOBALS['Database']->loginlog."` where ismember $orderCondition order by no desc  limit 50");
+		$temp_result=mysql_query("select * from `".$GLOBALS['Database']->loginlog."` where ismember $orderCondition order by no desc  limit 150");
 
 		while($loginlog=@mysql_fetch_array($temp_result)){
+			if(in_array($loginlog['ip'],$overlapIp))
 			$tableBody[] = array($loginlog['no'],$loginlog['log_date'],$loginlog['ismember'],$loginlog['name'],$loginlog['ip'],);
 		}
 		$tableMaker->printTable($tableHead,$tableBody);

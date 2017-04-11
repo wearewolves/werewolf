@@ -109,7 +109,7 @@
 <tbody>
 	<?	
 // GetTheTable 회원 명단 가져오기
-	$sql ="SELECT  `year` ,  `month` ,  `player` ,  `commentCount` ,  `gameCount` ,  `name`,`homepage`,`open_homepage`  FROM  `zetyx_board_werewolf_bigmouth` ,  `zetyx_member_table`  WHERE  NO  = player AND  `month`  = ".$month." order by `commentCount` desc ";
+	$sql ="SELECT  `year` ,  `month` ,  `player` ,  `commentCount` ,  `gameCount` ,  `name`,`homepage`,`open_homepage`  FROM  `zetyx_board_werewolf_bigmouth` ,  `zetyx_member_table`  WHERE  NO  = player and `year` =".date("Y",$startDay)." AND  `month`  = ".$month." order by `commentCount` desc ";
 
 
 
@@ -117,8 +117,10 @@
 	$i=0;$prePoint=0;
 	//데이타 가져오기
 	$temp_result=mysql_query($sql);
+	$member_counter =0;
 	
 		while($membersRecord=mysql_fetch_array($temp_result)){
+			$member_counter++;
 //			if($membersRecord['player'] <>1 and array_key_exists($membersRecord['player'],$members)){
 				++$i;
 				if($count != $membersRecord['commentCount']);			
@@ -138,7 +140,7 @@
 
 				if($membersRecord['homepage'] and $membersRecord['open_homepage']){
 					$homepage = $membersRecord['homepage'];
-					echo "<td><a href='".$homepage."'>-</a></td>";
+					echo "<td><a href='".$homepage."' target='blank'>-</a></td>";
 				}
 				else echo "<td></td>";
 
@@ -149,7 +151,7 @@
 	?>
 </tbody>
 </table>
-
+<?echo $member_counter."명";?>
 <?	include "../../../Werewolf/foot.htm";?>
 </body>
 </html>

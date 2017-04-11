@@ -35,29 +35,29 @@ class WerewolfRule(Rule):
         #print "novicePlayers",novicePlayers
 
         truecharacterList = copy.copy(self.temp_truecharacter[len(novicePlayers) + len(expertPlayers) + 1])
-        print "players",len(novicePlayers) + len(expertPlayers) + 1
+        print "players", len(novicePlayers) + len(expertPlayers) + 1
         #마을 사람 배치
-        for _ in xrange(min(len(novicePlayers), truecharacterList.count(1))):
-            #print "len(novicePlayers)",len(novicePlayers)
-            #print "truecharacterList",truecharacterList
-            #print "random", ind
-            ind = random.randrange(0, len(novicePlayers))
-            truecharacterList.remove(1)
-            player = novicePlayers.pop(ind)
-            #print "player: ",player.id,"job: ",1
-            player.setTruecharacter(1)
+        random.shuffle(novicePlayers)
+        while novicePlayers:
+            try:
+                truecharacterList.remove(Truecharacter.HUMAN)
+            except ValueError:
+                # print("No remaining Truecharacter.HUMAN: {}".format(truecharacterList))
+                break
+            player = novicePlayers.pop()
+            #print("player: {} with job {}".format(player.id, job))
+            player.setTruecharacter(Truecharacter.HUMAN)
 
         restPlayers = expertPlayers + novicePlayers
+        random.shuffle(restPlayers)
         #print "restEntry:", restPlayers
         #print "restJob:", truecharacterList
-        
-        #남은 직업 배치
-        for _ in xrange(len(restPlayers)):
-            ind = random.randrange(0, len(restPlayers))
-            player = restPlayers.pop(ind)
-            job = truecharacterList.pop(0)
-            #print "player: ",player.id,"job: ",job
+        while restPlayers:
+            player = restPlayers.pop()
+            job = truecharacterList.pop()
+            # print("player: {} with job {}".format(player.id, job))
             player.setTruecharacter(job)
+        assert not truecharacterList, "not assigned roles exist!!" # TODO: change logging.error
             
         #2. 희생자의 코멘트
         victim = self.game.entry.getVictim()

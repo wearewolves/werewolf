@@ -35,6 +35,7 @@ class WerewolfRule(Rule):
 
         truecharacterList = copy.copy(self.temp_truecharacter[len(novicePlayers) + len(expertPlayers) + 1])
         logging.info("players: %d", len(novicePlayers) + len(expertPlayers) + 1)
+
         #마을 사람 배치
         random.shuffle(novicePlayers)
         logging.debug("noviceEntry: %s", novicePlayers)

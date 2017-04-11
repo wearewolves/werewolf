@@ -3,7 +3,7 @@ from werewolf.database.DATABASE import DATABASE
 from werewolf.game.GAME_STATE import GAME_STATE
 from werewolf.game.entry.Entry import Truecharacter
 from werewolf.game.entry.Entry import Race
-from Rule import *
+from werewolf.game.rule.Rule import WerewolfRule
 import random
 import copy
 

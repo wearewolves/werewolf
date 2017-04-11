@@ -34,45 +34,44 @@ class WerewolfRule(Rule):
         novicePlayers = self.game.entry.getNovicePlayers()
         #print "novicePlayers",novicePlayers
 
-        truecharacterList = copy.copy(self.temp_truecharacter[len(novicePlayers) + len(expertPlayers)+1 ])
-        print "players",len(novicePlayers) + len(expertPlayers)+1
+        truecharacterList = copy.copy(self.temp_truecharacter[len(novicePlayers) + len(expertPlayers) + 1])
+        print "players",len(novicePlayers) + len(expertPlayers) + 1
         #마을 사람 배치
-        while(len(novicePlayers)>0):
+        for _ in xrange(min(len(novicePlayers), truecharacterList.count(1))):
             #print "len(novicePlayers)",len(novicePlayers)
             #print "truecharacterList",truecharacterList
-            if(truecharacterList[0] != Truecharacter.HUMAN):
-                break
-            ram = random.randrange(0,len(novicePlayers))
-            #print "random",ram
-            player = novicePlayers.pop()
-            job = truecharacterList.pop(0)            
-            #print "player: ",player.id,"job: ",job
-            player.setTruecharacter(job)
+            #print "random", ind
+            ind = random.randrange(0, len(novicePlayers))
+            truecharacterList.remove(1)
+            player = novicePlayers.pop(ind)
+            #print "player: ",player.id,"job: ",1
+            player.setTruecharacter(1)
 
-        restPlayers =expertPlayers + novicePlayers
+        restPlayers = expertPlayers + novicePlayers
         #print "restEntry:", restPlayers
         #print "restJob:", truecharacterList
         
         #남은 직업 배치
-        while(len(restPlayers)>0):
-            player = restPlayers.pop(0)
-            job = truecharacterList.pop(random.randrange(0,len(truecharacterList))  )            
+        for _ in xrange(len(restPlayers)):
+            ind = random.randrange(0, len(restPlayers))
+            player = restPlayers.pop(ind)
+            job = truecharacterList.pop(0)
             #print "player: ",player.id,"job: ",job
             player.setTruecharacter(job)
             
         #2. 희생자의 코멘트
-        victim =self.game.entry.getVictim()
+        victim = self.game.entry.getVictim()
         #print "victim",victim
         victim.writeWill()
 
         #3. 게임 정보 업데이트
-        self.game.setGameState("state",GAME_STATE.PLAYING)
-        self.game.setGameState("day",self.game.day+1)
+        self.game.setGameState("state", GAME_STATE.PLAYING)
+        self.game.setGameState("day", self.game.day+1)
         
         #보통 방으로..
         cursor = self.game.db.cursor
         query = "update `zetyx_board_werewolf` set `%s` = '%s'  where no = '%s'"
-        query%=("is_secret",0,self.game.game)
+        query %=("is_secret", 0, self.game.game)
         #print query
         cursor.execute(query) 
         
@@ -276,12 +275,14 @@ class BasicRule(WerewolfRule):
                 guard = self.game.entry.getCharacter(guard['purpose'])
                 #print "guard", guard
                 
-            
-        if((guard and assaultVictim.id == guard.id) or (assaultVictim.id ==  victim.id)):
-            #print "습격 실패: " 
-	    pass
+        if assaultVictim.id == victim.id:
+            #print "습격 실패: (고습실)"
+            pass
+        elif guard and assaultVictim.id == guard.id:
+            #print "습격 실패: (선방)" 
+            pass
         else:
-            #print "습격  성공", assaultVictim
+            #print "습격 성공", assaultVictim
             assaultVictim.toDeath("습격")       
 
         #print "guard: ",guard
@@ -465,12 +466,17 @@ class HamsterRule(BasicRule):
                 guard = self.game.entry.getCharacter(guard['purpose'])
                 #print "guard", guard
                 
-            
-        if((guard and assaultVictim.id == guard.id) or (assaultVictim.id ==  victim.id) or (assaultVictim.id == hamsterPlayer.id)):
-            #print "습격 실패: " 
-	    pass
+        if assaultVictim.id == victim.id:
+            #print "습격 실패: (고습실)"
+            pass
+        elif guard and assaultVictim.id == guard.id:
+            #print "습격 실패: (선방)"
+            pass
+        elif assaultVictim.id == hamsterPlayer.id:
+            #print "습격 실패: (햄습)"
+	        pass
         else:
-            #print "습격  성공", assaultVictim
+            #print "습격 성공", assaultVictim
             assaultVictim.toDeath("습격")       
 
         #print "guard: ",guard
@@ -600,12 +606,15 @@ class ExpansionRule(WerewolfRule):
                 guard = self.game.entry.getCharacter(guard['purpose'])
                 #print "guard", guard
                 
-            
-        if(guard and assaultVictim.id == guard.id):
+        
+        if assaultVictim.id == victim.id:
+            #print "습격 실패: (고습실)"
+            pass
+        elif guard and assaultVictim.id == guard.id:
             #print "습격 실패: " 
-	    pass
+	        pass
         else:
-            #print "습격  성공", assaultVictim
+            #print "습격 성공", assaultVictim
             assaultVictim.toDeath("습격")       
 
         #print "guard: ",guard

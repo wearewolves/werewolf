@@ -1,7 +1,9 @@
 <script language='JavaScript'>
 	var select_obj;
 	function ZB_layerAction(name,status) { 
-		var obj=document.all[name];
+		// For Chrome, Safari and Opera
+		//var obj=document.all[name];
+		var obj = document.getElementById(name);
 		var _tmpx,_tmpy, marginx, marginy;
 		_tmpx = event.clientX + parseInt(obj.offsetWidth);
 		_tmpy = event.clientY + parseInt(obj.offsetHeight);
@@ -15,8 +17,10 @@
 			_tmpy = event.clientY + document.body.scrollTop + _marginy +20;
 		else
 			_tmpy = event.clientY + document.body.scrollTop ;
-		obj.style.posLeft=_tmpx-13;
-		obj.style.posTop=_tmpy-12;
+		//obj.style.posLeft=_tmpx-13;
+		//obj.style.posTop=_tmpy-12;
+		obj.style.left=_tmpx-13;
+		obj.style.top=_tmpy-12;
 		if(status=='visible') {
 			if(select_obj) {
 				select_obj.style.visibility='hidden';
@@ -40,7 +44,7 @@
 				printHeight = printHeight + 16;
 			}
 
-			printMain += "<tr onMousedown=location.href('skin/werewolf/view_private_record.php?id=werewolf"+"&player="+member_no+"');><td style=font-family:굴림;font-size:9pt height=18 nowrap>&nbsp;<img src=images/n_record.gif border=0 align=absmiddle>&nbsp;&nbsp;게임 기록&nbsp;&nbsp;</td></tr>";
+			printMain += "<tr onMousedown=location.href='skin/werewolf/view_private_record.php?id=werewolf"+"&player="+member_no+"';><td style=font-family:굴림;font-size:9pt height=18 nowrap>&nbsp;<img src=images/n_record.gif border=0 align=absmiddle>&nbsp;&nbsp;게임 기록&nbsp;&nbsp;</td></tr>";
 			printHeight = printHeight + 16;
 
 			printMain += "<tr onMousedown=window.open('view_info2.php?member_no="+member_no+"','view_info','width=400,height=510,toolbar=no,scrollbars=yes');><td style=font-family:굴림;font-size:9pt height=18 nowrap>&nbsp;<img src=images/n_information.gif border=0 align=absmiddle>&nbsp;&nbsp;회원정보 보기&nbsp;&nbsp;</td></tr>";
@@ -61,7 +65,7 @@
 		}
 		if(isAdmin) {
 			if(member_no) {
-				printMain += "<tr onMousedown=location.href('skin/werewolf/view_ip_overlap.php?id=werewolf&player="+member_no+"');><td style=font-family:굴림;font-size:9pt height=18 nowrap>&nbsp;<img src=images/n_modify.gif border=0 align=absmiddle>&nbsp;&nbsp;<font color=darkred>IP 추적&nbsp;&nbsp;</td></tr>";
+				printMain += "<tr onMousedown=location.href='skin/werewolf/view_ip_overlap.php?id=werewolf&player="+member_no+"';><td style=font-family:굴림;font-size:9pt height=18 nowrap>&nbsp;<img src=images/n_modify.gif border=0 align=absmiddle>&nbsp;&nbsp;<font color=darkred>IP 추적&nbsp;&nbsp;</td></tr>";
 				printHeight = printHeight + 16;
 
 				printMain += "<tr onMousedown=window.open('open_window.php?mode=i&str="+member_no+"','ZBremote','width=1,height=1,left=1,top=1');><td style=font-family:굴림;font-size:9pt height=18 nowrap>&nbsp;<img src=images/n_modify.gif border=0 align=absmiddle>&nbsp;&nbsp;<font color=darkred>회원정보 변경&nbsp;&nbsp;</td></tr>";

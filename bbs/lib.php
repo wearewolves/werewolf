@@ -565,7 +565,9 @@ ini_set('session.auto_start','1');
 
 			if($data[ismember]<1) $data[ismember]="";
 
-			$zbLayer = $zbLayer."\nprint_ZBlayer('zbLayer$_zbCheckNum', '$data[homepage]', '$data[email]', '$data[ismember]', '$id', '$data[name]', '$traceID', '$traceType', '$isAdmin', '$isMember');";
+			// zbLayer off when skin is "werewolf"
+			if($setup[skinname] != "werewolf")
+				$zbLayer = $zbLayer."\nprint_ZBlayer('zbLayer$_zbCheckNum', '$data[homepage]', '$data[email]', '$data[ismember]', '$id', '$data[name]', '$traceID', '$traceType', '$isAdmin', '$isMember');";
 		}   
 		return $_zbCount;
 	}

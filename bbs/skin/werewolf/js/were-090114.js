@@ -423,28 +423,50 @@ function load(){
 * This notice must stay intact for legal use
 ***********************************************/
 
-var soundfile="notify.wav" //path to sound file, or pass in filename directly into playsound()
+/***********************************************
+* JavaScript Sound Effect for HTML5
+* By using Audio Object
+* 2017.04.11
+***********************************************/
+
+// Check browser type before playing sound
+var bIE = new RegExp(/MSIE/).test(navigator.userAgent); // MS Internet Explorer
+
+//var soundfile="notify.wav"; //path to sound file, or pass in filename directly into playsound()
+var soundfile = bIE ? "notify.wav" : "notify.mp3";
 var soundPlay = true;
 
 function playsound(mediaURL) {
-	var rpt =1;
-	var height=0;
-	var width=0;
-	var CodeGen = "" 
+	// bIE == true : MS Internet Explorer
+	if(bIE) {
+		var rpt =1;
+		var height=0;
+		var width=0;
+		var CodeGen = "" 
 
-	CodeGen = '<embed type="application/x-mplayer2" ' + '\n' ;
-   	CodeGen += ' pluginspage="http://www.microsoft.com/Windows/MediaPlayer/" ' + '\n' ;
- 	CodeGen += 'Name="Player" ' + 'src="' + mediaURL + '" ' + '\n' ;
- 	CodeGen += 'autoStart=true ' ;
-	CodeGen += 'ShowStatusBar=0 '; 
-	CodeGen += 'enableContextMenu=0 cache=0' + '\n' ;
-	CodeGen += 'playCount=' + rpt + ' ' ;
-	CodeGen += 'volume=100 ' ;
-	CodeGen += 'loop=false' ;
-	CodeGen += 'hidden=true ';
-	CodeGen += 'HEIGHT=' + height + ' WIDTH=' + width + '>'
-				
-	$('#playerpp').html(CodeGen);
+		CodeGen = '<embed type="application/x-mplayer2" ' + '\n' ;
+		CodeGen += ' pluginspage="http://www.microsoft.com/Windows/MediaPlayer/" ' + '\n' ;
+		CodeGen += 'Name="Player" ' + 'src="' + mediaURL + '" ' + '\n' ;
+		CodeGen += 'autoStart=true ' ;
+		CodeGen += 'ShowStatusBar=0 '; 
+		CodeGen += 'enableContextMenu=0 cache=0' + '\n' ;
+		CodeGen += 'playCount=' + rpt + ' ' ;
+		CodeGen += 'volume=100 ' ;
+		CodeGen += 'loop=false' ;
+		CodeGen += 'hidden=true ';
+		CodeGen += 'HEIGHT=' + height + ' WIDTH=' + width + '>'
+					
+		$('#playerpp').html(CodeGen);
+	}
+	// bIE == false : All browsers except MS Internet Explorer
+	else {
+		var audioObj = document.createElement("AUDIO");
+		
+		if(audioObj.canPlayType("audio/mpeg")) audioObj.setAttribute("src", mediaURL);
+		else audioObj.setAttribute("src", mediaURL.substr(-3) + "ogg");
+		
+		audioObj.play();
+	}
 }
 
 /*
@@ -482,11 +504,13 @@ $(function(){
 		var selectedSound =  getCookie('selectedSound');
 		if(selectedSound =="cat"){
 			$('#catSound').attr("checked",true);
-			soundfile="notify.wav";
+			//soundfile="notify.wav";
+			soundfile = bIE ? "notify.wav" : "notify.mp3";
 		}
 		else{
 			$('#dogSound').attr("checked",true);
-			soundfile="dog.wav";
+			//soundfile="dog.wav";
+			soundfile = bIE ? "dog.wav" : "dog.mp3";
 		}
 	});
 	
@@ -497,13 +521,15 @@ $(function(){
 	});
 
 	$('#dogSound').click(function(){
-		soundfile="dog.wav";
+		//soundfile="dog.wav";
+		soundfile = bIE ? "dog.wav" : "dog.mp3";
 		setCookie('selectedSound','dog',7);
 		playsound(soundfile);
 	});
 
 	$('#catSound').click(function(){
-		soundfile="notify.wav";
+		//soundfile="notify.wav";
+		soundfile = bIE ? "notify.wav" : "notify.mp3";
 		setCookie('selectedSound','cat',7);
 		playsound(soundfile);
 	});
@@ -522,11 +548,13 @@ $(function(){
 			swit =  getCookie('selectedSound');
 			if(swit =="cat"){
 				$('#catSound').attr("checked",true);
-				soundfile="notify.wav";
+				//soundfile="notify.wav";
+				soundfile = bIE ? "notify.wav" : "notify.mp3";
 			}
 			else{
 				$('#dogSound').attr("checked",true);
-				soundfile="dog.wav";
+				//soundfile="dog.wav";
+				soundfile = bIE ? "dog.wav" : "dog.mp3";
 			}	
 		}
 	}

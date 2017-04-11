@@ -886,9 +886,9 @@ if($gameinfo['state']=="게임중"  and $gameinfo['day']<>1 and $truecharacter['ass
 <? if($gameinfo['useTimetable'] and $entry['alive']=="생존" and $gameinfo['state']=="게임중"){?>
 	<div class="DisplayBoard">
 	<?	if($entry['isConfirm']){
-		echo "[준비가 끝났습니다. 다른 플레이어의 준비가 끝날 때까지 기다려주세요.] <br><br> <span><a href=$PHP_SELF?id=$id&no=$no&function=isConfirm&password=$password>준비 취소</a></span>";
+		echo "[준비 완료. 모든 플레이어가 준비를 끝낼 때까지 기다려주세요.] <br><br> <span><a href=$PHP_SELF?id=$id&no=$no&function=isConfirm&password=$password>준비 취소</a></span>";
 	}elseif($entry  and !$entry['isConfirm']){
-		echo "[준비 중이십니다.] <br><br> <span><a href=$PHP_SELF?id=$id&no=$no&function=isConfirm&password=$password>준비 완료</a></span>&nbsp;&nbsp;&nbsp;&nbsp;";	
+		echo "[모든 플레이어가 준비 완료를 누르면 다음 날로 넘어갑니다.] <br><br> <span><a href=$PHP_SELF?id=$id&no=$no&function=isConfirm&password=$password>준비 완료</a></span>&nbsp;&nbsp;&nbsp;&nbsp;";	
 	}?>
 </div>
 <?}?>

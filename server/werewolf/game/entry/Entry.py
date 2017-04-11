@@ -35,7 +35,7 @@ class Entry:
         return victim        
 
     def getNoMannerPlayers(self):
-        return [] # debug purpose only
+        # return [] # debug purpose only
         cursor = self.game.db.cursor
 
         maxNoCommentCount = self.getMaxNoCommentCount()

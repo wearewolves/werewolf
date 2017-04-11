@@ -4,6 +4,7 @@ TD {line-height:140%}
 
 SELECT {font-size:9pt;color:000000;}
 
+/* no more support for scrollbar style
 body{
 	scrollbar-face-color:#ffffff;
 	scrollbar-highlight-color: #ffffff;
@@ -13,6 +14,7 @@ body{
 	scrollbar-track-color: #ffffff;
 	scrollbar-arrow-color: #eeeeee;
 }
+*/
 
 A:link    {color:666666;text-decoration:none;font-family:verdana;font-size:8pt;}
 A:visited {color:666666;text-decoration:none;font-family:verdana;font-size:8pt;}

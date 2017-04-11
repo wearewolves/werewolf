@@ -3,6 +3,7 @@ TD {line-height:140%}
 body 
 {
 	background-color:#000000;
+	/* no more support for scrollbar style
 	scrollbar-face-color: #000000;
 	scrollbar-highlight-color: #000000;
 	scrollbar-3dlight-color: #555555;
@@ -10,6 +11,7 @@ body
 	scrollbar-darkshadow-color:#404040;
 	scrollbar-track-color:#000000;
 	scrollbar-arrow-color: #555555;
+	*/
 	text-align:center;
 }
 A:link    {color:666666;text-decoration:none;font-family:±¼¸²;font-size:9pt;}

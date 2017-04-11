@@ -48,7 +48,7 @@ class Entry:
 
     def getMaxNoCommentCount(self):
         if self.game.termOfDay <= 1800:
-            maxSuddenCount = 3
+            maxSuddenCount = 1000
         else:
             maxSuddenCount = 1
         return maxSuddenCount

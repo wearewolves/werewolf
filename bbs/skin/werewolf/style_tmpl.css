@@ -289,6 +289,7 @@ SELECT {font-size:9pt;color:000000;}
 
 body{
 	overflow:auto;
+	/* no more support for scrollbar style
 	scrollbar-face-color:#000000;
 	scrollbar-highlight-color:#303030;
 	scrollbar-3dlight-color:#191919;
@@ -296,6 +297,7 @@ body{
 	scrollbar-darkshadow-color:#101010;
 	scrollbar-track-color:#202020;
 	scrollbar-arrow-color:#454545;
+	*/
 }
 
 A:link    {color:666666;text-decoration:none;font-family:±¼¸²;font-size:9pt;}

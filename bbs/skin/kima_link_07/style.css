@@ -17,6 +17,7 @@ a:hover   {color:aaaaaa; text-decoration:none;}
 .line {background-color:#151515;}
 .line2 {background-color:transparent; border:1 solid #d7d7d7; border-bottom-width:0; border-left-width:0; border-right-width:1; border-top-width:0;}
 
+/* no more support for scrollbar style
 BODY {scrollbar-face-color:FFFFFF;
            scrollbar-shadow-color:d7d7d7;
            scrollbar-highlight-color:d7d7d7;
@@ -25,3 +26,4 @@ BODY {scrollbar-face-color:FFFFFF;
            scrollbar-base-color:FFFFFF;
            scrollbar-arrow-color:606060;
            scrollbar-track-color:FFFFFF;}
+*/

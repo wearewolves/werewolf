@@ -410,6 +410,17 @@ function changeCharacter(){
 </div>
 <?}?>
 
+<? if($gameinfo['state']=="게임중" and $gameinfo['seal']=="논의"){?>
+<div class="DisplayBoard">
+	봉인 찬성: <?=$gameinfo['seal_yes']?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 봉인 반대: <?=$gameinfo['seal_no']?><br><br>
+	<?if($entry['seal_vote']==0 and $entry['player'] ){ 
+		echo "<a href=$PHP_SELF?id=$id&no=$no&function=seal_yes>봉인 찬성하기</a><br><a href=$PHP_SELF?id=$id&no=$no&function=seal_no>봉인 반대하기</a>";
+	}?>
+	<?if($entry['seal_vote']==1){?>봉인 찬성하셨습니다.<?}?>
+	<?if($entry['seal_vote']==2){?>봉인 반대하셨습니다.<?}?>
+</div>
+<?}?>
+
 <div id="menu-foot">
 		<?	if($gameinfo['state']=="준비중" or $is_admin){?>
 			<span class="left">

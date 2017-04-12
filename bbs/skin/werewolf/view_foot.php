@@ -369,7 +369,8 @@ function changeCharacter(){
 				<select name='selectCharacter' id="role_select">
 				<?
 				$stlink = 'http://werewolf6.cafe24.com/bbs/';
-				for($rolecount=0;$mirei = mysql_fetch_array($characterQuery);$rolecount++){
+				$mirei = mysql_fetch_array($characterQuery);
+				for($rolecount=0;$rolecount<$mirei.length;$rolecount++){
 					echo "<option data-img-src='".$stlink.$characterImageFolder.$mirei['half_image']."' value='".$mirei['no']."' >".$character_list[$mirei['no']]."</option>";
 				}
 				?>

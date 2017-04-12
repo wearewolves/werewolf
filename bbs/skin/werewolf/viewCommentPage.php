@@ -207,7 +207,11 @@ if(substr_count ( $UNSID,"<||>") == 4){
 		
 		if(true){
 			if($viewChar and is_numeric($viewChar)) $checkChar = " AND `character` = $viewChar ";
-			if(!$member[no]) $member[no] =0;
+			// Hide seal logs until the end of game except for myself and admin
+			if($checkChar)
+				// viewChar != playing character && not admin
+				if($viewChar != $character && !$is_admin) $checkChar .= "AND type != '봉인제안' ";
+			if(!$member[no]) $member[no] = 0;
 			
 			if($entry and $gameinfo['state'] == "게임중"){
 				$truecharacter =mysql_fetch_array(mysql_query("select * from $DB_truecharacter where no=$entry[truecharacter]"));

@@ -35,7 +35,7 @@ class Server:
                     database = DATABASE(config.user, config.passwd, config.db)
                     cursor = database.cursor
 
-                    cursor.execute("select * from `zetyx_board_werewolf_gameinfo` where `state` ='ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½' or `state` ='ï¿½Øºï¿½ï¿½ï¿½'  ")
+                    cursor.execute("select * from `zetyx_board_werewolf_gameinfo` where `state` ='°ÔÀÓÁß' or `state` ='ÁØºñÁß'  ")
                     logging.debug("Cursor's rowcount: %d", cursor.rowcount)
                     recs = cursor.fetchall()
 

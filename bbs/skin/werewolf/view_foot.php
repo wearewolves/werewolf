@@ -292,6 +292,22 @@ function formcheck(f){
 </div>
 <?	}?>
 
+<script>
+
+/* 원본코드#56
+var characterImage = Array();
+	<?	$characterImage =DB_array("no","half_image","$DB_character where `set` = $gameinfo[characterSet]");
+		while (list ($noCharacter, $half_image) = each ($characterImage)) {
+			 echo "characterImage[$noCharacter] = '$half_image';\n";
+		}
+	?>
+
+function changeCharacter(){
+	addPlayer.previewCharacter.src=characterImageFolder+characterImage[addPlayer.selectCharacter.value];
+}
+*/
+</script>
+
 <? if($gameinfo['state']=="준비중"){?>
 <div class="DisplayBoard">
 <?
@@ -331,8 +347,9 @@ function formcheck(f){
 		if($playCount >= $fiducialPlayCount and $NowPlayingCount < $AttandMaxCountOver3 or $playCount < $fiducialPlayCount and $NowPlayingCount < $AttandMaxCountUnder3){
 			echo "$NowPlayingCount 개 게임에 참여 중 입니다. <br/>";
 			$entryCharacter = DB_array("character","character","$DB_entry where game='$no' ");
-			if($entryCharacter )	$orderCondition = orderCondition($entryCharacter);
-			else 						$orderCondition = "in (0)";
+			if($entryCharacter) $orderCondition = orderCondition($entryCharacter);
+			else $orderCondition = "in (0)";
+			//#56	$FirstCharacter=mysql_fetch_array(mysql_query("select * from $DB_character where `set` = $gameinfo[characterSet] and   `no`  not $orderCondition"));
 			?>
 			
 			<form method=post name=addPlayer action=<?="$PHP_SELF?id=$id&no=$no&function=addPlayer&password=$password"?>  enctype="multipart/form-datas" 
@@ -340,8 +357,16 @@ function formcheck(f){
 			<?
 			$characterQuery=mysql_query("select * from $DB_character where `set` = $gameinfo[characterSet] and `no` not $orderCondition order by 'no'");
 			?>
-			<div id="rolebox">
-				<select name='selectCharacter' class="role_select">
+			
+			<!--#56 old code
+			<img name="previewCharacter" width='100' height='100' src="<?=$characterImageFolder.$FirstCharacter[half_image]?>"></img>
+			<? // =DBselect("selectCharacter","","no",$character_list,"$DB_character where `set` = $gameinfo[characterSet] and   `no`  not $orderCondition","onkeyup=changeCharacter() onchange=changeCharacter()  font-size:9pt;width=100","","");?>
+			-->
+			
+			<!-- #56 new code -->
+			<div id="rolebox" style="background-color: yellow;min-height:300px;">
+				<span>우리 미레이짱은 성우 나온다</span>
+				<select name='selectCharacter' id="role_select">
 				<?
 				$stlink = 'http://werewolf6.cafe24.com/bbs/';
 				for($rolecount=0;$mirei = mysql_fetch_array($characterQuery);$rolecount++){
@@ -351,12 +376,16 @@ function formcheck(f){
 				</select>
 			</div>
 			<script type="text/javascript">
-				jQuery("select.role_select").imagepicker({
+			$(document).ready(function(){
+				$("#role_select").imagepicker({
 					show_label: true,
 					hide_select: false
 				});
+			});
 			</script>
-			<input type="submit" name="temp" value="게임 참여하기" style="background:#111;width:80px">
+			<!-- -->
+			
+			<input type="submit" name="temp" value="게임 참여하기"">
 			</form>
 		<?}
 		else echo "$NowPlayingCount 개 게임에 참여 중 입니다.<br/><br/> 더 이상 게임에 참여 할 수 없습니다.";

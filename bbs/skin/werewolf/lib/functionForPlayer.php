@@ -374,6 +374,34 @@
 		movepage("$view_file_link?id=$id&page=$page&page_num=$page_num&select_arrange=$select_arrange&desc=$des&sn=$sn&ss=$ss&sc=$sc&keyword=$keyword&no=$no&category=$category&password=$password");
 	}
 
+	// 게임 봉인 찬성하기
+	if ($function == "seal_yes" and $entry<>"" and $entry['seal_vote'] == 0 and $gameinfo['state'] == "게임중"	 and $gameinfo['seal'] == "논의"){ 
+		$game_seal_yes =$gameinfo['seal_yes'] +1;
+		@mysql_query("update `$t_board"."_$id"."_gameinfo` set `seal_yes` = '$game_seal_yes' where game = $no" ) or die("게임에 참여한 플레이어 수를 갱신중에 오류가 발생했습니다.");
+
+		@mysql_query("update `$t_board"."_$id"."_entry` set `seal_vote` = '1' where game = $no  and player = $member[no]" ) or die("게임에 참여한 플레이어 수를 갱신중에 오류가 발생했습니다.");
+
+		// 대상 파일 이름 정리
+		if(!$setup[use_alllist]) $view_file_link="view.php"; else $view_file_link="zboard.php";
+
+		// 페이지 이동	
+		movepage("$view_file_link?id=$id&page=$page&page_num=$page_num&select_arrange=$select_arrange&desc=$des&sn=$sn&ss=$ss&sc=$sc&keyword=$keyword&no=$no&category=$category&password=$password");
+	}
+
+	// 게임 봉인 반대하기
+	if ($function == "seal_no" and $entry<>"" and $entry['seal_vote'] == 0 and $gameinfo['state'] == "게임중"	and $gameinfo['seal'] == "논의"){ 
+		$game_seal_no =$gameinfo['seal_no'] +1;
+		@mysql_query("update `$t_board"."_$id"."_gameinfo` set `seal_no` = '$game_seal_no' where game = $no" ) or die("게임에 참여한 플레이어 수를 갱신중에 오류가 발생했습니다.");
+
+		@mysql_query("update `$t_board"."_$id"."_entry` set `seal_vote` = '2' where game = $no  and player = $member[no]" ) or die("게임에 참여한 플레이어 수를 갱신중에 오류가 발생했습니다.");
+
+		// 대상 파일 이름 정리
+		if(!$setup[use_alllist]) $view_file_link="view.php"; else $view_file_link="zboard.php";
+
+		// 페이지 이동	
+		movepage("$view_file_link?id=$id&page=$page&page_num=$page_num&select_arrange=$select_arrange&desc=$des&sn=$sn&ss=$ss&sc=$sc&keyword=$keyword&no=$no&category=$category&password=$password");
+	}
+
 	//[투표, 능력 끝]////////////////////////////////////////////////////////////////////////////
 
 

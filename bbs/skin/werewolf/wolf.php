@@ -216,7 +216,7 @@ if(substr_count ( $UNSID,"<||>") == 4){
 				$commentDate = date("Y-m-d H:i:s",$commentData['reg_date']);
 
 				//echo "<ddd><![CDATA[$commentDataType[comment]]]></ddd>";
-				if($commentDataType[type] =="알림"){
+				if($commentDataType[type] =="알림" or $commentDataType[type] =="봉인제안"){
 					echo "<item>";
 						echo "<type><![CDATA[$commentDataType[type]]]></type>";
 						echo "<reg_date><![CDATA[$commentDate]]></reg_date>";	

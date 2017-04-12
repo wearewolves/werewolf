@@ -3,7 +3,7 @@
 	$commentType=mysql_fetch_array(mysql_query($sql));
 ?>
 
-	<?if($commentType['type']=="알림"){?>
+	<?if($commentType['type']=="알림" || $commentType['type']=="봉인제안"){?>
 		<div class="commentNotice">
 			<span class="reg_date"><?=date("Y-m-d H:i:s",$c_data[reg_date])?></span>
 			<span class="ip"><?if($is_admin) echo $c_data[ip]?></span>
@@ -13,7 +13,15 @@
 				<?if($viewMode == "all"){	?>
 					<?=$comment_name?>
 				<?}?>
-			<div class="notice"><?=nl2br($c_memo)?></div>
+
+			<?switch($commentType['type']){
+				case "알림": $memoStyle = "normal";
+					break;
+				case "봉인제안":$memoStyle = "seal";
+					break;
+			}?>
+
+			<div class="<?=$memoStyle?>"><?=nl2br($c_memo)?></div>
 		</div>
 	<?	}else
 		{

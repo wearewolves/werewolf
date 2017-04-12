@@ -98,6 +98,9 @@ if($totalCommentPage>=1) echo "</div>";
 //			$printCommentType .="<INPUT TYPE=radio NAME=c_type value=비밀 checked onclick=setColor('비밀')>비밀($entry[secret]/40)</input>" ;
 			$printCommentType .="<INPUT TYPE=radio ID=c_type NAME=c_type  $checked value=알림 onclick=setColor('알림')>알림</input>" ;
 		}
+		if($gameinfo['state']=="게임중" and $gameinfo['seal'] == '논의' and $entry and $entry['seal']>0){
+			$printCommentType .="<INPUT TYPE=radio ID=c_type NAME=c_type value=봉인제안  onclick=setColor('봉인제안')>봉인 논의(".$entry['seal']."/5)</input>" ;
+		}
 	 }
 
 	 //일반 

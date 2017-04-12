@@ -102,7 +102,7 @@ function BuildXMLResults(dataXML,target){
 		for(iC=0;iC<xRows.length;iC++){
 			var type = xRows[iC].getElementsByTagName('type')[0].firstChild.nodeValue;
 
-			if(type =="알림"){
+			if(type =="알림" || type =="봉인제안"){
 				var newline=$(document.createElement("div")).addClass("commentNotice");
 				target.append(newline);
 				newline.hide();
@@ -112,8 +112,13 @@ function BuildXMLResults(dataXML,target){
 				reg_date.innerHTML = xRows[iC].getElementsByTagName('reg_date')[0].firstChild.nodeValue;
 				newline.append(reg_date);
 
-				var memo=document.createElement("div");
-				memo.className = "notice";
+				var memo=document.createElement("div");				
+				switch(type){
+					case "알림": memo.className = "notice";
+								break;
+					case "봉인제안": memo.className = "seal";
+								break;
+				}
 				var txt=document.createTextNode(xRows[iC].getElementsByTagName('description')[0].firstChild.nodeValue);
 
 				memo.innerHTML=txt.nodeValue;
@@ -350,6 +355,9 @@ function printCommentType(typeName,typeValue){
 		case "secretanswer":
 						selectCommentType.innerHTML+= "<INPUT TYPE=radio ID=c_type NAME=c_type value=답변  onclick=setColor('편지')>답변</input>";
 						break;
+		case "seal":
+						selectCommentType.innerHTML+= "<INPUT TYPE=radio ID=c_type NAME=c_type value=봉인제안  onclick=setColor('봉인제안')>봉인 논의(" + typeValue + "/5)</input>";
+						break;
 	}
 }
 
@@ -400,7 +408,11 @@ function setColor(type){
 	case "답변":
 		$("#memo").css("backgroundColor","#A6E1C4");
 		$("#memo").css("color","#000");
-		break;	
+		break;
+	case "봉인제안":
+		$("#memo").css("backgroundColor","#99ff00");
+		$("#memo").css("color","#000");
+		break;
 	}
 	return true;
 }
@@ -666,6 +678,50 @@ $(function(){
 				$("."+event.target.value).filter("."+this.value).fadeOut();
 		});
 	});
+
+	$("#memo").keyup(function(event){
+		if($(this).val() == "봉인 제안"){
+			var r = confirm("봉인을 제안하시겠습니까? 봉인은 게임 진행을 중단시키는 것입니다.\n\n봉인을 제안하면 봉인을 찬성,반대하는 투표가 시작됩니다.\n사건 발생 시간까지 찬성표가 과반수보다 많으면 게임이 봉인됩니다.\n봉인 논의는 한 게임당 한번만 가능합니다.");
+			if (r == true) {
+			    var reason = prompt("봉인을 제안하는 이유를 적어주세요.", "자세하게 적어주시기 바랍니다.");
+
+				try{
+					var obj = $("#writeComment")
+					
+					prams="page="+obj.find("[name=page]").val();
+					prams+="&id="+obj.find("[name=id]").val();
+					prams+="&no="+obj.find("[name=no]").val();
+					prams+="&select_arrange="+obj.find("[name=select_arrange]").val();
+					prams+="&desc="+obj.find("[name=desc]").val();
+					prams+="&page_num="+obj.find("[name=page_num]").val();
+					prams+="&keyword="+obj.find("[name=keyword]").val();
+					prams+="&category="+obj.find("[name=category]").val();
+					prams+="&sn="+obj.find("[name=sn]").val();
+					prams+="&ss="+obj.find("[name=ss]").val();
+					prams+="&sc="+obj.find("[name=sc]").val();
+					prams+="&mode="+obj.find("[name=mode]").val();
+					prams+="&c_type="+encodeURIComponent("봉인제안");
+					prams+="&memo="+encodeURIComponent(reason);
+					prams+="&SID="+encodeURIComponent(SID);
+
+					soundPlay = false;;
+					var writer= new net.ContentLoader("skin/werewolf/were_comment_type_ok.php",write_ok,BuildError,"POST",prams);
+					//obj.memo.value = obj.memo.value + prams;
+					return false;
+				}
+				catch(ee){
+					alert(ee.description );
+					return false;
+				}
+
+			} else {
+				txt = "봉인 제안은 신중하게 해주시기 바랍니다.";
+				alert(txt)
+			}			
+		}
+	})
+
+
 	
 	//트래픽을 위해 F5키 사용을 막음
 	$().keydown(function (event) {

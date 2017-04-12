@@ -344,7 +344,7 @@ function formcheck(f){
 				<select name='selectCharacter' class="role_select">
 				<?
 				for($rolecount=0;$mirei = mysql_fetch_array($characterQuery);$rolecount++){
-					echo "<option data-img-src='".$characterImageFolder.$mirei['half_image']."' value='".$mirei['no']."' >".$character_list[$mirei['no']]."</option>\n";
+					echo "<option data-img-src='werewolf6.cafe24.com/bbs/".$characterImageFolder.$mirei['half_image']."' value='".$mirei['no']."' >".$character_list[$mirei['no']]."</option>";
 				}
 				?>
 				</select>

@@ -364,13 +364,13 @@ function changeCharacter(){
 			-->
 			
 			<!-- #56 new code -->
-			<div id="rolebox" style="background-color: yellow;min-height:300px;">
-				<span>우리 미레이짱은 성우 나온다</span>
+			<div id="rolebox" style="background-color:#111;min-height:300px;overflow:scroll">
 				<select name='selectCharacter' id="role_select">
 				<?
 				$stlink = 'http://werewolf6.cafe24.com/bbs/';
-				for($rolecount=0;$mirei = mysql_fetch_array($characterQuery);$rolecount++){
-					echo "<option data-img-src='".$stlink.$characterImageFolder.$mirei['half_image']."' value='".$mirei['no']."' >".$character_list[$mirei['no']]."</option>";
+				$characterArray = mysql_fetch_array($characterQuery);
+				for($rc=0;$rc<count($characterArray);$rc++){
+					echo "<option data-img-src='".$stlink.$characterImageFolder.$characterArray['half_image']."' value='".$characterArray['no']."' >".$character_list[$characterArray['no']]."</option>\n";
 				}
 				?>
 				</select>
@@ -381,11 +381,12 @@ function changeCharacter(){
 					show_label: true,
 					hide_select: false
 				});
+				console.log("Mirei is best gril");
 			});
 			</script>
 			<!-- -->
 			
-			<input type="submit" name="temp" value="게임 참여하기"">
+			<input type="submit" name="temp" value="게임 참여하기" style="background:#111;width:80px">
 			</form>
 		<?}
 		else echo "$NowPlayingCount 개 게임에 참여 중 입니다.<br/><br/> 더 이상 게임에 참여 할 수 없습니다.";

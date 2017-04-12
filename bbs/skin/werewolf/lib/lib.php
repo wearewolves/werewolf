@@ -85,6 +85,11 @@ function DB_arrayForIpCheck($key,$value,$db){
 	return $members;
 }
 
+/*
+DBselect("selectCharacter","","no",$character_list,
+"$DB_character where `set` = $gameinfo[characterSet] and   `no`  not $orderCondition",
+"onkeyup=changeCharacter() onchange=changeCharacter()  font-size:9pt;width=100","","")
+*/
 function DBselect($name,$head,$id,$value,$DB,$code,$selectedID,$unselectedID){
 	$result=mysql_query("select * from $DB order by '$id'");
 

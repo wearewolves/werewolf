@@ -13,7 +13,7 @@ import config
 
 class Server:
     def start(self):
-        logging.basicConfig(filename="logfile.txt", level=logging.DEBUG,
+        logging.basicConfig(filename="./logfile.txt", filemode='w', level=logging.DEBUG,
                             format="%(asctime)s %(name)-12s %(levelname)-8s %(message)s")
         logging.info('PID: %d', os.getpid())
         old_time = 0

@@ -337,11 +337,12 @@ function formcheck(f){
 			<?
 			$characterQuery=mysql_query("select * from $DB_character where `set` = $gameinfo[characterSet] and `no` not $orderCondition order by 'no'");
 			?>
+			<span><? var_dump($character_list); ?>
 			<div id="rolebox">
 				<select name='selectCharacter' id='rolebar'>
 				<?
-				while($mirei=mysql_fetch_array($characterQuery)) {
-					echo "<option value='".$mirei['no']."' data-img-src=".$characterImageFolder.$mirei['half_image']." >".$character_list[$mirei['no']]."</option>";
+				for($h=0;$mirei = mysql_fetch_array($characterQuery);$h++){
+					echo "<option value='".$mirei['no'][$h]."' data-img-src=".$characterImageFolder.$mirei['half_image'][$h]." >".$character_list[$mirei['no'][$h]]."</option>";
 				}
 				?>
 				</select>

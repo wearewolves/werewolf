@@ -306,6 +306,14 @@ function changeCharacter(){
 	addPlayer.previewCharacter.src=characterImageFolder+characterImage[addPlayer.selectCharacter.value];
 }
 */
+
+$(document).ready(function(){
+	$("#role_select").imagepicker({
+		show_label: true,
+		hide_select: false
+	});
+	console.log("mirei is best gril");
+});
 </script>
 
 <? if($gameinfo['state']=="준비중"){?>
@@ -354,9 +362,6 @@ function changeCharacter(){
 			
 			<form method=post name=addPlayer action=<?="$PHP_SELF?id=$id&no=$no&function=addPlayer&password=$password"?>  enctype="multipart/form-datas" 
 			onsubmit="return confirm('게임에 참여하기 전에!!\n\n1. 인랑은 대화로 진행되는 게임입니다. 매너 있는 대화를 해주세요.\n\n2. 게임에 참여하면 끝날 때까지 성실히 활동해 주십시오.\n(게임이 시작해서 끝날 때까지 3~4시간 정도가 걸립니다. 중간에 포기하는 일이 없도록 합시다.)\n(불가피한 경우 같이 플레이 하는 분들에게 양해를 구하시기 바랍니다.)\n\n동의하시면 확인을 눌러주세요.')">
-			<?
-			$characterQuery=mysql_query("select * from $DB_character where `set` = $gameinfo[characterSet] and `no` not $orderCondition order by 'no'");
-			?>
 			
 			<!--#56 old code
 			<img name="previewCharacter" width='100' height='100' src="<?=$characterImageFolder.$FirstCharacter[half_image]?>"></img>
@@ -364,29 +369,21 @@ function changeCharacter(){
 			-->
 			
 			<!-- #56 new code -->
-			<div id="rolebox" style="background-color:#111;min-height:300px;overflow:scroll">
+			<div id="rolebox" style="min-height:300px;overflow:scroll">
 				<select name='selectCharacter' id="role_select">
 				<?
 				$stlink = 'http://werewolf6.cafe24.com/bbs/';
-				$characterArray = mysql_fetch_array($characterQuery);
-				for($rc=0;$rc<count($characterArray);$rc++){
+				$characterQuery = mysql_query("select * from $DB_character where `set` = $gameinfo[characterSet] and `no` not $orderCondition order by 'no'");
+			//	$characterArray = mysql_fetch_array($characterQuery);
+			//	for($rc=0;$rc<count($characterArray);$rc++){
+				for($rc=0;$characterArray = mysql_fetch_array($characterQuery);$rc++){
 					echo "<option data-img-src='".$stlink.$characterImageFolder.$characterArray['half_image']."' value='".$characterArray['no']."' >".$character_list[$characterArray['no']]."</option>\n";
 				}
 				?>
 				</select>
 			</div>
-			<script type="text/javascript">
-			$(document).ready(function(){
-				$("#role_select").imagepicker({
-					show_label: true,
-					hide_select: false
-				});
-				console.log("Mirei is best gril");
-			});
-			</script>
 			<!-- -->
-			
-			<input type="submit" name="temp" value="게임 참여하기" style="background:#111;width:80px">
+			<input type="submit" name="temp" value="게임 참여하기" style="width:80px">
 			</form>
 		<?}
 		else echo "$NowPlayingCount 개 게임에 참여 중 입니다.<br/><br/> 더 이상 게임에 참여 할 수 없습니다.";

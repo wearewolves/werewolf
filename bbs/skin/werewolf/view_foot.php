@@ -292,7 +292,6 @@ function formcheck(f){
 </div>
 <?	}?>
 
-
 <? if($gameinfo['state']=="준비중"){?>
 <div class="DisplayBoard">
 <?
@@ -331,22 +330,26 @@ function formcheck(f){
 	if($canPlay){
 		if($playCount >= $fiducialPlayCount and $NowPlayingCount < $AttandMaxCountOver3 or $playCount < $fiducialPlayCount and $NowPlayingCount < $AttandMaxCountUnder3){
 			echo "$NowPlayingCount 개 게임에 참여 중 입니다. <br/>";
+			$entryCharacter = DB_array("character","character","$DB_entry where game='$no' ");
+			if($entryCharacter )	$orderCondition = orderCondition($entryCharacter);
+			else 						$orderCondition = "in (0)";
 			?>
+			
 			<form method=post name=addPlayer action=<?="$PHP_SELF?id=$id&no=$no&function=addPlayer&password=$password"?>  enctype="multipart/form-datas" 
 			onsubmit="return confirm('게임에 참여하기 전에!!\n\n1. 인랑은 대화로 진행되는 게임입니다. 매너 있는 대화를 해주세요.\n\n2. 게임에 참여하면 끝날 때까지 성실히 활동해 주십시오.\n(게임이 시작해서 끝날 때까지 3~4시간 정도가 걸립니다. 중간에 포기하는 일이 없도록 합시다.)\n(불가피한 경우 같이 플레이 하는 분들에게 양해를 구하시기 바랍니다.)\n\n동의하시면 확인을 눌러주세요.')">
 			<?
 			$characterQuery=mysql_query("select * from $DB_character where `set` = $gameinfo[characterSet] and `no` not $orderCondition order by 'no'");
 			?>
-			<span><? var_dump($character_list); ?>
 			<div id="rolebox">
-				<select name='selectCharacter' id='rolebar'>
+				<select name='selectCharacter' id='role_select'>
 				<?
 				for($h=0;$mirei = mysql_fetch_array($characterQuery);$h++){
-					echo "<option value='".$mirei['no'][$h]."' data-img-src=".$characterImageFolder.$mirei['half_image'][$h]." >".$character_list[$mirei['no'][$h]]."</option>";
+					echo "<option value='".$mirei['no']."' data-img-src='".$characterImageFolder.$mirei['half_image']."' >".$character_list[$mirei['no']]."</option>\n";
 				}
 				?>
 				</select>
 			</div>
+			<span><? var_dump($mirei); ?></span>
 			<input type="submit" name="temp" value="게임 참여하기" style="background:#111;width:80px">
 			</form>
 		<?}
@@ -357,8 +360,12 @@ function formcheck(f){
 <?} ?>
 
 <script>
-$(#rolebar).imagepicker();
+	$("#role_select").imagepicker({
+		show_label:true
+	});
 </script>
+
+
 
 <? if($is_admin and $useAdminTool){?>
 <div class="DisplayBoard">

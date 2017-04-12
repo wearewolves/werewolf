@@ -472,7 +472,7 @@ function playsound(mediaURL) {
 	}
 	// bIE == false : All browsers except MS Internet Explorer
 	else {
-		var audioObj = document.createElement("AUDIO");
+		var audioObj = document.createElement("audio");
 		
 		if(audioObj.canPlayType("audio/mpeg")) audioObj.setAttribute("src", mediaURL);
 		else audioObj.setAttribute("src", mediaURL.substr(-3) + "ogg");

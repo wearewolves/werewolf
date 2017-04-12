@@ -898,7 +898,7 @@ ini_set('session.auto_start','1');
 	// URL, Mail을 자동으로 체크하여 링크만듬
 	function autolink($str) {
 		// URL 치환
-		$homepage_pattern = "/([^\"\'\=\>])(mms|http|HTTP|ftp|FTP|telnet|TELNET)\:\/\/(.[^ \n\<\"\']+)/";
+		$homepage_pattern = "/([^\"\'\=\>])(mms|http|HTTP|https|HTTPS|ftp|FTP|telnet|TELNET)\:\/\/(.[^ \n\r\<\"\']+)/";
 		$str = preg_replace($homepage_pattern,"\\1<a href=\\2://\\3 target=_blank>\\2://\\3</a>", " ".$str);
 
 		// 메일 치환

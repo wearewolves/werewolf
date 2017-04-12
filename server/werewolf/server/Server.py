@@ -13,7 +13,7 @@ import config
 
 class Server:
     def start(self):
-        logging.basicConfig(filename="logfile.txt", level=logging.DEBUG,
+        logging.basicConfig(filename="./logfile.txt", filemode='w', level=logging.DEBUG,
                             format="%(asctime)s %(name)-12s %(levelname)-8s %(message)s")
         logging.info('PID: %d', os.getpid())
         old_time = 0
@@ -35,7 +35,7 @@ class Server:
                     database = DATABASE(config.user, config.passwd, config.db)
                     cursor = database.cursor
 
-                    cursor.execute("select * from `zetyx_board_werewolf_gameinfo` where `state` ='°ÔÀÓÁß' or `state` ='ÁØºñÁß'  ")
+                    cursor.execute("select * from `zetyx_board_werewolf_gameinfo` where `state` ='ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½' or `state` ='ï¿½Øºï¿½ï¿½ï¿½'  ")
                     logging.debug("Cursor's rowcount: %d", cursor.rowcount)
                     recs = cursor.fetchall()
 

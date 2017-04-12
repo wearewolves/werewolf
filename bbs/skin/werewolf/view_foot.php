@@ -341,15 +341,20 @@ function formcheck(f){
 			$characterQuery=mysql_query("select * from $DB_character where `set` = $gameinfo[characterSet] and `no` not $orderCondition order by 'no'");
 			?>
 			<div id="rolebox">
-				<select name='selectCharacter' id='role_select'>
+				<select name='selectCharacter' class="role_select">
 				<?
-				for($h=0;$mirei = mysql_fetch_array($characterQuery);$h++){
-					echo "<option value='".$mirei['no']."' data-img-src='".$characterImageFolder.$mirei['half_image']."' >".$character_list[$mirei['no']]."</option>\n";
+				for($rolecount=0;$mirei = mysql_fetch_array($characterQuery);$rolecount++){
+					echo "<option data-img-src='".$characterImageFolder.$mirei['half_image']."' value='".$mirei['no']."' >".$character_list[$mirei['no']]."</option>\n";
 				}
 				?>
 				</select>
 			</div>
-			<span><? var_dump($mirei); ?></span>
+			<script type="text/javascript">
+				jQuery("select.role_select").imagepicker({
+					show_label: true,
+					hide_select: false
+				});
+			</script>
 			<input type="submit" name="temp" value="게임 참여하기" style="background:#111;width:80px">
 			</form>
 		<?}
@@ -359,11 +364,7 @@ function formcheck(f){
 </div>
 <?} ?>
 
-<script>
-	$("#role_select").imagepicker({
-		show_label:true
-	});
-</script>
+
 
 
 

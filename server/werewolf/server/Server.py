@@ -26,7 +26,8 @@ class Server:
         except TypeError: # python 2.3
             logger = logging.getLogger()
             logger.setLevel(loggerLevel)
-            logger.removeHandler(logger.handlers[0])
+            for headler in logger.handlers:
+                logger.removeHandler(headler)
             formatter = logging.Formatter(loggingFormat)
             ch = logging.FileHandler(filename="./logfile.txt", mode='w')
             ch.setFormatter(formatter)

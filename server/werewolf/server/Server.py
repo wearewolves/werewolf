@@ -21,7 +21,8 @@ class Server:
             reload(config)
 
             if config.progress:
-                logging.debug('Config progress {}'.format(config))
+                #logging.debug('Config progress %s', config)
+                pass
             else:
                 logging.warn('Server shutdown')
                 break

@@ -78,10 +78,10 @@ class Game:
         logging.info("depth: %s", boardData['depth'])
         if boardData['depth'] == 0:
             if boardData['prev_no']:
-                logging("prev_no: %s", boardData['prev_no'])
+                logging.debug("prev_no: %s", boardData['prev_no'])
                 cursor.execute("update `zetyx_board_werewolf` set next_no='"+str(boardData['next_no'])+"' where next_no='"+str(self.game)+"'")
             if boardData['next_no']:
-                logging("next_no: %s", boardData['next_no'])
+                logging.debug("next_no: %s", boardData['next_no'])
                 cursor.execute("update `zetyx_board_werewolf` set prev_no='"+str(boardData['prev_no'])+"' where prev_no='"+str(self.game)+"'")
         else:
             cursor.execute("select count(*) from `zetyx_board_werewolf` where father='"+str(boardData['father'])+"'")

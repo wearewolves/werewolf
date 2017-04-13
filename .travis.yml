@@ -10,10 +10,11 @@ install:
   - pip install MySQL-python
 
 script: 
-  - if ["$TRAVIS_TAG" = ""]; then cp server/config_example.py server/config.py ; fi
+  - cp server/config_example.py server/config.py
   - python server/next.cgi
-
+  
 before_deploy:
+  - rm server/config.py
   - npm install gulp
   - npm install gulp -g
   - npm install vinyl-ftp gulp-util minimist --save-dev

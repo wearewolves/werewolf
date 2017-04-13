@@ -6,6 +6,7 @@ from werewolf.game.entry.Entry import Race
 from werewolf.game.rule.Rule import WerewolfRule
 import random
 import copy
+import logging
 
 class ExpansionRule(WerewolfRule):
     min_players = 9

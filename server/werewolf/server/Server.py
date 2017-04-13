@@ -16,13 +16,6 @@ class Server:
         loggerLevel = logging.DEBUG
         loggingFormat = "%(asctime)s [%(filename)-20s:%(lineno)-3s]\t%(levelname)-8s\t%(message)s"
 
-        self.stdout = sys.stdout
-        self.stderr = sys.stderr
-        self.logfile = open("logfile_cout.txt", "w")
-        sys.stdout = self.logfile
-        sys.stderr = self.logfile
-        print 'PID: %d (server.py made)'%(os.getpid())
-
         logger = logging.getLogger()
         logger.setLevel(loggerLevel)
         for headler in logger.handlers:
@@ -34,10 +27,6 @@ class Server:
 
     def __del__(self):
         logging.info('Free server.py')
-        print 'Free server.py'
-        sys.stdout = self.stdout
-        sys.stderr = self.stderr
-        self.logfile.close()
         logging.shutdown()
 
     def start(self):
@@ -74,7 +63,7 @@ class Server:
                     database.conn.close()
                     database = None
                 except MySQLdb.Error, msg:
-                    logging.error("MySql Error %d: %s", msg.args[0], msg.args[1])
+                    logging.exception("MySql Error %d: %s", msg.args[0], msg.args[1])
                 except Exception, msg:
-                    logging.error("Exception: %s", msg)
+                    logging.exception("Exception: %s", msg)
             break

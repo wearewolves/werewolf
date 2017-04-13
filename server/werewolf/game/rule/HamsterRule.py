@@ -6,6 +6,7 @@ from werewolf.game.entry.Entry import Race
 from werewolf.game.rule.BasicRule import BasicRule
 import random
 import copy
+import logging
 
 class HamsterRule(BasicRule):
     min_players = 11
@@ -28,7 +29,7 @@ class HamsterRule(BasicRule):
     def nextTurn(self):
         if self.game.state== GAME_STATE.READY:
             if self.min_players <= self.game.players and self.game.players <= self.max_players:
-                logging.logging("게임 초기화 시작")
+                logging.info("게임 초기화 시작")
                 self.initGame()                
             else:
                 self.game.deleteGame()

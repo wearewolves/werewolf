@@ -13,8 +13,19 @@ import config
 
 class Server:
     def start(self):
-        logging.basicConfig(filename="./logfile.txt", filemode='w', level=logging.DEBUG,
-                            format="%(asctime)s %(name)-12s %(levelname)-8s %(message)s")
+        loggerLevel = logging.DEBUG
+        loggingFormat = "%(asctime)s [%(filename)-12s:%(lineno)-3s] %(levelname)-8s %(message)s"
+        try:
+            logging.basicConfig(filename="./logfile.txt", filemode='w', level=loggerLevel,
+                                format=loggingFormat)
+        except TypeError: # python 2.3
+            logger = logging.getLogger()
+            logger.setLevel(loggerLevel)
+            logger.removeHandler(logger.handlers[0])
+            formatter = logging.Formatter(loggingFormat)
+            ch = logging.FileHandler(filename="./logfile.txt", mode='w')
+            ch.setFormatter(formatter)
+            logger.addHandler(ch)
         logging.info('PID: %d', os.getpid())
         old_time = 0
         while True:
@@ -51,6 +62,5 @@ class Server:
                     logging.error("MySql Error %d: %s", msg.args[0], msg.args[1])
                 except Exception, msg:
                     logging.error("Exception: %s", msg)
-            #time.sleep(30)    
             break
         logging.shutdown()

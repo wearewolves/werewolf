@@ -28,7 +28,7 @@ class BasicRule(WerewolfRule):
         logging.info("init Basic Rule")
         WerewolfRule.initGame(self)
 
-    def nexeTurn_2day(self):
+    def nextTurn_2day(self):
         logging.info("2일째로 고고!")
 
         #일반 로그를 쓰지 않은 사람을 체크한다.

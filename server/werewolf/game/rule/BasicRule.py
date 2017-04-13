@@ -4,6 +4,7 @@ from werewolf.game.GAME_STATE import GAME_STATE
 from werewolf.game.entry.Entry import Truecharacter
 from werewolf.game.entry.Entry import Race
 from werewolf.game.rule.Rule import WerewolfRule
+import logging
 import random
 import copy
 

@@ -1,9 +1,9 @@
 #-*- coding:cp949 -*-
-from werewolf.game.rule.Rule import *
-from werewolf.game.rule.BasicRule import *
-from werewolf.game.rule.HamsterRule import *
-from werewolf.game.rule.ExpensionRule import *
-from werewolf.game.rule.ConfidenceRule import *
+#from werewolf.game.rule.Rule import *
+from werewolf.game.rule.BasicRule import BasicRule
+from werewolf.game.rule.HamsterRule import HamsterRule
+from werewolf.game.rule.ExpensionRule import ExpansionRule
+from werewolf.game.rule.ConfidenceRule import ConfidenceRule
 
 class RULE_NAME:
     BASIC = 1

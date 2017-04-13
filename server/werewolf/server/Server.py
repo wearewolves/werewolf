@@ -52,3 +52,4 @@ class Server:
                     logging.error("Exception: %s", msg)
             #time.sleep(30)    
             break
+        logging.shutdown()

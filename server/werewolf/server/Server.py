@@ -13,6 +13,11 @@ import config
 
 class Server:
     def start(self):
+        stdout = sys.stdout
+        stderr = sys.stderr
+        logfile = open("logfile_cout.txt", "w")
+        sys.stdout = logfile
+        sys.stderr = logfile
         loggerLevel = logging.DEBUG
         loggingFormat = "%(asctime)s [%(filename)-12s:%(lineno)-3s] %(levelname)-8s %(message)s"
         try:
@@ -64,3 +69,6 @@ class Server:
                     logging.error("Exception: %s", msg)
             break
         logging.shutdown()
+        logfile.close()
+        sys.stdout = stdout
+        sys.stderr = stderr

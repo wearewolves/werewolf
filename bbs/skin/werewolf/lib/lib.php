@@ -129,7 +129,7 @@ function DBselect1($name,$head,$id,$value,$DB,$code,$selectedID,$unselectedID){
 
 // Roll Playing Set list for Selector
 function RPSetselect($sort) {
-	$result = mysql_query("select * from $DB_characterSet order by $sort");
+	$result = mysql_query("select * from $DB_characterSet where is_use = 1 order by $sort");
 	while($temp = mysql_fetch_array($result))
 		$RPSet_select .= "<li onclick='selectRPSet($temp[no], $temp[name])'>".$temp[name]."</li>";
 	return $RPSet_select;

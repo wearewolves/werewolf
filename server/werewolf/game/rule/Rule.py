@@ -21,9 +21,14 @@ class WerewolfRule(Rule):
                 self.game.deleteGame()
         elif self.game.state==GAME_STATE.PLAYING:
             if(self.game.day == 1):
-                self.nexeTurn_2day()
+                self.nextTurn_2day()
             else:
                 self.nextTurn_Xday()
+    
+    def nextTurn_2day(self):
+        raise NotImplementedError
+    def nextTurn_Xday(self):
+        raise NotImplementedError
             
     def initGame(self):
         #플레이해본 사람

@@ -35,7 +35,7 @@ class HamsterRule(BasicRule):
         elif self.game.state==GAME_STATE.PLAYING:
             if self.game.day == 1:
                 if self.game.players == 17:
-                    self.nexeTurn_2day()                    
+                    self.nextTurn_2day()                    
                 else:
                     BasicRule.nexeTurn_2day(self)
             else:
@@ -48,7 +48,7 @@ class HamsterRule(BasicRule):
         logging.info("init Hamstar")
         WerewolfRule.initGame(self)
 
-    def nexeTurn_2day(self):
+    def nextTurn_2day(self):
         logging.info("2일째로 고고!")
 
         #일반 로그를 쓰지 않은 사람을 체크한다.

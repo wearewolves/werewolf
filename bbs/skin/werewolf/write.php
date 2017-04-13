@@ -2,6 +2,9 @@
 	include("$dir/lib/lib.php"); 
 
 ?>
+<!-- roll playing set selector js, css files -->
+<script type="text/javascript" src="js/werewolf-roll-playing-set.js"></script>
+<link rel="stylesheet" type="text/css" href="css/werewolf-roll-playing-set.css">
 <SCRIPT LANGUAGE="JavaScript">
 <!--
 function zb_formresize(obj) {
@@ -314,11 +317,46 @@ function changeTermOfDay(obj){
   </tr></table>
   </td>
 	<td>&nbsp;
+	<!--
 				<?
 				if($mode =="modify") $disabled= "DISABLED=true";
 				else $disabled ="";
 				
 				echo DBselect1("characterSet","","no","name","$DB_characterSet where is_use = 1","class='input' ".$disabled,$gameinfo['characterSet'],"");?>
+				-->
+		<!-- roll playing set selector -->
+		<?
+			$disabled = ($mode == "modify") ? " disabled" : "";
+		?>
+		<input type="hidden" name="characterSet" id="characterSetInput" value="">
+		<input type="text" name="characterSetName" id="characterSetNameInput" value=""<?=$disabled?>>
+		<? if(!$disabled) { ?>
+			<button id="RPSetBtn" onclick="openModal()">선택하기</button>
+		<? } ?>
+		
+		<div id="modal-window" class="modal">
+			<div class="modal-content">
+				<span class="close">&times;</span>
+				<input type="text" id="RPSetInput" onkeyup="searchRPSet()" placeholder="Search for names...">
+
+				<div class="tab">
+				  <button class="tablinks" onclick="openList(event, 'listByTimeSort')" id="defaultOpen">제작순</button>
+				  <button class="tablinks" onclick="openList(event, 'listByAscendingSort')">가나다순</button>
+				</div>
+
+				<div id="listByTimeSort" class="tabcontent">
+					<ul class="RPSetUL">
+						<? echo RPSetselect(no); ?>
+					</ul>
+				</div>
+
+				<div id="listByAscendingSort" class="tabcontent">
+					<ul class="RPSetUL">
+					  <? echo RPSetselect(name); ?>
+					</ul>
+				</div>
+			</div>
+		</div>
 	</td>
 </tr>
 
@@ -391,3 +429,8 @@ function changeTermOfDay(obj){
 </table>
 <br>
 </form>
+
+<!-- roll playing set selector default open -->
+<script>
+document.getElementById("defaultOpen").click();
+</script>

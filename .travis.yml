@@ -10,6 +10,7 @@ install:
   - pip install MySQL-python
 
 script: 
+  - cp server/config_example.py server/config.py
   - python server/next.cgi
 
 before_deploy:

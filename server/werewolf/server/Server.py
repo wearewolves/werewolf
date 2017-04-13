@@ -63,7 +63,7 @@ class Server:
                     database.conn.close()
                     database = None
                 except MySQLdb.Error, msg:
-                    logging.error("MySql Error %d: %s", msg.args[0], msg.args[1])
+                    logging.exception("MySql Error %d: %s", msg.args[0], msg.args[1])
                 except Exception, msg:
-                    logging.error("Exception: %s", msg)
+                    logging.exception("Exception: %s", msg)
             break

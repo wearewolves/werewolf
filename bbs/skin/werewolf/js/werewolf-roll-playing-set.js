@@ -6,7 +6,7 @@ function openModal() {
 	// Open the modal
 	modal.style.display = "block";
 	// Initialize the list
-	initOpenList();
+	//initOpenList();
 	
 	// Close the modal
 	closeBtn.onclick = function() {

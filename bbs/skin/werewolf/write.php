@@ -331,7 +331,7 @@ function changeTermOfDay(obj){
 		<input type="hidden" name="characterSet" id="characterSetInput" value="<?=$gameinfo['characterSet']?>">
 		<input type="text" name="characterSetName" id="characterSetNameInput" value="수정시 롤셋 제목 나오는 건 제작 중"<?=$disabled?>>
 		<? if(!$disabled) { ?>
-			<button id="RPSetBtn" onclick="openModal()">선택하기</button>
+			<button type="button" id="RPSetBtn" onclick="openModal()">선택하기</button>
 		<? } ?>
 		
 		<div id="modal-window" class="modal">

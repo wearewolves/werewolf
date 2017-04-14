@@ -124,7 +124,7 @@ class WerewolfRule(Rule):
             else:
                 break
             candidacy_list.append(temp['candidacy'])
-        candidacy = random.choice(cadidacy_list)
+        candidacy = random.choice(candidacy_list)
         return self.game.entry.getCharacter(candidacy)
 
     def decideByWerewolf(self):
@@ -133,7 +133,7 @@ class WerewolfRule(Rule):
         logging.info("습격!!")
         #습격의 희생양들...
         humanRace = self.game.entry.getEntryByRace(Race.HUMAN)
-        logging.debug("%s", alivePlayers)
+        logging.debug("%s", humanRace)
 
         #습격자!
         werewolfPlayers = self.game.entry.getPlayersByTruecharacter(Truecharacter.WEREWOLF, "('생존')")

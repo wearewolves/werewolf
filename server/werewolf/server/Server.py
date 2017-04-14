@@ -14,7 +14,7 @@ import config
 class Server:
     def __init__(self):
         loggerLevel = logging.DEBUG
-        loggingFormat = "%(asctime)s [%(filename)-20s:%(lineno)-3s]\t%(levelname)-8s\t%(message)s"
+        loggingFormat = "%(asctime)s [%(filename)-25s:%(lineno)-3s]\t%(levelname)-8s\t%(message)s"
 
         logger = logging.getLogger()
         logger.setLevel(loggerLevel)

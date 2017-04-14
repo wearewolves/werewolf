@@ -3,8 +3,8 @@
 
 ?>
 <!-- roll playing set selector js, css files -->
-<script type="text/javascript" src="js/werewolf-roll-playing-set.js"></script>
-<link rel="stylesheet" type="text/css" href="css/werewolf-roll-playing-set.css">
+<script type="text/javascript" src="skin/werewolf/js/werewolf-roll-playing-set.js"></script>
+<link rel="stylesheet" type="text/css" href="skin/werewolf/css/werewolf-roll-playing-set.css">
 <SCRIPT LANGUAGE="JavaScript">
 <!--
 function zb_formresize(obj) {
@@ -328,10 +328,12 @@ function changeTermOfDay(obj){
 		<?
 			$disabled = ($mode == "modify") ? " disabled" : "";
 		?>
-		<input type="hidden" name="characterSet" id="characterSetInput" value="">
-		<input type="text" name="characterSetName" id="characterSetNameInput" value=""<?=$disabled?>>
+		<input type="hidden" name="characterSet" id="characterSetInput" value="<?=$gameinfo['characterSet']?>">
 		<? if(!$disabled) { ?>
-			<button id="RPSetBtn" onclick="openModal()">선택하기</button>
+			<input type="text" name="characterSetName" id="characterSetNameInput" value="">
+			<button type="button" id="RPSetBtn" onclick="openModal()">선택하기</button>
+		<? } else { ?>
+			<input type="text" name="characterSetName" id="characterSetNameInput" value="수정시 롤셋 제목 나오는 건 제작 중"<?=$disabled?>>
 		<? } ?>
 		
 		<div id="modal-window" class="modal">
@@ -340,19 +342,19 @@ function changeTermOfDay(obj){
 				<input type="text" id="RPSetInput" onkeyup="searchRPSet()" placeholder="Search for names...">
 
 				<div class="tab">
-				  <button class="tablinks" onclick="openList(event, 'listByTimeSort')" id="defaultOpen">제작순</button>
-				  <button class="tablinks" onclick="openList(event, 'listByAscendingSort')">가나다순</button>
+				  <button type="button" class="tablinks" onclick="openList(event, 'listByTimeSort')">제작순</button>
+				  <button type="button" class="tablinks" onclick="openList(event, 'listByAscendingSort')">가나다순</button>
 				</div>
 
 				<div id="listByTimeSort" class="tabcontent">
 					<ul class="RPSetUL">
-						<? echo RPSetselect(no); ?>
+						<? echo RPSetselect("$DB_characterSet where is_use = 1", "no"); ?>
 					</ul>
 				</div>
 
 				<div id="listByAscendingSort" class="tabcontent">
 					<ul class="RPSetUL">
-					  <? echo RPSetselect(name); ?>
+					  <? echo RPSetselect("$DB_characterSet where is_use = 1", "name"); ?>
 					</ul>
 				</div>
 			</div>
@@ -429,8 +431,3 @@ function changeTermOfDay(obj){
 </table>
 <br>
 </form>
-
-<!-- roll playing set selector default open -->
-<script>
-document.getElementById("defaultOpen").click();
-</script>

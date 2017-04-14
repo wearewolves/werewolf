@@ -162,16 +162,15 @@ class ExpansionRule(WerewolfRule):
             lonelywerewolfPlayer = lonelywerewolfPlayer[0]
         
         #살아 있는 인랑이 있을 때만 습격을 진행한다.
-        if not werewolfRace and (not readerwerewolfPlayer or readerwerewolfPlayer.alive=="사망") \
+        if not werewolfPlayers and (not readerwerewolfPlayer or readerwerewolfPlayer.alive=="사망") \
                             and (not lonelywerewolfPlayer or lonelywerewolfPlayer.alive =="사망"):
             return        
 
         #인랑들이 습격을 결정했는지 확인한다.
-        if not werewolfRace:
-            for werewolfPlayer in werewolfPlayers:
-                #습격을 안했다면! 랜덤 습격 시작     
-                if not werewolfPlayer.hasAssault():
-                    werewolfPlayer.assaultRandom(humanRace)
+        for werewolfPlayer in werewolfPlayers:
+            #습격을 안했다면! 랜덤 습격 시작     
+            if not werewolfPlayer.hasAssault():
+                werewolfPlayer.assaultRandom(humanRace)
         if readerwerewolfPlayer and readerwerewolfPlayer.alive=="생존":
             if not readerwerewolfPlayer.hasAssault():
                 readerwerewolfPlayer.assaultRandom(humanRace)

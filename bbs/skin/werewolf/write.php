@@ -3,8 +3,8 @@
 
 ?>
 <!-- roll playing set selector js, css files -->
-<script type="text/javascript" src="js/werewolf-roll-playing-set.js"></script>
-<link rel="stylesheet" type="text/css" href="css/werewolf-roll-playing-set.css">
+<script type="text/javascript" src="skin/werewolf/js/werewolf-roll-playing-set.js"></script>
+<link rel="stylesheet" type="text/css" href="skin/werewolf/css/werewolf-roll-playing-set.css">
 <SCRIPT LANGUAGE="JavaScript">
 <!--
 function zb_formresize(obj) {

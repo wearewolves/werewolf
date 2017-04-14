@@ -267,7 +267,7 @@ class Character:
         self.telepathy = entry['telepathy']
         self.ip = entry['ip']
 
-    def toDeath(self,deathType):
+    def toDeath(self, deathType):
         cursor = self.game.db.cursor
         query = "update `zetyx_board_werewolf_entry` set `alive`= '»ç¸Á', `deathday` = '%s', `deathtype` ='%s'  where `game` = '%s' and `character` = '%s';"
         query %= (self.game.day, deathType, self.game.game, self.character)

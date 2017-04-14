@@ -72,7 +72,7 @@ class ExpansionRule(WerewolfRule):
                     logging.info("디아블로 승리")
                     self.game.setGameState("day", self.game.day+1)
                     return
-		victim.toDeath("심판")
+		    victim.toDeath("심판")
         
         #돌연사 시킴 
         noMannerPlayers = self.game.entry.getNoMannerPlayers()

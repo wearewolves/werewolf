@@ -107,7 +107,7 @@ div.tab button.active {
     margin: 0;
 }
 
-.RPSetUL li a {
+.RPSetUL li {
     border: 0px solid #ddd; /* Add a border to all links */
     margin-top: -1px; /* Prevent double borders */
     background-color: #000000; /* Grey background color */
@@ -118,11 +118,11 @@ div.tab button.active {
     display: block; /* Make it into a block element to fill the whole list */
 }
 
-.RPSetUL li a.header {
+.RPSetUL li header {
     background-color: #e2e2e2; /* Add a darker background color for headers */
     cursor: default; /* Change cursor style */
 }
 
-.RPSetUL li a:hover:not(.header) {
+.RPSetUL li :hover:not(.header) {
     background-color: #383838; /* Add a hover effect to all links, except for headers */
 }

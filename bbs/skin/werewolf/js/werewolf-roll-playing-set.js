@@ -22,6 +22,10 @@ function openModal() {
 
 function initOpenList() {
     var i, tabcontent, tablinks;
+	var input, li, tabcontentID, tabcontentOff;
+	
+	input = document.getElementById("RPSetInput");
+	input.value = "";
 
     // Get all elements with class="tabcontent" and hide them
     tabcontent = document.getElementsByClassName("tabcontent");
@@ -34,6 +38,15 @@ function initOpenList() {
     for (i = 0; i < tablinks.length; i++) {
         tablinks[i].className = tablinks[i].className.replace(" active", "");
     }
+	
+	tabcontentID = (tablinks[0].className).indexOf("active") !== -1 ? "listByTimeSort" : "listByAscendingSort";
+	tabcontentOff = document.getElementById(tabcontentID);
+	
+    li = tabcontentOff.getElementsByTagName("li");
+
+    // Loop through all list items, and hide those who don't match the search query
+    for (i = 0; i < li.length; i++)
+        li[i].style.display = "";
 
     // Show the first tab, and add an "active" class to the button that opened the tab
     tabcontent[0].style.display = "block";
@@ -42,6 +55,10 @@ function initOpenList() {
 
 function openList(evt, listName) {
     var i, tabcontent, tablinks;
+	var input, li, tabcontentID, tabcontentOff;
+	
+	input = document.getElementById("RPSetInput");
+	input.value = "";
 
     // Get all elements with class="tabcontent" and hide them
     tabcontent = document.getElementsByClassName("tabcontent");
@@ -54,6 +71,15 @@ function openList(evt, listName) {
     for (i = 0; i < tablinks.length; i++) {
         tablinks[i].className = tablinks[i].className.replace(" active", "");
     }
+	
+	tabcontentID = (tablinks[0].className).indexOf("active") !== -1 ? "listByTimeSort" : "listByAscendingSort";
+	tabcontentOff = document.getElementById(tabcontentID);
+	
+    li = tabcontentOff.getElementsByTagName("li");
+
+    // Loop through all list items, and hide those who don't match the search query
+    for (i = 0; i < li.length; i++)
+        li[i].style.display = "";
 
     // Show the current tab, and add an "active" class to the button that opened the tab
     document.getElementById(listName).style.display = "block";

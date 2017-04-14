@@ -2,9 +2,13 @@ function openModal() {
 	var modal = document.getElementById('modal-window');
 	var RPSetBtn = document.getElementById("RPSetBtn");
 	var closeBtn = document.getElementsByClassName("close")[0];
+	var defaultOpen = document.getElementById("defaultOpen");
 	
 	// Open the modal
 	modal.style.display = "block";
+	// Display the list
+	defaultOpen.click();
+	
 	// Close the modal
 	closeBtn.onclick = function() {
 		modal.style.display = "none";

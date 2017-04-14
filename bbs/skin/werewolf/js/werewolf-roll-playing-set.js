@@ -6,7 +6,7 @@ function openModal() {
 	// Open the modal
 	modal.style.display = "block";
 	// Initialize the list
-	//initOpenList();
+	initOpenList();
 	
 	// Close the modal
 	closeBtn.onclick = function() {
@@ -38,6 +38,7 @@ function initOpenList() {
     // Show the first tab, and add an "active" class to the button that opened the tab
     tabcontent[0].style.display = "block";
     tabcontent[0].className += " active";
+	tablinks[0].className += " active";
 }
 
 function openList(evt, listName) {

@@ -21,8 +21,8 @@ function openModal() {
 }
 
 function initOpenList() {
-    var i, tabcontent, tablinks;
-	var input, li, tabcontentID, tabcontentOff;
+    var i, j tabcontent, tablinks;
+	var input, li;
 	
 	input = document.getElementById("RPSetInput");
 	input.value = "";
@@ -31,6 +31,11 @@ function initOpenList() {
     tabcontent = document.getElementsByClassName("tabcontent");
     for (i = 0; i < tabcontent.length; i++) {
         tabcontent[i].style.display = "none";
+		
+		li = tabcontent[i].getElementsByTagName("li");
+		for (j = 0; j < li.length; j++) {
+			li[j].style.display = "";
+		}
     }
 
     // Get all elements with class="tablinks" and remove the class "active"
@@ -38,15 +43,6 @@ function initOpenList() {
     for (i = 0; i < tablinks.length; i++) {
         tablinks[i].className = tablinks[i].className.replace(" active", "");
     }
-	
-	tabcontentID = (tablinks[0].className).indexOf("active") !== -1 ? "listByTimeSort" : "listByAscendingSort";
-	tabcontentOff = document.getElementById(tabcontentID);
-	
-    li = tabcontentOff.getElementsByTagName("li");
-
-    // Loop through all list items, and hide those who don't match the search query
-    for (i = 0; i < li.length; i++)
-        li[i].style.display = "";
 
     // Show the first tab, and add an "active" class to the button that opened the tab
     tabcontent[0].style.display = "block";
@@ -54,8 +50,8 @@ function initOpenList() {
 }
 
 function openList(evt, listName) {
-    var i, tabcontent, tablinks;
-	var input, li, tabcontentID, tabcontentOff;
+    var i, j, tabcontent, tablinks;
+	var input, li;
 	
 	input = document.getElementById("RPSetInput");
 	input.value = "";
@@ -64,6 +60,11 @@ function openList(evt, listName) {
     tabcontent = document.getElementsByClassName("tabcontent");
     for (i = 0; i < tabcontent.length; i++) {
         tabcontent[i].style.display = "none";
+		
+		li = tabcontent[i].getElementsByTagName("li");
+		for (j = 0; j < li.length; j++) {
+			li[j].style.display = "";
+		}
     }
 
     // Get all elements with class="tablinks" and remove the class "active"
@@ -71,15 +72,6 @@ function openList(evt, listName) {
     for (i = 0; i < tablinks.length; i++) {
         tablinks[i].className = tablinks[i].className.replace(" active", "");
     }
-	
-	tabcontentID = (tablinks[0].className).indexOf("active") !== -1 ? "listByTimeSort" : "listByAscendingSort";
-	tabcontentOff = document.getElementById(tabcontentID);
-	
-    li = tabcontentOff.getElementsByTagName("li");
-
-    // Loop through all list items, and hide those who don't match the search query
-    for (i = 0; i < li.length; i++)
-        li[i].style.display = "";
 
     // Show the current tab, and add an "active" class to the button that opened the tab
     document.getElementById(listName).style.display = "block";

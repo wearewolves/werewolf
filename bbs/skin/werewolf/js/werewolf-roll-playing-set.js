@@ -37,7 +37,6 @@ function initOpenList() {
 
     // Show the first tab, and add an "active" class to the button that opened the tab
     tabcontent[0].style.display = "block";
-    tabcontent[0].className += " active";
 	tablinks[0].className += " active";
 }
 

@@ -2,12 +2,11 @@ function openModal() {
 	var modal = document.getElementById('modal-window');
 	var RPSetBtn = document.getElementById("RPSetBtn");
 	var closeBtn = document.getElementsByClassName("close")[0];
-	var defaultOpen = document.getElementById("defaultOpen");
 	
 	// Open the modal
 	modal.style.display = "block";
-	// Display the list
-	defaultOpen.click();
+	// Initialize the list
+	initOpenList();
 	
 	// Close the modal
 	closeBtn.onclick = function() {
@@ -19,6 +18,26 @@ function openModal() {
 			modal.style.display = "none";
 		}
 	}
+}
+
+function initOpenList() {
+    var i, tabcontent, tablinks;
+
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+
+    // Show the first tab, and add an "active" class to the button that opened the tab
+    tabcontent[0].style.display = "block";
+    tabcontent[0].className += " active";
 }
 
 function openList(evt, listName) {

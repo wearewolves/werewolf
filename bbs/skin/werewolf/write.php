@@ -341,7 +341,7 @@ function changeTermOfDay(obj){
 
 				<div class="tab">
 				  <button type="button" class="tablinks" onclick="openList(event, 'listByTimeSort')">제작순</button>
-				  <button type="button" onclick="openList(event, 'listByAscendingSort')">가나다순</button>
+				  <button type="button" class="tablinks" onclick="openList(event, 'listByAscendingSort')">가나다순</button>
 				</div>
 
 				<div id="listByTimeSort" class="tabcontent">

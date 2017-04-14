@@ -40,9 +40,8 @@ function initOpenList() {
 	tablinks[0].className += " active";
 }
 
-function openList(tabNum, listName) {
+function openList(evt, listName) {
     var i, tabcontent, tablinks;
-	tabNum = parseInt(tabNum, 10);
 
     // Get all elements with class="tabcontent" and hide them
     tabcontent = document.getElementsByClassName("tabcontent");
@@ -58,7 +57,7 @@ function openList(tabNum, listName) {
 
     // Show the current tab, and add an "active" class to the button that opened the tab
     document.getElementById(listName).style.display = "block";
-    tablinks[tabNum].className += " active";
+    evt.currentTarget.className += " active";
 }
 
 function searchRPSet() {

@@ -21,11 +21,11 @@ function openModal() {
 }
 
 function initOpenList() {
-    var i, j tabcontent, tablinks;
-	var input, li;
+    var i, j, tabcontent, tablinks;
+    var input, li;
 	
-	input = document.getElementById("RPSetInput");
-	input.value = "";
+    input = document.getElementById("RPSetInput");
+    input.value = "";
 
     // Get all elements with class="tabcontent" and hide them
     tabcontent = document.getElementsByClassName("tabcontent");
@@ -46,15 +46,15 @@ function initOpenList() {
 
     // Show the first tab, and add an "active" class to the button that opened the tab
     tabcontent[0].style.display = "block";
-	tablinks[0].className += " active";
+    tablinks[0].className += " active";
 }
 
 function openList(evt, listName) {
     var i, j, tabcontent, tablinks;
-	var input, li;
+    var input, li;
 	
-	input = document.getElementById("RPSetInput");
-	input.value = "";
+    input = document.getElementById("RPSetInput");
+    input.value = "";
 
     // Get all elements with class="tabcontent" and hide them
     tabcontent = document.getElementsByClassName("tabcontent");

@@ -124,7 +124,7 @@ class WerewolfRule(Rule):
             else:
                 break
             candidacy_list.append(temp['candidacy'])
-        candidacy = random.choice(cadidacy_list)
+        candidacy = random.choice(candidacy_list)
         return self.game.entry.getCharacter(candidacy)
 
     def decideByWerewolf(self):

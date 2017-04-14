@@ -20,12 +20,13 @@ before_deploy:
   - npm install vinyl-ftp gulp-util minimist --save-dev
   - COMMIT=`git rev-list --tags --skip=1  --max-count=1`
   - BEFORE_TAG=`git describe --abbrev=0 --tags $COMMIT`
+  - FILELIST=`git diff $BEFORE_TAG $TRAVIS_TAG --name-only`
   
 deploy:
   skip_cleanup: true
   provider: script
 #  script: if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then gulp deploy --user $FTP_USER --password $FTP_PASSWORD; fi
-  script: gulp deploy --user $FTP_USER --password $FTP_PASSWORD --filelist `git diff $BEFORE_TAG $TRAVIS_TAG --name-only`
+  script: gulp deploy --user $FTP_USER --password $FTP_PASSWORD --filelist $FILELIST
   on:
     tags: true
 

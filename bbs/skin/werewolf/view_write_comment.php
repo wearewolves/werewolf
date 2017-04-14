@@ -146,7 +146,8 @@ if($totalCommentPage>=1) echo "</div>";
 
 <script>
 function resize(obj) {
-  obj.style.height = (10+obj.scrollHeight)+"px";
+	obj.style.height = "1px";
+	obj.style.height = (10+obj.scrollHeight)+"px";
 }
 
 checkCommentType();

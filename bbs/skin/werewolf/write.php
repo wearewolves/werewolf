@@ -429,8 +429,3 @@ function changeTermOfDay(obj){
 </table>
 <br>
 </form>
-
-<!-- roll playing set selector default open -->
-<script>
-document.getElementById("defaultOpen").click();
-</script>

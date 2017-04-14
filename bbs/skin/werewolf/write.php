@@ -346,13 +346,13 @@ function changeTermOfDay(obj){
 
 				<div id="listByTimeSort" class="tabcontent">
 					<ul class="RPSetUL">
-						<? echo RPSetselect("no"); ?>
+						<? echo RPSetselect("$DB_characterSet where is_use = 1", "no"); ?>
 					</ul>
 				</div>
 
 				<div id="listByAscendingSort" class="tabcontent">
 					<ul class="RPSetUL">
-					  <? echo RPSetselect("name"); ?>
+					  <? echo RPSetselect("$DB_characterSet where is_use = 1", "name"); ?>
 					</ul>
 				</div>
 			</div>

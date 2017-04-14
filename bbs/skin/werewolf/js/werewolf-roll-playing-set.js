@@ -40,8 +40,9 @@ function initOpenList() {
 	tablinks[0].className += " active";
 }
 
-function openList(evt, listName) {
+function openList(tabNum, listName) {
     var i, tabcontent, tablinks;
+	tabNum = parseInt(tabNum, 10);
 
     // Get all elements with class="tabcontent" and hide them
     tabcontent = document.getElementsByClassName("tabcontent");
@@ -57,7 +58,7 @@ function openList(evt, listName) {
 
     // Show the current tab, and add an "active" class to the button that opened the tab
     document.getElementById(listName).style.display = "block";
-    evt.currentTarget.className += " active";
+    tablinks[tabNum].className += " active";
 }
 
 function searchRPSet() {
@@ -92,7 +93,7 @@ function selectRPSet(no, name) {
 	
 	modal = document.getElementById('modal-window');
 	
-	characterSet.value = no;
+	characterSet.value = parseInt(no, 10);
 	characterSetName.value = name;
 	
 	modal.style.display = "none"

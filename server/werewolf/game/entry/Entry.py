@@ -495,7 +495,7 @@ class Chief(Player):
 class Diablo(Player):
     def toDeath(self, deathType):
         if deathType <> "½À°Ý":
-            Player.toDeath(self, deathType) 
+            Player.toDeath(self, deathType)
 
     def awaken(self):
         cursor = self.game.db.cursor

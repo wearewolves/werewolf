@@ -15,7 +15,7 @@ gulp.task('deploy', function() {
 
   console.log(args.filelist)
 
-  gulp.src(args.filelist)
+  gulp.src(args.filelist.split())
     .pipe(conn.newer(remotePath))
     .pipe(conn.dest(remotePath));
 

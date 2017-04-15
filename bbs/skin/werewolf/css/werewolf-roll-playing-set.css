@@ -1,14 +1,3 @@
-#characterSetName {
-	margin-left: inherit;
-	margin-right: inherit;
-	margin-top: inherit;
-	padding: inherit;
-	background: inherit;
-	text-align: inherit;
-	border: inherit;
-	border-bottom: inherit;
-}
-
 /* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */

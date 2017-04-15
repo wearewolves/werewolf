@@ -13,9 +13,10 @@ gulp.task('deploy', function() {
     maxConnections: 4
   });
 
-  console.log(args.filelist)
+  filelist = args.filelist.split('\n')
+  console.log(filelist)
 
-  gulp.src(args.filelist.split())
+  gulp.src(filelist)
     .pipe(conn.newer(remotePath))
     .pipe(conn.dest(remotePath));
 

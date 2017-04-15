@@ -26,7 +26,7 @@ deploy:
   skip_cleanup: true
   provider: script
 #  script: if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then gulp deploy --user $FTP_USER --password $FTP_PASSWORD; fi
-  script: gulp deploy --user $FTP_USER --password $FTP_PASSWORD $FILELIST
+  script: gulp deploy --user $FTP_USER --password $FTP_PASSWORD --filelist $FILELIST
   on:
     tags: true
 

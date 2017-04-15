@@ -82,14 +82,14 @@
 	}
 	elseif($gameinfo['state']=="게임끝" and !$viewMode)$viewMode = "일반";
 
-	if($viewMode == "all") $commentType = "('일반','알림','비밀','사망','텔레','메모','편지','답변')";
-	elseif ($viewMode == "death") $commentType = "('일반','알림','사망')";
-	elseif ($viewMode == "tele") $commentType = "('일반','알림','텔레')";
-	elseif ($viewMode == "letter") $commentType = "('일반','알림','편지','답변')";
-	elseif ($viewMode == "sec") $commentType = "('일반','알림','비밀')";
-	elseif($viewMode == "memo") $commentType = "('일반','알림')";
-	elseif ($viewMode == "del") $commentType = "('일반','알림','비밀','사망','텔레','메모','편지','답변')";
-	else $commentType = "('일반','알림')";
+	if($viewMode == "all") $commentType = "('일반','알림','봉인제안','비밀','사망','텔레','메모','편지','답변')";
+	elseif ($viewMode == "death") $commentType = "('일반','알림','봉인제안','사망')";
+	elseif ($viewMode == "tele") $commentType = "('일반','알림','봉인제안','텔레')";
+	elseif ($viewMode == "letter") $commentType = "('일반','알림','봉인제안','편지','답변')";
+	elseif ($viewMode == "sec") $commentType = "('일반','알림','봉인제안','비밀')";
+	elseif($viewMode == "memo") $commentType = "('일반','알림','봉인제안','메모')";
+	elseif ($viewMode == "del") $commentType = "('일반','알림','봉인제안','비밀','사망','텔레','메모','편지','답변')";
+	else $commentType = "('일반','알림','봉인제안')";
 	
 //[일정에 따른 이벤트 시작]////////////////////////////////////////////////////////////////////////////	
 	// -----------------------------------------------------------------------------------//
@@ -681,6 +681,11 @@ function toClip(memo) {
 //덧글을 viewDay에 따라 뽑아낸다.
 	//echo"select * from $t_comment"."_$id where parent='$no' and reg_date  between ".($gameinfo[deathtime] + (86400 * ( $viewDay -1)))." and   ".($gameinfo[deathtime] +  86400 * ($viewDay))."   order by no asc";
 	if($viewChar and is_numeric($viewChar)) $checkChar = " AND `character` = $viewChar ";
+
+	// Hide seal logs until the end of game except for myself and admin
+	if($checkChar)
+		// game in progress && viewChar != playing character && not admin
+		if($gameinfo['state'] == "게임중" && $viewChar != $character && !$is_admin) $checkChar .= "AND type != '봉인제안' ";
 
 	if(!$member[no]) $member[no] =0;
 

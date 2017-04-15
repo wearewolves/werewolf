@@ -207,6 +207,7 @@ if(substr_count ( $UNSID,"<||>") == 4){
 		
 		if(true){
 			if($viewChar and is_numeric($viewChar)) $checkChar = " AND `character` = $viewChar ";
+
 			// Hide seal logs until the end of game except for myself and admin
 			if($viewChar and is_numeric($viewChar) and $checkChar)
 				// game in progress && viewChar != playing character && not admin

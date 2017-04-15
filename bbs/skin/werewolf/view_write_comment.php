@@ -121,7 +121,7 @@ if($totalCommentPage>=1) echo "</div>";
 	  </tr>
 		 <?=$hide_c_password_end?>
 	  <tr bgcolor=111111>
-			<td width=100%><textarea name=memo onkeydown="resize(this)" onkeyup="resize(this)" id="memo" <?=size(40)?> rows=5 class=red_commentw></textarea></td>
+			<td width=100%><textarea name="memo" onkeydown="resize(this)" onkeyup="resize(this)" id="memo" <?=size(40)?> rows="5" class="red_commentw"></textarea></td>
 			
 	</tr>
 
@@ -146,8 +146,9 @@ if($totalCommentPage>=1) echo "</div>";
 
 <script>
 function resize(obj) {
-	obj.style.height = "1px";
-	obj.style.height = (10+obj.scrollHeight)+"px";
+	// default height : 40px
+	if(obj.scrollHeight > 40)
+		obj.style.height = (obj.scrollHeight + 10) + "px";
 }
 
 checkCommentType();

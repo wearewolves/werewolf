@@ -146,8 +146,8 @@ if($totalCommentPage>=1) echo "</div>";
 
 <script>
 function resize(obj) {
-	// default height : 40px
-	if(obj.style.height > 40)
+	// default height : 35px
+	if(obj.scrollHeight > 35)
 		obj.style.height = (obj.scrollHeight + 10) + "px";
 }
 

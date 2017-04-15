@@ -1,7 +1,7 @@
 function openModal() {
-	var modal = document.getElementById('modal-window');
+	var modal = document.getElementById("modal-window");
 	var RPSetBtn = document.getElementById("RPSetBtn");
-	var closeBtn = document.getElementsByClassName("close")[0];
+	var closeX = document.getElementById("closeX");
 	
 	// Open the modal
 	modal.style.display = "block";
@@ -9,9 +9,10 @@ function openModal() {
 	initOpenList();
 	
 	// Close the modal
-	closeBtn.onclick = function() {
+	closeX.onclick = function() {
 		modal.style.display = "none";
 	}
+	
 	// When the user clicks anywhere outside of the modal, close it
 	window.onclick = function(event) {
 		if (event.target == modal) {
@@ -20,10 +21,13 @@ function openModal() {
 	}
 }
 
+// Initialize lists on modal window. Open the default(first) list.
 function initOpenList() {
-    var i, j, tabcontent, tablinks;
+    var tabcontent, tablinks;
     var input, li;
+	var i, j;
 	
+	// Clear text input
     input = document.getElementById("RPSetInput");
     input.value = "";
 
@@ -32,6 +36,7 @@ function initOpenList() {
     for (i = 0; i < tabcontent.length; i++) {
         tabcontent[i].style.display = "none";
 		
+		// Initialize list display option
 		li = tabcontent[i].getElementsByTagName("li");
 		for (j = 0; j < li.length; j++) {
 			li[j].style.display = "";
@@ -50,9 +55,11 @@ function initOpenList() {
 }
 
 function openList(evt, listName) {
-    var i, j, tabcontent, tablinks;
+    var tabcontent, tablinks;
     var input, li;
+	var i, j;
 	
+	// Clear text input
     input = document.getElementById("RPSetInput");
     input.value = "";
 
@@ -61,6 +68,7 @@ function openList(evt, listName) {
     for (i = 0; i < tabcontent.length; i++) {
         tabcontent[i].style.display = "none";
 		
+		// Initialize list display option
 		li = tabcontent[i].getElementsByTagName("li");
 		for (j = 0; j < li.length; j++) {
 			li[j].style.display = "";
@@ -79,17 +87,19 @@ function openList(evt, listName) {
 }
 
 function searchRPSet() {
-    var input, filter, ul, li, a, i;
+    var input, filter, tablinks, tabcontentID, tabcontent, li;
+	var i;
 	
+	// Clear text input
     input = document.getElementById("RPSetInput");
     filter = input.value.toUpperCase();
 	
+	// Find active list
 	tablinks = document.getElementsByClassName("tablinks");
-	tabcontentID = (tablinks[0].className).indexOf("active") !== -1 ? "listByTimeSort" : "listByAscendingSort";
+	tabcontentID = (tablinks[0].className).indexOf(" active") !== -1 ? "listByTimeSort" : "listByAscendingSort";
 	tabcontent = document.getElementById(tabcontentID);
 	
     li = tabcontent.getElementsByTagName("li");
-
     // Loop through all list items, and hide those who don't match the search query
     for (i = 0; i < li.length; i++) {
         if (li[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
@@ -100,17 +110,19 @@ function searchRPSet() {
     }
 }
 
+// Set selected item
 function selectRPSet(no, name) {
-	var characterSet, characterSetName;
-	var modal;
+	var characterSet, characterSetName, modal;
 
 	characterSet = document.getElementById("characterSetInput");
 	characterSetName = document.getElementById("characterSetNameInput");
 	
-	modal = document.getElementById('modal-window');
+	modal = document.getElementById("modal-window");
 	
+	// Set characterSet no & name
 	characterSet.value = parseInt(no, 10);
 	characterSetName.value = name;
 	
-	modal.style.display = "none"
+	// Close the modal
+	modal.style.display = "none";
 }

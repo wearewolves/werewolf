@@ -317,28 +317,27 @@ function changeTermOfDay(obj){
   </tr></table>
   </td>
 	<td>&nbsp;
-	<!--
-				<?
+				<!--?
 				if($mode =="modify") $disabled= "DISABLED=true";
 				else $disabled ="";
 				
-				echo DBselect1("characterSet","","no","name","$DB_characterSet where is_use = 1","class='input' ".$disabled,$gameinfo['characterSet'],"");?>
-				-->
+				echo DBselect1("characterSet","","no","name","$DB_characterSet where is_use = 1","class='input' ".$disabled,$gameinfo['characterSet'],"");
+				?-->
 		<!-- roll playing set selector -->
 		<?
-			$disabled = ($mode == "modify") ? " disabled" : "";
+			$disabled = ($mode == "modify") ? "disabled" : "";
 		?>
 		<input type="hidden" name="characterSet" id="characterSetInput" value="<?=$gameinfo['characterSet']?>">
 		<? if(!$disabled) { ?>
 			<input type="text" name="characterSetName" id="characterSetNameInput" value="">
 			<button type="button" id="RPSetBtn" onclick="openModal()">선택하기</button>
 		<? } else { ?>
-			<input type="text" name="characterSetName" id="characterSetNameInput" value="수정시 롤셋 제목 나오는 건 제작 중"<?=$disabled?>>
+			<input type="text" name="characterSetName" id="characterSetNameInput" value="수정시 롤셋 제목 나오는 건 제작 중" <?=$disabled?>>
 		<? } ?>
 		
 		<div id="modal-window" class="modal">
 			<div class="modal-content">
-				<span class="close">&times;</span>
+				<span id="closeX">&times;</span>
 				<input type="text" id="RPSetInput" onkeyup="searchRPSet()" placeholder="Search for names...">
 
 				<div class="tab">

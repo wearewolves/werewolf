@@ -7,20 +7,19 @@
 		<div class="commentNotice">
 			<span class="reg_date"><?=date("Y-m-d H:i:s",$c_data[reg_date])?></span>
 			<span class="ip"><?if($is_admin) echo $c_data[ip]?></span>
-			<? if($viewMode == "del"){?>
+			<? if($viewMode == "del") { ?>
 					<span class="commentDel"><?=$a_del?>X</a></span>
-				<?}?>
-				<!--테스트--><? echo $viewMode; ?>
-				<? if($viewMode == "all") { ?>
+			<? } ?>
+			<? if($viewMode == "all") { ?>
 					<?=$comment_name?>
-				<? } ?>
+			<? } ?>
 
-			<?switch($commentType['type']){
+			<? switch($commentType['type']) {
 				case "알림": $memoStyle = "normal";
 					break;
 				case "봉인제안":$memoStyle = "seal";
 					break;
-			}?>
+			} ?>
 
 			<div class="<?=$memoStyle?>"><?=nl2br($c_memo)?></div>
 		</div>

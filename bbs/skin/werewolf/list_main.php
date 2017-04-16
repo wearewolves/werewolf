@@ -80,7 +80,7 @@
 				</tr>
 				<tr>
 					<td>
-						<span class="icons heart" title="생존자" width="14px"></span>  <?=$alivePlayerCount?> 
+						<span class="icons heart" title="생존자"></span> <?=$alivePlayerCount?> 
 						<span class="icons death" title="사망자"></span> <?=$deathPlayerCount?>
 					</td>
 					<td><span class="icons clock"></span> <?=$deathTime?></td>

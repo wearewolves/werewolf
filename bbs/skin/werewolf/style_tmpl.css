@@ -145,23 +145,23 @@
 .icons{
 	width: 14px;
 	height: 14px;
-	background-image: url(twotiny.png);
+	background-image: url("twotiny.png");
 	background-repeat: no-repeat;
 }
 
 .player {	   
-	background-position: -137px -2px;
+	background-position: 137px 2px;
 }
 
 .heart{	   
-	background-position: -70px -2px;
+	background-position: 70px 2px;
 }
 
 .death {	   
-	background-position: 0px -19px;
+	background-position: 0px 19px;
 }
 .clock{
-	background-position: -306px -19px;
+	background-position: 306px 19px;
 }
 
 

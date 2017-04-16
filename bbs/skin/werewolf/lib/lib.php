@@ -127,13 +127,25 @@ function DBselect1($name,$head,$id,$value,$DB,$code,$selectedID,$unselectedID){
 	return $DB_select;
 }
 
-// Roll Playing Set list for Selector
-function RPSetselect($DB, $sort) {
+// Initialize characterSet
+function init_characterSet($index, $value, $DB) {
+	$result = mysql_fetch_array(mysql_query("select * from $DB order by 'no'"));
+	return $result[$value][$index];
+}
+
+// Get current characterSet name
+function get_characterSetName($query) {
+	$result = mysql_fetch_array(mysql_query("select * from $query"));
+	return $result[name];
+}
+
+// Make sorted characterSet list and select an item
+function set_characterSet($DB, $sort) {
 	$result = mysql_query("select * from $DB order by '$sort'");
 	while($temp = mysql_fetch_array($result)) {
-		$RPSet_select .= "<li onclick=\"selectRPSet('$temp[no]', '$temp[name]')\">".$temp[name]."</li>";
+		$characterSetList .= "<li onclick=\"selectRPSet('$temp[no]', '$temp[name]')\">".$temp[name]."</li>";
 	}
-	return $RPSet_select;
+	return $characterSetList;
 }
 
 function betweenday($day1,$day2,$termOfDay){

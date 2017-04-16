@@ -326,13 +326,14 @@ function changeTermOfDay(obj){
 		<!-- roll playing set selector -->
 		<?
 			$disabled = ($mode == "modify") ? "disabled" : "";
-		?>
-		<input type="hidden" name="characterSet" id="characterSetInput" value="<?=$gameinfo['characterSet']?>">
-		<? if(!$disabled) { ?>
-			<input type="text" name="characterSetName" id="characterSetNameInput" value="">
-			<button type="button" id="RPSetBtn" onclick="openModal()">선택하기</button>
+
+			if($disabled) { ?>
+			<input type="hidden" name="characterSet" id="characterSetInput" value="<?=$gameinfo['characterSet']?>">
+			<input type="text" name="characterSetName" id="characterSetNameInput" value="<? echo get_characterSetName("$DB_characterSet where no = $gameinfo['characterSet']"); ?>" <?=$disabled?>>
 		<? } else { ?>
-			<input type="text" name="characterSetName" id="characterSetNameInput" value="수정시 롤셋 제목 나오는 건 제작 중" <?=$disabled?>>
+			<input type="hidden" name="characterSet" id="characterSetInput" value="<? echo init_characterSet(0, "no", "$DB_characterSet"); ?>">
+			<input type="text" name="characterSetName" id="characterSetNameInput" value="<? echo init_characterSet(0, "name", "$DB_characterSet"); ?>">
+			<button type="button" id="RPSetBtn" onclick="openModal()">선택하기</button>
 		<? } ?>
 		
 		<div id="modal-window" class="modal">
@@ -347,13 +348,13 @@ function changeTermOfDay(obj){
 
 				<div id="listByTimeSort" class="tabcontent">
 					<ul class="RPSetUL">
-						<? echo RPSetselect("$DB_characterSet where is_use = 1", "no"); ?>
+						<? echo set_characterSet("$DB_characterSet where is_use = 1", "no"); ?>
 					</ul>
 				</div>
 
 				<div id="listByAscendingSort" class="tabcontent">
 					<ul class="RPSetUL">
-					  <? echo RPSetselect("$DB_characterSet where is_use = 1", "name"); ?>
+					  <? echo set_characterSet("$DB_characterSet where is_use = 1", "name"); ?>
 					</ul>
 				</div>
 			</div>

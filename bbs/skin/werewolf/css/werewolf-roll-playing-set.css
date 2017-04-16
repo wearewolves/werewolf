@@ -16,7 +16,7 @@
 /* Modal Content/Box */
 .modal-content {
     background-color: #000000;
-    margin: 15% auto; /* 15% from the top and centered */
+    margin: 60px auto; /* 60px from the top and centered */
     padding: 20px;
     border: 1px solid #888;
     width: 70%; /* Could be more or less, depending on screen size */
@@ -44,12 +44,13 @@
 /* Style the tab */
 div.tab {
     overflow: hidden;
-    border: 1px solid #383838;
+    border: 1px solid #161616;
     background-color: #000000;
 }
 
 /* Style the buttons inside the tab */
 div.tab button {
+	border: inherit;
     background-color: inherit;
     float: left;
     border: none;
@@ -58,17 +59,17 @@ div.tab button {
     padding: 14px 16px;
     transition: 0.3s;
 	width: 50%;
-	color: #ffffff;
+	color: #a0a0a0;
 }
 
 /* Change background color of buttons on hover */
 div.tab button:hover {
-    background-color: #383838;
+    background-color: #161616;
 }
 
 /* Create an active/current tablink class */
 div.tab button.active {
-    background-color: #383838;
+    background-color: #161616;
 }
 
 /* Style the tab content */
@@ -114,8 +115,8 @@ div.tab button.active {
     background-color: #000000; /* Grey background color */
     padding: 12px; /* Add some padding */
     text-decoration: none; /* Remove default text underline */
-    font-size: 18px; /* Increase the font-size */
-    color: #ffffff; /* Add a black text color */
+    font-size: 16px; /* Increase the font-size */
+    color: #a0a0a0; /* Add text color */
     display: block; /* Make it into a block element to fill the whole list */
 	cursor: pointer;
 }

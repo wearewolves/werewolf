@@ -1,9 +1,10 @@
 #characterSetNameInput {
 	width: 200px;
-	height: 1em;
+	height: 2em;
 	padding: 5px;
-	background-color: #000000;
+	background-color: #171717;
 	border: 1px solid #383838;
+	color: rgb(200,200,200);
 }
 
 

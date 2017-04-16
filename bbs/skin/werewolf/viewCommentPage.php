@@ -347,27 +347,38 @@ if(substr_count ( $UNSID,"<||>") == 4){
 				$commentDate = date("Y-m-d H:i:s",$commentData['reg_date']);
 
 
-				if($commentDataType['type'] =="알림"){
+				if($commentDataType['type'] == "알림") {
 					echo "<item>";
 						echo "<type><![CDATA[$commentDataType[type]]]></type>";
 						echo "<reg_date><![CDATA[$commentDate]]></reg_date>";	
-						echo "<description><![CDATA[".nl2br(stripslashes($commentData[memo]))."]]></description>";		
+						echo "<description><![CDATA[".nl2br(stripslashes($commentData[memo]))."]]></description>";
 					echo "</item>";
 				}
-				else{
+				elseif($commentDataType['type'] == "봉인제안") {
+					echo "<item>";
+						echo "<type><![CDATA[$commentDataType[type]]]></type>";
+						echo "<reg_date><![CDATA[$commentDate]]></reg_date>";
+						if($viewMode == "all") {
+							$writerTrueChar = mysql_fetch_array(mysql_query("select * from $DB_entry where game=$no and `character` = $commentDataType[character]"));
+							echo "<username><![CDATA[$writerTrueChar[name]]]></username>";
+						}
+						echo "<description><![CDATA[".nl2br(stripslashes($commentData[memo]))."]]></description>";
+					echo "</item>";
+				}
+				else {
 					echo "<item>";
 						echo "<type><![CDATA[$commentDataType[type]]]></type>";
 						$character_detail=mysql_fetch_array(mysql_query("select * from $DB_character where no = $commentDataType[character]"));
 						echo "<character><![CDATA[$commentDataType[character]]]></character>";
 						echo "<image><![CDATA[$character_detail[half_image]]]></image>";
 						echo "<name><![CDATA[$character_detail[character]]]></name>";
-						echo "<reg_date><![CDATA[$commentDate]]></reg_date>";	
-						if($viewMode == "all"){
-							$writerTrueChar= mysql_fetch_array(mysql_query("select * from $DB_entry where game=$no and `character` = $commentDataType[character]"));
+						echo "<reg_date><![CDATA[$commentDate]]></reg_date>";
+						if($viewMode == "all") {
+							$writerTrueChar = mysql_fetch_array(mysql_query("select * from $DB_entry where game=$no and `character` = $commentDataType[character]"));
 							echo "<username><![CDATA[$writerTrueChar[name]]]></username>";
 							echo "<truecharacter><![CDATA[".$truecharacter_list[$writerTrueChar['truecharacter']]."]]></truecharacter>";
-						}						
-						echo "<description><![CDATA[".nl2br(stripslashes($commentData[memo]))."]]></description>";		
+						}
+						echo "<description><![CDATA[".nl2br(stripslashes($commentData[memo]))."]]></description>";
 					echo "</item>";
 				}
 				

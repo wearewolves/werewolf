@@ -130,7 +130,12 @@ function DBselect1($name,$head,$id,$value,$DB,$code,$selectedID,$unselectedID){
 // Initialize characterSet
 function init_characterSet($index, $value, $DB) {
 	$result = mysql_fetch_array(mysql_query("select * from $DB order by 'no'"));
-	return $result[$value][$index];
+	
+	$temp = "";
+	for($i = 0; $i < count($result); $i++)
+		$temp[$i] = $result[$value];
+	
+	return $temp[$index];
 }
 
 // Get current characterSet name

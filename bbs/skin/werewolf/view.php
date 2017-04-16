@@ -642,8 +642,8 @@ else $character = 0;
 <bgsound src="#" id="soundeffect" loop=1 autostart="true" ></bgsound>
 <SCRIPT LANGUAGE="JavaScript">
 <!--
-var SID = "<?=$SID ?>"; 
-var test = "<?=$test ?>";
+var SID = "<?=$SID?>"; 
+var test = "<?=$test?>";
 var viewChar =<?=$viewChar?$viewChar:0?>;
 
 var gameNo  = <?=$gameinfo['game']?>; 

@@ -10,6 +10,7 @@
 			<? if($viewMode == "del"){?>
 					<span class="commentDel"><?=$a_del?>X</a></span>
 				<?}?>
+				<!--Å×½ºÆ®--><? echo $viewMode; ?>
 				<?if($viewMode == "all"){	?>
 					<?=$comment_name?>
 				<?}?>

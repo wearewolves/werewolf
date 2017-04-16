@@ -174,10 +174,10 @@ $DB_truecharacter=$t_board."_".$id."_truecharacter";
 $truecharacter_list = DB_array("no","character","$DB_truecharacter");
 
 if($viewMode == "all") $commentType = "('일반','알림','봉인제안','비밀','사망','텔레','메모','편지','답변')";
-elseif ($viewMode == "death") $commentType = "('일반','알림','봉인제안','사망')";
-elseif ($viewMode == "tele") $commentType = "('일반','알림','봉인제안','텔레')";
-elseif ($viewMode == "letter") $commentType = "('일반','알림','봉인제안','편지','답변')";
-elseif ($viewMode == "sec") $commentType = "('일반','알림','봉인제안','비밀')";
+elseif($viewMode == "death") $commentType = "('일반','알림','봉인제안','사망')";
+elseif($viewMode == "tele") $commentType = "('일반','알림','봉인제안','텔레')";
+elseif($viewMode == "letter") $commentType = "('일반','알림','봉인제안','편지','답변')";
+elseif($viewMode == "sec") $commentType = "('일반','알림','봉인제안','비밀')";
 elseif($viewMode == "memo") $commentType = "('일반','알림','봉인제안','메모')";
 else $commentType = "('일반','알림','봉인제안')";
 
@@ -337,7 +337,7 @@ if(substr_count ( $UNSID,"<||>") == 4){
 		
 					//$sql="select * from $t_comment"."_$id where parent='$no' and reg_date  between ".($gameinfo[deathtime] + ($gameinfo['termOfDay'] * ( $viewDay -1)))." and   ".($gameinfo[deathtime] +  $gameinfo['termOfDay'] * ($viewDay))."   order by no asc";
 				}
-			}		
+			}
 		
 			$view_comment_result=mysql_query($sql);
 			$characterImageFolder = "skin/".$id."/character/".$gameinfo['characterSet']."/";

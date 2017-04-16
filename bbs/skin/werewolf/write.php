@@ -325,11 +325,11 @@ function changeTermOfDay(obj){
 				?-->
 		<!-- roll playing set selector -->
 		<?
-			$disabled = ($mode == "modify") ? "disabled" : "";
+			$bDisabled = ($mode == "modify") ? true : false;
 
-			if($disabled) { ?>
+			if($bDisabled) { ?>
 			<input type="hidden" name="characterSet" id="characterSetInput" value="<?=$gameinfo['characterSet']?>">
-			<input type="text" name="characterSetName" id="characterSetNameInput" value="<? echo get_characterSetName("$DB_characterSet where no = $gameinfo['characterSet']"); ?>" <?=$disabled?>>
+			<input type="text" name="characterSetName" id="characterSetNameInput" value="<? echo get_characterSetName("$DB_characterSet where no = $gameinfo['characterSet']"); ?>" disabled>
 		<? } else { ?>
 			<input type="hidden" name="characterSet" id="characterSetInput" value="<? echo init_characterSet(0, "no", "$DB_characterSet"); ?>">
 			<input type="text" name="characterSetName" id="characterSetNameInput" value="<? echo init_characterSet(0, "name", "$DB_characterSet"); ?>">

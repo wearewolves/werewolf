@@ -122,5 +122,5 @@ div.tab button.active {
 }
 
 .RPSetUL li:hover {
-    background-color: #383838; /* Add a hover effect to all links, except for headers */
+    background-color: #161616; /* Add a hover effect to all links, except for headers */
 }

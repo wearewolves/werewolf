@@ -241,8 +241,8 @@ function zb_formresize(obj) {
 					<option value='21' <?if($hourV=='21') echo "SELECTED";?>>21 </option>
 					<option value='22' <?if($hourV=='22') echo "SELECTED";?>>22 </option>
 					<option value='23' <?if($hourV=='23') echo "SELECTED";?>>23 </option>
-				</select> 시
-				<input type=text name=min  size=4 MAXLENGTH=2 value='<?=$minV?>' <? if($gameinfo['state'] <> "준비중" and $mode =="modify")echo "DISABLED";?> class="input">
+				</select>시
+				<input type=text name=min  size=4 MAXLENGTH=2 value='<?=$minV?>' <? if($gameinfo['state'] <> "준비중" and $mode =="modify")echo "DISABLED";?> class="input">분
 	</td>
 </tr>
 <script>
@@ -329,10 +329,10 @@ function changeTermOfDay(obj){
 
 			if($bDisabled) { ?>
 			<input type="hidden" name="characterSet" id="characterSetInput" value="<?=$gameinfo['characterSet']?>">
-			<input type="text" name="characterSetName" id="characterSetNameInput" value="<? echo get_characterSetName("$DB_characterSet where no = $gameinfo[characterSet]"); ?>" disabled>
+			<input type="text" name="characterSetName" class="input" style="width:200px" id="characterSetNameInput" value="<? echo get_characterSetName("$DB_characterSet where no = $gameinfo[characterSet]"); ?>" disabled>
 		<? } else { ?>
 			<input type="hidden" name="characterSet" id="characterSetInput" value="<? echo init_characterSet(0, "no", "$DB_characterSet"); ?>">
-			<input type="text" name="characterSetName" id="characterSetNameInput" value="<? echo init_characterSet(0, "name", "$DB_characterSet"); ?>" disabled>
+			<input type="text" name="characterSetName" class="input" style="width:200px" id="characterSetNameInput" value="<? echo init_characterSet(0, "name", "$DB_characterSet"); ?>" disabled>
 			<button type="button" id="RPSetBtn" onclick="openModal()">선택하기</button>
 		<? } ?>
 		

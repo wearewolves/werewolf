@@ -311,7 +311,7 @@
 	<div class="viewState">
 		<div class="state">습격</div>
 		<div class="content">
-				<?echo "지난 밤은 웬지 소란스러웠다. 불길한 생각에 밖을 내다보니<br />무참히 살해된 시체가 있었다… 죽은 자의 이름은…<br /><br />".$death_player_list;?>
+				<?echo "지난 밤은 왠지 소란스러웠다. 불길한 생각에 밖을 내다보니<br />무참히 살해된 시체가 있었다… 죽은 자의 이름은…<br /><br />".$death_player_list;?>
 		</div>
 	</div>
 				<?}
@@ -359,7 +359,7 @@
 	<div class="viewState">
 		<div class="state">습격</div>
 		<div class="content">
-				<?echo "지난 밤은 웬지 소란스러웠다. 불길한 생각에 밖을 내다보니<br />무참히 살해된 시체가 있었다… 죽은 자의 이름은…<br /><br />".$death_player_list;?>
+				<?echo "지난 밤은 왠지 소란스러웠다. 불길한 생각에 밖을 내다보니<br />무참히 살해된 시체가 있었다… 죽은 자의 이름은…<br /><br />".$death_player_list;?>
 		</div>
 	</div>
 				<?}

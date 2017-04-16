@@ -49,46 +49,46 @@
 		if($truecharacter['assault-con'])$assaultCon =mysql_fetch_array(mysql_query("select * from $DB_deathNote where game='$no' and werewolf = '$entry[character]' and day='$gameinfo[day]'"));
 	}
 
-	if($gameinfo['state']=="준비중"){
-		if($is_admin and $viewMode ){
-			if($viewMode== "all")$viewMode= "all";
-			elseif($viewMode == "del")$viewMode= "del";
-			else $viewMode= "일반";
+	if($gameinfo['state'] == "준비중") {
+		if($is_admin and $viewMode) {
+			if($viewMode == "all") $viewMode = "all";
+			elseif($viewMode == "del") $viewMode = "del";
+			else $viewMode = "일반";
 		}
-		else $viewMode= "일반";
+		else $viewMode = "일반";
 	}
-	elseif ($gameinfo['state']=="게임중"){
-		if($entry){
-			if($entry['alive'] == "사망")$viewMode= "death";
-			else{					
-				if($truecharacter['telepathy'])$viewMode= "tele";
-				elseif($truecharacter['secretchat'])$viewMode= "sec";
-				elseif($truecharacter['secretletter'])$viewMode= "letter";
-				else $viewMode= "일반";
+	elseif($gameinfo['state'] == "게임중") {
+		if($entry) {
+			if($entry['alive'] == "사망") $viewMode = "death";
+			else {
+				if($truecharacter['telepathy']) $viewMode = "tele";
+				elseif($truecharacter['secretchat']) $viewMode = "sec";
+				elseif($truecharacter['secretletter']) $viewMode = "letter";
+				else $viewMode = "일반";
 			}
 		}
-		elseif($is_admin and $viewMode ){
-			if($viewMode== "all")$viewMode= "all";
-			elseif($viewMode == "death")$viewMode= "death";
-			elseif($viewMode == "tele")$viewMode= "tele";
-			elseif($viewMode == "sec")$viewMode= "sec";
-			elseif($viewMode == "memo")$viewMode= "memo";
-			elseif($viewMode == "del")$viewMode= "del";
-			elseif($viewMode == "test")$viewMode= "test";
-			elseif($viewMode == "letter")$viewMode = "letter";
-			else $viewMode= "일반";
+		elseif($is_admin and $viewMode) {
+			if($viewMode == "all") $viewMode = "all";
+			elseif($viewMode == "death") $viewMode = "death";
+			elseif($viewMode == "tele") $viewMode = "tele";
+			elseif($viewMode == "sec") $viewMode = "sec";
+			elseif($viewMode == "memo") $viewMode = "memo";
+			elseif($viewMode == "del") $viewMode = "del";
+			elseif($viewMode == "test") $viewMode = "test";
+			elseif($viewMode == "letter") $viewMode = "letter";
+			else $viewMode = "일반";
 		}
-		else $viewMode ="일반";
+		else $viewMode = "일반";
 	}
-	elseif($gameinfo['state']=="게임끝" and !$viewMode)$viewMode = "일반";
+	elseif($gameinfo['state'] == "게임끝" and !$viewMode) $viewMode = "일반";
 
 	if($viewMode == "all") $commentType = "('일반','알림','봉인제안','비밀','사망','텔레','메모','편지','답변')";
-	elseif ($viewMode == "death") $commentType = "('일반','알림','봉인제안','사망')";
-	elseif ($viewMode == "tele") $commentType = "('일반','알림','봉인제안','텔레')";
-	elseif ($viewMode == "letter") $commentType = "('일반','알림','봉인제안','편지','답변')";
-	elseif ($viewMode == "sec") $commentType = "('일반','알림','봉인제안','비밀')";
+	elseif($viewMode == "death") $commentType = "('일반','알림','봉인제안','사망')";
+	elseif($viewMode == "tele") $commentType = "('일반','알림','봉인제안','텔레')";
+	elseif($viewMode == "letter") $commentType = "('일반','알림','봉인제안','편지','답변')";
+	elseif($viewMode == "sec") $commentType = "('일반','알림','봉인제안','비밀')";
 	elseif($viewMode == "memo") $commentType = "('일반','알림','봉인제안','메모')";
-	elseif ($viewMode == "del") $commentType = "('일반','알림','봉인제안','비밀','사망','텔레','메모','편지','답변')";
+	elseif($viewMode == "del") $commentType = "('일반','알림','봉인제안','비밀','사망','텔레','메모','편지','답변')";
 	else $commentType = "('일반','알림','봉인제안')";
 	
 //[일정에 따른 이벤트 시작]////////////////////////////////////////////////////////////////////////////	
@@ -381,11 +381,11 @@
 			<div class="content">게임이 종료되었습니다. <br />	<br />	
 		<?
 			if($gameinfo['win'] == 1)
-				echo "더 이상 인랑에게 대항할 수 있을 정도의 마을 사람은 남아있지 않다.., <br />인랑은 남은 마을 사람을 전부 잡아먹은 후, 다른 희생자를 찾아 이 마을을 떠났다.";
+				echo "더 이상 인랑에게 대항할 수 있을 정도의 마을 사람은 남아있지 않다... <br />인랑은 남은 마을 사람을 전부 잡아먹은 후, 다른 희생자를 찾아 이 마을을 떠났다.";
 			elseif($gameinfo['win'] == 0) 
 				echo "모든 인랑을 퇴치하여 마을에 평화가 찾아왔다. <br />이제 인랑을 두려워 할 필요는 없어졌다!";
 			elseif($gameinfo['win']==2)
-				echo "...모든 것이 끝났다고 생각했다. 하지만 살아남은 자들은 보았다.<br /> 마을 어귀에서 부터 몰려드는 수많은 햄스터의 무리를... <br /><br />.....살아남은 자들은 모두 햄스터에게 잡아먹혔다.";
+				echo "...모든 것이 끝났다고 생각했다. 하지만 살아남은 자들은 보았다.<br /> 마을 어귀에서부터 몰려드는 수많은 햄스터의 무리를... <br /><br />.....살아남은 자들은 모두 햄스터에게 잡아먹혔다.";
 			elseif($gameinfo['win']==3)
 				echo "침울한 분위기 가운데 투표 결과를 집행하려는 순간.. <br>
 						<br>

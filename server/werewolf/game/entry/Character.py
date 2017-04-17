@@ -47,6 +47,7 @@ class Npc(Character):
         cursor = self.game.db.cursor
         query = "select * from `zetyx_board_werewolf_character` where no = '%s'"
         query %= (self.character)
+        logging.debug(query)
         cursor.execute(query)
         deathTime = self.game.deathTime
         character_detail = cursor.fetchone()
@@ -67,6 +68,7 @@ class Player(Character):
         cursor = self.game.db.cursor
         query = "update `zetyx_member_table` set `level`= '%s' where no = '%s'"
         query %= (level, self.id)
+        logging.debug(query)
         cursor.execute(query)
 
     def recordSuddenDeath(self):
@@ -83,6 +85,7 @@ class Player(Character):
         cursor = self.game.db.cursor
         query = "select * from `zetyx_board_werewolf_vote` where game = '%s' and day ='%s' and voter='%s'"
         query %= (self.game.game, self.game.day, self.character)
+        logging.debug(query)
         cursor.execute(query)
         result = cursor.fetchone()
         return result is not None

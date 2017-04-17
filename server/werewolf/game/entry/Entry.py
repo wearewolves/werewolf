@@ -84,7 +84,7 @@ class Entry:
         logging.debug(query)
         cursor.execute(query)
         recordEntry = cursor.fetchall()
-        logging.debug(recordEntry)
+        logging.debug('%s', [str(player) for player in recordEntry])
 
         recordEntry = self.makePlayer(recordEntry)
         return recordEntry
@@ -114,7 +114,7 @@ class Entry:
         logging.debug(query)
         cursor.execute(query)
         recordEntry = cursor.fetchall()
-        logging.debug(recordEntry)
+        logging.debug('%s', [str(player) for player in recordEntry])
 
         recordEntry = self.makePlayer(recordEntry)
         return recordEntry

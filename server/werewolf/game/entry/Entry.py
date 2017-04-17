@@ -63,7 +63,7 @@ class Entry:
         logging.debug(query)
         cursor.execute(query)
         allEntry = self.makePlayer(cursor.fetchall())
-        logging.debug(list(allEntry))
+        logging.debug('%s', [str(player) for player in allEntry])
         return allEntry
 
     def getExpertPlayers(self):

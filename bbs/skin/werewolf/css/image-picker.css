@@ -19,7 +19,8 @@ ul.thumbnails.image_picker_selector {
     margin: 0px 12px 12px 0px;
     float: left; }
     ul.thumbnails.image_picker_selector li .thumbnail {
-      padding: 6px;
+      transition: 0.5s;
+	  padding: 6px;
       border: 1px solid #dddddd;
       -webkit-user-select: none;
       -moz-user-select: none;
@@ -27,4 +28,8 @@ ul.thumbnails.image_picker_selector {
       ul.thumbnails.image_picker_selector li .thumbnail img {
         -webkit-user-drag: none; }
     ul.thumbnails.image_picker_selector li .thumbnail.selected {
-      background: #0088cc; }
+      transition: 0.5s;
+	  background: #600000;
+	  background-color: #ffffff;
+	  border: 1px solid #ff0000;
+	  }

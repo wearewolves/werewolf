@@ -28,8 +28,8 @@ ul.thumbnails.image_picker_selector {
       ul.thumbnails.image_picker_selector li .thumbnail img {
         -webkit-user-drag: none; }
     ul.thumbnails.image_picker_selector li .thumbnail.selected {
-      transition: 0.5s;
+      transition: 0.3s;
 	  background: #600000;
-	  background-color: #ffffff;
+	  background-color: #dddddd;
 	  border: 1px solid #ff0000;
 	  }

@@ -368,15 +368,15 @@ $(document).ready(function(){
 			-->
 			
 			<!-- #56 new code -->
-			<div id="rolebox" style="max-height:400px;overflow:auto;overflow-x:hidden;margin:15px 0px;">
+			<div id="rolebox" style="max-height:400px; overflow:auto; overflow-x:hidden; margin:15px 0px;">
 				<select name='selectCharacter' id="role_select">
 				<?
-				$characterQuery = mysql_query("select * from $DB_character where `set` = $gameinfo[characterSet] and `no` not $orderCondition order by 'no'");
-			//	$characterArray = mysql_fetch_array($characterQuery);
-			//	for($rc=0;$rc<count($characterArray);$rc++){
-				for($rc=0;$characterArray = mysql_fetch_array($characterQuery);$rc++){
-					echo "<option data-img-src='".$characterImageFolder.$characterArray['half_image']."' value='".$characterArray['no']."' >".$character_list[$characterArray['no']]."</option>\n";
-				}
+					$characterQuery = mysql_query("select * from $DB_character where `set` = $gameinfo[characterSet] and `no` not $orderCondition order by 'no'");
+					//$characterArray = mysql_fetch_array($characterQuery);
+					//for($rc=0;$rc<count($characterArray);$rc++){
+					for($rc=0; $characterArray = mysql_fetch_array($characterQuery); $rc++) {
+						echo "<option data-img-src='".$characterImageFolder.$characterArray['half_image']."' value='".$characterArray['no']."'>".$character_list[$characterArray['no']]."</option>\n";
+					}
 				?>
 				</select>
 			</div>

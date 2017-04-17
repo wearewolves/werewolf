@@ -297,7 +297,7 @@ function changeTermOfDay(obj){
   <td>
   <img src=<?=$dir?>/t.gif border=0 height=1><br>
   <table  cellspacing=0 cellpadding=0 width=100% height=100%>
-  <tr><td align=right><font class=red_8>·ê </font></td>
+  <tr><td align=right><font class=red_8>·ê</font></td>
   </tr></table>
   </td>
 	<td>&nbsp;
@@ -313,7 +313,7 @@ function changeTermOfDay(obj){
   <td>
   <img src=<?=$dir?>/t.gif border=0 height=1><br>
   <table  cellspacing=0 cellpadding=0 width=100% height=100%>
-  <tr><td align=right><font class=red_8>·Ñ ÇÃ·¹À× ¼¼Æ® </font></td>
+  <tr><td align=right><font class=red_8>·Ñ ÇÃ·¹À× ¼¼Æ®</font></td>
   </tr></table>
   </td>
 	<td>&nbsp;

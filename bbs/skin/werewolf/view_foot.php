@@ -310,7 +310,7 @@ function changeCharacter(){
 $(document).ready(function(){
 	$("#role_select").imagepicker({
 		show_label: true,
-		hide_select: false
+		hide_select: true
 	});
 	console.log("mirei is best gril");
 });

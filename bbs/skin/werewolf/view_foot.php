@@ -369,7 +369,8 @@ $(document).ready(function(){
 			-->
 			
 			<!-- #56 new code -->
-			<div id="rolebox" style="min-height:300px;overflow:scroll">
+			<div id="rolebox" style="max-height:400px;overflow:auto;overflow-x:hidden">
+				<br>
 				<select name='selectCharacter' id="role_select">
 				<?
 				$stlink = 'http://werewolf6.cafe24.com/bbs/';
@@ -382,8 +383,10 @@ $(document).ready(function(){
 				?>
 				</select>
 			</div>
+			<br>
+			<br>
 			<!-- -->
-			<input type="submit" name="temp" value="게임 참여하기" style="width:80px">
+			<input type="submit" name="temp" value="게임 참여하기" style="font-size:18px;padding:2px;">
 			</form>
 		<?}
 		else echo "$NowPlayingCount 개 게임에 참여 중 입니다.<br/><br/> 더 이상 게임에 참여 할 수 없습니다.";

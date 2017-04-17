@@ -312,7 +312,6 @@ $(document).ready(function(){
 		show_label: true,
 		hide_select: true
 	});
-	console.log("mirei is best gril");
 });
 </script>
 
@@ -369,16 +368,14 @@ $(document).ready(function(){
 			-->
 			
 			<!-- #56 new code -->
-			<div id="rolebox" style="max-height:400px;overflow:auto;overflow-x:hidden">
-				<br>
+			<div id="rolebox" style="max-height:400px;overflow:auto;overflow-x:hidden;margin:15px 0px;">
 				<select name='selectCharacter' id="role_select">
 				<?
-				$stlink = 'http://werewolf6.cafe24.com/bbs/';
 				$characterQuery = mysql_query("select * from $DB_character where `set` = $gameinfo[characterSet] and `no` not $orderCondition order by 'no'");
 			//	$characterArray = mysql_fetch_array($characterQuery);
 			//	for($rc=0;$rc<count($characterArray);$rc++){
 				for($rc=0;$characterArray = mysql_fetch_array($characterQuery);$rc++){
-					echo "<option data-img-src='".$stlink.$characterImageFolder.$characterArray['half_image']."' value='".$characterArray['no']."' >".$character_list[$characterArray['no']]."</option>\n";
+					echo "<option data-img-src='".$characterImageFolder.$characterArray['half_image']."' value='".$characterArray['no']."' >".$character_list[$characterArray['no']]."</option>\n";
 				}
 				?>
 				</select>

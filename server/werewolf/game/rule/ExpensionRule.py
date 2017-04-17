@@ -146,7 +146,7 @@ class ExpansionRule(WerewolfRule):
         logging.debug("습격!!!")
         #습격의 희생양들...
         humanRace = self.game.entry.getEntryByRace(Race.HUMAN)
-        logging.debug("%s", humanRace)
+        logging.debug("humanlist: %s", [str(player) for player in humanRace])
 
         #습격자!
         werewolfPlayers = self.game.entry.getPlayersByTruecharacter(Truecharacter.WEREWOLF, "('생존')")
@@ -197,20 +197,20 @@ class ExpansionRule(WerewolfRule):
             query %= (self.game.game, self.game.day)
             logging.debug(query)
 
-        cursor.execute(query)
-        result2 = cursor.fetchall()
-        logging.debug(result2)
+            cursor.execute(query)
+            result2 = cursor.fetchall()
+            logging.debug(result2)
 
-        if not result:
-            result2 = result2[0]
-            resultList = []
-            for temp in result:
-                if temp['injured'] == result2['injured']:
-                    temp['count'] += 1
-                resultList.append(temp)
-            result = resultList
-        else:
-            result = result2
+            if not result:
+                result2 = result2[0]
+                resultList = []
+                for temp in result:
+                    if temp['injured'] == result2['injured']:
+                        temp['count'] += 1
+                    resultList.append(temp)
+                result = resultList
+            else:
+                result = result2
 
         count = 0
         injured_list = []

@@ -166,13 +166,13 @@ $DB_character=$t_board."_".$id."_character";
 $DB_truecharacter=$t_board."_".$id."_truecharacter";
 
 
-if($viewMode == "all") $commentType = "('일반','알림','비밀','사망','텔레','메모','편지','답변')";
-elseif ($viewMode == "death") $commentType = "('일반','알림','사망')";
-elseif ($viewMode == "tele") $commentType = "('일반','알림','텔레')";
-elseif ($viewMode == "letter") $commentType = "('일반','알림','편지','답변')";
-elseif ($viewMode == "sec") $commentType = "('일반','알림','비밀')";
-elseif($viewMode == "memo") $commentType = "('일반','알림','메모')";
-else $commentType = "('일반','알림')";
+if($viewMode == "all") $commentType = "('일반','알림','봉인제안','비밀','사망','텔레','메모','편지','답변')";
+elseif($viewMode == "death") $commentType = "('일반','알림','봉인제안','사망')";
+elseif($viewMode == "tele") $commentType = "('일반','알림','봉인제안','텔레')";
+elseif($viewMode == "letter") $commentType = "('일반','알림','봉인제안','편지','답변')";
+elseif($viewMode == "sec") $commentType = "('일반','알림','봉인제안','비밀')";
+elseif($viewMode == "memo") $commentType = "('일반','알림','봉인제안','메모')";
+else $commentType = "('일반','알림','봉인제안')";
 
 if($player ==1)$is_admin = true;
 else $is_admin = false;

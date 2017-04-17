@@ -3,7 +3,8 @@ class SessionID{
 	var $secretKey;
 
 	function SessionID(){
-		$this->secretKey="secretKey";
+		//$this->secretKey="secretKey";
+		$this->secretKey = "very good funny exciting game i will be great game designer.I love you.";
 	}
 
 	// ¾ÏÈ£È­  ////////////////////////////

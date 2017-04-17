@@ -55,7 +55,7 @@ $uncrypted = decrypt_md5($crypted, $key);
 echo "Unencoded = $uncrypted"; // returns This is a very long message (etc) 
 */
 
-function getSID($game , $day, $lastComment, $member, $viewMode,$secretKey){ 
+function getSID($game , $day, $lastComment, $member, $viewMode, $secretKey){ 
 
 	$SID =  $game ."<||>". $day ."<||>". $lastComment ."<||>". $member."<||>". $viewMode;
 	$SID = crypt_md5($SID, $secretKey);

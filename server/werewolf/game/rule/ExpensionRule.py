@@ -201,7 +201,7 @@ class ExpansionRule(WerewolfRule):
             result2 = cursor.fetchall()
             logging.debug(result2)
 
-            if not result:
+            if result:
                 result2 = result2[0]
                 resultList = []
                 for temp in result:
@@ -209,12 +209,14 @@ class ExpansionRule(WerewolfRule):
                         temp['count'] += 1
                     resultList.append(temp)
                 result = resultList
+                logging.debug('lonelywerewolf (no werewolf): %s', resultList)
             else:
                 result = result2
+                logging.debug('lonelywerewolf (with werewolf): %s', result)
 
+        logging.debug(result)
         count = 0
         injured_list = []
-        logging.debug(result)
 
         for temp in result:
             if count < temp['count']:

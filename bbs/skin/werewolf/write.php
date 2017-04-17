@@ -420,9 +420,9 @@ function changeTermOfDay(obj){
 	<td colspan=2>
 		<table border=0 cellspacing=1 cellpadding=2 width=100% height=40>
 		<tr>
-			<td align=right>
-				<input type=submit src=skin/werewolf/image/ok.gif border=0 onfocus=blur() border=0 accesskey="s" value="" style="height:50px;width:60px;background-image: url(skin/werewolf/image/ok.gif);">
-				&nbsp;&nbsp;<a href=javascript:void(history.back()) onfocus=blur()><img src=<?=$dir?>/image/cancel.gif border=0></a>
+			<td align="right">
+				<input type="submit" src="skin/werewolf/image/ok.gif" border="0" onfocus="blur()" border="0" accesskey="s">
+				&nbsp;&nbsp;<a href="javascript:void(history.back())" onfocus="blur()"><img src="<?=$dir?>/image/cancel.gif" border="0"></a>
 			</td>
 		</tr>
 		</table>

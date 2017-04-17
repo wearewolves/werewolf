@@ -16,7 +16,7 @@
 // 게시판 설정을 가져옴
 //error($_zb_path);
 	$setup=get_table_attrib($id);
-	if(!$setup[no]) error("존제하지 않는 게시판 입니다.","window.close");
+	if(!$setup[no]) error("존재하지 않는 게시판 입니다.","window.close");
 
 	include "../../../Werewolf/head.htm";
 
@@ -90,7 +90,7 @@
 		<div class="caption">
 			<H1><?=$playerInfo['name']?></h1>
 			<?if($member[no]){?>
-				<a href="#" onMousedown="window.open('../../view_info.php?member_no=<?=$player?>','view_info','width=400,height=510,toolbar=no,scrollbars=yes')">쪽지보내기</a><br>
+				<a href="#" onMousedown="window.open('../../view_info.php?member_no=<?=$player?>','view_info','width=400,height=510,toolbar=no,scrollbars=yes')">쪽지 보내기</a><br>
 			<?
 				if($playerInfo['homepage'] and $playerInfo['open_homepage']){
 						$homepage = $playerInfo['homepage'];
@@ -163,7 +163,7 @@
 					}
 
 					if ($entry['alive']=="사망")
-						$death = $entry['deathday']."일 째 사망-".$deathType;
+						$death = $entry['deathday']."일째 사망-".$deathType;
 					else 
 						$death = "생존";
 
@@ -171,20 +171,20 @@
 						switch($gameinfo['win']){
 							case 0: $gameinfo['state'] = "인간의 승";
 										break;
-							case 1: $gameinfo['state'] ="인랑의 승";
+							case 1: $gameinfo['state'] = "인랑의 승";
 										break;
-							case 2: $gameinfo['state'] ="햄스터의 승";
+							case 2: $gameinfo['state'] = "햄스터의 승";
 										break;
 						}
 
 						if($wintype[$entry['truecharacter']] == $gameinfo['win']){
 							$result = "승";
-							$style ="blue";
+							$style = "blue";
 							$win++;
 						}
 						else{
 							$result = "패";
-							$style ="red";
+							$style = "red";
 							$lost++;
 						}
 					}
@@ -226,7 +226,7 @@
 	$suddenDeathCount = mysql_fetch_array(mysql_query("select count(*)  from `".$db->suddenDeath."` where player = $player"));
 
 	if($suddenDeathCount[0] <> 0){
-		echo "<span title='돌연사 횟수는 자기 자신에게만 보입니다\n돌연사 하지 않도록 주의해 주세요.'>돌연사 횟수:".$suddenDeathCount[0]."</span>";
+		echo "<span title='돌연사 횟수는 자기 자신에게만 보입니다.\n돌연사하지 않도록 주의해주세요.'>돌연사 횟수:".$suddenDeathCount[0]."</span>";
 	}
 }?>
 

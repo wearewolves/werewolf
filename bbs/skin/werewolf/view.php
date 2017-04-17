@@ -111,7 +111,7 @@
 	for($indx=0;$indx<=$gameinfo['day'];$indx++){
 		if($indx == $gameinfo['day'] and( $gameinfo['state']=="게임끝" or  $gameinfo['state']=="테스트")) $printDay = "에필로그";
 		elseif($indx ==0) $printDay= "프롤로그 ";
-		else $printDay= $indx."일 째";
+		else $printDay= $indx."일째";
 
 		if($viewDay == $indx) $active = "class ='selectedMode'";
 		else  $active ="class =''";
@@ -219,7 +219,7 @@
 			else{
 				if (	$viewDay == 0)				echo "참여 인원 모집 중";
 				elseif ($viewDay == $gameinfo['day'] and $gameinfo['state']=="게임끝"  )		echo "모든 상황이 종료되었습니다.";
-				else	echo $viewDay."일 째 날입니다.";
+				else	echo $viewDay."일째 날입니다.";
 			}
 		?>
 		</div>
@@ -261,7 +261,7 @@
 	<div class="viewState">
 		<div class="state">돌연사</div>
 		<div class="content">
-					<?echo "마을에 돌연사가 발생 했습니다.<br> 돌연사한 마을 사람은 아래와 같습니다.<br><br>".$death_player_list;?>
+					<?echo "마을에 돌연사가 발생했습니다.<br> 돌연사한 마을 사람은 아래와 같습니다.<br><br>".$death_player_list;?>
 		</div>
 	</div>
 			<?}?>
@@ -273,7 +273,7 @@
 	<div class="viewState">
 		<div class="state">투표</div>
 		<div class="content">				
-				<?echo $character_list[$death['character']]."씨가 투표 결과로 목 매달아 졌습니다.<br>" ;?>
+				<?echo $character_list[$death['character']]."씨가 투표 결과로 목 매달아졌습니다.<br>" ;?>
 		</div>
 	</div>	
 				<?}?>
@@ -282,7 +282,7 @@
 	<div class="viewState">
 		<div class="state">습격</div>
 		<div class="content">				
-				<?if($death){ echo $character_list[$death['character']]."의 시체가 발견되었습니다. <br>지난 밤 인랑에게 습격받은 것으로 보입니다.<br>";}
+				<?if($death){ echo $character_list[$death['character']]."의 시체가 발견되었습니다.<br>지난 밤 인랑에게 습격받은 것으로 보입니다.<br>";}
 				else{echo "지난 밤에는 습격이 없었다. 인랑이 습격에 실패한 것일까...?<br>";}?>
 		</div>
 	</div>
@@ -294,7 +294,7 @@
 	<div class="viewState">
 		<div class="state">투표</div>
 		<div class="content">				
-				<?echo $character_list[$death['character']]."씨가 투표 결과에 의해 생매장 당했습니다.<br>" ;?>
+				<?echo $character_list[$death['character']]."씨가 투표 결과에 의해 생매장당했습니다.<br>" ;?>
 		</div>
 	</div>	
 				<?}?>
@@ -319,7 +319,7 @@
 	<div class="viewState">
 		<div class="state">습격</div>
 		<div class="content">
-				<?echo "지난 밤은 너무나도 조용했다. 눈을 뜨고 밖을 내다보았지만,<br />아무일도 없었던 것 같다. 이건 어찌된 일 일까…? ";?>
+				<?echo "지난 밤은 너무나도 조용했다. 눈을 뜨고 밖을 내다보았지만,<br />아무 일도 없었던 것 같다. 이건 어찌 된 일일까…?";?>
 		</div>
 	</div>	
 	<?}}?>
@@ -331,7 +331,7 @@
 					<div class="viewState">
 						<div class="state">투표</div>
 							<div class="content">				
-								<?echo $character_list[$death['character']]."씨가 투표 결과로 목 매달아 졌습니다.<br>" ;?>
+								<?echo $character_list[$death['character']]."씨가 투표 결과로 목 매달아졌습니다.<br>" ;?>
 							</div>
 						</div>	
 				<?}
@@ -340,7 +340,7 @@
 						<div class="state">투표</div>
 						<div class="content">
 								<?echo "투표 결과에 따라 형을 집행하려는 순간..<br>";
-									if($gameinfo['state']=="게임끝" and $viewDay == $gameinfo['day'])echo "마을은 어둠에 뒤덮혔다.";
+									if($gameinfo['state']=="게임끝" and $viewDay == $gameinfo['day']) echo "마을은 어둠에 뒤덮였다.";
 									else echo "귀족임이 밝혀졌다.";
 								?>
 						</div>
@@ -367,7 +367,7 @@
 	<div class="viewState">
 		<div class="state">습격</div>
 		<div class="content">
-				<?echo "지난 밤은 너무나도 조용했다. 눈을 뜨고 밖을 내다보았지만,<br />아무일도 없었던 것 같다. 이건 어찌된 일 일까…? ";?>
+				<?echo "지난 밤은 너무나도 조용했다. 눈을 뜨고 밖을 내다보았지만,<br />아무 일도 없었던 것 같다. 이건 어찌 된 일일까…?";?>
 		</div>
 	</div>	
 	<?}}?>
@@ -383,14 +383,14 @@
 			if($gameinfo['win'] == 1)
 				echo "더 이상 인랑에게 대항할 수 있을 정도의 마을 사람은 남아있지 않다... <br />인랑은 남은 마을 사람을 전부 잡아먹은 후, 다른 희생자를 찾아 이 마을을 떠났다.";
 			elseif($gameinfo['win'] == 0) 
-				echo "모든 인랑을 퇴치하여 마을에 평화가 찾아왔다. <br />이제 인랑을 두려워 할 필요는 없어졌다!";
+				echo "모든 인랑을 퇴치하여 마을에 평화가 찾아왔다.<br />이제 인랑을 두려워할 필요는 없어졌다!";
 			elseif($gameinfo['win']==2)
-				echo "...모든 것이 끝났다고 생각했다. 하지만 살아남은 자들은 보았다.<br /> 마을 어귀에서부터 몰려드는 수많은 햄스터의 무리를... <br /><br />.....살아남은 자들은 모두 햄스터에게 잡아먹혔다.";
+				echo "...모든 것이 끝났다고 생각했다. 하지만 살아남은 자들은 보았다.<br />마을 어귀에서부터 몰려드는 수많은 햄스터의 무리를... <br /><br />.....살아남은 자들은 모두 햄스터에게 잡아먹혔다.";
 			elseif($gameinfo['win']==3)
-				echo "침울한 분위기 가운데 투표 결과를 집행하려는 순간.. <br>
+				echo "침울한 분위기 가운데 투표 결과를 집행하려는 순간..<br>
 						<br>
 						디아블로가 각성했다.<br>
-						괴성을 지르며 디아블로는 마을을 안드로메다로 보내버렸다..bye~";
+						괴성을 지르며 디아블로는 마을을 안드로메다로 보내버렸다.. bye~";
 		?>
 			</div>
 		</div>
@@ -401,7 +401,7 @@
 			<div class="content">
 				<?="점괘가 나왔다. ".$character_list[$forecast_result['mystery']]?>
 				<?	
-					if($forecast_result[result] == 0 or $forecast_result[result] == 2) echo "씨는 인간이다. ";
+					if($forecast_result[result] == 0 or $forecast_result[result] == 2) echo "씨는 인간이다.";
 					else echo "씨는 인랑이다.";
 					?>
 
@@ -414,13 +414,13 @@
 			<div class="state"></div>
 			<div class="content">
 			<?
-				if ($gameinfo['players']==11) echo "아무래도 이 안에는, 마을사람이 5명, 인랑이 2명, 점쟁이가 1명,<br />영매자가1명, 광인이 1명, 사냥꾼이 1명 있는 것 같다.";
-				if ($gameinfo['players']==12) echo "아무래도 이 안에는, 마을사람이 6명, 인랑이 2명, 점쟁이가 1명,<br />영매자가1명, 광인이 1명, 사냥꾼이 1명 있는 것 같다."; 
-				if ($gameinfo['players']==13) echo "아무래도 이 안에는, 마을사람이 7명, 인랑이 2명, 점쟁이가 1명,<br />영매자가1명, 광인이 1명, 사냥꾼이 1명 있는 것 같다.";
-				if ($gameinfo['players']==14) echo "아무래도 이 안에는, 마을사람이 8명, 인랑이 2명, 점쟁이가 1명,<br />영매자가1명, 광인이 1명, 사냥꾼이 1명 있는 것 같다.";
-				if ($gameinfo['players']==15) echo "아무래도 이 안에는, 마을사람이 8명, 인랑이 3명, 점쟁이가 1명,<br />영매자가1명, 광인이 1명, 사냥꾼이 1명 있는 것 같다.";
-				if ($gameinfo['players']==16) echo "아무래도 이 안에는, 마을사람이 7명, 인랑이 3명, 점쟁이가 1명,<br />영매자가1명, 광인이 1명, 사냥꾼이 1명, 초능력자가 2명 있는 것 같다.";
-				if ($gameinfo['players']==17) echo "아무래도 이 안에는, 마을사람이 7명, 인랑이 3명, 점쟁이가 1명,영매자가1명,<br />광인이 1명, 사냥꾼이 1명, 초능력자가 2명, 햄스터가 1마리 있는 것 같다.";
+				if ($gameinfo['players']==11) echo "아무래도 이 안에는, 마을사람이 5명, 인랑이 2명, 점쟁이가 1명,<br />영매자가 1명, 광인이 1명, 사냥꾼이 1명 있는 것 같다.";
+				if ($gameinfo['players']==12) echo "아무래도 이 안에는, 마을사람이 6명, 인랑이 2명, 점쟁이가 1명,<br />영매자가 1명, 광인이 1명, 사냥꾼이 1명 있는 것 같다."; 
+				if ($gameinfo['players']==13) echo "아무래도 이 안에는, 마을사람이 7명, 인랑이 2명, 점쟁이가 1명,<br />영매자가 1명, 광인이 1명, 사냥꾼이 1명 있는 것 같다.";
+				if ($gameinfo['players']==14) echo "아무래도 이 안에는, 마을사람이 8명, 인랑이 2명, 점쟁이가 1명,<br />영매자가 1명, 광인이 1명, 사냥꾼이 1명 있는 것 같다.";
+				if ($gameinfo['players']==15) echo "아무래도 이 안에는, 마을사람이 8명, 인랑이 3명, 점쟁이가 1명,<br />영매자가 1명, 광인이 1명, 사냥꾼이 1명 있는 것 같다.";
+				if ($gameinfo['players']==16) echo "아무래도 이 안에는, 마을사람이 7명, 인랑이 3명, 점쟁이가 1명,<br />영매자가 1명, 광인이 1명, 사냥꾼이 1명, 초능력자가 2명 있는 것 같다.";
+				if ($gameinfo['players']==17) echo "아무래도 이 안에는, 마을사람이 7명, 인랑이 3명, 점쟁이가 1명, 영매자가 1명,<br />광인이 1명, 사냥꾼이 1명, 초능력자가 2명, 햄스터가 1마리 있는 것 같다.";
 			?>
 			</div>
 		</div>
@@ -430,15 +430,15 @@
 			<div class="state"></div>
 			<div class="content">
 			<?
-				if ($gameinfo['players']==9) echo "아무래도 이 안에는  인랑 1명, 외로운 늑대 1명, 광인 1명, 점쟁이 1명, 영매자 1명,<br> 사냥꾼 1명, 복수자 1명, 보안관 1명, 마을 사람 1명이 있는 것 같다.";
-				if ($gameinfo['players']==10) echo "아무래도 이 안에는  인랑 1명, 외로운 늑대 1명, 광인 1명, 점쟁이 1명, 영매자 1명,<br> 사냥꾼 1명, 복수자 1명, 귀족 1명, 마을 사람 2명이 있는 것 같다.";
-				if ($gameinfo['players']==11) echo "아무래도 이 안에는  인랑 1명, 인랑 리더 1명, 광인 1명, 점쟁이 1명, 영매자 1명,<br> 사냥꾼 1명, 촌장 1명,보안관 1명, 마을 사람 3명이 있는 것 같다.";
-				if ($gameinfo['players']==12) echo "아무래도 이 안에는  인랑 1명, 인랑 리더 1명, 광인 1명,<br> 점쟁이 1명, 영매자 1명, 사냥꾼 1명, 촌장 1명, 마을 사람 5명이 있는 것 같다.";
-				if ($gameinfo['players']==13) echo "아무래도 이 안에는  인랑 1명, 인랑 리더 1명, 외로운 늑대 1명, 광인 1명,<br> 점쟁이 1명, 영매자 1명, 사냥꾼 1명, 복수자 1명, 촌장 1명, 귀족 1명,보안관 1명,  마을 사람 2명이 있는 것 같다.";
-				if ($gameinfo['players']==14) echo "아무래도 이 안에는  인랑 1명, 인랑 리더 1명, 외로운 늑대 1명, 광인 1명,<br> 점쟁이 1명, 영매자 1명, 사냥꾼 1명, 복수자 1명, 촌장 1명, 귀족 1명,  마을 사람 4명이 있는 것 같다.";
-				if ($gameinfo['players']==15) echo "아무래도 이 안에는  인랑 2명, 인랑 리더 1명, 외로운 늑대 1명, 광인 1명,<br> 점쟁이 1명, 영매자 1명, 사냥꾼 1명, 복수자 1명, 촌장 1명, 귀족 1명,보안관 1명,  마을 사람 3명이 있는 것 같다.";
-				if ($gameinfo['players']==16) echo "아무래도 이 안에는  인랑 2명, 인랑 리더 1명, 외로운 늑대 1명, 광인 1명,<br> 점쟁이 1명, 영매자 1명, 사냥꾼 1명, 복수자 1명, 촌장 1명, 귀족 1명,  마을 사람 5명이 있는 것 같다.";
-				if ($gameinfo['players']==17) echo "아무래도 이 안에는  인랑 2명, 인랑 리더 1명, 외로운 늑대 1명, 광인 1명,<br> 점쟁이 1명, 영매자 1명, 사냥꾼 1명, 복수자 1명, 촌장 1명, 귀족 1명,  마을 사람 5명, 그리고 디아블로가 있는 것 같다.";
+				if ($gameinfo['players']==9) echo "아무래도 이 안에는 인랑 1명, 외로운 늑대 1명, 광인 1명, 점쟁이 1명, 영매자 1명,<br>사냥꾼 1명, 복수자 1명, 보안관 1명, 마을사람 1명이 있는 것 같다.";
+				if ($gameinfo['players']==10) echo "아무래도 이 안에는 인랑 1명, 외로운 늑대 1명, 광인 1명, 점쟁이 1명, 영매자 1명,<br>사냥꾼 1명, 복수자 1명, 귀족 1명, 마을사람 2명이 있는 것 같다.";
+				if ($gameinfo['players']==11) echo "아무래도 이 안에는 인랑 1명, 인랑 리더 1명, 광인 1명, 점쟁이 1명, 영매자 1명,<br>사냥꾼 1명, 촌장 1명,보안관 1명, 마을사람 3명이 있는 것 같다.";
+				if ($gameinfo['players']==12) echo "아무래도 이 안에는 인랑 1명, 인랑 리더 1명, 광인 1명,<br>점쟁이 1명, 영매자 1명, 사냥꾼 1명, 촌장 1명, 마을사람 5명이 있는 것 같다.";
+				if ($gameinfo['players']==13) echo "아무래도 이 안에는 인랑 1명, 인랑 리더 1명, 외로운 늑대 1명, 광인 1명,<br>점쟁이 1명, 영매자 1명, 사냥꾼 1명, 복수자 1명, 촌장 1명, 귀족 1명, 보안관 1명, 마을사람 2명이 있는 것 같다.";
+				if ($gameinfo['players']==14) echo "아무래도 이 안에는 인랑 1명, 인랑 리더 1명, 외로운 늑대 1명, 광인 1명,<br>점쟁이 1명, 영매자 1명, 사냥꾼 1명, 복수자 1명, 촌장 1명, 귀족 1명, 마을사람 4명이 있는 것 같다.";
+				if ($gameinfo['players']==15) echo "아무래도 이 안에는 인랑 2명, 인랑 리더 1명, 외로운 늑대 1명, 광인 1명,<br>점쟁이 1명, 영매자 1명, 사냥꾼 1명, 복수자 1명, 촌장 1명, 귀족 1명, 보안관 1명, 마을사람 3명이 있는 것 같다.";
+				if ($gameinfo['players']==16) echo "아무래도 이 안에는 인랑 2명, 인랑 리더 1명, 외로운 늑대 1명, 광인 1명,<br>점쟁이 1명, 영매자 1명, 사냥꾼 1명, 복수자 1명, 촌장 1명, 귀족 1명, 마을사람 5명이 있는 것 같다.";
+				if ($gameinfo['players']==17) echo "아무래도 이 안에는 인랑 2명, 인랑 리더 1명, 외로운 늑대 1명, 광인 1명,<br>점쟁이 1명, 영매자 1명, 사냥꾼 1명, 복수자 1명, 촌장 1명, 귀족 1명, 마을사람 5명, 그리고 디아블로가 있는 것 같다.";
 			?>
 			</div>
 		</div>
@@ -471,7 +471,7 @@ if($is_admin and 0){
 
 			if ($data['alive']=="사망"){
 				if ($viewDay <= $data['deathday']){$alive  = "생존";}
-				else {	$alive = $data['deathday']."일 째 사망-".$deathType;}
+				else {	$alive = $data['deathday']."일째 사망-".$deathType;}
 			}
 			else $alive ="생존";
 
@@ -540,7 +540,7 @@ if($is_admin and 0){
 
 			if ($data['alive']=="사망"){
 				if ($viewDay <= $data['deathday']){echo "<td>생존</td>";}
-				else {	echo "<td>".$data['deathday']."일 째 사망-".$deathType."</td>";}
+				else {	echo "<td>".$data['deathday']."일째 사망-".$deathType."</td>";}
 			}
 			else echo "<td>생존 </td>";
 //3
@@ -598,7 +598,7 @@ if($is_admin and 0){
 
 			if ($data['alive']=="사망"){
 				if ($viewDay <= $data['deathday']){echo "<td>생존</td>";}
-				else {	echo "<td>".$data['deathday']."일 째 사망-".$deathType."</td>";}
+				else {	echo "<td>".$data['deathday']."일째 사망-".$deathType."</td>";}
 			}
 			else echo "<td>생존 </td>";
 //3
@@ -669,7 +669,7 @@ var viewImage="<?=$viewImage?>";
 <script>
 function toClip(memo) {
         window.clipboardData.setData('Text',memo);
-        alert('주소가 복사 되었습니다');
+        alert('주소가 복사되었습니다');
 }
 </script>
 

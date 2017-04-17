@@ -47,7 +47,7 @@ class WerewolfRule(Rule):
 
         #마을 사람 배치
         random.shuffle(novicePlayers)
-        logging.debug("noviceEntry: %s", novicePlayers)
+        logging.debug("noviceEntry: %s", [str(player) for player in novicePlayers])
         while novicePlayers:
             try:
                 truecharacterList.remove(Truecharacter.HUMAN)
@@ -55,17 +55,17 @@ class WerewolfRule(Rule):
                 logging.debug("초보자 할당: 남은 마을사람 부족 %d명", len(truecharacterList))
                 break
             player = novicePlayers.pop()
-            logging.debug("player: %d with job %d", player.id, Truecharacter.HUMAN)
+            logging.debug("%s with job %d", player, Truecharacter.HUMAN)
             player.setTruecharacter(Truecharacter.HUMAN)
 
         restPlayers = expertPlayers + novicePlayers
         random.shuffle(restPlayers)
-        logging.debug("restEntry: %s", restPlayers)
+        logging.debug("restEntry: %s", [str(player) for player in restPlayers])
         logging.debug("restJob: %s", truecharacterList)
         while restPlayers:
             player = restPlayers.pop()
             job = truecharacterList.pop()
-            logging.debug("player: %d with job %d", player.id, job)
+            logging.debug("%s with job %d", player, job)
             player.setTruecharacter(job)
         if not truecharacterList:
             logging.error("Some roles are NOT assigned: %s", truecharacterList)

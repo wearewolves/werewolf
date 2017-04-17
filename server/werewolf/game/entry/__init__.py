@@ -1,3 +1,5 @@
-__all__=['Entry']
+__all__=['Entry', 'Character', 'Role']
 
 import Entry
+import Character
+import Role

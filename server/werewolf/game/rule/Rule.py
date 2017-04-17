@@ -1,30 +1,33 @@
 #-*- coding:cp949 -*-
-from werewolf.database.DATABASE import DATABASE
-from werewolf.game.GAME_STATE import GAME_STATE
-from werewolf.game.entry.Entry import Truecharacter
-from werewolf.game.entry.Entry import Race
 import logging
 import random
 import copy
+from werewolf.game.GAME_STATE import GAME_STATE
+from werewolf.game.entry.Role import Truecharacter
+from werewolf.game.entry.Role import Race
 
 class Rule:
+    min_players = None
+    max_players = None
+    temp_truecharacter = {}
+
     def __init__(self, game):
         self.game = game
 
 class WerewolfRule(Rule):
     def nextTurn(self):
-        if self.game.state== GAME_STATE.READY:
-            if(self.min_players <= self.game.players and self.game.players <= self.max_players):
+        if self.game.state == GAME_STATE.READY:
+            if self.min_players <= self.game.players and self.game.players <= self.max_players:
                 logging.info("게임 초기화 시작")
                 self.initGame()
             else:
                 self.game.deleteGame()
-        elif self.game.state==GAME_STATE.PLAYING:
-            if(self.game.day == 1):
+        elif self.game.state == GAME_STATE.PLAYING:
+            if self.game.day == 1:
                 self.nextTurn_2day()
             else:
                 self.nextTurn_Xday()
-    
+
     def nextTurn_2day(self):
         raise NotImplementedError
     def nextTurn_Xday(self):

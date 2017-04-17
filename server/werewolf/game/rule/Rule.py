@@ -67,7 +67,7 @@ class WerewolfRule(Rule):
             job = truecharacterList.pop()
             logging.debug("%s with job %d", player, job)
             player.setTruecharacter(job)
-        if not truecharacterList:
+        if truecharacterList:
             logging.error("Some roles are NOT assigned: %s", truecharacterList)
 
         #2. Èñ»ıÀÚÀÇ ÄÚ¸àÆ®

@@ -128,6 +128,7 @@ class WerewolfRule(Rule):
                 break
             candidacy_list.append(temp['candidacy'])
         candidacy = random.choice(candidacy_list)
+        logging.debug('Candidacy: %s in %s', candidacy, [str(player) for player in candidacy_list])
         return self.game.entry.getCharacter(candidacy)
 
     def decideByWerewolf(self):
@@ -176,5 +177,5 @@ class WerewolfRule(Rule):
                 break
             injured_list.append(temp['injured'])
         injured = random.choice(injured_list)
-        logging.debug("injured: %s in %s", injured, injured_list)
+        logging.debug("Injured: %s in %s", injured, [str(player) for player in injured_list])
         return self.game.entry.getCharacter(injured)

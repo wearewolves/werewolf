@@ -407,7 +407,7 @@ $DBLastComment = mysql_fetch_array(mysql_query("select max(comment) from $DB_wer
 								$writeComment = true;
 							}
 							break;
-			case "봉인제안":if($gameinfo['state']=="게임중" and $entry and $entry['seal'] >0){
+			case "봉인제안":if($gameinfo['state']=="게임중" and $entry and $entry['seal'] > 0){
 								if($gameinfo['seal'] == '제안'){
 									$writeComment = true;
 									@mysql_query("update `$DB_entry` set `seal` = $entry[seal] - 1 where game=$parent  and player = $member[no] ") or error(mysql_error());
@@ -426,7 +426,7 @@ $DBLastComment = mysql_fetch_array(mysql_query("select max(comment) from $DB_wer
 		$entry=mysql_fetch_array(mysql_query("select * from $DB_entry where game=$game and player = $player"));
 
 		echo "<commentType>";
-		if($gameinfo['state']=="게임끝" or $gameinfo['state']=="봉인"or $gameinfo['state']=="버그" ){
+		if($gameinfo['state']=="게임끝" or $gameinfo['state']=="봉인" or $gameinfo['state']=="버그"){
 			if($entry)echo "<normal>".$entry['normal']."</normal>";
 			if($is_admin)echo "<notice>true</notice>";
 		}

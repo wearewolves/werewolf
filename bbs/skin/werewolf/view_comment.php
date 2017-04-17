@@ -3,14 +3,16 @@
 	$commentType=mysql_fetch_array(mysql_query($sql));
 ?>
 
-	<?if($commentType['type']=="알림" || $commentType['type']=="봉인제안") { ?>
+	<?if($commentType['type'] == "알림" || $commentType['type'] == "봉인제안") { ?>
 		<div class="commentNotice">
 			<span class="reg_date"><?=date("Y-m-d H:i:s",$c_data[reg_date])?></span>
 			<span class="ip"><?if($is_admin) echo $c_data[ip]?></span>
 			<? if($viewMode == "del") { ?>
 					<span class="commentDel"><?=$a_del?>X</a></span>
 			<? } ?>
-			<? if($viewMode == "all") { ?>
+			<? if($viewMode == "all" && $commentType['type'] == "봉인제안") { ?>
+					<span class="playerInfo"><?=$comment_name?></span>
+			<? } elseif($viewMode == "all") { ?>
 					<?=$comment_name?>
 			<? } ?>
 
@@ -23,8 +25,7 @@
 
 			<div class="<?=$memoStyle?>"><?=nl2br($c_memo)?></div>
 		</div>
-	<?	} else
-		{
+	<? } else {
 			$memoStyle ="";
 			switch($commentType['type']){
 				case "일반": $memoStyle = "normal";
@@ -43,7 +44,7 @@
 									break;
 				//case "알림":$memoStyle = true;
 				//					break;
-			}			
+			}
 	?>
 		<div class="comment <?=$memoStyle?> <?=$commentType['character']?>">
 			<?if($viewImage <> "off") {?>
@@ -65,5 +66,5 @@
 			<?}?>
 			<div class="message"><?=nl2br($c_memo)?></div>
 		</div>
-	<?	}?>
+	<? } ?>
 <?	flush();?>

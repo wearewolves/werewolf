@@ -369,7 +369,7 @@ $(document).ready(function(){
 			-->
 			
 			<!-- #56 new code -->
-			<div id="rolebox" style="max-height:400px;overflow:auto">
+			<div id="rolebox" style="max-height:400px;overflow:auto;overflow-x:hidden">
 				<select name='selectCharacter' id="role_select">
 				<?
 				$stlink = 'http://werewolf6.cafe24.com/bbs/';

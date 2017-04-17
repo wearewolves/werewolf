@@ -102,7 +102,7 @@ function BuildXMLResults(dataXML,target){
 		for(iC=0;iC<xRows.length;iC++){
 			var type = xRows[iC].getElementsByTagName('type')[0].firstChild.nodeValue;
 
-			if(type =="알림" || type =="봉인제안"){
+			if(type =="알림" || type =="봉인제안") {
 				var newline=$(document.createElement("div")).addClass("commentNotice");
 				target.append(newline);
 				newline.hide();
@@ -111,8 +111,18 @@ function BuildXMLResults(dataXML,target){
 				reg_date.className = "reg_date";
 				reg_date.innerHTML = xRows[iC].getElementsByTagName('reg_date')[0].firstChild.nodeValue;
 				newline.append(reg_date);
+				
+				if(type =="봉인제안") {
+					try {
+						var player_info=document.createElement("span");
+						player_info.className = "playerInfo";
+						player_info.innerHTML = " "+xRows[iC].getElementsByTagName('username')[0].firstChild.nodeValue;
+						newline.append(player_info);
+					}
+					catch(ee){}
+				}
 
-				var memo=document.createElement("div");				
+				var memo=document.createElement("div");
 				switch(type){
 					case "알림": memo.className = "notice";
 								break;
@@ -125,8 +135,8 @@ function BuildXMLResults(dataXML,target){
 				newline.append(memo);
 				newline.fadeIn();
 			}
-			else{
-				try{
+			else {
+				try {
 					var newline=$(document.createElement("div")).addClass("comment");
 					
 					var memoStyle;
@@ -178,7 +188,7 @@ function BuildXMLResults(dataXML,target){
 						reg_date.innerHTML = xRows[iC].getElementsByTagName('reg_date')[0].firstChild.nodeValue;
 						c_info.appendChild(reg_date);
 						
-						try{
+						try {
 							var player_info=document.createElement("span");
 							player_info.className = "playerInfo";
 							player_info.innerHTML = " "+xRows[iC].getElementsByTagName('username')[0].firstChild.nodeValue+" / ";
@@ -208,7 +218,7 @@ function BuildXMLResults(dataXML,target){
 			}
 
 		}
-		try{
+		try {
 			SID =xmlDoc.getElementsByTagName('SID')[0].firstChild.nodeValue;
 			if(xmlDoc.getElementsByTagName('sound')[0].firstChild.nodeValue == "play" && soundPlay){
 					playsound(soundfile);

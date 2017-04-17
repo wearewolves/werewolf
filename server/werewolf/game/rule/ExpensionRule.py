@@ -209,10 +209,10 @@ class ExpansionRule(WerewolfRule):
                         temp['count'] += 1
                     resultList.append(temp)
                 result = resultList
-                logging.debug('lonelywerewolf (no werewolf): %s', resultList)
+                logging.debug('lonelywerewolf (with werewolf): %s', resultList)
             else:
                 result = result2
-                logging.debug('lonelywerewolf (with werewolf): %s', result)
+                logging.debug('lonelywerewolf (no werewolf): %s', result)
 
         logging.debug(result)
         count = 0

@@ -386,7 +386,7 @@ $(document).ready(function(){
 			<br>
 			<br>
 			<!-- -->
-			<input type="submit" name="temp" value="게임 참여하기" style="font-size:18px;padding:2px;">
+			<input type="submit" name="temp" value="게임 참여하기" style="font-size:18px;font-weight:bold;color:red;padding:1em;">
 			</form>
 		<?}
 		else echo "$NowPlayingCount 개 게임에 참여 중 입니다.<br/><br/> 더 이상 게임에 참여 할 수 없습니다.";

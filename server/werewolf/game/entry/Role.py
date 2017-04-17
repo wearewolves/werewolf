@@ -50,7 +50,7 @@ class Possessed(Player):
 class Werewolf(Player):
     def toDeath(self, deathType):
         # 투표사인 경우, 습격 설정 해제
-        if (deathType == "심판") and self.hasAssault() is False:
+        if deathType == "심판" and self.hasAssault():
             cursor = self.game.db.cursor
             query = "delete from `zetyx_board_werewolf_deathNote` where game = '%s' and day = '%s' and `werewolf` = '%s'"
             query %= (self.game.game, self.game.day, self.character)

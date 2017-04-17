@@ -421,8 +421,8 @@ function changeTermOfDay(obj){
 		<table border=0 cellspacing=1 cellpadding=2 width=100% height=40>
 		<tr>
 			<td align="right">
-				<input type="submit" src="skin/werewolf/image/ok.gif" border="0" onfocus="blur()" border="0" accesskey="s">
-				&nbsp;&nbsp;<a href="javascript:void(history.back())" onfocus="blur()"><img src="<?=$dir?>/image/cancel.gif" border="0"></a>
+				<input type="submit" src="skin/werewolf/image/ok.gif" border="0" onfocus="blur()" style="width:58px; height:61px; background-image:url(skin/werewolf/image/ok.gif); cursor:pointer;" accesskey="s">
+				&nbsp;&nbsp;<input type="button" src="skin/werewolf/image/cancel.gif" border="0" onfocus="blur()" style="width:121px; height:61px; background-image:url(skin/werewolf/image/cancel.gif); cursor:pointer;" onclick="javascript:void(history.back())">
 			</td>
 		</tr>
 		</table>

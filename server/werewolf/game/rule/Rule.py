@@ -75,6 +75,9 @@ class WerewolfRule(Rule):
         logging.debug("victim: %s", victim)
         victim.writeWill()
 
+        #debug. dummy availability check
+        victim.setTruecharacter(Truecharacter.NOBILITY)
+
         #3. 게임 정보 업데이트
         self.game.setGameState("state", GAME_STATE.PLAYING)
         self.game.setGameState("day", self.game.day+1)

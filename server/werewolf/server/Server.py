@@ -16,14 +16,18 @@ class Server:
         loggerLevel = logging.INFO
         loggingFormat = "%(asctime)s [%(filename)-25s:%(lineno)-3s]\t%(levelname)-8s\t%(message)s"
 
-        logger = logging.getLogger()
-        logger.setLevel(loggerLevel)
-        for headler in logger.handlers:
-            logger.removeHandler(headler)
-        formatter = logging.Formatter(loggingFormat)
-        ch = logging.FileHandler(filename="logfile.txt", mode='w')
-        ch.setFormatter(formatter)
-        logger.addHandler(ch)
+        try:
+            logging.basicConfig(filename="logfile.txt", filemode='w',
+                                format=loggingFormat, level=loggerLevel)
+        except TypeError:
+            logger = logging.getLogger()
+            logger.setLevel(loggerLevel)
+            for headler in logger.handlers:
+                logger.removeHandler(headler)
+            formatter = logging.Formatter(loggingFormat)
+            ch = logging.FileHandler(filename="logfile.txt", mode='w')
+            ch.setFormatter(formatter)
+            logger.addHandler(ch)
 
     def __del__(self):
         logging.info('Free server.py')

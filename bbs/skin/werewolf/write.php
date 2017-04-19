@@ -214,15 +214,23 @@ function zb_formresize(obj) {
 				<? if($server['host'] == "werewolf6.cafe24.com") ;
 					elseif(!$gameinfo) {
 						$temp_time = mktime(0, 0, 0, $monthV, $dayV+1, $yearV);
-						$yearV = date("Y", $temp_time);
-						$monthV = date("m", $temp_time);
-						$dayV = date("d", $temp_time);
+						$d_yearV = date("Y", $temp_time);
+						$d_monthV = date("m", $temp_time);
+						$d_dayV = date("d", $temp_time);
+					}
+					else {
+						$d_yearV = $yearV;
+						$d_monthV = $monthV;
+						$d_dayV = $dayV;
 					}
 				?>
-				<input name=year size=4 MAXLENGTH=4 value=<?=$yearV?> disabled class="input">년
-				<input name=month size=4 MAXLENGTH=2 value=<?=$monthV?> disabled class="input">월
+				<input type=hidden name=year size=4 MAXLENGTH=4 value=<?=$yearV?> disabled class="input">
+				<input name=dYear size=4 MAXLENGTH=4 value=<?=$d_yearV?> disabled class="input">년
+				<input type=hidden name=month size=4 MAXLENGTH=2 value=<?=$monthV?> disabled class="input">
+				<input name=dMonth size=4 MAXLENGTH=2 value=<?=$d_monthV?> disabled class="input">월
 				<? $disable =  $is_admin ?  '' : 'disabled'; ?>
-				<input name=day size=4 MAXLENGTH=2  value=<?=$dayV?> <?=$disable?>  class="input">일
+				<input type=hidden name=day size=4 MAXLENGTH=2  value=<?=$dayV?> <?=$disable?>  class="input">
+				<input name=dDay size=4 MAXLENGTH=2  value=<?=$d_dayV?> <?=$disable?>  class="input">일
 
 				<select name=hour value=<?=$hourV?> <? if($gameinfo['state'] <> "준비중" and $mode =="modify")echo "DISABLED";?> class="input">
 					<option value='0' <?if($hourV=='0') echo "SELECTED";?>>00 </option>

@@ -210,10 +210,16 @@ function zb_formresize(obj) {
 	}
 ?>
 
-
+				<!-- 하루 길이 판별로 올바른 시작일 구하기 -->
+				<? if($termOfDay > 1800) {
+					$temp_time = mktime(0, 0, 0, $monthV, $dayV+1, $yearV);
+					$yearV = date("Y", $temp_time);
+					$monthV = date("m", $temp_time);
+					$dayV = date("d", $temp_time);
+				} ?>
 				<input name=year size=4 MAXLENGTH=4 value=<?=$yearV?> disabled class="input">년
 				<input name=month size=4 MAXLENGTH=2 value=<?=$monthV?> disabled class="input">월
-				<?  $disable =  $is_admin ?  '' : 'disabled' ;?>
+				<?	$disable =  $is_admin ?  '' : 'disabled'; ?>
 				<input name=day size=4 MAXLENGTH=2  value=<?=$dayV?> <?=$disable?>  class="input">일
 
 				<select name=hour value=<?=$hourV?> <? if($gameinfo['state'] <> "준비중" and $mode =="modify")echo "DISABLED";?> class="input">

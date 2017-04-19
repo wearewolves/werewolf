@@ -211,18 +211,25 @@ function zb_formresize(obj) {
 ?>
 
 				<!-- 하루 길이 판별로 올바른 시작일 구하기 -->
-				<? if($server['host'] == "werewolf6.cafe24.com") ;
+				<? if($server['host'] == "werewolf6.cafe24.com") {
+						// 30분 서버
+						$d_yearV = $yearV;
+						$d_monthV = $monthV;
+						$d_dayV = $dayV;
+				}
 					elseif(!$gameinfo) {
+						// 1일 서버 마을 만들 때
 						$temp_time = mktime(0, 0, 0, $monthV, $dayV+1, $yearV);
 						$d_yearV = date("Y", $temp_time);
 						$d_monthV = date("m", $temp_time);
 						$d_dayV = date("d", $temp_time);
-					}
+				}
 					else {
+						// 1일 서버 마을 수정할 때
 						$d_yearV = $yearV;
 						$d_monthV = $monthV;
 						$d_dayV = $dayV;
-					}
+				}
 				?>
 				<input type=hidden name=year size=4 MAXLENGTH=4 value=<?=$yearV?> disabled class="input">
 				<input name=dYear size=4 MAXLENGTH=4 value=<?=$d_yearV?> disabled class="input">년

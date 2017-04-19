@@ -210,10 +210,16 @@ function zb_formresize(obj) {
 	}
 ?>
 
-
+				<!-- 하루 길이 판별로 올바른 시작일 구하기 -->
+				<? if($termOfDay > 1800) {
+					$temp_time = mktime(0, 0, 0, $monthV, $dayV+1, $yearV);
+					$yearV = date("Y", $temp_time);
+					$monthV = date("m", $temp_time);
+					$dayV = date("d", $temp_time);
+				} ?>
 				<input name=year size=4 MAXLENGTH=4 value=<?=$yearV?> disabled class="input">년
 				<input name=month size=4 MAXLENGTH=2 value=<?=$monthV?> disabled class="input">월
-				<?  $disable =  $is_admin ?  '' : 'disabled' ;?>
+				<? $disable =  $is_admin ?  '' : 'disabled'; ?>
 				<input name=day size=4 MAXLENGTH=2  value=<?=$dayV?> <?=$disable?>  class="input">일
 
 				<select name=hour value=<?=$hourV?> <? if($gameinfo['state'] <> "준비중" and $mode =="modify")echo "DISABLED";?> class="input">
@@ -425,8 +431,8 @@ function changeTermOfDay(obj){
 		<table border=0 cellspacing=1 cellpadding=2 width=100% height=40>
 		<tr>
 			<td align="right">
-				<input type="button" value="" src="skin/werewolf/image/cancel.gif" border="0" onfocus="blur()" style="width:121px; height:61px; background-image:url(skin/werewolf/image/cancel.gif); float:right; cursor:pointer;" onclick="javascript:void(history.back())">
-				&nbsp;&nbsp;<input type="submit" value="" src="skin/werewolf/image/ok.gif" border="0" onfocus="blur()" style="width:58px; height:61px; background-image:url(skin/werewolf/image/ok.gif); float:right; cursor:pointer;" accesskey="s">
+				<input type="submit" value="" src="skin/werewolf/image/ok.gif" border="0" onfocus="blur()" style="width:58px; height:61px; background-image:url(skin/werewolf/image/ok.gif); display:inline-block; cursor:pointer;" accesskey="s">
+				&nbsp;&nbsp;<input type="button" value="" src="skin/werewolf/image/cancel.gif" border="0" onfocus="blur()" style="width:121px; height:61px; background-image:url(skin/werewolf/image/cancel.gif); display:inline-block; cursor:pointer;" onclick="javascript:void(history.back())">
 			</td>
 		</tr>
 		</table>

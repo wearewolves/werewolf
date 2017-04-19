@@ -10,13 +10,17 @@
 		_marginx = document.body.clientWidth - _tmpx;
 		_marginy = document.body.clientHeight - _tmpy ;
 		if(_marginx < 0)
-			_tmpx = event.clientX + document.body.scrollLeft + _marginx ;
+			//_tmpx = event.clientX + document.body.scrollLeft + _marginx;
+			_tmpx = event.clientX + _marginx;
 		else
-			_tmpx = event.clientX + document.body.scrollLeft ;
+			//_tmpx = event.clientX + document.body.scrollLeft;
+			_tmpx = event.clientX;
 		if(_marginy < 0)
-			_tmpy = event.clientY + document.body.scrollTop + _marginy +20;
+			//_tmpy = event.clientY + document.body.scrollTop + _marginy + 20;
+			_tmpy = event.clientY + _marginy + 20;
 		else
-			_tmpy = event.clientY + document.body.scrollTop ;
+			//_tmpy = event.clientY + document.body.scrollTop;
+			_tmpy = event.clientY;
 		//obj.style.posLeft=_tmpx-13;
 		//obj.style.posTop=_tmpy-12;
 		obj.style.left=_tmpx-13;

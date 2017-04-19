@@ -13,7 +13,7 @@ import config
 
 class Server:
     def __init__(self):
-        loggerLevel = logging.INFO
+        loggerLevel = logging.DEBUG
         loggingFormat = "%(asctime)s [%(filename)-25s:%(lineno)-3s]\t%(levelname)-8s\t%(message)s"
 
         try:
@@ -30,13 +30,20 @@ class Server:
             logger.addHandler(ch)
         except Exception:
             logging.exception("logging initalize error!!")
+        try:
+            logging.info('server.py made')
+        except Exception:
+            pass
 
     def __del__(self):
-        logging.info('Free server.py')
+        try:
+            logging.info('Free server.py')
+        except Exception:
+            pass
         logging.shutdown()
 
     def start(self):
-        logging.info('PID: %d (server.py called)', os.getpid())
+        logging.info('PID: %d (server.py start [start])', os.getpid())
         old_time = 0
         while True:
             reload(config)
@@ -73,3 +80,4 @@ class Server:
                 except Exception, msg:
                     logging.exception("Exception: %s", msg)
             break
+        logging.info('PID: %d (server.py start [end])', os.getpid())

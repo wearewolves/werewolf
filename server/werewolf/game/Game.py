@@ -31,6 +31,9 @@ class Game:
         if self.useTimetable == 0 and time.time() >= (self.deathTime + self.termOfDay * self.day):
             if self.seal == "³íÀÇ":
                 suddenPlayerCount = self.entry.getSuddenPlayerCount
+                logging.debug("players: %s", self.players)
+                logging.debug("length_player: %s", len(self.players))
+                raise NotImplementedError, "debugging..."
                 if (self.seal_yes > self.seal_no) and (self.seal_yes >= (len(self.players) - suddenPlayerCount - 1)/2):
                     self.setGameState("state", GAME_STATE.SEAL)
                 else:

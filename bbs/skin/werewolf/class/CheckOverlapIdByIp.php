@@ -13,9 +13,12 @@ class CheckOverlapIdByIp{
 	
 	var $id_ip_list;
 
+	var $checkTime;
+
 	function CheckOverlapIdByIp() {
 		$this->checkingID= 0;
 		$this->checkingIP= 0;
+		$this->checkTime = (time() - 60 * 24 * 60* 60);
 
 		$this->overlapedIP = array();
 
@@ -39,7 +42,11 @@ class CheckOverlapIdByIp{
 
 	function extractIPfromID($id){
 		$members=array();
-		$temp_result=mysql_query("select distinct ip from `".$GLOBALS['Database']->loginlog."` where ismember = $id ");
+		$sql = "select distinct ip from `".$GLOBALS['Database']->loginlog."` where ismember = $id and reg_date > ".$this->checkTime;
+		//echo ($sql);
+		echo (".");
+		flush();
+		$temp_result=mysql_query($sql);
 
 		while($temp_member=@mysql_fetch_array($temp_result)){
 			$members[]=$temp_member['ip'];
@@ -51,7 +58,11 @@ class CheckOverlapIdByIp{
 	function extractIDfromIP($ip){
 
 		$members=array();
-		$temp_result=mysql_query("select distinct ismember from `".$GLOBALS['Database']->loginlog."` where ip like '$ip' ");
+		$sql = "select distinct ismember from `".$GLOBALS['Database']->loginlog."` where ip like '$ip' and reg_date > ".$this->checkTime;
+		//echo ($sql);
+		echo (".");
+		flush();
+		$temp_result=mysql_query($sql);
 
 		while($player=@mysql_fetch_array($temp_result)){
 			if(!in_array($player['ismember'],$this->waitingID) && !in_array($player['ismember'],$this->checkedID))$this->waitingID[] = $player['ismember'];

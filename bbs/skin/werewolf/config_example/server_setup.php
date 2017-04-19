@@ -6,4 +6,6 @@
 
 	$server['ip']  = ($server['ip2'] == "" ) ? $server['ip1'] : $server['ip2']  ;
 
+	$server['host'] = "example.werewolf.com";
+
 ?>

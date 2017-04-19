@@ -1,6 +1,6 @@
 <?require_once("config/notice_setup.php");
 
-	$handleLog = fopen("/home/hosting_users/werewolf6/www/server/werewolfLatestWorking.txt", "r");
+	$handleLog = fopen($_zb_server_path."werewolfLatestWorking.txt", "r");
 
 	if( $handleLog){
 		$buffer = fgets($handleLog , 4096);

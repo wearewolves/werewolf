@@ -279,10 +279,14 @@ function changeTermOfDay(obj){
 	<td>&nbsp;
 
 				<select class='input' onchange=changeTermOfDay(this) name=termOfDay value=<?=$termOfDay?> <? if($mode =="modify")echo "DISABLED=true";?> >
+				<? if($server['host'] == "werewolf6.cafe24.com"){ ?>
 					<option value='900' <?if($termOfDay=='900') echo "SELECTED";?>>15 분 </option>
 					<option value='1200' <?if($termOfDay=='1200') echo "SELECTED";?>>20 분 </option>
 					<option value='1500' <?if($termOfDay=='1500') echo "SELECTED";?>>25 분 </option>
 					<option value='1800' <?if($termOfDay=='1800') echo "SELECTED";?>>30 분 </option>
+				<? } else { ?>
+					<option value='86400' <?if($termOfDay=='86400') echo "SELECTED";?>>24 시간 </option>
+				<? } ?>
 				<!--
 					<option value='1080' <?if($termOfDay=='1080') echo "SELECTED";?>>18 분 </option>
 					<option value='3600' <?if($termOfDay=='3600') echo "SELECTED";?>>1 시간 </option>

@@ -28,6 +28,8 @@ class Server:
             ch = logging.FileHandler(filename="logfile.txt", mode='w')
             ch.setFormatter(formatter)
             logger.addHandler(ch)
+        except Exception:
+            logging.exception("logging initalize error!!")
 
     def __del__(self):
         logging.info('Free server.py')

@@ -32,7 +32,10 @@ class Server:
             logging.exception("logging initalize error!!")
 
     def __del__(self):
-        logging.info('Free server.py')
+        try:
+            logging.info('Free server.py')
+        except IOError:
+            pass
         logging.shutdown()
 
     def start(self):

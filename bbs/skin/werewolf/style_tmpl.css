@@ -147,8 +147,7 @@
 	height: 14px;
 	background-image: url("twotiny.png");
 	background-repeat: no-repeat;
-	display: block;
-	float: left;
+	display: inline-block;
 }
 
 .player {	   

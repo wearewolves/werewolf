@@ -30,16 +30,20 @@ class Server:
             logger.addHandler(ch)
         except Exception:
             logging.exception("logging initalize error!!")
+        try:
+            logging.info('server.py made')
+        except Exception:
+            pass
 
     def __del__(self):
         try:
             logging.info('Free server.py')
-        except IOError:
+        except Exception:
             pass
         logging.shutdown()
 
     def start(self):
-        logging.info('PID: %d (server.py called)', os.getpid())
+        logging.info('PID: %d (server.py start [start])', os.getpid())
         old_time = 0
         while True:
             reload(config)
@@ -76,3 +80,4 @@ class Server:
                 except Exception, msg:
                     logging.exception("Exception: %s", msg)
             break
+        logging.info('PID: %d (server.py start [end])', os.getpid())

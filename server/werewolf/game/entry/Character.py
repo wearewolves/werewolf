@@ -35,7 +35,17 @@ class Character:
         query %= (self.game.day, deathType, self.game.game, self.character)
         logging.debug(query)
         cursor.execute(query)
-    
+
+    def setTruecharacter(self, truecharacter):
+        cursor = self.game.db.cursor
+        logging.debug("setTruecharacter: %s", truecharacter)
+        query = """update `zetyx_board_werewolf_entry` 
+        set truecharacter= '%s' 
+        where `game` = '%s' and `player` = '%s'"""
+        query %= (truecharacter, self.game.game, self.id)
+        logging.debug(query)
+        cursor.execute(query)
+
     def __str__(self):
         return "[<Character> id: %s, character: %s, role: %s]"%(self.id, self.character, self.truecharacter)
 
@@ -54,16 +64,6 @@ class Npc(Character):
         self.game.writeComment(1, "게임 마스터", "password", character_detail['comment'], "123.123.123.123", "일반", self.character, deathTime)
 
 class Player(Character):
-    def setTruecharacter(self, truecharacter):
-        cursor = self.game.db.cursor
-        logging.debug("setTruecharacter: %s", truecharacter)
-        query = """update `zetyx_board_werewolf_entry` 
-        set truecharacter= '%s' 
-        where `game` = '%s' and `player` = '%s'"""
-        query %= (truecharacter, self.game.game, self.id)
-        logging.debug(query)
-        cursor.execute(query)
-
     def setLevel(self, level):
         cursor = self.game.db.cursor
         query = "update `zetyx_member_table` set `level`= '%s' where no = '%s'"

@@ -407,11 +407,17 @@ ini_set('session.auto_start','1');
 			?>
 <html> 
 <head>
-	<title><?=$setup[title]?></title>
+	<title>인랑::추리 웹게임</title>
 	<meta http-equiv=Content-Type content=text/html; charset='EUC-KR'>
 	<meta name="keywords" content="인랑,타뷸라,마피아,타뷸라의 늑대,타뷸라의늑대,마피아 게임,마피아게임,추리 게임,추리게임,웹게임">
+	<meta name="description" content="24시간 진행되는 하드코어 마피아 게임 & 타뷸라의 늑대. 웹 추리 게임의 진수를 느껴보세요!">
+	<meta property="og:type" content="webgame">
+	<meta property="og:title" content="추리 웹게임 인랑">
+	<meta property="og:description" content="24시간 진행되는 하드코어 마피아 게임 & 타뷸라의 늑대. 웹 추리 게임의 진수를 느껴보세요!">
+	<meta property="og:image" content="http://vignette1.wikia.nocookie.net/werewolf/images/b/bb/Werewolfmain.png/revision/latest/scale-to-width-down/500?cb=20120926180652&path-prefix=ko">
+	<meta property="og:url" content="http://werewolf.co.kr">
 	<link rel=StyleSheet HREF=<?=$stylefile?> type=text/css title=style>
-	<link rel="shortcut icon" type="image/x-icon" href="http://werewolf4.cafe24.com/favicon.ico" />
+	<link rel="shortcut icon" type="image/x-icon" href="http://werewolf5.cafe24.com/favicon.ico" />
 	<?if($setup[use_formmail]) echo $zbLayerScript;?>
 	<?if($scriptfile) include "script/".$scriptfile;?>
 </head>
@@ -565,9 +571,7 @@ ini_set('session.auto_start','1');
 
 			if($data[ismember]<1) $data[ismember]="";
 
-			// zbLayer off when skin is "werewolf"
-			if($setup[skinname] != "werewolf")
-				$zbLayer = $zbLayer."\nprint_ZBlayer('zbLayer$_zbCheckNum', '$data[homepage]', '$data[email]', '$data[ismember]', '$id', '$data[name]', '$traceID', '$traceType', '$isAdmin', '$isMember');";
+			$zbLayer = $zbLayer."\nprint_ZBlayer('zbLayer$_zbCheckNum', '$data[homepage]', '$data[email]', '$data[ismember]', '$id', '$data[name]', '$traceID', '$traceType', '$isAdmin', '$isMember');";
 		}   
 		return $_zbCount;
 	}

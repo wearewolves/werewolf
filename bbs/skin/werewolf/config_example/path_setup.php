@@ -6,4 +6,5 @@
 // Server 2
 	$_zb_url = "http://werewolf2.cafe24.com/bbs/";   // 제로보드 루트. url 변수는 끝에 슬래시 "/"가 꼭 있어야 합니다.
 	$_zb_path = "/home/hosting_users/werewolf2/www/bbs/";
+	$_zb_server_path = "/home/hosting_users/werewolf2/www/server/";
 ?>

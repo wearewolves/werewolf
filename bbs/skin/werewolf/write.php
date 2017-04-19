@@ -219,7 +219,7 @@ function zb_formresize(obj) {
 				} ?>
 				<input name=year size=4 MAXLENGTH=4 value=<?=$yearV?> disabled class="input">년
 				<input name=month size=4 MAXLENGTH=2 value=<?=$monthV?> disabled class="input">월
-				<?	$disable =  $is_admin ?  '' : 'disabled'; ?>
+				<? $disable =  $is_admin ?  '' : 'disabled'; ?>
 				<input name=day size=4 MAXLENGTH=2  value=<?=$dayV?> <?=$disable?>  class="input">일
 
 				<select name=hour value=<?=$hourV?> <? if($gameinfo['state'] <> "준비중" and $mode =="modify")echo "DISABLED";?> class="input">

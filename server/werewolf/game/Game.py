@@ -31,7 +31,7 @@ class Game:
         if self.useTimetable == 0 and time.time() >= (self.deathTime + self.termOfDay * self.day):
             if self.seal == "논의":
                 suddenPlayerCount = self.entry.getSuddenPlayerCount
-                if (self.seal_yes > self.seal_no) and (self.seal_yes >= (self.players - suddenPlayerCount - 1)/2):
+                if (self.seal_yes > self.seal_no) and (self.seal_yes >= (len(self.players) - suddenPlayerCount - 1)/2):
                     self.setGameState("state", GAME_STATE.SEAL)
                 else:
                     logging.info("%s: 다음 날로..", self.getName())

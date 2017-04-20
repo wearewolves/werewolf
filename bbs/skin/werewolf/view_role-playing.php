@@ -66,6 +66,11 @@
 function changeCharacterSet(selectCharacterSet){
 	window.location.replace("view_role-playing.php?id=<?=$id?>&set=" + selectCharacterSet.value);
 }
+
+function changeCharacterSetByNum(selectCharacterSet){
+	selectCharacterSet = parseInt(selectCharacterSet, 10);
+	window.location.replace("view_role-playing.php?id=<?=$id?>&set=" + selectCharacterSet);
+}
 </script>
 
 <!-- role playing set selector js, css files -->
@@ -138,9 +143,9 @@ function goto_characterSet($DB, $sort) {
 		}
 		
 		if($used)
-			$characterSetList .= "<li onclick=\"changeCharacterSet('$temp[no]')\">".$temp[name]."</li>";
+			$characterSetList .= "<li onclick=\"changeCharacterSetByNum('$temp[no]')\">".$temp[name]."</li>";
 		else
-			$characterSetList .= "<li onclick=\"changeCharacterSet('$temp[no]')\">".$temp[name]." <font color='#ff3838'>(사용 불가)</font></li>";
+			$characterSetList .= "<li onclick=\"changeCharacterSetByNum('$temp[no]')\">".$temp[name]." <font color='#ff3838'>(사용 불가)</font></li>";
 	}
 	return $characterSetList;
 }

@@ -381,7 +381,7 @@ function changeTermOfDay(obj){
 
 				<div id="listByAscendingSort" class="tabcontent">
 					<ul class="RPSetUL">
-					  <? echo set_characterSet("$DB_characterSet where is_use = 1", "name"); ?>
+						<? echo set_characterSet("$DB_characterSet where is_use = 1", "name"); ?>
 					</ul>
 				</div>
 			</div>

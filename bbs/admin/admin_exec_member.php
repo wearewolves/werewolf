@@ -148,7 +148,7 @@
 			$picture_size = $HTTP_POST_FILES[picture][size];
 		}
 		if($picture_name) {
-			if(!is_uploaded_file($picture)) Error("정상적인 방법으로 업로드하여 주십시요");
+			if(!is_uploaded_file($picture)) Error("정상적인 방법으로 업로드하여 주십시오");
 			if(!eregi(".gif",$picture_name)&&!eregi(".jpg",$picture_name)) Error("사진은 gif 또는 jpg 파일을 올려주세요");
 			$size=GetImageSize($picture);
 			if($size[0]>200||$size[1]>200) Error("아이콘의 크기는 200*200이하여야 합니다");
@@ -189,7 +189,7 @@
 				@chmod("icon/private_icon",0707);
 			}
 
-			if(!is_uploaded_file($private_icon)) Error("정상적인 방법으로 업로드하여 주십시요");
+			if(!is_uploaded_file($private_icon)) Error("정상적인 방법으로 업로드하여 주십시오");
 			if(!eregi("\.gif",$private_icon_name)) Error("이름앞의 아이콘은 Gif 파일만 올리실수 있습니다");
 			@move_uploaded_file($private_icon, "icon/private_icon/".$member_no.".gif");
 			@chmod("icon/private_icon".$member_no.".gif",0707);
@@ -212,7 +212,7 @@
 				@chmod("icon/private_name",0707);
 			}
 
-			if(!is_uploaded_file($private_name)) Error("정상적인 방법으로 업로드하여 주십시요");
+			if(!is_uploaded_file($private_name)) Error("정상적인 방법으로 업로드하여 주십시오");
 			if(!eregi("\.gif",$private_name_name)) Error("이름아이콘은 Gif 파일만 올리실수 있습니다");
 			@move_uploaded_file($private_name, "icon/private_name/".$member_no.".gif");
 			@chmod("icon/private_name".$member_no.".gif",0707);

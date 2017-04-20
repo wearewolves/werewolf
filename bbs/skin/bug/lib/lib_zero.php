@@ -288,7 +288,7 @@ $REQUEST_URI = "$PHP_SELF"."$_QU"."$QUERY_STRING";
 		if($_dbconn_is_included) return;
 		$_dbconn_is_included = true;
 
-		$f=@file($config_dir."config.php") or Error("config.php파일이 없습니다.<br>DB설정을 먼저 하십시요","install.php");
+		$f=@file($config_dir."config.php") or Error("config.php파일이 없습니다.<br>DB설정을 먼저 하십시오","install.php");
 
 		for($i=1;$i<=4;$i++) $f[$i]=trim(str_replace("\n","",$f[$i]));
 
@@ -616,7 +616,7 @@ $REQUEST_URI = "$PHP_SELF"."$_QU"."$QUERY_STRING";
 	function istable($str, $dbname='') {
 		global $config_dir;
 		if(!$dbname) {
-			$f=@file($config_dir."config.php") or Error("config.php파일이 없습니다.<br>DB설정을 먼저 하십시요","install.php");
+			$f=@file($config_dir."config.php") or Error("config.php파일이 없습니다.<br>DB설정을 먼저 하십시오","install.php");
 			for($i=1;$i<=4;$i++) $f[$i]=str_replace("\n","",$f[$i]);
 			$dbname=$f[4];
 		}

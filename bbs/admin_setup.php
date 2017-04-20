@@ -9,7 +9,7 @@
 
 	$member=member_info();
 
-	if(!$member[no]) Error("로그인후 사용하여주십시요","admin.php");
+	if(!$member[no]) Error("로그인 후 사용하여주십시오","admin.php");
 	
 	if($member[is_admin]>=3&&!$member[board_name]) Error("관리자페이지를 사용할수 있는 권한이 없습니다","admin.php");
 

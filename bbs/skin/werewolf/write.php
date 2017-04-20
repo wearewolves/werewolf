@@ -2,9 +2,9 @@
 	include("$dir/lib/lib.php"); 
 
 ?>
-<!-- roll playing set selector js, css files -->
-<script type="text/javascript" src="skin/werewolf/js/werewolf-roll-playing-set.js"></script>
-<link rel="stylesheet" type="text/css" href="skin/werewolf/css/werewolf-roll-playing-set.css">
+<!-- role playing set selector js, css files -->
+<script type="text/javascript" src="skin/werewolf/js/werewolf-role-playing-set.js"></script>
+<link rel="stylesheet" type="text/css" href="skin/werewolf/css/werewolf-role-playing-set.css">
 <SCRIPT LANGUAGE="JavaScript">
 <!--
 function zb_formresize(obj) {
@@ -350,7 +350,7 @@ function changeTermOfDay(obj){
 				
 				echo DBselect1("characterSet","","no","name","$DB_characterSet where is_use = 1","class='input' ".$disabled,$gameinfo['characterSet'],"");
 				?-->
-		<!-- roll playing set selector -->
+		<!-- role playing set selector -->
 		<?
 			$bDisabled = ($mode == "modify") ? true : false;
 

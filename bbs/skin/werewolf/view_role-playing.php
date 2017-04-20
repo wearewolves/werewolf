@@ -68,9 +68,9 @@ function changeCharacterSet(selectCharacterSet){
 }
 </script>
 
-<!-- roll playing set selector js, css files -->
-<script type="text/javascript" src="skin/werewolf/js/werewolf-roll-playing-set.js"></script>
-<link rel="stylesheet" type="text/css" href="skin/werewolf/css/werewolf-roll-playing-set.css">
+<!-- role playing set selector js, css files -->
+<script type="text/javascript" src="skin/werewolf/js/werewolf-role-playing-set.js"></script>
+<link rel="stylesheet" type="text/css" href="skin/werewolf/css/werewolf-role-playing-set.css">
 
 
 <?
@@ -119,16 +119,19 @@ function get_characterSetName($query) {
 function goto_characterSet($DB, $sort) {
 	$result = mysql_query("select * from $DB order by '$sort'");
 	
-	$result0 = mysql_query("select * from $DB where is_use = 0 order by '$sort'");
-	$temp0 = mysql_fetch_array($result0);
+	// Extract no of not used role playing set
+	$result0 = mysql_fetch_array(mysql_query("select * from $DB where is_use = 0 order by '$sort'"));
+	$temp0 = "";
+	for($i = 0; $i < count($result0); $i++)
+		$temp0[$i] = $result0[no];
 	
 	$characterSetList = "";
 	while($temp = mysql_fetch_array($result)) {
 		$used = true;
 		
-		// Check not used roll playing set
-		for($i = 0; $i < count($temp0); $i++) {
-			if($temp[no] == $temp0[no[$i]]) $used = false;
+		// Check not used role playing set
+		foreach($temp0 as $temp0_value) {
+			if($temp[no] == $temp0_value) $used = false;
 		}
 		
 		if($used)
@@ -154,7 +157,7 @@ function goto_characterSet($DB, $sort) {
 	<!--
 	<td width=200><!--?=DBselect("selectCharacterSet","","no",$characterSet_list,"`".$db->characterSet."`","onchange='changeCharacterSet(this)' width=100",$set,"");?></td>
 	-->
-	<!-- roll playing set selector -->
+	<!-- role playing set selector -->
 	<td>
 		<input type="text" name="characterSetName" class="input" style="width:200px" id="characterSetNameInput" value="<? echo get_characterSetName("`$db->characterSet` where no = $set"); ?>" disabled>
 		<button type="button" id="RPSetBtn" onclick="openModal()">선택하기</button>

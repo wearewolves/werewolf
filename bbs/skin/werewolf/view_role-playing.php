@@ -68,6 +68,10 @@ function changeCharacterSet(selectCharacterSet){
 }
 </script>
 
+<!-- roll playing set selector js, css files -->
+<script type="text/javascript" src="skin/werewolf/js/werewolf-roll-playing-set.js"></script>
+<link rel="stylesheet" type="text/css" href="skin/werewolf/css/werewolf-roll-playing-set.css">
+
 
 <?
 
@@ -105,6 +109,36 @@ function DBselect($name,$head,$id,$value,$DB,$code,$selectedID,$unselectedID){
 	return $DB_select;
 }
 
+// Get current characterSet name
+function get_characterSetName($query) {
+	$result = mysql_fetch_array(mysql_query("select * from $query"));
+	return $result[name];
+}
+
+// Make sorted go-to characterSet list and select an item
+function goto_characterSet($DB, $sort) {
+	$result = mysql_query("select * from $DB order by '$sort'");
+	
+	$result0 = mysql_query("select * from $DB where is_use = 0 order by '$sort'");
+	$temp0 = mysql_fetch_array($result0);
+	
+	$characterSetList = "";
+	while($temp = mysql_fetch_array($result)) {
+		$used = true;
+		
+		// Check not used roll playing set
+		for($i = 0; $i < count($temp0); $i++) {
+			if($temp[no] == $temp0[no[$i]]) $used = false;
+		}
+		
+		if($used)
+			$characterSetList .= "<li onclick=\"changeCharacterSet(this)\">".$temp[name]."</li>";
+		else
+			$characterSetList .= "<li onclick=\"changeCharacterSet(this)\">".$temp[name]." <font color='#ff3838'>(사용 불가)</font></li>";
+	}
+	return $characterSetList;
+}
+
 
 	if(!$set) $set = 1;
 
@@ -117,10 +151,41 @@ function DBselect($name,$head,$id,$value,$DB,$code,$selectedID,$unselectedID){
 
 <table width='100%'>
 <tr>
-	<td width=200><?=DBselect("selectCharacterSet","","no",$characterSet_list,"`".$db->characterSet."`","onchange='changeCharacterSet(this)' width=100",$set,"");?></td>
+	<!--
+	<td width=200><!--?=DBselect("selectCharacterSet","","no",$characterSet_list,"`".$db->characterSet."`","onchange='changeCharacterSet(this)' width=100",$set,"");?></td>
+	-->
+	<!-- roll playing set selector -->
+	<td>
+		<input type="text" name="characterSetName" class="input" style="width:200px" id="characterSetNameInput" value="<? echo get_characterSetName("`$db->characterSet` where no = $set"); ?>" disabled>
+		<button type="button" id="RPSetBtn" onclick="openModal()">선택하기</button>
+	</td>
 	<td width=><a href="view_private_record.php?id=<?=$id?>&player=<?=$characterSet['ismember']?>"><?=" 제작자:".$characterSet['maker']?></a></td>
 </tr>
 </table>
+
+<div id="modal-window" class="modal">
+	<div class="modal-content">
+		<span id="closeX">&times;</span>
+		<input type="text" id="RPSetInput" onkeyup="searchRPSet()" placeholder="Search for names...">
+
+		<div class="tab">
+		  <button type="button" class="tablinks" onclick="openList(event, 'listByTimeSort')">제작순</button>
+		  <button type="button" class="tablinks" onclick="openList(event, 'listByAscendingSort')">가나다순</button>
+		</div>
+
+		<div id="listByTimeSort" class="tabcontent">
+			<ul class="RPSetUL">
+				<? echo goto_characterSet("`$db->characterSet`", "no"); ?>
+			</ul>
+		</div>
+
+		<div id="listByAscendingSort" class="tabcontent">
+			<ul class="RPSetUL">
+			  <? echo goto_characterSet("`$db->characterSet`", "name"); ?>
+			</ul>
+		</div>
+	</div>
+</div>
 
 <br>
 

@@ -125,22 +125,27 @@ function goto_characterSet($DB, $sort) {
 	$result = mysql_query("select * from $DB order by '$sort'");
 	
 	// Extract no of not used role playing set
-	$result0_no = mysql_query("select no from $DB where is_use != 1 order by '$sort'");
-	$temp0_no = "";
-	while($temp0_no = mysql_fetch_array($result0_no)) ;
+	$result0 = mysql_query("select * from $DB where is_use != 1 order by '$sort'");
+	$not_used_rpset_no = "";
+	$i = 0;
+	while($temp0 = mysql_fetch_array($result0)) {
+		$not_used_rpset_no[$i] = $temp0[no];
+		$i++;
+	}
+	unset($i);
 	
 	$characterSetList = "";
 	while($temp = mysql_fetch_array($result)) {
 		$used = true;
 		
 		// Check not used role playing set
-		for($i = 0; $i < count($temp0_no); $i++) {
-			if($temp[no] == $temp0_no[$i]) {
+		foreach($not_used_rpset_no as $not_used_rpset_no_value) {
+			if($temp[no] == $not_used_rpset_no_value) {
 				$used = false;
 				break;
-			}
+			}		
 		}
-		
+
 		if($used)
 			$characterSetList .= "<li onclick=\"changeCharacterSetByNum('$temp[no]')\">".$temp[name]."</li>";
 		else

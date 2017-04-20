@@ -143,7 +143,7 @@ function goto_characterSet($DB, $sort) {
 			if($temp[no] == $not_used_rpset_no_value) {
 				$used = false;
 				break;
-			}		
+			}
 		}
 
 		if($used)

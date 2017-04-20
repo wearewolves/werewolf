@@ -11,8 +11,8 @@
           $password = addslashes($password);
         }
 
-	if(!$user_id) Error("아이디를 입력하여 주십시요");
-	if(!$password) Error("비밀번호를 입력하여 주십시요");
+	if(!$user_id) Error("아이디를 입력하여 주십시오");
+	if(!$password) Error("비밀번호를 입력하여 주십시오");
 
 	if($id) {
 		$setup=get_table_attrib($id);

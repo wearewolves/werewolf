@@ -23,7 +23,7 @@
 		$setup=get_table_attrib($id);
 
 		// 설정되지 않은 게시판일때 에러 표시
-		if(!$setup[name]) Error("생성되지 않은 게시판입니다.<br><br>게시판을 생성후 사용하십시요");
+		if(!$setup[name]) Error("생성되지 않은 게시판입니다.<br><br>게시판을 생성후 사용하십시오");
 
 		// 현재 게시판의 그룹의 설정 읽어 오기
 		$group_data=group_info($setup[group_no]);
@@ -82,12 +82,12 @@
 	if($check[0]>0) Error("이미 등록되어 있는 Name입니다","");
 
 	if(isBlank($name)) Error("이름을 입력하셔야 합니다","");
-	if(eregi("<",$name)||eregi(">",$name)) Error("이름을 영문, 한글, 숫자등으로 입력하여 주십시요");
+	if(eregi("<",$name)||eregi(">",$name)) Error("이름을 영문, 한글, 숫자등으로 입력하여 주십시오");
 
 	if($group_data[use_jumin]&&!$mode) {
 
 		// 주민등록 번호 루틴
-		if(isBlank($jumin1)||isBlank($jumin2)||strlen($jumin1)!=6||strlen($jumin2)!=7) Error("주민등록번호를 올바르게 입력하여 주십시요","");
+		if(isBlank($jumin1)||isBlank($jumin2)||strlen($jumin1)!=6||strlen($jumin2)!=7) Error("주민등록번호를 올바르게 입력하여 주십시오","");
 
 		if(!check_jumin($jumin1.$jumin2)) Error("잘못된 주민등록번호입니다","");
 

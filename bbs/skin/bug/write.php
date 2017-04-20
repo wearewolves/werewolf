@@ -5,17 +5,17 @@ function zb_formresize(obj) {
 }
 function checkBug(){
 	if(write.type.value==0){
-		alert("버그 타입을 선택해 주십시요.");
+		alert("버그 타입을 선택해주십시오.");
 		write.type.focus();
 		return false;
 	}
 	if(write.serverity.value==0){
-		alert("버그의 심각도를 정해 주십시요.");
+		alert("버그의 심각도를 정해주십시오.");
 		write.serverity.focus();
 		return false;
 	}
 	if(write.server.value==0){
-		alert("버그가 발생한 서버를 선택해 주십시요.");
+		alert("버그가 발생한 서버를 선택해주십시오.");
 		write.server.focus();
 		return false;
 	}

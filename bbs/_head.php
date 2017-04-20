@@ -54,7 +54,7 @@
 		// 게시판 설정 읽어 오기
 		$_dbTimeStart = getmicrotime();
 		$setup = get_table_attrib($id); 
-		if(!$setup[name]) Error("생성되지 않은 게시판입니다.<br><br>게시판을 생성후 사용하십시요",""); // 설정되지 않은 게시판
+		if(!$setup[name]) Error("생성되지 않은 게시판입니다.<br><br>게시판을 생성 후 사용하십시오",""); // 설정되지 않은 게시판
 
 		// 현재 게시판의 그룹의 설정 읽어 오기
 		if($_zboardis) $group=group_info($setup[group_no]);

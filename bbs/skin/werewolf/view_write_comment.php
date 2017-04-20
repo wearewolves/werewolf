@@ -133,7 +133,7 @@ if($totalCommentPage>=1) echo "</div>";
 	  <input type=button rows=5 onclick="document.writeComment.memo.rows=document.writeComment.memo.rows+4;" <?if($browser){?>class=red_submit<?}?> value='창 늘리기(z) ▼'  accesskey="z"></td>
 	  -->
 	  <td width="100px"><input type=button onclick="submitComment(writeComment)" rows=5 <?if($browser){?>class=red_submit<?}?> value='보내기(s)' accesskey="s"></td>
-		 <td> <input type=submit rows=5 style="font-size:10;"  value='비상용 보내기' title="보내기 버튼으로 로그가 올라가지 않을 때 사용하십시요."></td>
+		 <td> <input type=submit rows=5 style="font-size:10;"  value='비상용 보내기' title="보내기 버튼으로 로그가 올라가지 않을 때 사용하십시오."></td>
 
 	  </table>
 	  

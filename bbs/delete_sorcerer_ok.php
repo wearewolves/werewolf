@@ -17,7 +17,7 @@
   $setup=get_table_attrib($id);
 
   // 설정되지 않은 게시판일때 에러 표시
-  if(!$setup[name]) Error("생성되지 않은 게시판입니다.<br><br>게시판을 생성후 사용하십시요","");
+  if(!$setup[name]) Error("생성되지 않은 게시판입니다.<br><br>게시판을 생성 후 사용하십시오","");
 
   // 현재 게시판의 그룹의 설정 읽어 오기
   $group=group_info($setup[group_no]);
@@ -68,7 +68,7 @@
    }
    else
    {
-    if($s_data[ismember]!=$member[no]) Error("비밀번호를 입력하여 주십시요");
+    if($s_data[ismember]!=$member[no]) Error("비밀번호를 입력하여 주십시오");
    }
   }
 

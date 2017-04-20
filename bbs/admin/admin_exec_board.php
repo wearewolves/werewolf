@@ -42,7 +42,7 @@
 		// 같은 이름의 게시판이 이미 생성되었는지를 검사
 		$result=@mysql_query("select count(*) from $admin_table where name='$name'",$connect) or Error(mysql_error());
 		$temp=mysql_fetch_array($result);
-		if($temp[0]>0) Error("이미 등록되어 있는 게시판입니다.<br>다른 이름으로 생성하십시요","");
+		if($temp[0]>0) Error("이미 등록되어 있는 게시판입니다.<br>다른 이름으로 생성하십시오","");
 
 		$name=addslashes($name);
 		$bg_color=addslashes($bg_color);
@@ -120,7 +120,7 @@
 
 	// 카테고리 부분
 	if($exec2=="category_add") {
-		if(!$name) error("생성할 카테고리 이름을 입력하여 주십시요");
+		if(!$name) error("생성할 카테고리 이름을 입력하여 주십시오");
 		$table_data=mysql_fetch_array(mysql_query("select name from $admin_table where no='$no'"));
 		$check=mysql_fetch_array(mysql_query("select count(*) from $t_category"."_$table_data[name] where name='$name'"));
 		if($check[0]>0) Error("동일한 이름의 카테고리가 있습니다");
@@ -131,7 +131,7 @@
 		mysql_query("delete from $t_category"."_$table_data[name] where no='$category_no'",$connect) or Error("카테고리 삭제시 에러가 발생했습니다");
 		movepage("$PHP_SELF?exec=view_board&exec2=category&no=$no&page=$page&page_num=$page_num&group_no=$group_no");
 	} elseif($exec2=="category_modify_ok") {
-		if(!$name) error("수정할 카테고리 이름을 입력하여 주십시요");
+		if(!$name) error("수정할 카테고리 이름을 입력하여 주십시오");
 		$table_data=mysql_fetch_array(mysql_query("select name from $admin_table where no='$no'"));
 		mysql_query("update $t_category"."_$table_data[name] set name='$name' where no='$category_no'",$connect);
 

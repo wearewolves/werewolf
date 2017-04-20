@@ -18,23 +18,23 @@ function checkForm(form){
 	<?if($bug['status'] == 2){?>
 		if(form.dealResult.value==4){
 			if(isNaN(form.yearInput.value)||!(form.yearInput.value)){
-				alert("년도를 입력해 주십시요.");
+				alert("연도를 입력해 주십시오.");
 				form.yearInput.focus();
 				return false;
 			}
 			if(strdate.getYear() > eval(form.yearInput.value)	  ||  eval(form.yearInput.value) >strdate.getYear()+1  ){
-				alert("년도를 "+strdate.getYear()+"년에서 "+(strdate.getYear()+1)+"년 사이로 수정해 주십시요.");
+				alert("연도를 "+strdate.getYear()+"년에서 "+(strdate.getYear()+1)+"년 사이로 수정해 주십시오.");
 				form.yearInput.focus();
 				return false;
 			}
 		    if(isNaN(form.monthInput.value) || !(form.monthInput.value)){
-				alert("월를 입력해 주십시요.");
+				alert("월를 입력해주십시오.");
 				form.monthInput.focus();
 				return false;
 			}
 			if(strdate.getYear()==eval(form.yearInput.value)){
 				if(strdate.getMonth()+1 > eval(form.monthInput.value)  ||  eval(form.monthInput.value) >12  ){
-					alert("월를 "+(strdate.getMonth()+1)+"월과 12월 사이로 수정해 주십시요.");
+					alert("월을 "+(strdate.getMonth()+1)+"월과 12월 사이로 수정해주십시오.");
 					form.monthInput.focus();
 					return false;
 				}
@@ -42,7 +42,7 @@ function checkForm(form){
 			}
 			else{
 				if(1 > eval(form.monthInput.value)  ||  eval(form.monthInput.value) >12  ){
-					alert("월를 1월과 12월 사이로 수정해 주십시요.");
+					alert("월을 1월과 12월 사이로 수정해주십시오.");
 					form.monthInput.focus();
 					return false;
 				}
@@ -140,7 +140,7 @@ setStatus(4);
 	<tr align=center bgcolor=222222> 
 		<td height=20>
 		<img src=images/t.gif border=0 width=80 height=1><br><font class=red_8></font></td>
-		<td colspan=2  style='word-break:break-all;' align=left>버그를 재현할 수 있는 방법을 구체적으로 적어 주십시요.	</td>
+		<td colspan=2  style='word-break:break-all;' align=left>버그를 재현할 수 있는 방법을 구체적으로 적어주십시오.	</td>
 	</tr>
 <?}?>	
 

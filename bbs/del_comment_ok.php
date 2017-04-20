@@ -26,7 +26,7 @@
 		if(!$s_data[ismember]) {
 			if($s_data[password]!=$password) Error("비밀번호가 올바르지 않습니다");
 		} else {
-			if($s_data[ismember]!=$member[no]) Error("비밀번호를 입력하여 주십시요");
+			if($s_data[ismember]!=$member[no]) Error("비밀번호를 입력하여 주십시오");
 		}
 	}
 

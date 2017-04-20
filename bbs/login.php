@@ -10,7 +10,7 @@
 		$setup=get_table_attrib($id);
 
 // 설정되지 않은 게시판일때 에러 표시
-  		if(!$setup[name]) Error("생성되지 않은 게시판입니다.<br><br>게시판을 생성후 사용하십시요","");
+  		if(!$setup[name]) Error("생성되지 않은 게시판입니다.<br><br>게시판을 생성 후 사용하십시오","");
 
 // 현재 게시판의 그룹의 설정 읽어 오기
   		$group=group_info($setup[group_no]);
@@ -41,7 +41,7 @@
    login.password.focus();
    return false;
   }
-  check=confirm("자동 로그인 기능을 사용하시겠습니까?\n\n자동 로그인 사용시 다음 접속부터는 로그인을 하실필요가 없습니다.\n\n단, 게임방, 학교등 공공장소에서 이용시 개인정보가 유출될수 있으니 조심하여 주십시요");
+  check=confirm("자동 로그인 기능을 사용하시겠습니까?\n\n자동 로그인 사용 시 다음 접속부터는 로그인을 하실 필요가 없습니다.\n\n단, 게임방, 학교 등 공공장소에서 이용 시 개인 정보가 유출될 수 있으니 조심하여 주십시오");
   if(check) {login.auto_login.value=1;}
   return true;
  }

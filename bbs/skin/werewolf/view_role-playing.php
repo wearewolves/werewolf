@@ -69,8 +69,8 @@ function changeCharacterSet(selectCharacterSet){
 </script>
 
 <!-- role playing set selector js, css files -->
-<script type="text/javascript" src="skin/werewolf/js/werewolf-role-playing-set.js"></script>
-<link rel="stylesheet" type="text/css" href="skin/werewolf/css/werewolf-role-playing-set.css">
+<script type="text/javascript" src="js/werewolf-role-playing-set.js"></script>
+<link rel="stylesheet" type="text/css" href="css/werewolf-role-playing-set.css">
 
 
 <?
@@ -138,9 +138,9 @@ function goto_characterSet($DB, $sort) {
 		}
 		
 		if($used)
-			$characterSetList .= "<li onclick=\"changeCharacterSet(this)\">".$temp[name]."</li>";
+			$characterSetList .= "<li onclick=\"changeCharacterSet($temp[no])\">".$temp[name]."</li>";
 		else
-			$characterSetList .= "<li onclick=\"changeCharacterSet(this)\">".$temp[name]." <font color='#ff3838'>(사용 불가)</font></li>";
+			$characterSetList .= "<li onclick=\"changeCharacterSet($temp[no])\">".$temp[name]." <font color='#ff3838'>(사용 불가)</font></li>";
 	}
 	return $characterSetList;
 }

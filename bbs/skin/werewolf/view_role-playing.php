@@ -135,8 +135,8 @@ function goto_characterSet($DB, $sort) {
 		$used = true;
 		
 		// Check not used role playing set
-		foreach($temp0 as $temp0_value) {
-			if($temp[no] == $temp0_value) {
+		for($i = 0; $i < count($temp0); $i++) {
+			if($temp[no] == $temp0[$i]) {
 				$used = false;
 				break;
 			}

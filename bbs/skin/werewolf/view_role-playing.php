@@ -116,8 +116,8 @@ function DBselect($name,$head,$id,$value,$DB,$code,$selectedID,$unselectedID){
 
 // Get current characterSet name
 function get_characterSetName($query) {
-	$result = mysql_fetch_array(mysql_query("select name from $query"));
-	return $result;
+	$result = mysql_fetch_array(mysql_query("select * from $query"));
+	return $result[name];
 }
 
 // Make sorted go-to characterSet list and select an item
@@ -133,8 +133,8 @@ function goto_characterSet($DB, $sort) {
 		$used = true;
 		
 		// Check not used role playing set
-		foreach($temp0_no as $temp0_no_value) {
-			if($temp[no] == $temp0_no_value) {
+		for($i = 0; $i < count($temp0_no); $i++) {
+			if($temp[no] == $temp0_no[$i]) {
 				$used = false;
 				break;
 			}

@@ -63,7 +63,7 @@ function getSID($game , $day, $lastComment, $member, $viewMode, $secretKey){
 	$SID = urlencode($SID);
 
 	return $SID;
-} 
+}
 
 // DB ¹è¿­ ////////////////////////////
 function DB_array($key,$value,$db){
@@ -129,8 +129,16 @@ function DBselect1($name,$head,$id,$value,$DB,$code,$selectedID,$unselectedID){
 
 // Initialize characterSet
 function init_characterSet($index, $value, $DB) {
-	$result = mysql_fetch_array(mysql_query("select $value from $DB order by 'no'"));
-	return $result[$index];
+	$result = mysql_query("select * from $DB order by 'no'");
+	$characterSetArr = "";
+	$i = 0;
+	while($temp = mysql_fetch_array($result)) {
+		$characterSetArr[$i] = $temp[$value];
+		$i++;
+	}
+	unset($i);
+	
+	return $characterSetArr[$index];
 }
 
 // Get current characterSet name

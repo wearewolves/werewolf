@@ -138,9 +138,9 @@ function goto_characterSet($DB, $sort) {
 		}
 		
 		if($used)
-			$characterSetList .= "<li onclick=\"changeCharacterSet($temp[no])\">".$temp[name]."</li>";
+			$characterSetList .= "<li onclick=\"changeCharacterSet('$temp[no]')\">".$temp[name]."</li>";
 		else
-			$characterSetList .= "<li onclick=\"changeCharacterSet($temp[no])\">".$temp[name]." <font color='#ff3838'>(사용 불가)</font></li>";
+			$characterSetList .= "<li onclick=\"changeCharacterSet('$temp[no]')\">".$temp[name]." <font color='#ff3838'>(사용 불가)</font></li>";
 	}
 	return $characterSetList;
 }

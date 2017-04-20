@@ -117,6 +117,7 @@ div.tab button.active {
     text-decoration: none; /* Remove default text underline */
     font-size: 16px; /* Increase the font-size */
     color: #a0a0a0; /* Add text color */
+	text-align: left;
     display: block; /* Make it into a block element to fill the whole list */
 	cursor: pointer;
 }

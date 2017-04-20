@@ -147,6 +147,8 @@ function get_characterSetName($query) {
 // Make sorted characterSet list and select an item
 function set_characterSet($DB, $sort) {
 	$result = mysql_query("select * from $DB order by '$sort'");
+	
+	$characterSetList = "";
 	while($temp = mysql_fetch_array($result)) {
 		$characterSetList .= "<li onclick=\"selectRPSet('$temp[no]', '$temp[name]')\">".$temp[name]."</li>";
 	}

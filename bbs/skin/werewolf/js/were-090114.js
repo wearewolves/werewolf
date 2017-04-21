@@ -591,7 +591,7 @@ $(function(){
 		setCookie('readLatest',$(this).val());
 		alert("로그를  "+ $(this).val() +"개씩 나눠 보도록 설정 되었습니다.");
 		location.href = location.href ;
-	});	
+	});
 
 	$(".buttonCommentPage").click(function (event){
 		var commentPage = jQuery(event.target).children("input").val();
@@ -635,6 +635,14 @@ $(function(){
 		
 		//location.replace("#commentPage"+commentPage);
 	});
+	
+	// Open comment pages all
+	$("#buttonOpenCommentPagesAll").click(function (event){
+		var commentPages = document.getElementsByClassName("buttonCommentPage");
+		
+		for(var i = 0; i < commentPages.length - 1; i++)
+			commentPages[i].click();
+	}
 	
 	$('.characterButton').each(function(index){
 		var character = this;

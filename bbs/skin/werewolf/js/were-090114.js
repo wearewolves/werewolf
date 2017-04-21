@@ -638,9 +638,9 @@ $(function(){
 	
 	// Open comment pages all
 	$("#buttonOpenCommentPagesAll").click(function (event){
-		var commentPages = document.getElementsByClassName("buttonCommentPage");
+		var commentPages = document.getElementsByClassName("buttonCommentPage close");
 		
-		for(var i = 0; i < commentPages.length - 1; i++)
+		for(var i = 0; i < commentPages.length; i++)
 			commentPages[i].click();
 	});
 	

@@ -52,7 +52,7 @@
 
 // 비밀글이고 패스워드가 틀리고 관리자가 아니면 에러 표시
 	//if($data[is_secret]&&!$is_admin&&$data[ismember]!=$member[no]&&$member[level]>$setup[grant_view_secret]) {
-	if($entry) ; // 비밀 마을인 경우 관리자 & 개설자 & 권한 보유자를 제외한 회원의 참가 여부 확인 후 true라면 통과
+	if($entry) unset($entry); // 비밀 마을인 경우 관리자 & 개설자 & 권한 보유자를 제외한 회원의 참가 여부 확인 후 true라면 통과
 	elseif($data[is_secret]&&!$is_admin&&$data[ismember]!=$member[no]&&$member[level]>$setup[grant_view_secret]) {
 			$secret_check=mysql_fetch_array(mysql_query("select count(*) from $t_board"."_$id where headnum='$data[headnum]' and password=password('$password')"));
 			$secret_check=mysql_fetch_array(mysql_query("select password('$password')"));

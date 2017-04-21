@@ -214,7 +214,7 @@ if($data[no]&&($data[openinfo]||$member[is_admin]==1)) {
    <td align=right><img src=images/vi_point.gif align=absmiddle>&nbsp;&nbsp;</td>
    <td align=left><img src="images/t.gif" width="10" height="3"><br>
    <!-- regulate user access to point info -->
-   <? if($member[no] == $data[no] || $member[is_admin]==1) {?>
+   <? if($member[no] == $data[no] || $member[is_admin] == 1) {?>
    <?=($data[point1]*10+$data[point2])?> 점 ( 작성글수 : <?=$data[point1]?>, 코멘트 : <?=$data[point2]?> )
    <? } else echo "본인만 열람할 수 있는 정보입니다."; ?>
    </td>

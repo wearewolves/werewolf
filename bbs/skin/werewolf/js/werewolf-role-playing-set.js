@@ -96,7 +96,7 @@ function searchRPSet() {
 	
 	// Find active list
 	tablinks = document.getElementsByClassName("tablinks");
-	tabcontentID = (tablinks[0].className).indexOf(" active") !== -1 ? "listByTimeSort" : "listByAscendingSort";
+	tabcontentID = tablinks[0].className.indexOf(" active") !== -1 ? "listByTimeSort" : "listByAscendingSort";
 	tabcontent = document.getElementById(tabcontentID);
 	
     li = tabcontent.getElementsByTagName("li");

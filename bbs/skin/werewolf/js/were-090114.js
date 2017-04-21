@@ -642,7 +642,7 @@ $(function(){
 		
 		for(var i = 0; i < commentPages.length - 1; i++)
 			commentPages[i].click();
-	}
+	});
 	
 	$('.characterButton').each(function(index){
 		var character = this;

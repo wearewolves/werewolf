@@ -84,7 +84,7 @@ if ('' != $keyword) {
 	<tr height=40>
 		<td align=center>
 		<select name="year" onchange="itdSearch();">
-		<?php for ($i = 2020; $i >= 2007; $i--) { ?>
+		<?php for ($i = date('Y'); $i >= 2007; $i--) { ?>
 		<option value="<?=$i?>"<?=($i == $year) ? ' selected' : ''?>><?=$i?></option>
 		<?php } ?>
 		</select>&nbsp;³â&nbsp;

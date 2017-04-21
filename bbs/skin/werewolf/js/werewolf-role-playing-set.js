@@ -90,7 +90,6 @@ function searchRPSet() {
     var input, filter, tablinks, tabcontentID, tabcontent, li;
 	var i;
 	
-	// Clear text input
     input = document.getElementById("RPSetInput");
     filter = input.value.toUpperCase();
 	

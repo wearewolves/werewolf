@@ -641,7 +641,7 @@ $(function(){
 		var commentPages = document.getElementsByClassName("buttonCommentPage");
 		
 		for(var i = 0; i < commentPages.length - 1; i++)
-			commentPages[i].click();
+			commentPages[i].click(event);
 	}
 	
 	$('.characterButton').each(function(index){

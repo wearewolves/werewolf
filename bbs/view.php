@@ -45,6 +45,11 @@
 // zboard.php에서 인크루드시 대상 위치를 zboard.php로 설정
 	if(!$_view_included) $target="view.php";
 	else $target="zboard.php";
+	
+	// 비밀 마을 참여자는 참여를 취소할 때까지 재입장시 비밀번호를 요구하지 않는다
+	// 테스트 : entry를 사용할 수 있는지... 안될 거 같긴 하지만.
+	if($entry) echo "사용할 수 있음";
+	else echo "사용할 수 없음";
 
 // 비밀글이고 패스워드가 틀리고 관리자가 아니면 에러 표시
 	if($data[is_secret]&&!$is_admin&&$data[ismember]!=$member[no]&&$member[level]>$setup[grant_view_secret]) {
@@ -55,7 +60,7 @@
 				$a_list="<a onfocus=blur() href='zboard.php?$href$sort'>";    
 				$a_view="<Zeroboard ";
 				$title="이 글은 비밀글입니다.<br>비밀번호를 입력하여 주십시오";
-				$input_password="<input type=password name=password size=20 maxlength=20 class=input>";
+				$input_password="<input type=password name=password autocomplete=off size=20 maxlength=20 class=input>";
 				if(eregi(":\/\/",$dir)||eregi("\.\.",$dir)) $dir="./";
 				include $dir."/ask_password.php";
 				foot();

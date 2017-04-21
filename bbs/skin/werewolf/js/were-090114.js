@@ -638,10 +638,12 @@ $(function(){
 	
 	// Open comment pages all
 	$("#buttonOpenCommentPagesAll").click(function (event){
-		var commentPages = document.getElementsByClassName("buttonCommentPage close");
+		var commentPages = document.getElementsByClassName("buttonCommentPage");
 		
-		for(var i = 0; i < commentPages.length; i++)
-			commentPages[i].click();
+		for(var i = 0; i < commentPages.length; i++) {
+			if(commentPages[i].className.indexOf(" close") !== -1)
+				commentPages[i].click();
+		}
 	});
 	
 	$('.characterButton').each(function(index){

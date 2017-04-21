@@ -678,7 +678,7 @@ function toClip(memo) {
 
 
 <!-- 페이지 모두 열기 버튼 -->
-<button type="button" id="buttonOpenCommentPagesAll" style="border: 2px solid #666666; background-color: black; color: #666666; padding: 10px 100px; margin: 4px 2px; text-align: center; text-decoration: none; font-size: 13px; display: inline-block;">페이지 모두 열기</button>
+<button type="button" id="buttonOpenCommentPagesAll" style="border: 2px solid #666666; background-color: black; color: #666666; padding: 10px 110px; margin: 4px 2px; text-align: center; text-decoration: none; font-size: 14px; display: inline-block;">페이지 모두 열기</button>
 
 
 

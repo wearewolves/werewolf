@@ -18,8 +18,8 @@
 	//전체 순위 기록
 	$writeRecord = true;
 	//----------------------------------------------------------------------
-	// 비밀글 
-	if(!$data[is_secret])$password = "";
+	// 비밀글
+	if(!$data[is_secret]) $password = "";
 
 	if(!$is_admin and $gameinfo['startingTime'] > time()) error("예약된 마을입니다.");
 	if ($viewDay=="" or $viewDay > $gameinfo['day'] or $viewDay < 0) $viewDay = $gameinfo['day'];
@@ -674,6 +674,11 @@ function toClip(memo) {
 </script>
 
 <?	include "print_trackback.php";}?>
+
+
+
+<!-- 페이지 모두 열기 버튼 -->
+<button type="button" id="buttonOpenCommentPagesAll" style="border: 2px solid #666666; background-color: black; color: #666666; padding: 10px 130px; margin: 4px 2px; text-align: center; text-decoration: none; font-size: 15px; display: inline-block;">페이지 모두 열기</button>
 
 
 

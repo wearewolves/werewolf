@@ -37,13 +37,14 @@ class Game:
         logging.debug("time check: %s, %s", time.time(), self.deathTime + self.termOfDay * self.day)
         logging.debug("seal condition 1: %s", self.seal == "논의")
         logging.debug("seal condition 2: %s", self.seal_yes > self.seal_no)
-        suddenPlayerCount = self.entry.getSuddenPlayerCount
+        suddenPlayerCount = self.entry.getSuddenPlayerCount()
         logging.debug("suddenPlayerCount: %s", suddenPlayerCount)
-        logging.debug("seal condigion 3: %s, self.seal_yes >= (self.players - suddenPlayerCount - 1)/2")
+        logging.debug("type of suddenPlayerCount: %s", type(suddenPlayerCount))
+        logging.debug("seal condigion 3: %s", "self.seal_yes >= (self.players - suddenPlayerCount - 1)/2")
         raise NotImplementedError, "debugging..."
         if self.useTimetable == 0 and time.time() >= (self.deathTime + self.termOfDay * self.day):
             if self.seal == "논의":
-                suddenPlayerCount = self.entry.getSuddenPlayerCount
+                suddenPlayerCount = self.entry.getSuddenPlayerCount()
                 if (self.seal_yes > self.seal_no) and (self.seal_yes >= (self.players - suddenPlayerCount - 1)/2):
                     self.setGameState("state", GAME_STATE.SEAL)
                 else:

@@ -2,6 +2,7 @@
 from werewolf.game.entry.Entry      import Entry
 from werewolf.game.rule.RuleFactory import RuleFactory
 from werewolf.database.DATABASE     import DATABASE
+from werewolf.game.GAME_STATE       import GAME_STATE
 import time
 import logging
 

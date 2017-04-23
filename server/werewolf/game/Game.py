@@ -34,15 +34,13 @@ class Game:
             if self.seal == "논의":
                 logging.debug("%s: 봉인 논의중..", self.game)
                 suddenPlayerCount = self.entry.getSuddenPlayerCount()
-                if (self.seal_yes > self.seal_no) and (self.seal_yes >= (self.players - suddenPlayerCount - 1)/2):
-                    self.setGameState("state", GAME_STATE.SEAL)
-                else:
-                    logging.info("%s: 다음 날로..", self.game)
-                    self.rule.nextTurn()
                 self.setGameState("seal", "종료")
-            else:
-                logging.info("%s: 다음 날로..", self.game)
-                self.rule.nextTurn()
+                if (self.seal_yes > self.seal_no) and (self.seal_yes >= (self.players - suddenPlayerCount - 1)/2):
+                    logging.info("%s: 봉인 조건 충족 - 봉인", self.game)
+                    self.setGameState("state", GAME_STATE.SEAL)
+                    return
+            logging.info("%s: 다음 날로..", self.game)
+            self.rule.nextTurn()
         # 30분 마을의 경우
         elif self.useTimetable == 1:
             AllAlivePlayerCounter = self.entry.getAllAlivePlayerCounter()
@@ -54,10 +52,18 @@ class Game:
                 deathtime = self.getTimetable()['reg_date'] + self.termOfDay
             # 준비 완료 OR 시간이 지남
             if((self.state == "게임중" and AllAlivePlayerCounter == AllConfirmCounter) or time.time() >= deathtime):
-                logging.info("%s: 다음 날로..", self.getName())
                 logging.debug("Alive players: %s", AllAlivePlayerCounter)
                 logging.debug("Confirm players: %s", AllConfirmCounter)
                 logging.debug("Death time: %s", deathtime)
+                if self.seal == "논의":
+                    logging.debug("%s: 봉인 논의중..", self.game)
+                    suddenPlayerCount = self.entry.getSuddenPlayerCount()
+                    self.setGameState("seal", "종료")
+                    if (self.seal_yes > self.seal_no) and (self.seal_yes >= (self.players - suddenPlayerCount - 1)/2):
+                        logging.info("%s: 봉인 조건 충족 - 봉인", self.game)
+                        self.setGameState("state", GAME_STATE.SEAL)
+                        return
+                logging.info("%s: 다음 날로..", self.getName())
                 self.setTimetable()
                 self.rule.nextTurn()
 

@@ -28,19 +28,11 @@ class Game:
         self.db = db
 
     def nextTurn(self):
-        logging.debug("self.players: %s", self.players)
-        logging.debug("type(self.players): %s", type(self.players))
-        logging.debug("self.seal: %s", self.seal)
-        logging.debug("self.seal_yes: %s", self.seal_yes)
-        logging.debug("self.seal_no: %s", self.seal_no)
         logging.debug("current timetable: %s", self.useTimetable)
-        logging.debug("time check: %s, %s", time.time(), self.deathTime + self.termOfDay * self.day)
         logging.debug("seal condition 1: %s", self.seal == "논의")
         logging.debug("seal condition 2: %s", self.seal_yes > self.seal_no)
         suddenPlayerCount = self.entry.getSuddenPlayerCount()
-        logging.debug("suddenPlayerCount: %s", suddenPlayerCount)
-        logging.debug("type of suddenPlayerCount: %s", type(suddenPlayerCount))
-        logging.debug("seal condigion 3: %s", "self.seal_yes >= (self.players - suddenPlayerCount - 1)/2")
+        logging.debug("seal condigion 3: %s", self.seal_yes >= (self.players - suddenPlayerCount - 1)/2)
         raise NotImplementedError, "debugging..."
         if self.useTimetable == 0 and time.time() >= (self.deathTime + self.termOfDay * self.day):
             if self.seal == "논의":

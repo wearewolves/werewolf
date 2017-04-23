@@ -29,11 +29,12 @@ class Game:
 
     def nextTurn(self):
         if self.useTimetable == 0 and time.time() >= (self.deathTime + self.termOfDay * self.day):
+            logging.debug("self.players: %s", self.players)
+            logging.debug("len(self.players): %s", len(self.players))
+            logging.debug("self.seal: %s", self.players)
+            raise NotImplementedError, "debugging..."
             if self.seal == "³íÀÇ":
                 suddenPlayerCount = self.entry.getSuddenPlayerCount
-                logging.debug("players: %s", self.players)
-                logging.debug("length_player: %s", len(self.players))
-                raise NotImplementedError, "debugging..."
                 if (self.seal_yes > self.seal_no) and (self.seal_yes >= (len(self.players) - suddenPlayerCount - 1)/2):
                     self.setGameState("state", GAME_STATE.SEAL)
                 else:

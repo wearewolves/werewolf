@@ -29,7 +29,8 @@ class Game:
 
     def nextTurn(self):
         logging.debug("self.players: %s", self.players)
-        logging.debug("len(self.players): %s", len(self.players))
+        logging.debug("type(self.players): %s", type(self.players))
+        #logging.debug("len(self.players): %s", len(self.players))
         logging.debug("self.seal: %s", self.players)
         logging.debug("self.seal_yes: %s", self.seal_yes)
         logging.debug("self.seal_no: %s", self.seal_no)

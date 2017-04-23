@@ -32,6 +32,8 @@ class Game:
             logging.debug("self.players: %s", self.players)
             logging.debug("len(self.players): %s", len(self.players))
             logging.debug("self.seal: %s", self.players)
+            logging.debug("self.seal_yes: %s", self.seal_yes)
+            logging.debug("self.seal_no: %s", self.seal_no)
             raise NotImplementedError, "debugging..."
             if self.seal == "≥Ì¿«":
                 suddenPlayerCount = self.entry.getSuddenPlayerCount

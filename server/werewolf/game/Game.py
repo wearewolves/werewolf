@@ -28,12 +28,6 @@ class Game:
         self.db = db
 
     def nextTurn(self):
-        logging.debug("current timetable: %s", self.useTimetable)
-        logging.debug("seal condition 1: %s", self.seal == "논의")
-        logging.debug("seal condition 2: %s", self.seal_yes > self.seal_no)
-        suddenPlayerCount = self.entry.getSuddenPlayerCount()
-        logging.debug("seal condigion 3: %s", self.seal_yes >= (self.players - suddenPlayerCount - 1)/2)
-        raise NotImplementedError, "debugging..."
         if self.useTimetable == 0 and time.time() >= (self.deathTime + self.termOfDay * self.day):
             if self.seal == "논의":
                 suddenPlayerCount = self.entry.getSuddenPlayerCount()
@@ -42,7 +36,7 @@ class Game:
                 else:
                     logging.info("%s: 다음 날로..", self.getName())
                     self.rule.nextTurn()
-                self.setGameState("seal", "종료") #TODO: check
+                self.setGameState("seal", "종료")
             else:
                 logging.info("%s: 다음 날로..", self.getName())
                 self.rule.nextTurn()

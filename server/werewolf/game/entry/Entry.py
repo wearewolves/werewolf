@@ -19,7 +19,7 @@ class Entry:
         cursor.execute(query)
 
         noMannerPlayers = self.getNoMannerPlayers()
-        logging.debug("noMannerPlayers: %s", noMannerPlayers)
+        logging.debug("noMannerPlayers: %s", [str(player) for player in noMannerPlayers])
         #print noMannerPlayers
 
         for player in noMannerPlayers:

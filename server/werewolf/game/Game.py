@@ -28,11 +28,15 @@ class Game:
         self.db = db
 
     def nextTurn(self):
+        logging.debug("self.players: %s", self.players)
+        logging.debug("len(self.players): %s", len(self.players))
+        logging.debug("self.seal: %s", self.players)
+        logging.debug("self.seal_yes: %s", self.seal_yes)
+        logging.debug("self.seal_no: %s", self.seal_no)
+        logging.debug("current timetable: %s", self.useTimetable)
+        logging.debug("time check: %s, %s", time.time(), self.deathTime + self.termOfDay * self.day)
+        raise NotImplementedError, "debugging..."
         if self.useTimetable == 0 and time.time() >= (self.deathTime + self.termOfDay * self.day):
-            logging.debug("self.players: %s", self.players)
-            logging.debug("len(self.players): %s", len(self.players))
-            logging.debug("self.seal: %s", self.players)
-            raise NotImplementedError, "debugging..."
             if self.seal == "³íÀÇ":
                 suddenPlayerCount = self.entry.getSuddenPlayerCount
                 if (self.seal_yes > self.seal_no) and (self.seal_yes >= (len(self.players) - suddenPlayerCount - 1)/2):

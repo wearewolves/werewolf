@@ -4,6 +4,6 @@ class GAME_STATE:
     PLAYING = "게임중"
     GAMEOVER = "게임끝"
     TESTOVER ="테스트"
-    BUG ="버그"
-    SEAL="봉인"
+    BUG = "버그"
+    SEAL= "봉인"
     

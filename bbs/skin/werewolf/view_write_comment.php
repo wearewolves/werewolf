@@ -117,24 +117,28 @@ if($totalCommentPage>=1) echo "</div>";
 		<table width=100%><tr><td>
 		<input type=password name=password <?=size(8)?> maxlength=20 class=red_input>
 		</td></tr></table></td>
-	   </td>
 	  </tr>
 		 <?=$hide_c_password_end?>
 	  <tr bgcolor=111111>
-			<td width=100%><textarea name="memo" onkeydown="resize(this)" onkeyup="resize(this)" id="memo" <?=size(40)?> rows="5" class="red_commentw" style="min-height:50px;"></textarea></td>
+			<td width=100%><textarea name="memo" id="memo" <?=size(40)?> rows="5" class="red_commentw"></textarea></td>
 			
 	</tr>
 
 	 <tr align=center bgcolor=111111> 
 	  <td width="100%" align='left'>
 
-	  <table><tr><!-- erase making textarea bigger button
-	  <td width="100px">
-	  <input type=button rows=5 onclick="document.writeComment.memo.rows=document.writeComment.memo.rows+4;" <?if($browser){?>class=red_submit<?}?> value='창 늘리기(z) ▼'  accesskey="z"></td>
-	  -->
-	  <td width="100px"><input type=button onclick="submitComment(writeComment)" rows=5 <?if($browser){?>class=red_submit<?}?> value='보내기(s)' accesskey="s"></td>
-		 <td> <input type=submit rows=5 style="font-size:10;"  value='비상용 보내기' title="보내기 버튼으로 로그가 올라가지 않을 때 사용하십시요."></td>
-
+	  <table>
+		<tr>
+			<td width="100px">
+				<input type=button rows=5 onclick="document.writeComment.memo.rows=document.writeComment.memo.rows+4;" <?if($browser){?>class=red_submit<?}?> value='창 늘리기(z) ▼'  accesskey="z">
+			</td>
+			<td width="100px">
+				<input type=button onclick="submitComment(writeComment)" rows=5 <?if($browser){?>class=red_submit<?}?> value='보내기(s)' accesskey="s">
+			</td>
+			<td>
+				 <input type=submit rows=5 style="font-size:10;"  value='비상용 보내기' title="보내기 버튼으로 로그가 올라가지 않을 때 사용하십시오.">
+			</td>
+		</tr>
 	  </table>
 	  
 	  </td>
@@ -147,11 +151,6 @@ if($totalCommentPage>=1) echo "</div>";
 
 
 <script>
-function resize(obj) {
-	obj.style.height = "1px";
-	obj.style.height = (obj.scrollHeight + 10) + "px";
-}
-
 checkCommentType();
 document.onload = initCommentType();
 </script>

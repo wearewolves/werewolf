@@ -72,6 +72,7 @@ class WerewolfRule(Rule):
 
         #2. Èñ»ıÀÚÀÇ ÄÚ¸àÆ®
         victim = self.game.entry.getVictim()
+        victim.setTruecharacter(Truecharacter.HUMAN)
         logging.debug("victim: %s", victim)
         victim.writeWill()
 

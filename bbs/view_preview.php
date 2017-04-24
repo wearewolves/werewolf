@@ -7,8 +7,8 @@
 	if(getenv("REQUEST_METHOD") == 'GET' ) Error("정상적으로 글을 쓰시기 바랍니다","window.close");
 
 
-	if(!$subject) Error("제목을 입력하여 주십시요","window.close");
-	if(!$memo) Error("내용을 입력하여 주십시요","window.close");
+	if(!$subject) Error("제목을 입력하여 주십시오","window.close");
+	if(!$memo) Error("내용을 입력하여 주십시오","window.close");
 	
 
 	$connect=dbconn();
@@ -17,7 +17,7 @@
 	$setup=get_table_attrib($id);
 
 // 설정되지 않은 게시판
-	if(!$setup[name]) Error("생성되지 않은 게시판입니다.<br><br>게시판을 생성후 사용하십시요","window.close()"); 
+	if(!$setup[name]) Error("생성되지 않은 게시판입니다.<br><br>게시판을 생성 후 사용하십시오","window.close()"); 
 
 // 현재 게시판의 그룹의 설정 읽어 오기
 	$group=group_info($setup[group_no]);

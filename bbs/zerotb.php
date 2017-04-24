@@ -160,7 +160,7 @@ function trackback_dbconn()
 	global $connect, $_dbconn_is_included;
 	if($_dbconn_is_included) return;
 	$_dbconn_is_included = true;
-	$f=@file($_zb_path."config.php") or Error("config.php파일이 없습니다.<br>DB설정을 먼저 하십시요","install.php");
+	$f=@file($_zb_path."config.php") or Error("config.php파일이 없습니다.<br>DB설정을 먼저 하십시오","install.php");
 	for($i=1;$i<=4;$i++) $f[$i]=trim(str_replace("\n","",$f[$i]));
 	if(!$connect) $connect = @mysql_connect($f[1],$f[2],$f[3]) or Error("DB 접속시 에러가 발생했습니다");
 	@mysql_select_db($f[4], $connect) or Error("DB Select 에러가 발생했습니다","");

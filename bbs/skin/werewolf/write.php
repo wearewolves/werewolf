@@ -2,9 +2,9 @@
 	include("$dir/lib/lib.php"); 
 
 ?>
-<!-- roll playing set selector js, css files -->
-<script type="text/javascript" src="skin/werewolf/js/werewolf-roll-playing-set.js"></script>
-<link rel="stylesheet" type="text/css" href="skin/werewolf/css/werewolf-roll-playing-set.css">
+<!-- role playing set selector js, css files -->
+<script type="text/javascript" src="skin/werewolf/js/werewolf-role-playing-set.js"></script>
+<link rel="stylesheet" type="text/css" href="skin/werewolf/css/werewolf-role-playing-set.css">
 <SCRIPT LANGUAGE="JavaScript">
 <!--
 function zb_formresize(obj) {
@@ -211,16 +211,33 @@ function zb_formresize(obj) {
 ?>
 
 				<!-- 하루 길이 판별로 올바른 시작일 구하기 -->
-				<? if($termOfDay > 1800) {
-					$temp_time = mktime(0, 0, 0, $monthV, $dayV+1, $yearV);
-					$yearV = date("Y", $temp_time);
-					$monthV = date("m", $temp_time);
-					$dayV = date("d", $temp_time);
-				} ?>
-				<input name=year size=4 MAXLENGTH=4 value=<?=$yearV?> disabled class="input">년
-				<input name=month size=4 MAXLENGTH=2 value=<?=$monthV?> disabled class="input">월
+				<? if($server['host'] == "werewolf6.cafe24.com") {
+						// 30분 서버
+						$d_yearV = $yearV;
+						$d_monthV = $monthV;
+						$d_dayV = $dayV;
+				}
+					elseif(!$gameinfo) {
+						// 1일 서버 마을 만들 때
+						$temp_time = mktime(0, 0, 0, $monthV, $dayV+1, $yearV);
+						$d_yearV = date("Y", $temp_time);
+						$d_monthV = date("m", $temp_time);
+						$d_dayV = date("d", $temp_time);
+				}
+					else {
+						// 1일 서버 마을 수정할 때
+						$d_yearV = $yearV;
+						$d_monthV = $monthV;
+						$d_dayV = $dayV;
+				}
+				?>
+				<input type=hidden name=year size=4 MAXLENGTH=4 value=<?=$yearV?> disabled class="input">
+				<input name=dYear size=4 MAXLENGTH=4 value=<?=$d_yearV?> disabled class="input">년
+				<input type=hidden name=month size=4 MAXLENGTH=2 value=<?=$monthV?> disabled class="input">
+				<input name=dMonth size=4 MAXLENGTH=2 value=<?=$d_monthV?> disabled class="input">월
 				<? $disable =  $is_admin ?  '' : 'disabled'; ?>
-				<input name=day size=4 MAXLENGTH=2  value=<?=$dayV?> <?=$disable?>  class="input">일
+				<input type=hidden name=day size=4 MAXLENGTH=2  value=<?=$dayV?> <?=$disable?>  class="input">
+				<input name=dDay size=4 MAXLENGTH=2  value=<?=$d_dayV?> <?=$disable?>  class="input">일
 
 				<select name=hour value=<?=$hourV?> <? if($gameinfo['state'] <> "준비중" and $mode =="modify")echo "DISABLED";?> class="input">
 					<option value='0' <?if($hourV=='0') echo "SELECTED";?>>00 </option>
@@ -333,7 +350,7 @@ function changeTermOfDay(obj){
 				
 				echo DBselect1("characterSet","","no","name","$DB_characterSet where is_use = 1","class='input' ".$disabled,$gameinfo['characterSet'],"");
 				?-->
-		<!-- roll playing set selector -->
+		<!-- role playing set selector -->
 		<?
 			$bDisabled = ($mode == "modify") ? true : false;
 
@@ -364,7 +381,7 @@ function changeTermOfDay(obj){
 
 				<div id="listByAscendingSort" class="tabcontent">
 					<ul class="RPSetUL">
-					  <? echo set_characterSet("$DB_characterSet where is_use = 1", "name"); ?>
+						<? echo set_characterSet("$DB_characterSet where is_use = 1", "name"); ?>
 					</ul>
 				</div>
 			</div>

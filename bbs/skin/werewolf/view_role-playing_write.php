@@ -147,7 +147,7 @@ function DBselect($name,$head,$id,$value,$DB,$code,$selectedID,$unselectedID){
 	// 생성 외의 모드에서 세트 설정
 	if($mode <> "write" and $mode <> "write_ok"){
 		//$set값이 없으면 접근 불가
-		if(!$set) error("정상적인 방법으로 접근하십시요.","window.close");
+		if(!$set) error("정상적인 방법으로 접근하십시오.","window.close");
 
 		$set_info=mysql_fetch_array(mysql_query("select *  from  `".$db->characterSet."` where `no` = $set"));
 

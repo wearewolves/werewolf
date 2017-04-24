@@ -90,13 +90,12 @@ function searchRPSet() {
     var input, filter, tablinks, tabcontentID, tabcontent, li;
 	var i;
 	
-	// Clear text input
     input = document.getElementById("RPSetInput");
     filter = input.value.toUpperCase();
 	
 	// Find active list
 	tablinks = document.getElementsByClassName("tablinks");
-	tabcontentID = (tablinks[0].className).indexOf(" active") !== -1 ? "listByTimeSort" : "listByAscendingSort";
+	tabcontentID = tablinks[0].className.indexOf(" active") !== -1 ? "listByTimeSort" : "listByAscendingSort";
 	tabcontent = document.getElementById(tabcontentID);
 	
     li = tabcontent.getElementsByTagName("li");

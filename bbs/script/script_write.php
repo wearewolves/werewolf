@@ -30,7 +30,7 @@
   var myindex=document.write.category[1].selectedIndex;
   if (myindex<1)
   {
-   alert('카테고리를 선택하여 주십시요');
+   alert('카테고리를 선택하여 주십시오');
    return false;
   }
 <? } ?>

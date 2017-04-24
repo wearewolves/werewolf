@@ -66,7 +66,16 @@
 function changeCharacterSet(selectCharacterSet){
 	window.location.replace("view_role-playing.php?id=<?=$id?>&set=" + selectCharacterSet.value);
 }
+
+function changeCharacterSetByNum(selectCharacterSet){
+	selectCharacterSet = parseInt(selectCharacterSet, 10);
+	window.location.replace("view_role-playing.php?id=<?=$id?>&set=" + selectCharacterSet);
+}
 </script>
+
+<!-- role playing set selector js, css files -->
+<script type="text/javascript" src="js/werewolf-role-playing-set.js"></script>
+<link rel="stylesheet" type="text/css" href="css/werewolf-role-playing-set.css">
 
 
 <?
@@ -105,6 +114,46 @@ function DBselect($name,$head,$id,$value,$DB,$code,$selectedID,$unselectedID){
 	return $DB_select;
 }
 
+// Get current characterSet name
+function get_characterSetName($query) {
+	$result = mysql_fetch_array(mysql_query("select * from $query"));
+	return $result[name];
+}
+
+// Make sorted go-to characterSet list and select an item
+function goto_characterSet($DB, $sort) {
+	$result = mysql_query("select * from $DB order by '$sort'");
+	
+	// Extract no of not used role playing set
+	$result0 = mysql_query("select * from $DB where is_use != 1 order by '$sort'");
+	$not_used_characterSet_no = "";
+	$i = 0;
+	while($temp0 = mysql_fetch_array($result0)) {
+		$not_used_characterSet_no[$i] = $temp0[no];
+		$i++;
+	}
+	unset($i);
+	
+	$characterSetList = "";
+	while($temp = mysql_fetch_array($result)) {
+		$used = true;
+		
+		// Check not used role playing set
+		foreach($not_used_characterSet_no as $not_used_characterSet_no_value) {
+			if($temp[no] == $not_used_characterSet_no_value) {
+				$used = false;
+				break;
+			}
+		}
+
+		if($used)
+			$characterSetList .= "<li onclick=\"changeCharacterSetByNum('$temp[no]')\">".$temp[name]."</li>";
+		else
+			$characterSetList .= "<li onclick=\"changeCharacterSetByNum('$temp[no]')\">".$temp[name]." <font color='#ff3838'>(사용 불가)</font></li>";
+	}
+	return $characterSetList;
+}
+
 
 	if(!$set) $set = 1;
 
@@ -117,10 +166,41 @@ function DBselect($name,$head,$id,$value,$DB,$code,$selectedID,$unselectedID){
 
 <table width='100%'>
 <tr>
-	<td width=200><?=DBselect("selectCharacterSet","","no",$characterSet_list,"`".$db->characterSet."`","onchange='changeCharacterSet(this)' width=100",$set,"");?></td>
+	<!--
+	<td width=200><!--?=DBselect("selectCharacterSet","","no",$characterSet_list,"`".$db->characterSet."`","onchange='changeCharacterSet(this)' width=100",$set,"");?></td>
+	-->
+	<!-- role playing set selector -->
+	<td>
+		<input type="text" name="characterSetName" class="input" style="width:200px" id="characterSetNameInput" value="<? echo get_characterSetName("`$db->characterSet` where no = $set"); ?>" disabled>
+		<button type="button" id="RPSetBtn" onclick="openModal()">선택하기</button>
+	</td>
 	<td width=><a href="view_private_record.php?id=<?=$id?>&player=<?=$characterSet['ismember']?>"><?=" 제작자:".$characterSet['maker']?></a></td>
 </tr>
 </table>
+
+<div id="modal-window" class="modal">
+	<div class="modal-content">
+		<span id="closeX">&times;</span>
+		<input type="text" id="RPSetInput" onkeyup="searchRPSet()" placeholder="Search for names...">
+
+		<div class="tab">
+		  <button type="button" class="tablinks" onclick="openList(event, 'listByTimeSort')">제작순</button>
+		  <button type="button" class="tablinks" onclick="openList(event, 'listByAscendingSort')">가나다순</button>
+		</div>
+
+		<div id="listByTimeSort" class="tabcontent">
+			<ul class="RPSetUL">
+				<? echo goto_characterSet("`$db->characterSet`", "no"); ?>
+			</ul>
+		</div>
+
+		<div id="listByAscendingSort" class="tabcontent">
+			<ul class="RPSetUL">
+				<? echo goto_characterSet("`$db->characterSet`", "name"); ?>
+			</ul>
+		</div>
+	</div>
+</div>
 
 <br>
 

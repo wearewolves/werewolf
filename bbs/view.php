@@ -45,17 +45,23 @@
 // zboard.php에서 인크루드시 대상 위치를 zboard.php로 설정
 	if(!$_view_included) $target="view.php";
 	else $target="zboard.php";
+	
+	// 비밀 마을 참여자는 참여를 취소할 때까지 재입장시 비밀번호를 요구하지 않는다
+	if($setup[skinname] == "werewolf" && $member[no] && $data[is_secret] && !$is_admin && $data[ismember] != $member[no] && $member[level] > $setup[grant_view_secret])
+		$entry = mysql_fetch_array(mysql_query("select * from zetyx_board_werewolf_entry where game=$no and player = $member[no]"));
 
 // 비밀글이고 패스워드가 틀리고 관리자가 아니면 에러 표시
-	if($data[is_secret]&&!$is_admin&&$data[ismember]!=$member[no]&&$member[level]>$setup[grant_view_secret]) {
+	//if($data[is_secret]&&!$is_admin&&$data[ismember]!=$member[no]&&$member[level]>$setup[grant_view_secret]) {
+	if($entry) unset($entry); // 비밀 마을인 경우 관리자 & 개설자 & 권한 보유자를 제외한 회원의 참가 여부 확인 후 true라면 통과
+	elseif($data[is_secret]&&!$is_admin&&$data[ismember]!=$member[no]&&$member[level]>$setup[grant_view_secret]) {
 			$secret_check=mysql_fetch_array(mysql_query("select count(*) from $t_board"."_$id where headnum='$data[headnum]' and password=password('$password')"));
 			$secret_check=mysql_fetch_array(mysql_query("select password('$password')"));
 			if($secret_check[0] <> $data[password]) {
 				head();
 				$a_list="<a onfocus=blur() href='zboard.php?$href$sort'>";    
 				$a_view="<Zeroboard ";
-				$title="이 글은 비밀글입니다.<br>비밀번호를 입력하여 주십시요";
-				$input_password="<input type=password name=password size=20 maxlength=20 class=input>";
+				$title="이 글은 비밀글입니다.<br>비밀번호를 입력하여 주십시오";
+				$input_password="<input type=password name=password autocomplete=off size=20 maxlength=20 class=input>";
 				if(eregi(":\/\/",$dir)||eregi("\.\.",$dir)) $dir="./";
 				include $dir."/ask_password.php";
 				foot();

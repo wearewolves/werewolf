@@ -2,6 +2,7 @@
 from werewolf.game.entry.Entry      import Entry
 from werewolf.game.rule.RuleFactory import RuleFactory
 from werewolf.database.DATABASE     import DATABASE
+from werewolf.game.GAME_STATE       import GAME_STATE
 import time
 import logging
 
@@ -28,21 +29,19 @@ class Game:
         self.db = db
 
     def nextTurn(self):
+        # 1일 마을에서 시간이 지난 경우.
         if self.useTimetable == 0 and time.time() >= (self.deathTime + self.termOfDay * self.day):
             if self.seal == "논의":
-                suddenPlayerCount = self.entry.getSuddenPlayerCount
-                logging.debug("players: %s", self.players)
-                logging.debug("length_player: %s", len(self.players))
-                raise NotImplementedError, "debugging..."
-                if (self.seal_yes > self.seal_no) and (self.seal_yes >= (len(self.players) - suddenPlayerCount - 1)/2):
+                logging.debug("%s: 봉인 논의중..", self.game)
+                suddenPlayerCount = self.entry.getSuddenPlayerCount()
+                self.setGameState("seal", "종료")
+                if (self.seal_yes > self.seal_no) and (self.seal_yes >= (self.players - suddenPlayerCount - 1)/2):
+                    logging.info("%s: 봉인 조건 충족 - 봉인", self.game)
                     self.setGameState("state", GAME_STATE.SEAL)
-                else:
-                    logging.info("%s: 다음 날로..", self.getName())
-                    self.rule.nextTurn()
-                self.setGameState("seal", "종료") #TODO: check
-            else:
-                logging.info("%s: 다음 날로..", self.getName())
-                self.rule.nextTurn()
+                    return
+            logging.info("%s: 다음 날로..", self.game)
+            self.rule.nextTurn()
+        # 30분 마을의 경우
         elif self.useTimetable == 1:
             AllAlivePlayerCounter = self.entry.getAllAlivePlayerCounter()
             AllConfirmCounter = self.entry.getAllConfirmCounter()
@@ -51,13 +50,20 @@ class Game:
                 deathtime = self.deathTime
             else:
                 deathtime = self.getTimetable()['reg_date'] + self.termOfDay
-
+            # 준비 완료 OR 시간이 지남
             if((self.state == "게임중" and AllAlivePlayerCounter == AllConfirmCounter) or time.time() >= deathtime):
+                logging.debug("Alive players: %s", AllAlivePlayerCounter)
+                logging.debug("Confirm players: %s", AllConfirmCounter)
+                logging.debug("Death time: %s", deathtime)
+                if self.seal == "논의":
+                    logging.debug("%s: 봉인 논의중..", self.game)
+                    suddenPlayerCount = self.entry.getSuddenPlayerCount()
+                    self.setGameState("seal", "종료")
+                    if (self.seal_yes > self.seal_no) and (self.seal_yes >= (self.players - suddenPlayerCount - 1)/2):
+                        logging.info("%s: 봉인 조건 충족 - 봉인", self.game)
+                        self.setGameState("state", GAME_STATE.SEAL)
+                        return
                 logging.info("%s: 다음 날로..", self.getName())
-                #print "AllAlivePlayerCounter:",AllAlivePlayerCounter
-                #print "AllConfirmCounter:",AllConfirmCounter
-                #print "deathtime: ", deathtime
-
                 self.setTimetable()
                 self.rule.nextTurn()
 

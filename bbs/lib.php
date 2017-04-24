@@ -294,7 +294,7 @@ ini_set('session.auto_start','1');
 		if($_dbconn_is_included) return;
 		$_dbconn_is_included = true;
 
-		$f=@file($config_dir."config.php") or Error("config.php파일이 없습니다.<br>DB설정을 먼저 하십시요","install.php");
+		$f=@file($config_dir."config.php") or Error("config.php파일이 없습니다.<br>DB설정을 먼저 하십시오","install.php");
 
 		for($i=1;$i<=5;$i++) $f[$i]=trim(str_replace("\n","",$f[$i]));
 		
@@ -571,7 +571,9 @@ ini_set('session.auto_start','1');
 
 			if($data[ismember]<1) $data[ismember]="";
 
-			$zbLayer = $zbLayer."\nprint_ZBlayer('zbLayer$_zbCheckNum', '$data[homepage]', '$data[email]', '$data[ismember]', '$id', '$data[name]', '$traceID', '$traceType', '$isAdmin', '$isMember');";
+			// zbLayer off when skin is "werewolf" for security
+			if($setup[skinname] != "werewolf" || $member[is_admin] == 1 || $member[is_admin] == 2)
+				$zbLayer = $zbLayer."\nprint_ZBlayer('zbLayer$_zbCheckNum', '$data[homepage]', '$data[email]', '$data[ismember]', '$id', '$data[name]', '$traceID', '$traceType', '$isAdmin', '$isMember');";
 		}   
 		return $_zbCount;
 	}
@@ -633,7 +635,7 @@ ini_set('session.auto_start','1');
 	function istable($str, $dbname='') {
 		global $config_dir;
 		if(!$dbname) {
-			$f=@file($config_dir."config.php") or Error("config.php파일이 없습니다.<br>DB설정을 먼저 하십시요","install.php");
+			$f=@file($config_dir."config.php") or Error("config.php파일이 없습니다.<br>DB설정을 먼저 하십시오","install.php");
 			for($i=1;$i<=4;$i++) $f[$i]=str_replace("\n","",$f[$i]);
 			$dbname=$f[4];
 		}

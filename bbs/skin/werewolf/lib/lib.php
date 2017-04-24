@@ -63,7 +63,7 @@ function getSID($game , $day, $lastComment, $member, $viewMode, $secretKey){
 	$SID = urlencode($SID);
 
 	return $SID;
-} 
+}
 
 // DB ¹è¿­ ////////////////////////////
 function DB_array($key,$value,$db){
@@ -129,13 +129,16 @@ function DBselect1($name,$head,$id,$value,$DB,$code,$selectedID,$unselectedID){
 
 // Initialize characterSet
 function init_characterSet($index, $value, $DB) {
-	$result = mysql_fetch_array(mysql_query("select * from $DB order by 'no'"));
+	$result = mysql_query("select * from $DB order by 'no'");
+	$characterSetArr = "";
+	$i = 0;
+	while($temp = mysql_fetch_array($result)) {
+		$characterSetArr[$i] = $temp[$value];
+		$i++;
+	}
+	unset($i);
 	
-	$temp = "";
-	for($i = 0; $i < count($result); $i++)
-		$temp[$i] = $result[$value];
-	
-	return $temp[$index];
+	return $characterSetArr[$index];
 }
 
 // Get current characterSet name
@@ -147,6 +150,8 @@ function get_characterSetName($query) {
 // Make sorted characterSet list and select an item
 function set_characterSet($DB, $sort) {
 	$result = mysql_query("select * from $DB order by '$sort'");
+	
+	$characterSetList = "";
 	while($temp = mysql_fetch_array($result)) {
 		$characterSetList .= "<li onclick=\"selectRPSet('$temp[no]', '$temp[name]')\">".$temp[name]."</li>";
 	}

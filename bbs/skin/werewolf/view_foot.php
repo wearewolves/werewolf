@@ -381,7 +381,6 @@ $(document).ready(function(){
 				</select>
 			</div>
 			<br>
-			<br>
 			<!-- -->
 			<input type="submit" name="temp" value="°ÔÀÓ Âü¿©ÇÏ±â" style="border: 2px solid #666666; background-color: #111111; color: #666666; padding: 5px 15px; margin: 4px 2px; text-align: center; font-family: '¸¼Àº °íµñ', '³ª´®°íµñ', 'µ¸¿ò'; text-decoration: none; font-size: 14px;">
 			</form>

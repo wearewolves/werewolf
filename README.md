@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/wearewolves/werewolf.svg?branch=master)](https://travis-ci.org/wearewolves/werewolf)
+[![Build Status](https://travis-ci.org/otherwolves/werewolf.svg?branch=master)](https://travis-ci.org/otherwolves/werewolf)
 
 # werewolf.co.kr
 "인랑"의 "1일 서버"의 소스입니다.

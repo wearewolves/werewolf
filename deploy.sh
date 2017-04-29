@@ -6,4 +6,4 @@ BEFORE_TAG=`git describe --abbrev=0 --tags $COMMIT`
 `mkdir release`
 `tar -xvzf release.tar.gz -C release`
 
-gulp deploy --user $1 --password $2
+#gulp deploy --user $1 --password $2

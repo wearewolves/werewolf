@@ -13,7 +13,7 @@ import config
 
 class Server:
     def __init__(self):
-        loggerLevel = logging.DEBUG
+        loggerLevel = logging.INFO
         loggingFormat = "%(asctime)s [%(filename)-25s:%(lineno)-3s]\t%(levelname)-8s\t%(message)s"
 
         try:

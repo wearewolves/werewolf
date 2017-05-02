@@ -13,8 +13,8 @@ class BasicRule(WerewolfRule):
 
     # 기본 세팅
     temp_truecharacter = {}
-    temp_truecharacter[9] = [1, 1, 1, 2, 3, 6, 5, 7, 7]
-    temp_truecharacter[10] = [1, 1, 1, 1, 2, 3, 6, 5, 7, 7]
+    temp_truecharacter[9] = [1, 1, 1, 2, 3, 4, 6, 7, 7]
+    temp_truecharacter[10] = [1, 1, 1, 1, 2, 3, 4, 6, 7, 7]
     temp_truecharacter[11] = [1, 1, 1, 1, 2, 3, 4, 5, 5, 6]
     temp_truecharacter[12] = [1, 1, 1, 1, 1, 2, 3, 4, 5, 5, 6]
     temp_truecharacter[13] = [1, 1, 1, 1, 1, 1, 2, 3, 4, 5, 5, 6]

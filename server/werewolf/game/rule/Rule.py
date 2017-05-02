@@ -76,16 +76,6 @@ class WerewolfRule(Rule):
         logging.debug("victim: %s", victim)
         victim.writeWill()
 
-        #3. 다른사람의 코멘트
-        freemasionList = self.game.entry.getPlayersByTruecharacter(Truecharacter.FREEMASONS)
-        deathTime = self.game.deathTime
-        for masion in freemasionList:
-            logging.debug('MASION: %s', masion)
-            self.game.writeComment(1, "게임 마스터", "password", "초능력자 입니다. (자동생성)", "123.123.123.123", "텔레파시", masion.character, deathTime)
-        guardian = self.game.entry.getPlayersByTruecharacter(Truecharacter.BODYGUARD)[0]
-        logging.debug('GUARD: %s', guardian)
-        self.game.writeComment(1, "게임 마스터", "password", "사냥꾼 입니다. 빨리 습격해주세요.", "123.123.123.123", "비밀", guardian.character, deathTime)
-
         #3. 게임 정보 업데이트
         self.game.setGameState("state", GAME_STATE.PLAYING)
         self.game.setGameState("day", self.game.day+1)

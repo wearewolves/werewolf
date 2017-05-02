@@ -8,11 +8,13 @@ from werewolf.game.entry.Role import Race
 from werewolf.game.rule.Rule import WerewolfRule
 
 class BasicRule(WerewolfRule):
-    min_players = 11
+    min_players = 9
     max_players = 16
 
     # 기본 세팅
     temp_truecharacter = {}
+    temp_truecharacter[9] = [1, 1, 1, 2, 3, 4, 5, 7, 7]
+    temp_truecharacter[10] = [1, 1, 1, 1, 2, 3, 4, 5, 7, 7]
     temp_truecharacter[11] = [1, 1, 1, 1, 2, 3, 4, 5, 5, 6]
     temp_truecharacter[12] = [1, 1, 1, 1, 1, 2, 3, 4, 5, 5, 6]
     temp_truecharacter[13] = [1, 1, 1, 1, 1, 1, 2, 3, 4, 5, 5, 6]
@@ -27,6 +29,12 @@ class BasicRule(WerewolfRule):
     def initGame(self):
         logging.info("init Basic Rule")
         WerewolfRule.initGame(self)
+        freemasionList = self.game.entry.getPlayersByTruecharacter(Truecharacter.FREEMASONS)
+        deathTime = self.game.deathTime
+        for masion in freemasionList:
+            self.game.writeComment(1, "게임 마스터", "password", "초능력자 입니다. (자동생성)", "123.123.123.123", "텔레파시", masion.character, deathTime)
+        guardList = self.game.entry.getPlayersByTruecharacter(Truecharacter.BODYGUARD)[0]
+        self.game.writeComment(1, "게임 마스터", "password", "사냥꾼 입니다. 빨리 습격해주세요.", "123.123.123.123", "비밀", guardList.character, deathTime)
 
     def nextTurn_2day(self):
         logging.info("2일째로 고고!")

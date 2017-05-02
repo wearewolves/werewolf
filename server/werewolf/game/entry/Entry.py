@@ -127,10 +127,6 @@ class Entry:
         query %= (self.game.game)
         logging.debug(query)
         cursor.execute(query)
-        query2 = "update `zetyx_board_werewolf_entry` set telepathy = '0' where game = '%s'"
-        query2 %= (self.game.game)
-        logging.debug(query2)
-        cursor.execute(query2)
 
     def makePlayer(self, entryList):
         resultList = []

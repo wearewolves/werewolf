@@ -30,6 +30,18 @@ class BasicRule(WerewolfRule):
         logging.info("init Basic Rule")
         WerewolfRule.initGame(self)
 
+        #3. 다른사람의 코멘트
+        """
+        freemasionList = self.game.entry.getPlayersByTruecharacter(Truecharacter.FREEMASONS)
+        for masion in freemasionList:
+            logging.debug('MASION: %s', masion)
+            self.game.writeComment(1, "게임 마스터", "password", "초능력자 입니다. (자동생성)", "123.123.123.123", "텔레파시", masion.character, deathTime)
+        """
+        deathTime = self.game.deathTime
+        guardian = self.game.entry.getPlayersByTruecharacter(Truecharacter.BODYGUARD)[0]
+        logging.debug('GUARD: %s', guardian)
+        self.game.writeComment(1, "게임 마스터", "password", "사냥꾼 입니다. 빨리 습격해주세요.", "123.123.123.123", "비밀", guardian.character, deathTime)
+
     def nextTurn_2day(self):
         logging.info("2일째로 고고!")
 

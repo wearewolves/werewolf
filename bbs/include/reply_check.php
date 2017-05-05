@@ -45,8 +45,8 @@
 
 	$upload_image1=$upload_image2="";
 
-	if(eregi("\.jpg",$file_name1)||eregi("\.gif",$file_name1)||eregi("\.png",$file_name1)) $upload_image1="<img src=$reply_data[file_name1] border=0><br>";
-	if(eregi("\.jpg",$file_name2)||eregi("\.gif",$file_name2)||eregi("\.png",$file_name2)) $upload_image2="<img src=$reply_data[file_name2] border=0><br>";
+	if(eregi("\.jpg",$file_name1)||eregi("\.jpeg",$file_name1)||eregi("\.gif",$file_name1)||eregi("\.png",$file_name1)) $upload_image1="<img src=$reply_data[file_name1] border=0><br>";
+	if(eregi("\.jpg",$file_name2)||eregi("\.jpeg",$file_name2)||eregi("\.gif",$file_name2)||eregi("\.png",$file_name2)) $upload_image2="<img src=$reply_data[file_name2] border=0><br>";
 
 // 카테고리의 이름을 구함
 	if($reply_data[category]&&$setup[use_category]) $category_name=$category_data[$reply_data[category]];

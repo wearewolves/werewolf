@@ -38,7 +38,9 @@ if($data['ismember']){
 		<span class="c_Name "><?=$name?></span>
 		<span class="reg_date"><?=$date?></span>
 	</div>
+	<!-- erase ct style
 	<div class="ct" ></div>
+	-->
 	<div class="message" ><?=$memo?></div>
 </div>
 

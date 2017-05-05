@@ -134,8 +134,8 @@ function list_check(&$data,$view_check=0) {
   
 		$upload_image1=$upload_image2="";
 
-		if(eregi("\.jpg",$file_name1)||eregi("\.gif",$file_name1)||eregi("\.png",$file_name1)) $upload_image1="<img src=$data[file_name1] border=0 name=zb_target_resize style=\"cursor:hand\" onclick=window.open(this.src)><br>";
-		if(eregi("\.jpg",$file_name2)||eregi("\.gif",$file_name2)||eregi("\.png",$file_name2)) $upload_image2="<img src=$data[file_name2] border=0 name=zb_target_resize style=\"cursor:hand\" onclick=window.open(this.src)><br>";
+		if(eregi("\.jpg",$file_name1)||eregi("\.jpeg",$file_name1)||eregi("\.gif",$file_name1)||eregi("\.png",$file_name1)) $upload_image1="<img src=$data[file_name1] border=0 name=zb_target_resize style=\"cursor:hand\" onclick=window.open(this.src)><br>";
+		if(eregi("\.jpg",$file_name2)||eregi("\.jpeg",$file_name2)||eregi("\.gif",$file_name2)||eregi("\.png",$file_name2)) $upload_image2="<img src=$data[file_name2] border=0 name=zb_target_resize style=\"cursor:hand\" onclick=window.open(this.src)><br>";
 	}
 
 	// 카테고리의 이름을 구함

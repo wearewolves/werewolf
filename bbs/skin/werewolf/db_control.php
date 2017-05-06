@@ -18,7 +18,7 @@
 	$gameinfo_add_delay = 
 	"ALTER TABLE `zetyx_board_werewolf_gameinfo` ADD `delay` MEDIUMINT(13) NOT NULL DEFAULT '0';";
 	
-	@mysql_query($gameinfo_add_subrule, $connect) or Error("subRule Ä®·³ Ãß°¡ ½ÇÆÐ", "");
+	//@mysql_query($gameinfo_add_subrule, $connect) or Error("subRule Ä®·³ Ãß°¡ ½ÇÆÐ", "");
 	@mysql_query($gameinfo_add_subrule, $connect) or Error("delay Ä®·³ Ãß°¡ ½ÇÆÐ", "");
 	
 	// Ä®·³ È®ÀÎ

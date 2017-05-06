@@ -676,14 +676,10 @@
 		$startingTime= mktime($hourS ,$minS, 0, $monthS, $dayS, $yearS);
 		
 		// subrule
-		$assaultWerewolf = $_POST["assaultWerewolf"];
-		$randomjobDummy = $_POST["randomjobDummy"];
-		$banTelepathy = $_POST["banTelepathy"];
-		
 		$subRule = 0;
-		if($assaultWerewolf == 1) $subRule += pow(2, $assaultWerewolf - 1);
-		if($randomjobDummy == 2) $subRule += pow(2, $randomjobDummy - 1);
-		if($banTelepathy == 3) $subRule += pow(2, $banTelepathy - 1);
+		if($assaultWerewolf) $subRule += pow(2, $assaultWerewolf - 1);
+		if($randomjobDummy) $subRule += pow(2, $randomjobDummy - 1);
+		if($banTelepathy) $subRule += pow(2, $banTelepathy - 1);
 		
 		@mysql_query(
 		// Add subRule, delay values

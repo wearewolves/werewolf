@@ -123,8 +123,9 @@ A:hover   {color:#BEBEBE;text-decoration:none;}
 
 .notice	.ct,.notice .message{background-color:#121212}
 
+.commentBodyContents .normal .message{background-color:#121212}
+
 .normal	.ct,.normal .message{background-color:#ffffff}
-.normal .message table{background-color:#121212}
 
 .memo .ct,.memo .message{background-color:#DEDB9C}
 

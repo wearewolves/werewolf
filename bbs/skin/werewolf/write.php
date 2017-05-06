@@ -319,7 +319,6 @@ function changeTermOfDay(obj){
 	</td>
 </tr>
 
-
 <tr valign=top>
   <td>
   <img src=<?=$dir?>/t.gif border=0 height=1><br>
@@ -336,6 +335,36 @@ function changeTermOfDay(obj){
 				echo DBselect1("rule"," ","no","name","$DB_rule","class='input' ".$disabled,$gameinfo['rule'],"");?>
 	</td>
 </tr>
+
+<tr valign=top>
+  <td>
+  <img src=<?=$dir?>/t.gif border=0 height=1><br>
+  <table  cellspacing=0 cellpadding=0 width=100% height=100%>
+  <tr><td align=right><font class=red_8>서브룰</font></td>
+  </tr></table>
+  </td>
+	<td>&nbsp;
+		<?
+			$bDisabled = ($mode == "modify") ? true : false;
+
+			if($bDisabled) {
+				
+				$subRule_bin = decbin($gameinfo['subRule']);	
+				if(substr($subRule_bin, -1, 1)) $assaultWerewolfChk = "checked";
+				if(substr($subRule_bin, -2, 1)) $randomjobDummyChk = "checked";
+				if(substr($subRule_bin, -3, 1)) $banTelepathyChk = "checked";
+		?>
+				<input type="checkbox" name="assaultWerewolf" value="1" <?=$assaultWerewolfChk?> disabled> 인랑 습격 가능
+				<input type="checkbox" name="randomjobDummy" value="2" <?=$randomjobDummyChk?> disabled> NPC 직업 랜덤 부여
+				<input type="checkbox" name="banTelepathy" value="3" <?=$banTelepathyChk?> disabled> 텔레파시 사용 불가
+		<? } else { ?>
+				<input type="checkbox" name="assaultWerewolf" value="1"> 인랑 습격 가능
+				<input type="checkbox" name="randomjobDummy" value="2"> NPC 직업 랜덤 부여
+				<input type="checkbox" name="banTelepathy" value="3"> 텔레파시 사용 불가
+		<? } ?>
+	</td>
+</tr>
+
 <tr valign=top>
   <td>
   <img src=<?=$dir?>/t.gif border=0 height=1><br>
@@ -355,12 +384,12 @@ function changeTermOfDay(obj){
 			$bDisabled = ($mode == "modify") ? true : false;
 
 			if($bDisabled) { ?>
-			<input type="hidden" name="characterSet" id="characterSetInput" value="<?=$gameinfo['characterSet']?>">
-			<input type="text" name="characterSetName" class="input" style="width:200px" id="characterSetNameInput" value="<? echo get_characterSetName("$DB_characterSet where no = $gameinfo[characterSet]"); ?>" disabled>
+				<input type="hidden" name="characterSet" id="characterSetInput" value="<?=$gameinfo['characterSet']?>">
+				<input type="text" name="characterSetName" class="input" style="width:200px" id="characterSetNameInput" value="<? echo get_characterSetName("$DB_characterSet where no = $gameinfo[characterSet]"); ?>" disabled>
 		<? } else { ?>
-			<input type="hidden" name="characterSet" id="characterSetInput" value="<? echo init_characterSet(0, "no", "$DB_characterSet"); ?>">
-			<input type="text" name="characterSetName" class="input" style="width:200px" id="characterSetNameInput" value="<? echo init_characterSet(0, "name", "$DB_characterSet"); ?>" disabled>
-			<button type="button" id="RPSetBtn" onclick="openModal()">선택하기</button>
+				<input type="hidden" name="characterSet" id="characterSetInput" value="<? echo init_characterSet(0, "no", "$DB_characterSet"); ?>">
+				<input type="text" name="characterSetName" class="input" style="width:200px" id="characterSetNameInput" value="<? echo init_characterSet(0, "name", "$DB_characterSet"); ?>" disabled>
+				<button type="button" id="RPSetBtn" onclick="openModal()">선택하기</button>
 		<? } ?>
 		
 		<div id="modal-window" class="modal">

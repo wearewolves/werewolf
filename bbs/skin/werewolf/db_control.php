@@ -12,26 +12,34 @@
 	// DB ¿¬°áÁ¤º¸ °¡Á®¿È
 	$connect = dbConn();
 	
-	// Ä®·³ Ãß°¡
-	$gameinfo_add_subrule = 
-	"ALTER TABLE `zetyx_board_werewolf_gameinfo` ADD `subRule` INT(20) NOT NULL DEFAULT '0' AFTER `rule`;";
-	$gameinfo_add_delay = 
-	"ALTER TABLE `zetyx_board_werewolf_gameinfo` ADD `delay` MEDIUMINT(13) NOT NULL DEFAULT '0';";
-	
-	//@mysql_query($gameinfo_add_subrule, $connect) or Error("subRule Ä®·³ Ãß°¡ ½ÇÆÐ", "");
-	@mysql_query($gameinfo_add_delay, $connect) or Error("delay Ä®·³ Ãß°¡ ½ÇÆÐ", "");
-	
 	// Ä®·³ È®ÀÎ
 	$gameinfo_show_subrule = 
-	"SHOW COLUMNS FROM `zetyx_board_werewolf_gameinfo` LIKE `subRule`;";
+	"SHOW COLUMNS FROM `zetyx_board_werewolf_gameinfo`;";
 	$gameinfo_show_delay = 
-	"SHOW COLUMNS FROM `zetyx_board_werewolf_gameinfo` LIKE `delay`;";
+	"SHOW COLUMNS FROM `zetyx_board_werewolf_gameinfo`;";
 	
 	$result1 = mysql_query($gameinfo_show_subrule, $connect);
 	$result2 = mysql_query($gameinfo_show_delay, $connect);
 	
-	if($result1) echo "subRule Ä®·³ Ãß°¡ ¼º°ø<br>";
-	if($result2) echo "delay Ä®·³ Ãß°¡ ¼º°ø<br>";
+	if (!$result1) {
+		echo 'Could not run query: ' . mysql_error();
+		exit;
+	}
+	if (mysql_num_rows($result1) > 0) {
+		while ($row = mysql_fetch_assoc($result1)) {
+			print_r($row);
+		}
+	}
+
+	if (!$result2) {
+		echo 'Could not run query: ' . mysql_error();
+		exit;
+	}
+	if (mysql_num_rows($result2) > 0) {
+		while ($row = mysql_fetch_assoc($result2)) {
+			print_r($row);
+		}
+	}
 	
 	mysql_close($connect);
 ?>

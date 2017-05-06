@@ -350,9 +350,9 @@ function changeTermOfDay(obj){
 			if($bDisabled) {
 				
 				$subRule_bin = decbin($gameinfo['subRule']);
-				$assaultWerewolfChk = (substr($subRule_bin, -1, 1) === "1") ? "checked" : "";
-				$randomjobDummyChk = (substr($subRule_bin, -2, 1) === "1") ? "checked" : "";
-				$banTelepathyChk = (substr($subRule_bin, -3, 1) === "1") ? "checked" : "";
+				if(substr($subRule_bin, -1, 1)) $assaultWerewolfChk = "checked";
+				if(strlen($subRule_bin) >= 2 && substr($subRule_bin, -2, 1)) $randomjobDummyChk = "checked";
+				if(strlen($subRule_bin) >= 3 && substr($subRule_bin, -3, 1)) $banTelepathyChk = "checked";
 				
 				echo $gameinfo['subRule']."<br>";
 				echo $subRule_bin;

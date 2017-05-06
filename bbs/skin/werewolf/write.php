@@ -354,12 +354,12 @@ function changeTermOfDay(obj){
 				if(substr($subRule_bin, -2, 1)) $randomjobDummyChk = "checked";
 				if(substr($subRule_bin, -3, 1)) $banTelepathyChk = "checked";
 		?>
-				<input type="checkbox" name="assaultWerewolf" value="1" <?=$assaultWerewolfChk?> disabled> 인랑 습격 가능
-				<input type="checkbox" name="randomjobDummy" value="2" <?=$randomjobDummyChk?> disabled> NPC 직업 랜덤 부여
+				<input type="checkbox" name="assaultWerewolf" value="1" <?=$assaultWerewolfChk?> disabled> 인랑 습격 가능&nbsp;&nbsp;
+				<input type="checkbox" name="randomjobDummy" value="2" <?=$randomjobDummyChk?> disabled> NPC 직업 랜덤 부여&nbsp;&nbsp;
 				<input type="checkbox" name="banTelepathy" value="3" <?=$banTelepathyChk?> disabled> 텔레파시 사용 불가
 		<? } else { ?>
-				<input type="checkbox" name="assaultWerewolf" value="1"> 인랑 습격 가능
-				<input type="checkbox" name="randomjobDummy" value="2"> NPC 직업 랜덤 부여
+				<input type="checkbox" name="assaultWerewolf" value="1"> 인랑 습격 가능&nbsp;&nbsp;
+				<input type="checkbox" name="randomjobDummy" value="2"> NPC 직업 랜덤 부여&nbsp;&nbsp;
 				<input type="checkbox" name="banTelepathy" value="3"> 텔레파시 사용 불가
 		<? } ?>
 	</td>

@@ -677,9 +677,9 @@
 		
 		// subrule
 		$subRule = 0;
-		if($assaultWerewolf) $subRule += pow(2, $assaultWerewolf - 1);
-		if($randomjobDummy) $subRule += pow(2, $randomjobDummy - 1);
-		if($banTelepathy) $subRule += pow(2, $banTelepathy - 1);
+		if($assaultWerewolf == 1) $subRule += pow(2, $assaultWerewolf - 1);
+		if($randomjobDummy == 2) $subRule += pow(2, $randomjobDummy - 1);
+		if($banTelepathy == 3) $subRule += pow(2, $banTelepathy - 1);
 		
 		@mysql_query(
 		// Add subRule, delay values

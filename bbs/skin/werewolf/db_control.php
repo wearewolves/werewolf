@@ -1,27 +1,27 @@
 <?
-	// register_globalsê°€ offì¼ ë•Œë¥¼ ìœ„í•´ ë³€ìˆ˜ ìž¬ì •ì˜
+	// register_globals°¡ offÀÏ ¶§¸¦ À§ÇØ º¯¼ö ÀçÁ¤ÀÇ
 	@extract($HTTP_GET_VARS); 
 	@extract($HTTP_POST_VARS); 
-	@extract($HTTP_SERVER_VARS); 
+	@extract($HTTP_SERVER_VARS);
 	@extract($HTTP_ENV_VARS);
 
-	// ì œë¡œë³´ë“œ ë¼ì´ë¸ŒëŸ¬ë¦¬ ê°€ì ¸ì˜´
+	// Á¦·Îº¸µå ¶óÀÌºê·¯¸® °¡Á®¿È
 	$_zb_path = realpath("../../")."/";
 	include $_zb_path."lib.php";
 
-	// DB ì—°ê²°ì •ë³´ ê°€ì ¸ì˜´
+	// DB ¿¬°áÁ¤º¸ °¡Á®¿È
 	$connect = dbConn();
 	
-	// ì¹¼ëŸ¼ ì¶”ê°€
+	// Ä®·³ Ãß°¡
 	$gameinfo_add_subrule = 
 	"ALTER TABLE `zetyx_board_werewolf_gameinfo` ADD `subRule` INT(20) NOT NULL DEFAULT '0' AFTER `rule`;";
 	$gameinfo_add_delay = 
 	"ALTER TABLE `zetyx_board_werewolf_gameinfo` ADD `delay` MEDIUMINT(13) NOT NULL DEFAULT '0';";
 	
-	@mysql_query($gameinfo_add_subrule, $connect) or Error("subRule ì¹¼ëŸ¼ ì¶”ê°€ ì‹¤íŒ¨", "");
-	@mysql_query($gameinfo_add_subrule, $connect) or Error("delay ì¹¼ëŸ¼ ì¶”ê°€ ì‹¤íŒ¨", "");
+	@mysql_query($gameinfo_add_subrule, $connect) or Error("subRule Ä®·³ Ãß°¡ ½ÇÆÐ", "");
+	@mysql_query($gameinfo_add_subrule, $connect) or Error("delay Ä®·³ Ãß°¡ ½ÇÆÐ", "");
 	
-	// ì¹¼ëŸ¼ í™•ì¸
+	// Ä®·³ È®ÀÎ
 	$gameinfo_show_subrule = 
 	"SHOW COLUMNS FROM `zetyx_board_werewolf_gameinfo` LIKE `subRule`;";
 	$gameinfo_show_delay = 
@@ -30,8 +30,8 @@
 	$result1 = mysql_query($gameinfo_show_subrule, $connect);
 	$result2 = mysql_query($gameinfo_show_delay, $connect);
 	
-	if($result1) echo "subRule ì¹¼ëŸ¼ ì¶”ê°€ ì„±ê³µ<br>";
-	if($result2) echo "delay ì¹¼ëŸ¼ ì¶”ê°€ ì„±ê³µ<br>";
+	if($result1) echo "subRule Ä®·³ Ãß°¡ ¼º°ø<br>";
+	if($result2) echo "delay Ä®·³ Ãß°¡ ¼º°ø<br>";
 	
 	mysql_close($connect);
 ?>

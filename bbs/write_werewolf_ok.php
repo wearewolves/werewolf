@@ -675,7 +675,9 @@
 		$deathtime= mktime($hour ,$min, 0, $month, $day, $year);			
 		$startingTime= mktime($hourS ,$minS, 0, $monthS, $dayS, $yearS);			
 		@mysql_query(
-		"INSERT INTO `$t_board"."_$id"."_gameinfo` ( `game` , `day` ,`startingTime` , `deathtime` , `players` ,  `result`,`state`,`termOfDay`,`characterSet`,`rule`,`useTimetable`) VALUES ('$no', '0', '$startingTime', '$deathtime',  '1', '' ,'준비중','$termOfDay','$characterSet','$rule','$useTimetable');") or error("7".mysql_error());
+		// Add subRule, delay values
+		//"INSERT INTO `$t_board"."_$id"."_gameinfo` (`game`, `day`, `startingTime`, `deathtime`, `players`, `result`, `state`, `termOfDay`, `characterSet`, `rule`, `useTimetable`) VALUES ('$no', '0', '$startingTime', '$deathtime', '1', '', '준비중', '$termOfDay', '$characterSet', '$rule', '$useTimetable');") or error("7".mysql_error());
+		"INSERT INTO `$t_board"."_$id"."_gameinfo` (`game`, `day`, `startingTime`, `deathtime`, `players`, `result`, `state`, `termOfDay`, `characterSet`, `rule`, `subRule`, `useTimetable`, `delay`) VALUES ('$no', '0', '$startingTime', '$deathtime', '1', '', '준비중', '$termOfDay', '$characterSet', '$rule', '0', '$useTimetable', '0');") or error("7".mysql_error());
 
 
 

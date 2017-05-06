@@ -204,7 +204,6 @@
 		<div class="content">
 			<?
 				$subRule_bin = decbin($gameinfo['subRule']);
-				
 				$subRule_arr = "";
 				$subRule_arrIdx = 0;
 				
@@ -221,7 +220,7 @@
 					$subRule_arrIdx++;
 				}
 				
-				if(empty($subRule_arr)) echo "없음";
+				if($subRule_arrIdx == 0) echo "없음";
 				else {
 					for($i = 0; $i < $subRule_arrIdx; $i++) {
 						echo $subRule_arr[$i];

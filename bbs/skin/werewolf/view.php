@@ -200,6 +200,17 @@
 		</div>
 	</div>
 	<div class="viewState">
+		<div class="state">서브룰</div>
+		<div class="content">
+			<?
+				$subRule_bin = decbin($gameinfo['subRule']);
+				if(substr($subRule_bin, -1, 1)) echo "인랑 습격 가능\n";
+				if(strlen($subRule_bin) >= 2 && substr($subRule_bin, -2, 1)) echo "NPC 직업 랜덤 부여\n";
+				if(strlen($subRule_bin) >= 3 && substr($subRule_bin, -3, 1)) echo "텔레파시 사용 불가\n";
+			?>
+		</div>
+	</div>
+	<div class="viewState">
 		<div class="state">롤 플레잉 세트</div>
 		<div class="content">
 			<?

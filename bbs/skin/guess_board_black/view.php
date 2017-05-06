@@ -32,16 +32,18 @@ if($data['ismember']){
 	$commentWriter =mysql_fetch_array(mysql_query("select * from $member_table where no='".$data['ismember']."'"));
 	if(@file_exists($commentWriter['picture'])) $c_face = "<img width='100' height='100' src='".$commentWriter['picture']."' border=0>";
 }?>
-<div class="comment normal">
-		<div class="c_image"><?=$c_face?></div>
-	<div class="c_info">		
-		<span class="c_Name "><?=$name?></span>
-		<span class="reg_date"><?=$date?></span>
+<div class="commentBodyContents">
+	<div class="comment normal">
+			<div class="c_image"><?=$c_face?></div>
+		<div class="c_info">		
+			<span class="c_Name "><?=$name?></span>
+			<span class="reg_date"><?=$date?></span>
+		</div>
+		<!-- erase ct style
+		<div class="ct" ></div>
+		-->
+		<div class="message" ><?=$memo?></div>
 	</div>
-	<!-- erase ct style
-	<div class="ct" ></div>
-	-->
-	<div class="message" ><?=$memo?></div>
 </div>
 
 

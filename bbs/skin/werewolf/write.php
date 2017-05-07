@@ -355,11 +355,11 @@ function changeTermOfDay(obj){
 		?>
 				<input type="checkbox" name="assaultWerewolf" value="1" <?=$assaultWerewolfChk?> disabled> 인랑 습격 가능&nbsp;&nbsp;
 				<input type="checkbox" name="randomjobDummy" value="2" <?=$randomjobDummyChk?> disabled> NPC 직업 랜덤 부여&nbsp;&nbsp;
-				<input type="checkbox" name="banTelepathy" value="3" <?=$banTelepathyChk?> disabled> 텔레파시 사용 불가
+				<input type="checkbox" name="banTelepathy" value="3" <?=$banTelepathyChk?> disabled> 텔레파시 사용 불가&nbsp;&nbsp;
 		<? } else { ?>
 				<input type="checkbox" name="assaultWerewolf" value="1"> 인랑 습격 가능&nbsp;&nbsp;
 				<input type="checkbox" name="randomjobDummy" value="2"> NPC 직업 랜덤 부여&nbsp;&nbsp;
-				<input type="checkbox" name="banTelepathy" value="3"> 텔레파시 사용 불가
+				<input type="checkbox" name="banTelepathy" value="3"> 텔레파시 사용 불가&nbsp;&nbsp;
 		<? } ?>
 	</td>
 </tr>

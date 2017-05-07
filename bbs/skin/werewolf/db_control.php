@@ -20,7 +20,7 @@
 	PRIMARY KEY  (`no`)
 	) ENGINE=MyISAM  DEFAULT CHARSET=euckr AUTO_INCREMENT=5 ;";
 	
-	@mysql_query($subrule_schema, $connect) or Error("subrule 테이블 생성 실패", "");
+	mysql_query($subrule_schema, $connect);
 	
 	// 데이터 삽입
 	$subrule_data = 

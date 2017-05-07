@@ -203,19 +203,18 @@
 		<div class="state">서브룰</div>
 		<div class="content">
 			<?
-				$subRule_bin = decbin($gameinfo['subRule']);
 				$subRule_arr = "";
 				$subRule_arrIdx = 0;
 				
-				if(substr($subRule_bin, -1, 1)) {
+				if(checkSubRule($gameinfo['subRule'], 1)) {
 					$subRule_arr[$subRule_arrIdx] = "인랑 습격 가능";
 					$subRule_arrIdx++;
 				}
-				if(strlen($subRule_bin) >= 2 && substr($subRule_bin, -2, 1)) {
+				if(checkSubRule($gameinfo['subRule'], 2)) {
 					$subRule_arr[$subRule_arrIdx] = "NPC 직업 랜덤 부여";
 					$subRule_arrIdx++;
 				}
-				if(strlen($subRule_bin) >= 3 && substr($subRule_bin, -3, 1)) {
+				if(checkSubRule($gameinfo['subRule'], 3)) {
 					$subRule_arr[$subRule_arrIdx] = "텔레파시 사용 불가";
 					$subRule_arrIdx++;
 				}

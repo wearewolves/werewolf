@@ -400,11 +400,11 @@ fwrite($file,"\$truecharacter:".$truecharacter." \n");
 		mysql_query($sql)or error(mysql_error());
 	}			
 }
+
 // 2017/05/07 epi : 서브룰 체크 부분
-function checkSubRule($subrule,$checkval)
-{
+function checkSubRule($subrule, $checkval) {
 	$inverseval = $checkval * -1;
-	$subRule_bin = decbin($subrule);
+	$subRule_bin = decbin($subrule); // decimal to binary
 	if(strlen($subRule_bin) >= $checkval && substr($subRule_bin, $inverseval, 1)) return 1;
 	else return 0;
 }

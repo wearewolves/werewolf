@@ -12,7 +12,6 @@ class RULE_NAME:
     CONFIDENCE = 4
 
 class RuleFactory:
-
     #@staticmethod
     def getRule(rule, game):
         if rule == RULE_NAME.BASIC:

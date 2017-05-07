@@ -46,7 +46,7 @@ class Character(object):
         logging.debug(query)
         cursor.execute(query)
 
-    def writeWill(self, comment='', logtype=''):
+    def writeWill(self, comment, logtype):
         deathTime = self.game.deathTime
         self.game.writeComment(1, "게임 마스터", "password", comment, "123.123.123.123", logtype, self.character, deathTime)
         logging.debug("%s write %s (%s)", self, comment, logtype)

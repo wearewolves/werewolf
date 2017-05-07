@@ -1,5 +1,6 @@
 #-*- coding:cp949 -*-
 #from werewolf.game.rule.Rule import *
+import logging
 from werewolf.game.rule.BasicRule import BasicRule
 from werewolf.game.rule.HamsterRule import HamsterRule
 from werewolf.game.rule.ExpensionRule import ExpansionRule
@@ -15,6 +16,15 @@ class SUBRULE_NAME:
     ASSAULT_ONESELF = 1
     NPC_ALLOCATION = 2 #dummy rule
     TELEPATHY_NONE = 3
+
+def getSubrule(rule, game):
+    cursor = game.db.cursor
+    query = "select subRule from `zetyx_board_werewolf_gameinfo` where game = '%s'"
+    query %= game.game
+    logging.debug(query)
+    cursor.execute(query)
+    subrule_dec = cursor.fetchone()
+    return bool(subrule_dec/2**(rule-1)%2)
 
 class RuleFactory:
     #@staticmethod

@@ -9,21 +9,20 @@ from werewolf.game.rule.Rule import WerewolfRule
 from werewolf.game.rule.BasicRule import BasicRule
 
 class HamsterRule(BasicRule):
-    min_players = 11
-    max_players = 17
-
-    # 기본 세팅
-    temp_truecharacter = {}
-    temp_truecharacter[11] =  [1, 1, 1, 1, 2, 3, 4, 5, 5, 6]
-    temp_truecharacter[12] =  [1, 1, 1, 1, 1, 2, 3, 4, 5, 5, 6]
-    temp_truecharacter[13] =  [1, 1, 1, 1, 1, 1, 2, 3, 4, 5, 5, 6]
-    temp_truecharacter[14] =  [1, 1, 1, 1, 1, 1, 1, 2, 3, 4, 5, 5, 6]
-    temp_truecharacter[15] =  [1, 1, 1, 1, 1, 1, 1, 2, 3, 4, 5, 5, 5, 6]
-    temp_truecharacter[16] =  [1, 1, 1, 1, 1, 1, 2, 3, 4, 5, 5, 5, 6, 7, 7]
-    temp_truecharacter[17] =  [1, 1, 1, 1, 1, 1, 2, 3, 4, 5, 5, 5, 6, 7, 7, 8]
 
     def __init__(self, game):
         WerewolfRule.__init__(self, game)
+        self.min_players = 11
+        self.max_players = 17
+
+        # 기본 세팅
+        self.truecharacter_list[11] =  [1, 1, 1, 1, 2, 3, 4, 5, 5, 6]
+        self.truecharacter_list[12] =  [1, 1, 1, 1, 1, 2, 3, 4, 5, 5, 6]
+        self.truecharacter_list[13] =  [1, 1, 1, 1, 1, 1, 2, 3, 4, 5, 5, 6]
+        self.truecharacter_list[14] =  [1, 1, 1, 1, 1, 1, 1, 2, 3, 4, 5, 5, 6]
+        self.truecharacter_list[15] =  [1, 1, 1, 1, 1, 1, 1, 2, 3, 4, 5, 5, 5, 6]
+        self.truecharacter_list[16] =  [1, 1, 1, 1, 1, 1, 2, 3, 4, 5, 5, 5, 6, 7, 7]
+        self.truecharacter_list[17] =  [1, 1, 1, 1, 1, 1, 2, 3, 4, 5, 5, 5, 6, 7, 7, 8]
         logging.debug("Hamstar Rule")
 
     def nextTurn(self):

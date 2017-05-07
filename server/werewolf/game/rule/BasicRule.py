@@ -6,6 +6,7 @@ from werewolf.game.GAME_STATE import GAME_STATE
 from werewolf.game.entry.Role import Truecharacter
 from werewolf.game.entry.Role import Race
 from werewolf.game.rule.Rule import WerewolfRule
+from werewolf.game.rule.RuleFactory import SUBRULE_NAME, getSubrule
 
 class BasicRule(WerewolfRule):
     def __init__(self, game):
@@ -13,14 +14,14 @@ class BasicRule(WerewolfRule):
         # 기본 세팅
         self.min_players = 11
         self.max_players = 16
-        self.temp_truecharacter[11] = [Truecharacter.HUMAN] * 4 + \
+        self.truecharacter_list[11] = [Truecharacter.HUMAN] * 4 + \
                                       [Truecharacter.SEER, Truecharacter.MEDIUM, Truecharacter.BODYGUARD] +\
                                       [Truecharacter.WEREWOLF] * 2 + [Truecharacter.POSSESSED]
-        self.temp_truecharacter[12] = self.temp_truecharacter[11] + [Truecharacter.HUMAN]
-        self.temp_truecharacter[13] = self.temp_truecharacter[12] + [Truecharacter.HUMAN]
-        self.temp_truecharacter[14] = self.temp_truecharacter[13] + [Truecharacter.HUMAN]
-        self.temp_truecharacter[15] = self.temp_truecharacter[14] + [Truecharacter.WEREWOLF]
-        self.temp_truecharacter[16] = [Truecharacter.HUMAN] * 4 + [Truecharacter.FREEMASONS] * 2 +\
+        self.truecharacter_list[12] = self.truecharacter_list[11] + [Truecharacter.HUMAN]
+        self.truecharacter_list[13] = self.truecharacter_list[12] + [Truecharacter.HUMAN]
+        self.truecharacter_list[14] = self.truecharacter_list[13] + [Truecharacter.HUMAN]
+        self.truecharacter_list[15] = self.truecharacter_list[14] + [Truecharacter.WEREWOLF]
+        self.truecharacter_list[16] = [Truecharacter.HUMAN] * 4 + [Truecharacter.FREEMASONS] * 2 +\
                                       [Truecharacter.SEER, Truecharacter.MEDIUM, Truecharacter.BODYGUARD] +\
                                       [Truecharacter.WEREWOLF] * 3 + [Truecharacter.POSSESSED]
         logging.debug("basicRule")

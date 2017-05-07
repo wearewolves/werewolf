@@ -8,23 +8,22 @@ from werewolf.game.entry.Role import Race
 from werewolf.game.rule.Rule import WerewolfRule
 
 class ExpansionRule(WerewolfRule):
-    min_players = 9
-    max_players = 17
-
-    # 기본 세팅
-    temp_truecharacter = {}
-    temp_truecharacter[9] = [2, 3, 6, 11, 15, 4, 5, 9]
-    temp_truecharacter[10] = [1, 2, 3, 6, 11, 12, 4, 5, 9]
-    temp_truecharacter[11] = [1, 1, 15, 2, 3, 6, 13, 4, 5, 10]
-    temp_truecharacter[12] = [1, 1, 1, 1, 2, 3, 6, 13, 4, 5, 10]
-    temp_truecharacter[13] = [1, 15, 2, 3, 6, 11, 12, 13, 4, 5, 9, 10]
-    temp_truecharacter[14] = [1, 1, 1, 2, 3, 6, 11, 12, 13, 4, 5, 9, 10]
-    temp_truecharacter[15] = [1, 1, 15, 2, 3, 6, 11, 12, 13, 4, 5, 5, 9, 10]
-    temp_truecharacter[16] = [1, 1, 1, 1, 2, 3, 6, 11, 12, 13, 4, 5, 5, 9, 10]
-    temp_truecharacter[17] = [1, 1, 1, 1, 2, 3, 6, 11, 12, 13, 4, 5, 5, 9, 10, 14]
 
     def __init__(self, game):
         WerewolfRule.__init__(self, game)
+        self.min_players = 9
+        self.max_players = 17
+
+        # 기본 세팅
+        self.truecharacter_list[9] = [2, 3, 6, 11, 15, 4, 5, 9]
+        self.truecharacter_list[10] = [1, 2, 3, 6, 11, 12, 4, 5, 9]
+        self.truecharacter_list[11] = [1, 1, 15, 2, 3, 6, 13, 4, 5, 10]
+        self.truecharacter_list[12] = [1, 1, 1, 1, 2, 3, 6, 13, 4, 5, 10]
+        self.truecharacter_list[13] = [1, 15, 2, 3, 6, 11, 12, 13, 4, 5, 9, 10]
+        self.truecharacter_list[14] = [1, 1, 1, 2, 3, 6, 11, 12, 13, 4, 5, 9, 10]
+        self.truecharacter_list[15] = [1, 1, 15, 2, 3, 6, 11, 12, 13, 4, 5, 5, 9, 10]
+        self.truecharacter_list[16] = [1, 1, 1, 1, 2, 3, 6, 11, 12, 13, 4, 5, 5, 9, 10]
+        self.truecharacter_list[17] = [1, 1, 1, 1, 2, 3, 6, 11, 12, 13, 4, 5, 5, 9, 10, 14]
         logging.debug("expansion rule")
 
     def initGame(self):

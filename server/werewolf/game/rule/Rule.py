@@ -10,7 +10,7 @@ class Rule(object):
     def __init__(self, game):
         self.min_players = None
         self.max_players = None
-        self.temp_truecharacter = {}
+        self.truecharacter_list = {}
         self.game = game
 
 class WerewolfRule(Rule):
@@ -44,7 +44,7 @@ class WerewolfRule(Rule):
         novicePlayers = self.game.entry.getNovicePlayers()
         #print "novicePlayers",novicePlayers
 
-        truecharacterList = copy.copy(self.temp_truecharacter[len(novicePlayers) + len(expertPlayers) + 1])
+        truecharacterList = copy.copy(self.truecharacter_list[len(novicePlayers) + len(expertPlayers) + 1])
         logging.info("players: %d", len(novicePlayers) + len(expertPlayers) + 1)
 
         #마을 사람 배치

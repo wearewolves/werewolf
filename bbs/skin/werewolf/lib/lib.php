@@ -400,6 +400,17 @@ fwrite($file,"\$truecharacter:".$truecharacter." \n");
 		mysql_query($sql)or error(mysql_error());
 	}			
 }
+// 2017/05/07 epi : 서브룰 체크 부분
+function checkSubRule($DB,$no,$val)
+{
+	$DB_gameinfo = $DB."_gameinfo";
+	$gameinfo=mysql_fetch_array(mysql_query("select * from $DB_gameinfo where game=$no"));
+	
+	$inverseval = $val * -1;
+	$subRule_bin = decbin($gameinfo['subRule']);
+	if(strlen($subRule_bin) >= $val && substr($subRule_bin, inverseval, 1)) return 1;
+	else return 0;
+}
 
 $DB_gameinfo=$t_board."_".$id."_gameinfo";
 $DB_entry=$t_board."_".$id."_entry";

@@ -14,12 +14,16 @@ class BasicRule(WerewolfRule):
         # 기본 세팅
         self.min_players = 11
         self.max_players = 16
-        self.temp_truecharacter[11] = [1, 1, 1, 1, 2, 3, 4, 5, 5, 6]
-        self.temp_truecharacter[12] = [1, 1, 1, 1, 1, 2, 3, 4, 5, 5, 6]
-        self.temp_truecharacter[13] = [1, 1, 1, 1, 1, 1, 2, 3, 4, 5, 5, 6]
-        self.temp_truecharacter[14] = [1, 1, 1, 1, 1, 1, 1, 2, 3, 4, 5, 5, 6]
-        self.temp_truecharacter[15] = [1, 1, 1, 1, 1, 1, 1, 2, 3, 4, 5, 5, 5, 6]
-        self.temp_truecharacter[16] = [1, 1, 1, 1, 1, 1, 2, 3, 4, 5, 5, 5, 6, 7, 7]
+        self.temp_truecharacter[11] = [Truecharacter.HUMAN] * 4 + \
+                                      [Truecharacter.SEER, Truecharacter.MEDIUM, Truecharacter.BODYGUARD] +\
+                                      [Truecharacter.WEREWOLF] * 2 + [Truecharacter.POSSESSED]
+        self.temp_truecharacter[12] = self.temp_truecharacter[11] + [Truecharacter.HUMAN]
+        self.temp_truecharacter[13] = self.temp_truecharacter[12] + [Truecharacter.HUMAN]
+        self.temp_truecharacter[14] = self.temp_truecharacter[13] + [Truecharacter.HUMAN]
+        self.temp_truecharacter[15] = self.temp_truecharacter[14] + [Truecharacter.WEREWOLF]
+        self.temp_truecharacter[16] = [Truecharacter.HUMAN] * 4 + [Truecharacter.FREEMASONS] * 2 +\
+                                      [Truecharacter.SEER, Truecharacter.MEDIUM, Truecharacter.BODYGUARD] +\
+                                      [Truecharacter.WEREWOLF] * 3 + [Truecharacter.POSSESSED]
         logging.debug("basicRule")
 
     def initGame(self):

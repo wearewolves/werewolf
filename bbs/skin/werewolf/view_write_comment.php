@@ -338,19 +338,22 @@ document.onload = initCommentType();
 //echo "\$orderCondition:".$orderCondition."<br>";
 
 
-
+			$assault_list =  DB_array("no","character","$DB_entry where game = $no and alive='생존' and truecharacter $orderCondition");	
+			$assault_list = array_values($assault_list);
+			
 			// 2017/05/07 epi : 랑습룰 체크 부분
 			$CheckAssaultWerewolf = checkSubRule($gameinfo['subRule'], 1);
-			if ( $CheckAssaultWerewolf ) $assault_list =  DB_array("no","character","$DB_entry where game = $no and alive='생존'");	
-			else	$assault_list =  DB_array("no","character","$DB_entry where game = $no and alive='생존' and truecharacter $orderCondition");	
-			$assault_list = array_values($assault_list);
 //echo "\$assault_list:";print_r($assault_list);echo "<br><br>";
 ?>
 			
 			
 			
 			
-			<?=DBselect("injured","","character",$character_list,"$DB_entry where game=$no and alive = '생존'","font-size:9pt;width=100","",$assault_list);?>
+			<?if($CheckAssaultWerewolf){?>
+				<?=DBselect("injured","","character",$character_list,"$DB_entry where game=$no and alive = '생존'","font-size:9pt;width=100","","");?>
+			<? }else {?>
+				<?=DBselect("injured","","character",$character_list,"$DB_entry where game=$no and alive = '생존'","font-size:9pt;width=100","",$assault_list);?>
+			<?}?>
 			 을 살해 대상으로 지목한다.
 		</td>
 		<td align=center width=70><font class=red_8><input type=submit rows=5 <?if($browser){?>class=red_submit_s<?}?> value='지목하기' accesskey="f"></td>

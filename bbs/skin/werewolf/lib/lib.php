@@ -401,14 +401,11 @@ fwrite($file,"\$truecharacter:".$truecharacter." \n");
 	}			
 }
 // 2017/05/07 epi : 서브룰 체크 부분
-function checkSubRule($DB,$no,$val)
+function checkSubRule($subrule,$checkval)
 {
-	$DB_gameinfo = $DB."_gameinfo";
-	$gameinfo=mysql_fetch_array(mysql_query("select * from $DB_gameinfo where game=$no"));
-	
-	$inverseval = $val * -1;
-	$subRule_bin = decbin($gameinfo['subRule']);
-	if(strlen($subRule_bin) >= $val && substr($subRule_bin, $inverseval, 1)) return 1;
+	$inverseval = $checkval * -1;
+	$subRule_bin = decbin($subrule);
+	if(strlen($subRule_bin) >= $checkval && substr($subRule_bin, $inverseval, 1)) return 1;
 	else return 0;
 }
 

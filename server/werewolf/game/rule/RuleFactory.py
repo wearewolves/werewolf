@@ -23,7 +23,4 @@ class RuleFactory:
             return ExpansionRule(game)
         elif rule == RULE_NAME.CONFIDENCE:
             return ConfidenceRule(game)
-
     getRule = staticmethod(getRule)
-
-                

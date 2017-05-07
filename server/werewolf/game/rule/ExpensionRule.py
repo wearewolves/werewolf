@@ -10,20 +10,29 @@ from werewolf.game.rule.Rule import WerewolfRule
 class ExpansionRule(WerewolfRule):
 
     def __init__(self, game):
-        WerewolfRule.__init__(self, game)
+        super(ExpansionRule, self).__init__(game)
         self.min_players = 9
         self.max_players = 17
-
-        # 기본 세팅
-        self.truecharacter_list[9] = [2, 3, 6, 11, 15, 4, 5, 9]
-        self.truecharacter_list[10] = [1, 2, 3, 6, 11, 12, 4, 5, 9]
-        self.truecharacter_list[11] = [1, 1, 15, 2, 3, 6, 13, 4, 5, 10]
-        self.truecharacter_list[12] = [1, 1, 1, 1, 2, 3, 6, 13, 4, 5, 10]
-        self.truecharacter_list[13] = [1, 15, 2, 3, 6, 11, 12, 13, 4, 5, 9, 10]
-        self.truecharacter_list[14] = [1, 1, 1, 2, 3, 6, 11, 12, 13, 4, 5, 9, 10]
-        self.truecharacter_list[15] = [1, 1, 15, 2, 3, 6, 11, 12, 13, 4, 5, 5, 9, 10]
-        self.truecharacter_list[16] = [1, 1, 1, 1, 2, 3, 6, 11, 12, 13, 4, 5, 5, 9, 10]
-        self.truecharacter_list[17] = [1, 1, 1, 1, 2, 3, 6, 11, 12, 13, 4, 5, 5, 9, 10, 14]
+        self.truecharacter_list[9] = [Truecharacter.SEER, Truecharacter.MEDIUM, Truecharacter.BODYGUARD] +\
+                                     [Truecharacter.REVENGER, Truecharacter.SHERIFF] +\
+                                     [Truecharacter.WEREWOLF, Truecharacter.LONELYWEREWOLF, Truecharacter.POSSESSED]
+        self.truecharacter_list[10] = copy.copy(self.truecharacter_list[9]) + [Truecharacter.NOBILITY, Truecharacter.HUMAN]
+        self.truecharacter_list[10].remove(Truecharacter.SHERIFF)
+        self.truecharacter_list[11] = [Truecharacter.SEER, Truecharacter.MEDIUM, Truecharacter.BODYGUARD] +\
+                                      [Truecharacter.SHERIFF, Truecharacter.CHIEF] + [Truecharacter.HUMAN]*2 +\
+                                      [Truecharacter.WEREWOLF, Truecharacter.READERWEREWOLF, Truecharacter.POSSESSED]
+        self.truecharacter_list[12] = copy.copy(self.truecharacter_list[11]) + [Truecharacter.HUMAN]*2
+        self.truecharacter_list[12].remove(Truecharacter.SHERIFF)
+        self.truecharacter_list[13] = [Truecharacter.SEER, Truecharacter.MEDIUM, Truecharacter.BODYGUARD] +\
+                                      [Truecharacter.REVENGER, Truecharacter.SHERIFF, Truecharacter.REVENGER] +\
+                                      [Truecharacter.WEREWOLF, Truecharacter.READERWEREWOLF, Truecharacter.LONELYWEREWOLF] +\
+                                      [Truecharacter.POSSESSED, Truecharacter.NOBILITY] + [Truecharacter.HUMAN]
+        self.truecharacter_list[14] = copy.copy(self.truecharacter_list[13]) + [Truecharacter.HUMAN]*2
+        self.truecharacter_list[14].remove(Truecharacter.SHERIFF)
+        self.truecharacter_list[15] = copy.copy(self.truecharacter_list[13]) + [Truecharacter.WEREWOLF] + [Truecharacter.HUMAN]
+        self.truecharacter_list[16] = copy.copy(self.truecharacter_list[15]) + [Truecharacter.HUMAN]*2
+        self.truecharacter_list[16].remove(Truecharacter.SHERIFF)
+        self.truecharacter_list[17] = copy.copy(self.truecharacter_list[16]) + [Truecharacter.DIABLO]
         logging.debug("expansion rule")
 
     def initGame(self):

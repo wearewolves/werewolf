@@ -339,7 +339,10 @@ document.onload = initCommentType();
 
 
 
-			$assault_list =  DB_array("no","character","$DB_entry where game = $no and alive='생존' and truecharacter $orderCondition");	
+			// 2017/05/07 epi : 랑습룰 체크 부분
+			$CheckAssaultWerewolf = checkSubRule($DB_entry, $no, 1);
+			if ( $CheckAssaultWerewolf ) $assault_list =  DB_array("no","character","$DB_entry where game = $no and alive='생존'");	
+			else	$assault_list =  DB_array("no","character","$DB_entry where game = $no and alive='생존' and truecharacter $orderCondition");	
 			$assault_list = array_values($assault_list);
 //echo "\$assault_list:";print_r($assault_list);echo "<br><br>";
 ?>

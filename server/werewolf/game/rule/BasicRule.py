@@ -8,20 +8,18 @@ from werewolf.game.entry.Role import Race
 from werewolf.game.rule.Rule import WerewolfRule
 
 class BasicRule(WerewolfRule):
-    min_players = 11
-    max_players = 16
-
-    # 기본 세팅
-    temp_truecharacter = {}
-    temp_truecharacter[11] = [1, 1, 1, 1, 2, 3, 4, 5, 5, 6]
-    temp_truecharacter[12] = [1, 1, 1, 1, 1, 2, 3, 4, 5, 5, 6]
-    temp_truecharacter[13] = [1, 1, 1, 1, 1, 1, 2, 3, 4, 5, 5, 6]
-    temp_truecharacter[14] = [1, 1, 1, 1, 1, 1, 1, 2, 3, 4, 5, 5, 6]
-    temp_truecharacter[15] = [1, 1, 1, 1, 1, 1, 1, 2, 3, 4, 5, 5, 5, 6]
-    temp_truecharacter[16] = [1, 1, 1, 1, 1, 1, 2, 3, 4, 5, 5, 5, 6, 7, 7]
 
     def __init__(self, game):
-        WerewolfRule.__init__(self, game)
+        super(BasicRule, self).__init__(self, game)
+        # 기본 세팅
+        self.min_players = 11
+        self.max_players = 16
+        self.temp_truecharacter[11] = [1, 1, 1, 1, 2, 3, 4, 5, 5, 6]
+        self.temp_truecharacter[12] = [1, 1, 1, 1, 1, 2, 3, 4, 5, 5, 6]
+        self.temp_truecharacter[13] = [1, 1, 1, 1, 1, 1, 2, 3, 4, 5, 5, 6]
+        self.temp_truecharacter[14] = [1, 1, 1, 1, 1, 1, 1, 2, 3, 4, 5, 5, 6]
+        self.temp_truecharacter[15] = [1, 1, 1, 1, 1, 1, 1, 2, 3, 4, 5, 5, 5, 6]
+        self.temp_truecharacter[16] = [1, 1, 1, 1, 1, 1, 2, 3, 4, 5, 5, 5, 6, 7, 7]
         logging.debug("basicRule")
 
     def initGame(self):

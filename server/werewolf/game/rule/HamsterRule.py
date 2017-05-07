@@ -16,6 +16,14 @@ class HamsterRule(BasicRule):
         self.truecharacter_list[17] = self.truecharacter_list[16] + [Truecharacter.WEREHAMSTER]
         logging.debug("Hamstar Rule")
 
+    def getTruecharacterList(self, number):
+        if number < 17:
+            return super(HamsterRule, self).getTruecharacterList(number)
+        elif number == 17:
+            rolelist = super(HamsterRule, self).getTruecharacterList(16)
+            rolelist += [Truecharacter.WEREHAMSTER]
+            return rolelist
+
     def nextTurn(self):
         if self.game.state == GAME_STATE.READY:
             if self.min_players <= self.game.players and self.game.players <= self.max_players:

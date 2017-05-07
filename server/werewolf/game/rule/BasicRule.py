@@ -25,6 +25,22 @@ class BasicRule(WerewolfRule):
                                       [Truecharacter.SEER, Truecharacter.MEDIUM, Truecharacter.BODYGUARD] +\
                                       [Truecharacter.WEREWOLF] * 3 + [Truecharacter.POSSESSED]
         logging.debug("basicRule")
+    
+    def getTruecharacterList(self, number):
+        if number == 16:
+            rolelist = [Truecharacter.HUMAN] * 4 + [Truecharacter.FREEMASONS] * 2 +\
+                       [Truecharacter.SEER, Truecharacter.MEDIUM, Truecharacter.BODYGUARD] +\
+                       [Truecharacter.WEREWOLF] * 3 + [Truecharacter.POSSESSED]
+            return rolelist
+        rolelist = [Truecharacter.HUMAN] * 4 + \
+                   [Truecharacter.SEER, Truecharacter.MEDIUM, Truecharacter.BODYGUARD] +\
+                   [Truecharacter.WEREWOLF] * 2 + [Truecharacter.POSSESSED]
+        if number < 15:
+            rolelist += [Truecharacter.HUMAN] * (number-11)
+            return rolelist
+        if number == 15:
+            rolelist += [Truecharacter.HUMAN] * 3 + [Truecharacter.WEREWOLF]
+            return rolelist
 
     def initGame(self):
         logging.info("init Basic Rule")

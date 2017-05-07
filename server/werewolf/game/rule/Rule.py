@@ -16,6 +16,9 @@ class Rule(object):
 class WerewolfRule(Rule):
     def __init__(self, game):
         super(WerewolfRule, self).__init__(game)
+    
+    def getTruecharacterList(self, number):
+        raise NotImplementedError
 
     def nextTurn(self):
         if self.game.state == GAME_STATE.READY:
@@ -44,7 +47,7 @@ class WerewolfRule(Rule):
         novicePlayers = self.game.entry.getNovicePlayers()
         #print "novicePlayers",novicePlayers
 
-        truecharacterList = copy.copy(self.truecharacter_list[len(novicePlayers) + len(expertPlayers) + 1])
+        truecharacterList = self.getTruecharacterList(len(novicePlayers) + len(expertPlayers) + 1)
         logging.info("players: %d", len(novicePlayers) + len(expertPlayers) + 1)
 
         #마을 사람 배치

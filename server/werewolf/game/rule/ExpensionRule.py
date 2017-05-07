@@ -13,27 +13,52 @@ class ExpansionRule(WerewolfRule):
         super(ExpansionRule, self).__init__(game)
         self.min_players = 9
         self.max_players = 17
-        self.truecharacter_list[9] = [Truecharacter.SEER, Truecharacter.MEDIUM, Truecharacter.BODYGUARD] +\
-                                     [Truecharacter.REVENGER, Truecharacter.SHERIFF] +\
-                                     [Truecharacter.WEREWOLF, Truecharacter.LONELYWEREWOLF, Truecharacter.POSSESSED]
-        self.truecharacter_list[10] = copy.copy(self.truecharacter_list[9]) + [Truecharacter.NOBILITY, Truecharacter.HUMAN]
-        self.truecharacter_list[10].remove(Truecharacter.SHERIFF)
-        self.truecharacter_list[11] = [Truecharacter.SEER, Truecharacter.MEDIUM, Truecharacter.BODYGUARD] +\
-                                      [Truecharacter.SHERIFF, Truecharacter.CHIEF] + [Truecharacter.HUMAN]*2 +\
-                                      [Truecharacter.WEREWOLF, Truecharacter.READERWEREWOLF, Truecharacter.POSSESSED]
-        self.truecharacter_list[12] = copy.copy(self.truecharacter_list[11]) + [Truecharacter.HUMAN]*2
-        self.truecharacter_list[12].remove(Truecharacter.SHERIFF)
-        self.truecharacter_list[13] = [Truecharacter.SEER, Truecharacter.MEDIUM, Truecharacter.BODYGUARD] +\
-                                      [Truecharacter.REVENGER, Truecharacter.SHERIFF, Truecharacter.REVENGER] +\
-                                      [Truecharacter.WEREWOLF, Truecharacter.READERWEREWOLF, Truecharacter.LONELYWEREWOLF] +\
-                                      [Truecharacter.POSSESSED, Truecharacter.NOBILITY] + [Truecharacter.HUMAN]
-        self.truecharacter_list[14] = copy.copy(self.truecharacter_list[13]) + [Truecharacter.HUMAN]*2
-        self.truecharacter_list[14].remove(Truecharacter.SHERIFF)
-        self.truecharacter_list[15] = copy.copy(self.truecharacter_list[13]) + [Truecharacter.WEREWOLF] + [Truecharacter.HUMAN]
-        self.truecharacter_list[16] = copy.copy(self.truecharacter_list[15]) + [Truecharacter.HUMAN]*2
-        self.truecharacter_list[16].remove(Truecharacter.SHERIFF)
-        self.truecharacter_list[17] = copy.copy(self.truecharacter_list[16]) + [Truecharacter.DIABLO]
         logging.debug("expansion rule")
+
+    def getTruecharacterList(self, number):
+        if number < 11:
+            rolelist = [Truecharacter.SEER, Truecharacter.MEDIUM, Truecharacter.BODYGUARD] +\
+                        [Truecharacter.REVENGER, Truecharacter.SHERIFF] +\
+                        [Truecharacter.WEREWOLF, Truecharacter.LONELYWEREWOLF, Truecharacter.POSSESSED]
+            if rolelist == 9:
+                return rolelist
+            elif rolelist == 10:
+                rolelist += [Truecharacter.NOBILITY, Truecharacter.HUMAN]
+                rolelist.remove(Truecharacter.SHERIFF)
+                return rolelist
+        elif number < 12:
+            rolelist = [Truecharacter.SEER, Truecharacter.MEDIUM, Truecharacter.BODYGUARD] +\
+                        [Truecharacter.SHERIFF, Truecharacter.CHIEF] + [Truecharacter.HUMAN]*2 +\
+                        [Truecharacter.WEREWOLF, Truecharacter.READERWEREWOLF, Truecharacter.POSSESSED]
+            if rolelist == 11:
+                return rolelist
+            else:
+                rolelist += [Truecharacter.HUMAN]*2
+                rolelist.remove(Truecharacter.SHERIFF)
+                return rolelist
+        else:
+            rolelist = [Truecharacter.SEER, Truecharacter.MEDIUM, Truecharacter.BODYGUARD] +\
+                        [Truecharacter.REVENGER, Truecharacter.SHERIFF, Truecharacter.REVENGER] +\
+                        [Truecharacter.WEREWOLF, Truecharacter.READERWEREWOLF, Truecharacter.LONELYWEREWOLF] +\
+                        [Truecharacter.POSSESSED, Truecharacter.NOBILITY] + [Truecharacter.HUMAN]
+            if number == 13:
+                return rolelist
+            elif number == 14:
+                rolelist += [Truecharacter.HUMAN]*2
+                rolelist.remove(Truecharacter.SHERIFF)
+                return rolelist
+            else:
+                rulelist += [Truecharacter.WEREWOLF] + [Truecharacter.HUMAN]
+                if number == 15:
+                    return rolelist
+                else:
+                    rolelist += [Truecharacter.HUMAN]*2
+                    rolelist.remove(Truecharacter.SHERIFF)
+                    if number == 16:
+                        return rolelist
+                    elif number == 17:
+                        rolelist += [Truecharacter.DIABLO]
+                        return rolelist      
 
     def initGame(self):
         logging.info("init expansion rule")

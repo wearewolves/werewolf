@@ -408,7 +408,7 @@ function checkSubRule($DB,$no,$val)
 	
 	$inverseval = $val * -1;
 	$subRule_bin = decbin($gameinfo['subRule']);
-	if(strlen($subRule_bin) >= $val && substr($subRule_bin, inverseval, 1)) return 1;
+	if(strlen($subRule_bin) >= $val && substr($subRule_bin, $inverseval, 1)) return 1;
 	else return 0;
 }
 

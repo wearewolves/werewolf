@@ -6,7 +6,7 @@ from werewolf.game.GAME_STATE import GAME_STATE
 from werewolf.game.entry.Role import Truecharacter
 from werewolf.game.entry.Role import Race
 
-class Rule:
+class Rule(object):
     def __init__(self, game):
         self.min_players = None
         self.max_players = None

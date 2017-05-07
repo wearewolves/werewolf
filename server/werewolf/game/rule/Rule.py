@@ -40,8 +40,6 @@ class WerewolfRule(Rule):
         raise NotImplementedError
             
     def initGame(self):
-
-
         #플레이해본 사람
         expertPlayers = self.game.entry.getExpertPlayers()
         #print "expertPlayers",expertPlayers

@@ -29,6 +29,18 @@ class Truecharacter:
     SEER_ODD = 16
     WEREWOLF_CON = 17
 
+    #@staticmethod
+    def get(i):
+        for key, value in Truecharacter.__dict__.iteritems():
+            if i == value:
+                result = str()
+                words = key.split('_')
+                for word in words:
+                    result += word.capitalize()
+                return result
+        return None
+    get = staticmethod(get)
+
 class Human(Player):
     pass
 

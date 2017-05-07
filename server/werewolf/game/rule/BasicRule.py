@@ -10,7 +10,7 @@ from werewolf.game.rule.Rule import WerewolfRule
 class BasicRule(WerewolfRule):
 
     def __init__(self, game):
-        super(BasicRule, self).__init__(self, game)
+        super(BasicRule, self).__init__(game)
         # 기본 세팅
         self.min_players = 11
         self.max_players = 16

@@ -8,7 +8,6 @@ from werewolf.game.entry.Role import Race
 from werewolf.game.rule.Rule import WerewolfRule
 
 class BasicRule(WerewolfRule):
-
     def __init__(self, game):
         super(BasicRule, self).__init__(game)
         # 기본 세팅

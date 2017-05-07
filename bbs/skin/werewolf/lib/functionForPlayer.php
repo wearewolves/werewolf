@@ -145,8 +145,8 @@
 //echo "select * from $DB_entry where game=$no and character = $injured<br>";
 		$injured = mysql_fetch_array(mysql_query("select * from $DB_entry where game=$no and `character`= $injured "));
 
-		// 2017/05/07 epi : 랑습룰이 아닐 때, 살인 대상자까지 같이 체크한다.
-		if(!in_array($injured[character],$assault_list )&&!$CheckAssaultWerewolf){
+		// 2017/05/07 epi : 살인 대상자가 맞는지 확인, 혹은 랑습룰인지 확인
+		if(!in_array($injured[character],$assault_list )|| $CheckAssaultWerewolf){
 			 @mysql_query(	"INSERT INTO `$DB_deathNote` ( `game` , `day` , `werewolf` ,  `injured`) VALUES ('$no', '$gameinfo[day]','$entry[character]' , '$injured[character]' );") or die("살해 계획을 입력 중에 오류가 발생했습니다.");
 
 			//코맨트 입력

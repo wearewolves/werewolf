@@ -5,11 +5,11 @@ import logging
 from werewolf.database.DATABASE     import DATABASE
 from werewolf.game.entry.Character  import *
 
-class Race:
+class Race(object):
     HUMAN = 0
     WEREWOLF = 1
 
-class Truecharacter:
+class Truecharacter(object):
     PLAYER = 0
     HUMAN = 1
     SEER = 2

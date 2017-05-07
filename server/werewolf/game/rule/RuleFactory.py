@@ -11,6 +11,11 @@ class RULE_NAME:
     EXPANSION = 3
     CONFIDENCE = 4
 
+class SUBRULE_NAME:
+    ASSAULT_ONESELF = 1
+    NPC_ALLOCATION = 2 #dummy rule
+    TELEPATHY_NONE = 3
+
 class RuleFactory:
     #@staticmethod
     def getRule(rule, game):

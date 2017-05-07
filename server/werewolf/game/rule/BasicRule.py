@@ -45,6 +45,14 @@ class BasicRule(WerewolfRule):
     def initGame(self):
         logging.info("init Basic Rule")
         super(BasicRule, self).initGame()
+        self.deleteTelepathy()
+
+    def writePlayerWill(self):
+        tele = getSubrule(SUBRULE_NAME.TELEPATHY_NONE, self.game)
+        if tele:
+            mason_list = self.game.entry.getPlayersByTruecharacter(Truecharacter.FREEMASONS)
+            for mason in mason_list:
+                mason.writeWill("저는 초능력자입니다. (자동 생성된 로그입니다.)", "텔레")
 
     def nextTurn_2day(self):
         logging.info("2일째로 고고!")
@@ -63,6 +71,7 @@ class BasicRule(WerewolfRule):
 
         #코맨츠 초기화
         self.game.entry.initComment()
+        self.deleteTelepathy()
 
         #3. 게임 정보 업데이트
         self.game.setGameState("state", "게임중")
@@ -85,6 +94,7 @@ class BasicRule(WerewolfRule):
 
         #코맨츠 초기화
         self.game.entry.initComment()
+        self.deleteTelepathy()
 
         #습격!
         assaultVictim = self.decideByWerewolf()
@@ -144,3 +154,12 @@ class BasicRule(WerewolfRule):
         else:
             logging.debug("습격 성공: %s", assaultVictim)
             assaultVictim.toDeath("습격")
+    
+    def deleteTelepathy(self):
+        tele = getSubrule(SUBRULE_NAME.NPC_ALLOCATION, self.game)
+        if tele:
+            cursor = self.game.db.cursor
+            query = """update `zetyx_board_werewolf_entry` set telepathy ='0' where game = '%s'"""
+            query %= (self.game.game)
+            logging.debug(query)
+            cursor.execute(query)

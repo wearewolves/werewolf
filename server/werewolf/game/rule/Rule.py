@@ -96,6 +96,7 @@ class WerewolfRule(Rule):
         victim.setTruecharacter(npc_role)
         logging.debug("victim: %s", victim)
         victim.writeWill()
+        self.writePlayerWill()
 
         #3. 게임 정보 업데이트
         self.game.setGameState("state", GAME_STATE.PLAYING)
@@ -110,6 +111,9 @@ class WerewolfRule(Rule):
 
         #4. 코멘트 초기화
         self.game.entry.initComment()
+    
+    def writePlayerWill(self):
+        pass
 
     def decideByMajority(self):
         cursor = self.game.db.cursor

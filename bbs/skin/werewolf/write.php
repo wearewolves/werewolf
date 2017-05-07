@@ -349,10 +349,9 @@ function changeTermOfDay(obj){
 
 			if($bDisabled) {
 				
-				$subRule_bin = decbin($gameinfo['subRule']);
-				if(substr($subRule_bin, -1, 1)) $assaultWerewolfChk = "checked";
-				if(strlen($subRule_bin) >= 2 && substr($subRule_bin, -2, 1)) $randomjobDummyChk = "checked";
-				if(strlen($subRule_bin) >= 3 && substr($subRule_bin, -3, 1)) $banTelepathyChk = "checked";
+				if(checkSubRule($gameinfo['subRule'], 1)) $assaultWerewolfChk = "checked";
+				if(checkSubRule($gameinfo['subRule'], 2)) $randomjobDummyChk = "checked";
+				if(checkSubRule($gameinfo['subRule'], 3)) $banTelepathyChk = "checked";
 		?>
 				<input type="checkbox" name="assaultWerewolf" value="1" <?=$assaultWerewolfChk?> disabled> 인랑 습격 가능&nbsp;&nbsp;
 				<input type="checkbox" name="randomjobDummy" value="2" <?=$randomjobDummyChk?> disabled> NPC 직업 랜덤 부여&nbsp;&nbsp;

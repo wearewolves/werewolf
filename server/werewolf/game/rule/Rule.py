@@ -7,14 +7,16 @@ from werewolf.game.entry.Role import Truecharacter
 from werewolf.game.entry.Role import Race
 
 class Rule:
-    min_players = None
-    max_players = None
-    temp_truecharacter = {}
-
     def __init__(self, game):
+        self.min_players = None
+        self.max_players = None
+        self.temp_truecharacter = {}
         self.game = game
 
 class WerewolfRule(Rule):
+    def __init__(self, game):
+        Rule.__init__(self, game)
+
     def nextTurn(self):
         if self.game.state == GAME_STATE.READY:
             if self.min_players <= self.game.players and self.game.players <= self.max_players:

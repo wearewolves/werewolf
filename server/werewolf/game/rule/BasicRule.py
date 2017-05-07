@@ -28,7 +28,7 @@ class BasicRule(WerewolfRule):
 
     def initGame(self):
         logging.info("init Basic Rule")
-        WerewolfRule.initGame(self)
+        super(BasicRule, self).initGame()
 
     def nextTurn_2day(self):
         logging.info("2일째로 고고!")

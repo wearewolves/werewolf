@@ -48,7 +48,7 @@ class ExpansionRule(WerewolfRule):
                 rolelist.remove(Truecharacter.SHERIFF)
                 return rolelist
             else:
-                rulelist += [Truecharacter.WEREWOLF] + [Truecharacter.HUMAN]
+                rolelist += [Truecharacter.WEREWOLF] + [Truecharacter.HUMAN]
                 if number == 15:
                     return rolelist
                 else:

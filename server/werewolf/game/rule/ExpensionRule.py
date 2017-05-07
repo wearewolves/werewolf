@@ -58,7 +58,7 @@ class ExpansionRule(WerewolfRule):
                         return rolelist
                     elif number == 17:
                         rolelist += [Truecharacter.DIABLO]
-                        return rolelist      
+                        return rolelist
 
     def initGame(self):
         logging.info("init expansion rule")

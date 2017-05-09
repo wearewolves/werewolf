@@ -19,10 +19,10 @@ class BasicRule(WerewolfRule):
         if number == 9:
             rolelist = [Truecharacter.SEER, Truecharacter.MEDIUM, Truecharacter.BODYGUARD]+\
                        [Truecharacter.FREEMASONS] * 2 + [Truecharacter.POSSESSED] + [Truecharacter.HUMAN] * 3
-        if number == 10:
+        elif number == 10:
             rolelist = [Truecharacter.SEER, Truecharacter.MEDIUM, Truecharacter.BODYGUARD]+\
                        [Truecharacter.FREEMASONS] * 2 + [Truecharacter.POSSESSED] + [Truecharacter.HUMAN] * 4
-        if number == 16:
+        elif number == 16:
             rolelist = [Truecharacter.HUMAN] * 5 + [Truecharacter.FREEMASONS] * 2 +\
                        [Truecharacter.SEER, Truecharacter.MEDIUM, Truecharacter.BODYGUARD] +\
                        [Truecharacter.WEREWOLF] * 3 + [Truecharacter.POSSESSED]

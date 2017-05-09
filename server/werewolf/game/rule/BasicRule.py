@@ -17,7 +17,7 @@ class BasicRule(WerewolfRule):
 
     def getTruecharacterList(self, number):
         if number == 16:
-            rolelist = [Truecharacter.HUMAN] * 5 + [Truecharacter.FREEMASONS] * 2 +\
+            rolelist = [Truecharacter.HUMAN] * 7 + [Truecharacter.FREEMASONS] * 2 +\
                        [Truecharacter.SEER, Truecharacter.MEDIUM, Truecharacter.BODYGUARD] +\
                        [Truecharacter.WEREWOLF] * 3 + [Truecharacter.POSSESSED]
         else:

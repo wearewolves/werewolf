@@ -8,7 +8,6 @@ from werewolf.game.entry.Role import Race
 from werewolf.game.rule.Rule import WerewolfRule
 
 class ExpansionRule(WerewolfRule):
-
     def __init__(self, game):
         super(ExpansionRule, self).__init__(game)
         self.min_players = 9

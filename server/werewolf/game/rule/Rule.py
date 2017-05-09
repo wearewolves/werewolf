@@ -17,7 +17,7 @@ class Rule(object):
 class WerewolfRule(Rule):
     def __init__(self, game):
         super(WerewolfRule, self).__init__(game)
-    
+
     def getTruecharacterList(self, number):
         raise NotImplementedError
 
@@ -38,7 +38,7 @@ class WerewolfRule(Rule):
         raise NotImplementedError
     def nextTurn_Xday(self):
         raise NotImplementedError
-            
+
     def initGame(self):
         #플레이해본 사람
         expertPlayers = self.game.entry.getExpertPlayers()
@@ -47,7 +47,7 @@ class WerewolfRule(Rule):
         #초보자
         novicePlayers = self.game.entry.getNovicePlayers()
         #print "novicePlayers",novicePlayers
-        
+
         #분배할 직업 리스트
         truecharacterList = self.getTruecharacterList(len(novicePlayers) + len(expertPlayers) + 1)
         logging.info("players: %d", len(novicePlayers) + len(expertPlayers) + 1)
@@ -111,7 +111,7 @@ class WerewolfRule(Rule):
 
         #4. 코멘트 초기화
         self.game.entry.initComment()
-    
+
     def writePlayerWill(self):
         pass
 

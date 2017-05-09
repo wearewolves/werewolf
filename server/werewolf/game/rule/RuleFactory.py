@@ -19,8 +19,8 @@ def getSubrule(rule, game):
     query %= game.game
     logging.debug(query)
     cursor.execute(query)
-    subrule_dec = cursor.fetchone()
-    logging.debug('subrule fetch: %s (type: %s)', subrule_dec, type(subrule_dec))
+    subrule_dec = cursor.fetchone()['subRule']
+    logging.debug('subrule index: %d', subrule_dec)
     return bool(subrule_dec/2**(rule-1)%2)
 
 class RuleFactory:

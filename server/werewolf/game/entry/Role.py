@@ -5,11 +5,11 @@ import logging
 from werewolf.database.DATABASE     import DATABASE
 from werewolf.game.entry.Character  import *
 
-class Race:
+class Race(object):
     HUMAN = 0
     WEREWOLF = 1
 
-class Truecharacter:
+class Truecharacter(object):
     PLAYER = 0
     HUMAN = 1
     SEER = 2
@@ -28,6 +28,32 @@ class Truecharacter:
     SHERIFF = 15
     SEER_ODD = 16
     WEREWOLF_CON = 17
+
+    # 더미룰을 위한 더미 리스트 (인랑리스트, 기타리스트)
+    # 더미 인랑 리스트: 랑습룰시 더미 가능
+    LIST_WEREWOLF = [WEREWOLF, LONELYWEREWOLF, READERWEREWOLF, WEREWOLF_CON]
+    # 더미 기타 리스트: 어떠한 경우에도 더미가 되지 않음
+    LIST_OTHERS = [WEREHAMSTER, DIABLO]
+
+    #@staticmethod
+    def get(i):
+        for key, value in Truecharacter.__dict__.iteritems():
+            if i == value:
+                result = str()
+                words = key.split('_')
+                for word in words:
+                    result += word.capitalize()
+                return result
+        return None
+    get = staticmethod(get)
+
+def getNondummyList(game):
+    from werewolf.game.rule.RuleFactory import SUBRULE_NAME, getSubrule
+    wolfAssault = getSubrule(SUBRULE_NAME.ASSAULT_ONESELF, game)
+    if wolfAssault:
+        return Truecharacter.LIST_OTHERS
+    else:
+        return Truecharacter.LIST_OTHERS + Truecharacter.LIST_WEREWOLF
 
 class Human(Player):
     pass

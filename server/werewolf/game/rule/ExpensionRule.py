@@ -8,28 +8,66 @@ from werewolf.game.entry.Role import Race
 from werewolf.game.rule.Rule import WerewolfRule
 
 class ExpansionRule(WerewolfRule):
-    min_players = 9
-    max_players = 17
-
-    # 기본 세팅
-    temp_truecharacter = {}
-    temp_truecharacter[9] = [2, 3, 6, 11, 15, 4, 5, 9]
-    temp_truecharacter[10] = [1, 2, 3, 6, 11, 12, 4, 5, 9]
-    temp_truecharacter[11] = [1, 1, 15, 2, 3, 6, 13, 4, 5, 10]
-    temp_truecharacter[12] = [1, 1, 1, 1, 2, 3, 6, 13, 4, 5, 10]
-    temp_truecharacter[13] = [1, 15, 2, 3, 6, 11, 12, 13, 4, 5, 9, 10]
-    temp_truecharacter[14] = [1, 1, 1, 2, 3, 6, 11, 12, 13, 4, 5, 9, 10]
-    temp_truecharacter[15] = [1, 1, 15, 2, 3, 6, 11, 12, 13, 4, 5, 5, 9, 10]
-    temp_truecharacter[16] = [1, 1, 1, 1, 2, 3, 6, 11, 12, 13, 4, 5, 5, 9, 10]
-    temp_truecharacter[17] = [1, 1, 1, 1, 2, 3, 6, 11, 12, 13, 4, 5, 5, 9, 10, 14]
 
     def __init__(self, game):
-        WerewolfRule.__init__(self, game)
+        super(ExpansionRule, self).__init__(game)
+        self.min_players = 9
+        self.max_players = 17
         logging.debug("expansion rule")
+
+    def getTruecharacterList(self, number):
+        if number < 11:
+            rolelist = [Truecharacter.SEER, Truecharacter.MEDIUM, Truecharacter.BODYGUARD] +\
+                        [Truecharacter.REVENGER, Truecharacter.SHERIFF] +\
+                        [Truecharacter.WEREWOLF, Truecharacter.LONELYWEREWOLF, Truecharacter.POSSESSED]
+            if rolelist == 9:
+                return rolelist
+            elif rolelist == 10:
+                rolelist += [Truecharacter.NOBILITY, Truecharacter.HUMAN]
+                rolelist.remove(Truecharacter.SHERIFF)
+                return rolelist
+        elif number < 12:
+            rolelist = [Truecharacter.SEER, Truecharacter.MEDIUM, Truecharacter.BODYGUARD] +\
+                        [Truecharacter.SHERIFF, Truecharacter.CHIEF] + [Truecharacter.HUMAN]*2 +\
+                        [Truecharacter.WEREWOLF, Truecharacter.READERWEREWOLF, Truecharacter.POSSESSED]
+            if rolelist == 11:
+                return rolelist
+            else:
+                rolelist += [Truecharacter.HUMAN]*2
+                rolelist.remove(Truecharacter.SHERIFF)
+                return rolelist
+        else:
+            rolelist = [Truecharacter.SEER, Truecharacter.MEDIUM, Truecharacter.BODYGUARD] +\
+                        [Truecharacter.REVENGER, Truecharacter.SHERIFF, Truecharacter.REVENGER] +\
+                        [Truecharacter.WEREWOLF, Truecharacter.READERWEREWOLF, Truecharacter.LONELYWEREWOLF] +\
+                        [Truecharacter.POSSESSED, Truecharacter.NOBILITY] + [Truecharacter.HUMAN]
+            if number == 13:
+                return rolelist
+            elif number == 14:
+                rolelist += [Truecharacter.HUMAN]*2
+                rolelist.remove(Truecharacter.SHERIFF)
+                return rolelist
+            else:
+                rolelist += [Truecharacter.WEREWOLF] + [Truecharacter.HUMAN]
+                if number == 15:
+                    return rolelist
+                else:
+                    rolelist += [Truecharacter.HUMAN]*2
+                    rolelist.remove(Truecharacter.SHERIFF)
+                    if number == 16:
+                        return rolelist
+                    elif number == 17:
+                        rolelist += [Truecharacter.DIABLO]
+                        return rolelist
 
     def initGame(self):
         logging.info("init expansion rule")
         WerewolfRule.initGame(self)
+    
+    def writePlayerWill(self):
+        lone_wolf = self.game.entry.getPlayersByTruecharacter(Truecharacter.LONELYWEREWOLF)
+        if lone_wolf is not None:
+            lone_wolf[0].writeWill("저는 외로운 늑대입니다. (자동 생성된 로그입니다.", "비밀")
 
     def nextTurn_2day(self):
         logging.info("2일째로 고고!")

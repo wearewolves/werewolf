@@ -49,7 +49,7 @@ class Entry:
 
     def getMaxNoCommentCount(self):
         if self.game.termOfDay <= 1800:
-            maxSuddenCount = 3
+            maxSuddenCount = 1000
         else:
             maxSuddenCount = 1
         return maxSuddenCount
@@ -136,43 +136,11 @@ class Entry:
                 resultList.append(Npc(self.game, entry))
             else:
                 logging.debug("make PC %s", entry['player'])
-                if entry['truecharacter'] == 0:
-                    resultList.append(Player(self.game, entry))
-                elif entry['truecharacter'] == Truecharacter.HUMAN:
-                    resultList.append(Human(self.game, entry))
-                elif entry['truecharacter'] == Truecharacter.SEER:
-                    resultList.append(Seer(self.game, entry))
-                elif entry['truecharacter'] == Truecharacter.MEDIUM:
-                    resultList.append(Medium(self.game, entry))
-                elif entry['truecharacter'] == Truecharacter.POSSESSED:
-                    resultList.append(Possessed(self.game, entry))
-                elif entry['truecharacter'] == Truecharacter.WEREWOLF:
-                    resultList.append(Werewolf(self.game, entry))
-                elif entry['truecharacter'] == Truecharacter.BODYGUARD:
-                    resultList.append(Bodyguard(self.game, entry))
-                elif entry['truecharacter'] == Truecharacter.FREEMASONS:
-                    resultList.append(Freemasons(self.game, entry))
-                elif entry['truecharacter'] == Truecharacter.WEREHAMSTER:
-                    resultList.append(Werehamster(self.game, entry))
-                elif entry['truecharacter'] == Truecharacter.LONELYWEREWOLF:
-                    resultList.append(Loneywerewolf(self.game, entry))
-                elif entry['truecharacter'] == Truecharacter.READERWEREWOLF:
-                    resultList.append(Readerwerewolf(self.game, entry))
-                elif entry['truecharacter'] == Truecharacter.REVENGER:
-                    resultList.append(Revenger(self.game, entry))
-                elif entry['truecharacter'] == Truecharacter.NOBILITY:
-                    resultList.append(Nobility(self.game, entry))
-                elif entry['truecharacter'] == Truecharacter.CHIEF:
-                    resultList.append(Chief(self.game, entry))
-                elif entry['truecharacter'] == Truecharacter.DIABLO:
-                    resultList.append(Diablo(self.game, entry))
-                elif entry['truecharacter'] == Truecharacter.SHERIFF:
-                    resultList.append(Sheriff(self.game, entry))
-                elif entry['truecharacter'] == Truecharacter.SEER_ODD:
-                    resultList.append(SeerOdd(self.game, entry))
-                elif entry['truecharacter'] == Truecharacter.WEREWOLF_CON:
-                    resultList.append(WerewolfCon(self.game, entry))
-	return resultList
+                role_name = Truecharacter.get(entry['truecharacter'])
+                if role_name is None:
+                    raise KeyError('No proper role numter. Please check: %d'%entry['Truecharacter'])
+                eval('resultList.append(%s(self.game, entry))'%role_name)
+        return resultList
 
     """
     def getAllEntry(self):

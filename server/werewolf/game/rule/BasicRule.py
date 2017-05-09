@@ -18,24 +18,25 @@ class BasicRule(WerewolfRule):
     def getTruecharacterList(self, number):
         if number == 9:
             rolelist = [Truecharacter.SEER, Truecharacter.MEDIUM, Truecharacter.BODYGUARD]+\
-                       [Truecharacter.FREEMASONS] * 2 + [Truecharacter.POSSESSED] + [Truecharacter.HUMAN] * 2
+                       [Truecharacter.FREEMASONS] * 2 + [Truecharacter.POSSESSED] + [Truecharacter.HUMAN] * 3
         if number == 10:
             rolelist = [Truecharacter.SEER, Truecharacter.MEDIUM, Truecharacter.BODYGUARD]+\
-                       [Truecharacter.FREEMASONS] * 2 + [Truecharacter.POSSESSED] + [Truecharacter.HUMAN] * 3
+                       [Truecharacter.FREEMASONS] * 2 + [Truecharacter.POSSESSED] + [Truecharacter.HUMAN] * 4
         if number == 16:
-            rolelist = [Truecharacter.HUMAN] * 4 + [Truecharacter.FREEMASONS] * 2 +\
+            rolelist = [Truecharacter.HUMAN] * 5 + [Truecharacter.FREEMASONS] * 2 +\
                        [Truecharacter.SEER, Truecharacter.MEDIUM, Truecharacter.BODYGUARD] +\
                        [Truecharacter.WEREWOLF] * 3 + [Truecharacter.POSSESSED]
-            return rolelist
-        rolelist = [Truecharacter.HUMAN] * 4 + \
-                   [Truecharacter.SEER, Truecharacter.MEDIUM, Truecharacter.BODYGUARD] +\
-                   [Truecharacter.WEREWOLF] * 2 + [Truecharacter.POSSESSED]
-        if number < 15:
-            rolelist += [Truecharacter.HUMAN] * (number-11)
-            return rolelist
-        if number == 15:
-            rolelist += [Truecharacter.HUMAN] * 3 + [Truecharacter.WEREWOLF]
-            return rolelist
+        else:
+            rolelist = [Truecharacter.HUMAN] * 5 + \
+                    [Truecharacter.SEER, Truecharacter.MEDIUM, Truecharacter.BODYGUARD] +\
+                    [Truecharacter.WEREWOLF] * 2 + [Truecharacter.POSSESSED]
+            if number < 15:
+                rolelist += [Truecharacter.HUMAN] * (number-11)
+            if number == 15:
+                rolelist += [Truecharacter.HUMAN] * 3 + [Truecharacter.WEREWOLF]
+        logging.debug('The basic rolelist for %d: %s', number, rolelist)
+        assert len(rolelist) == number, "The number of role is not proper"
+        return rolelist
 
     def initGame(self):
         logging.info("init Basic Rule")

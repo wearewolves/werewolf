@@ -18,47 +18,38 @@ class ExpansionRule(WerewolfRule):
     def getTruecharacterList(self, number):
         if number < 11:
             rolelist = [Truecharacter.SEER, Truecharacter.MEDIUM, Truecharacter.BODYGUARD] +\
-                        [Truecharacter.REVENGER, Truecharacter.SHERIFF] +\
+                        [Truecharacter.REVENGER, Truecharacter.SHERIFF, Truecharacter.HUMAN] +\
                         [Truecharacter.WEREWOLF, Truecharacter.LONELYWEREWOLF, Truecharacter.POSSESSED]
-            if rolelist == 9:
-                return rolelist
-            elif rolelist == 10:
+            if rolelist == 10:
                 rolelist += [Truecharacter.NOBILITY, Truecharacter.HUMAN]
                 rolelist.remove(Truecharacter.SHERIFF)
-                return rolelist
         elif number < 12:
             rolelist = [Truecharacter.SEER, Truecharacter.MEDIUM, Truecharacter.BODYGUARD] +\
-                        [Truecharacter.SHERIFF, Truecharacter.CHIEF] + [Truecharacter.HUMAN]*2 +\
+                        [Truecharacter.SHERIFF, Truecharacter.CHIEF] + [Truecharacter.HUMAN]*3 +\
                         [Truecharacter.WEREWOLF, Truecharacter.READERWEREWOLF, Truecharacter.POSSESSED]
-            if rolelist == 11:
-                return rolelist
-            else:
+            if number == 12:
                 rolelist += [Truecharacter.HUMAN]*2
                 rolelist.remove(Truecharacter.SHERIFF)
-                return rolelist
         else:
             rolelist = [Truecharacter.SEER, Truecharacter.MEDIUM, Truecharacter.BODYGUARD] +\
                         [Truecharacter.REVENGER, Truecharacter.SHERIFF, Truecharacter.REVENGER] +\
                         [Truecharacter.WEREWOLF, Truecharacter.READERWEREWOLF, Truecharacter.LONELYWEREWOLF] +\
-                        [Truecharacter.POSSESSED, Truecharacter.NOBILITY] + [Truecharacter.HUMAN]
+                        [Truecharacter.POSSESSED, Truecharacter.NOBILITY] + [Truecharacter.HUMAN]*2
             if number == 13:
-                return rolelist
+                pass
             elif number == 14:
                 rolelist += [Truecharacter.HUMAN]*2
                 rolelist.remove(Truecharacter.SHERIFF)
-                return rolelist
             else:
                 rolelist += [Truecharacter.WEREWOLF] + [Truecharacter.HUMAN]
-                if number == 15:
-                    return rolelist
-                else:
+                if number > 15:
                     rolelist += [Truecharacter.HUMAN]*2
                     rolelist.remove(Truecharacter.SHERIFF)
-                    if number == 16:
-                        return rolelist
-                    elif number == 17:
+                    if number == 17:
                         rolelist += [Truecharacter.DIABLO]
-                        return rolelist
+        logging.debug('The basic rolelist for %d: %s', number, rolelist)
+        assert len(rolelist) == number, "The number of role is not proper"
+        return rolelist
 
     def initGame(self):
         logging.info("init expansion rule")

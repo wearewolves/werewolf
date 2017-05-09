@@ -6,7 +6,6 @@ from werewolf.game.GAME_STATE import GAME_STATE
 from werewolf.game.entry.Role import Truecharacter
 from werewolf.game.entry.Role import Race
 from werewolf.game.rule.Rule import WerewolfRule
-from werewolf.game.rule.RuleFactory import SUBRULE_NAME, getSubrule
 
 class BasicRule(WerewolfRule):
     def __init__(self, game):
@@ -25,7 +24,7 @@ class BasicRule(WerewolfRule):
                                       [Truecharacter.SEER, Truecharacter.MEDIUM, Truecharacter.BODYGUARD] +\
                                       [Truecharacter.WEREWOLF] * 3 + [Truecharacter.POSSESSED]
         logging.debug("basicRule")
-    
+
     def getTruecharacterList(self, number):
         if number == 16:
             rolelist = [Truecharacter.HUMAN] * 4 + [Truecharacter.FREEMASONS] * 2 +\
@@ -48,6 +47,7 @@ class BasicRule(WerewolfRule):
         self.deleteTelepathy()
 
     def writePlayerWill(self):
+        from werewolf.game.rule.RuleFactory import SUBRULE_NAME, getSubrule
         tele = getSubrule(SUBRULE_NAME.TELEPATHY_NONE, self.game)
         if tele:
             mason_list = self.game.entry.getPlayersByTruecharacter(Truecharacter.FREEMASONS)
@@ -101,18 +101,18 @@ class BasicRule(WerewolfRule):
         if assaultVictim:
             logging.info("assaultVictim: %s", assaultVictim)
             self.assaultByWerewolf(assaultVictim, victim)
-            
+
         #종료 조건 확인
         #사람!
         humanRace = self.game.entry.getEntryByRace(Race.HUMAN)
         #for human in humanRace :
         #    print human
-        
+
         #습격자!
         werewolfRace = self.game.entry.getEntryByRace(Race.WEREWOLF)
         #for werewolf in werewolfRace :
         #    print werewolf
-        
+
         if (len(humanRace) <= len(werewolfRace)) or not humanRace:
             logging.info("인랑 승리")
             self.game.setGameState("win", "1")
@@ -154,8 +154,9 @@ class BasicRule(WerewolfRule):
         else:
             logging.debug("습격 성공: %s", assaultVictim)
             assaultVictim.toDeath("습격")
-    
+
     def deleteTelepathy(self):
+        from werewolf.game.rule.RuleFactory import SUBRULE_NAME, getSubrule
         tele = getSubrule(SUBRULE_NAME.NPC_ALLOCATION, self.game)
         if tele:
             cursor = self.game.db.cursor

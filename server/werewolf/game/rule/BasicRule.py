@@ -13,16 +13,6 @@ class BasicRule(WerewolfRule):
         # 기본 세팅
         self.min_players = 11
         self.max_players = 16
-        self.truecharacter_list[11] = [Truecharacter.HUMAN] * 4 + \
-                                      [Truecharacter.SEER, Truecharacter.MEDIUM, Truecharacter.BODYGUARD] +\
-                                      [Truecharacter.WEREWOLF] * 2 + [Truecharacter.POSSESSED]
-        self.truecharacter_list[12] = copy.copy(self.truecharacter_list[11]) + [Truecharacter.HUMAN]
-        self.truecharacter_list[13] = copy.copy(self.truecharacter_list[12]) + [Truecharacter.HUMAN]
-        self.truecharacter_list[14] = copy.copy(self.truecharacter_list[13]) + [Truecharacter.HUMAN]
-        self.truecharacter_list[15] = copy.copy(self.truecharacter_list[14]) + [Truecharacter.WEREWOLF]
-        self.truecharacter_list[16] = [Truecharacter.HUMAN] * 4 + [Truecharacter.FREEMASONS] * 2 +\
-                                      [Truecharacter.SEER, Truecharacter.MEDIUM, Truecharacter.BODYGUARD] +\
-                                      [Truecharacter.WEREWOLF] * 3 + [Truecharacter.POSSESSED]
         logging.debug("basicRule")
 
     def getTruecharacterList(self, number):

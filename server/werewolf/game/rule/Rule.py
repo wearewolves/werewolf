@@ -5,16 +5,22 @@ import copy
 from werewolf.game.GAME_STATE import GAME_STATE
 from werewolf.game.entry.Role import Truecharacter
 from werewolf.game.entry.Role import Race
+from werewolf.game.rule.RuleFactory import SUBRULE_NAME, getSubrule
 
-class Rule:
-    min_players = None
-    max_players = None
-    temp_truecharacter = {}
-
+class Rule(object):
     def __init__(self, game):
+        self.min_players = None
+        self.max_players = None
+        self.truecharacter_list = {}
         self.game = game
 
 class WerewolfRule(Rule):
+    def __init__(self, game):
+        super(WerewolfRule, self).__init__(game)
+
+    def getTruecharacterList(self, number):
+        raise NotImplementedError
+
     def nextTurn(self):
         if self.game.state == GAME_STATE.READY:
             if self.min_players <= self.game.players and self.game.players <= self.max_players:
@@ -32,7 +38,7 @@ class WerewolfRule(Rule):
         raise NotImplementedError
     def nextTurn_Xday(self):
         raise NotImplementedError
-            
+
     def initGame(self):
         #플레이해본 사람
         expertPlayers = self.game.entry.getExpertPlayers()
@@ -42,8 +48,23 @@ class WerewolfRule(Rule):
         novicePlayers = self.game.entry.getNovicePlayers()
         #print "novicePlayers",novicePlayers
 
-        truecharacterList = copy.copy(self.temp_truecharacter[len(novicePlayers) + len(expertPlayers) + 1])
+        #분배할 직업 리스트
+        truecharacterList = self.getTruecharacterList(len(novicePlayers) + len(expertPlayers) + 1)
         logging.info("players: %d", len(novicePlayers) + len(expertPlayers) + 1)
+
+        # 더미룰 직업 분배
+        dummyrule = getSubrule(SUBRULE_NAME.NPC_ALLOCATION, self.game)
+        if dummyrule:
+            from werewolf.game.entry.Role import getNondummyList
+            nondummy_list = getNondummyList(self.game)
+            truecharacterList += [Truecharacter.HUMAN]
+            while True:
+                npc_role = random.choice(truecharacterList)
+                if not npc_role in nondummy_list:
+                    truecharacterList.remove(npc_role)
+                    break
+        else:
+            npc_role = Truecharacter.HUMAN
 
         #마을 사람 배치
         random.shuffle(novicePlayers)
@@ -72,9 +93,10 @@ class WerewolfRule(Rule):
 
         #2. 희생자의 코멘트
         victim = self.game.entry.getVictim()
-        victim.setTruecharacter(Truecharacter.HUMAN)
+        victim.setTruecharacter(npc_role)
         logging.debug("victim: %s", victim)
         victim.writeWill()
+        self.writePlayerWill()
 
         #3. 게임 정보 업데이트
         self.game.setGameState("state", GAME_STATE.PLAYING)
@@ -89,6 +111,9 @@ class WerewolfRule(Rule):
 
         #4. 코멘트 초기화
         self.game.entry.initComment()
+
+    def writePlayerWill(self):
+        pass
 
     def decideByMajority(self):
         cursor = self.game.db.cursor

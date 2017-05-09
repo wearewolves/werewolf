@@ -18,11 +18,13 @@ class HamsterRule(BasicRule):
 
     def getTruecharacterList(self, number):
         if number < 17:
-            return super(HamsterRule, self).getTruecharacterList(number)
+            rolelist = super(HamsterRule, self).getTruecharacterList(number)
         elif number == 17:
             rolelist = super(HamsterRule, self).getTruecharacterList(16)
             rolelist += [Truecharacter.WEREHAMSTER]
-            return rolelist
+        logging.debug('The basic rolelist for %d: %s', number, rolelist)
+        assert len(rolelist) == number, "The number of role is not proper"
+        return rolelist
 
     def nextTurn(self):
         if self.game.state == GAME_STATE.READY:

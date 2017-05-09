@@ -54,17 +54,22 @@ class WerewolfRule(Rule):
 
         # 더미룰 직업 분배
         dummyrule = getSubrule(SUBRULE_NAME.NPC_ALLOCATION, self.game)
+        if not dummyrule:
+            try:
+                truecharacterList.remove(Truecharacter.HUMAN)
+                npc_role = Truecharacter.HUMAN
+            except ValueError:
+                logging.debug("NO HUMAN exists -> autometically dummyrule turnon")
+                dummyrule = True
         if dummyrule:
             from werewolf.game.entry.Role import getNondummyList
             nondummy_list = getNondummyList(self.game)
-            truecharacterList += [Truecharacter.HUMAN]
             while True:
                 npc_role = random.choice(truecharacterList)
                 if not npc_role in nondummy_list:
                     truecharacterList.remove(npc_role)
                     break
-        else:
-            npc_role = Truecharacter.HUMAN
+
 
         #마을 사람 배치
         random.shuffle(novicePlayers)

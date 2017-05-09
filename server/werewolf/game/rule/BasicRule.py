@@ -11,11 +11,17 @@ class BasicRule(WerewolfRule):
     def __init__(self, game):
         super(BasicRule, self).__init__(game)
         # 기본 세팅
-        self.min_players = 11
+        self.min_players = 9
         self.max_players = 16
         logging.debug("basicRule")
 
     def getTruecharacterList(self, number):
+        if number == 9:
+            rolelist = [Truecharacter.SEER, Truecharacter.MEDIUM, Truecharacter.BODYGUARD]+\
+                       [Truecharacter.FREEMASONS] * 2 + [Truecharacter.POSSESSED] + [Truecharacter.HUMAN] * 2
+        if number == 10:
+            rolelist = [Truecharacter.SEER, Truecharacter.MEDIUM, Truecharacter.BODYGUARD]+\
+                       [Truecharacter.FREEMASONS] * 2 + [Truecharacter.POSSESSED] + [Truecharacter.HUMAN] * 3
         if number == 16:
             rolelist = [Truecharacter.HUMAN] * 4 + [Truecharacter.FREEMASONS] * 2 +\
                        [Truecharacter.SEER, Truecharacter.MEDIUM, Truecharacter.BODYGUARD] +\

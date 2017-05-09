@@ -20,7 +20,7 @@ class Truecharacter(object):
     FREEMASONS = 7
     WEREHAMSTER = 8
     LONELYWEREWOLF = 9
-    READERWEREWOLF = 10
+    LEADERWEREWOLF = 10
     REVENGER = 11
     NOBILITY = 12
     CHIEF = 13
@@ -122,7 +122,7 @@ class Freemasons(Player):
 class Werehamster(Player):
     pass
 
-class Loneywerewolf(Werewolf):
+class Lonelywerewolf(Werewolf):
     def hasAssault(self):
         cursor = self.game.db.cursor
         query = "select * from `zetyx_board_werewolf_deathnotehalf` where game = '%s' and day ='%s' and `werewolf`='%s'"
@@ -146,7 +146,7 @@ class Loneywerewolf(Werewolf):
         logging.debug(query)
         cursor.execute(query)
 
-class Readerwerewolf(Werewolf):
+class Leaderwerewolf(Werewolf):
     pass
 
 class Revenger(Player):

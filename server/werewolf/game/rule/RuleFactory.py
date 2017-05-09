@@ -1,10 +1,6 @@
 #-*- coding:cp949 -*-
 #from werewolf.game.rule.Rule import *
 import logging
-from werewolf.game.rule.BasicRule import BasicRule
-from werewolf.game.rule.HamsterRule import HamsterRule
-from werewolf.game.rule.ExpensionRule import ExpansionRule
-from werewolf.game.rule.ConfidenceRule import ConfidenceRule
 
 class RULE_NAME:
     BASIC = 1
@@ -30,11 +26,15 @@ class RuleFactory:
     #@staticmethod
     def getRule(rule, game):
         if rule == RULE_NAME.BASIC:
+            from werewolf.game.rule.BasicRule import BasicRule
             return BasicRule(game)
         elif rule == RULE_NAME.HAMSTER:
+            from werewolf.game.rule.HamsterRule import HamsterRule
             return HamsterRule(game)
         elif rule == RULE_NAME.EXPANSION:
+            from werewolf.game.rule.ExpensionRule import ExpansionRule
             return ExpansionRule(game)
         elif rule == RULE_NAME.CONFIDENCE:
+            from werewolf.game.rule.ConfidenceRule import ConfidenceRule
             return ConfidenceRule(game)
     getRule = staticmethod(getRule)

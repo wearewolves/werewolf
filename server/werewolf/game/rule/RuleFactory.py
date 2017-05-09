@@ -20,6 +20,7 @@ def getSubrule(rule, game):
     logging.debug(query)
     cursor.execute(query)
     subrule_dec = cursor.fetchone()
+    logging.debug('subrule fetch: %s (type: %s)', subrule_dec, type(subrule_dec))
     return bool(subrule_dec/2**(rule-1)%2)
 
 class RuleFactory:

@@ -359,7 +359,7 @@ function changeTermOfDay(obj){
 					<input type="checkbox" name="subruleOption[]" value="<?=$subrule_temp[no]?>"> <?=$subrule_temp[name]?>&nbsp;&nbsp;
 				<? }
 				
-				if($subrule_temp[no] % 3 == 0) echo "<br>";
+				if($subrule_temp[no] % 3 == 0) echo "<br>&nbsp;";
 			} ?>
 	</td>
 </tr>

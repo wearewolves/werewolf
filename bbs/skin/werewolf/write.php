@@ -354,10 +354,13 @@ function changeTermOfDay(obj){
 					if(checkSubRule($gameinfo['subRule'], $subrule_temp[no])) $subruleChecked = "checked";
 					else $subruleChecked = "";
 				?>
-				<input type="checkbox" name="subruleOption[]" value="<?=$subrule_temp[no]?>" <?=$subruleChecked?> disabled> <?=$subrule_temp[name]?>&nbsp;&nbsp;
+					<input type="checkbox" name="subruleOption[]" value="<?=$subrule_temp[no]?>" <?=$subruleChecked?> disabled> <?=$subrule_temp[name]?>&nbsp;&nbsp;
 				<? } else { ?>
-				<input type="checkbox" name="subruleOption[]" value="<?=$subrule_temp[no]?>"> <?=$subrule_temp[name]?>&nbsp;&nbsp;
-				<? } } ?>
+					<input type="checkbox" name="subruleOption[]" value="<?=$subrule_temp[no]?>"> <?=$subrule_temp[name]?>&nbsp;&nbsp;
+				<? }
+				
+				if($subrule_temp[no] % 3 == 0) echo "<br>";
+			} ?>
 	</td>
 </tr>
 

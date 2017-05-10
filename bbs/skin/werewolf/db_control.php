@@ -11,10 +11,15 @@
 
 	// DB 연결정보 가져옴
 	$connect = dbConn();
-	
-	$no = 2753;
 
-	mysql_query("delete from `zetyx_board_werewolf_suddenDeath` where game='$no'");
+	mysql_query("update `zetyx_board_werewolf_record` set suddenDeath='0' where player='1650'");
+	mysql_query("update `zetyx_board_werewolf_record` set suddenDeath='0' where player='1651'");
+	mysql_query("update `zetyx_board_werewolf_record` set suddenDeath='0' where player='1652'");
+	mysql_query("update `zetyx_board_werewolf_record` set suddenDeath='0' where player='1653'");
+	mysql_query("update `zetyx_board_werewolf_record` set suddenDeath='0' where player='1654'");
+	mysql_query("update `zetyx_board_werewolf_record` set suddenDeath='0' where player='1655'");
+	mysql_query("update `zetyx_board_werewolf_record` set suddenDeath='0' where player='1656'");
+	mysql_query("update `zetyx_board_werewolf_record` set suddenDeath='0' where player='1657'");
 	
 	mysql_close($connect);
 ?>

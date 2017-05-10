@@ -203,29 +203,14 @@
 		<div class="state">서브룰</div>
 		<div class="content">
 			<?
-				$subRule_arr = "";
-				$subRule_arrIdx = 0;
-				
-				if(checkSubRule($gameinfo['subRule'], 1)) {
-					$subRule_arr[$subRule_arrIdx] = "인랑 습격 가능";
-					$subRule_arrIdx++;
-				}
-				if(checkSubRule($gameinfo['subRule'], 2)) {
-					$subRule_arr[$subRule_arrIdx] = "NPC 직업 랜덤 부여";
-					$subRule_arrIdx++;
-				}
-				if(checkSubRule($gameinfo['subRule'], 3)) {
-					$subRule_arr[$subRule_arrIdx] = "텔레파시 사용 불가";
-					$subRule_arrIdx++;
-				}
-				
-				if($subRule_arrIdx == 0) echo "없음";
+				if($gameinfo['subRule'] == 0) echo "없음";
 				else {
-					for($i = 0; $i < $subRule_arrIdx; $i++) {
-						echo $subRule_arr[$i];
-						
-						if(($i + 1) != $subRule_arrIdx)
-							echo "<br>";
+					$subrule_result = mysql_query("select * from `zetyx_board_werewolf_subrule`");
+					
+					while($subrule_temp = mysql_fetch_array($subrule_result)) {
+						if(checkSubRule($gameinfo['subRule'], $subrule_temp[no])) {
+							echo $subrule_temp[name]."<br>";
+						}
 					}
 				}
 			?>

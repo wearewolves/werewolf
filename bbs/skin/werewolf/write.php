@@ -345,22 +345,19 @@ function changeTermOfDay(obj){
   </td>
 	<td>&nbsp;
 		<?
+			$subrule_result = mysql_query("select * from `zetyx_board_werewolf_subrule`");
+			
 			$bDisabled = ($mode == "modify") ? true : false;
-
-			if($bDisabled) {
-				
-				if(checkSubRule($gameinfo['subRule'], 1)) $assaultWerewolfChk = "checked";
-				if(checkSubRule($gameinfo['subRule'], 2)) $randomjobDummyChk = "checked";
-				if(checkSubRule($gameinfo['subRule'], 3)) $banTelepathyChk = "checked";
-		?>
-				<input type="checkbox" name="assaultWerewolf" value="1" <?=$assaultWerewolfChk?> disabled> 인랑 습격 가능&nbsp;&nbsp;
-				<input type="checkbox" name="randomjobDummy" value="2" <?=$randomjobDummyChk?> disabled> NPC 직업 랜덤 부여&nbsp;&nbsp;
-				<input type="checkbox" name="banTelepathy" value="3" <?=$banTelepathyChk?> disabled> 텔레파시 사용 불가&nbsp;&nbsp;
-		<? } else { ?>
-				<input type="checkbox" name="assaultWerewolf" value="1"> 인랑 습격 가능&nbsp;&nbsp;
-				<input type="checkbox" name="randomjobDummy" value="2"> NPC 직업 랜덤 부여&nbsp;&nbsp;
-				<input type="checkbox" name="banTelepathy" value="3"> 텔레파시 사용 불가&nbsp;&nbsp;
-		<? } ?>
+			
+			while($subrule_temp = mysql_fetch_array($subrule_result)) {
+				if($bDisabled) {
+					if(checkSubRule($gameinfo['subRule'], $subrule_temp[no])) $subruleChecked = "checked";
+					else $subruleChecked = "";
+				?>
+				<input type="checkbox" name="subruleOption[]" value="<?=$subrule_temp[no]?>" <?=$subruleChecked?> disabled> <?=$subrule_temp[name]?>&nbsp;&nbsp;
+				<? } else { ?>
+				<input type="checkbox" name="subruleOption[]" value="<?=$subrule_temp[no]?>"> <?=$subrule_temp[name]?>&nbsp;&nbsp;
+				<? } } ?>
 	</td>
 </tr>
 

@@ -12,6 +12,8 @@
 	// DB 연결정보 가져옴
 	$connect = dbConn();
 	
+	$t_board = "zetyx_board";
+	$id = "werewolf";
 	$no = 2753;
 
 	// 원본글을 가져옴

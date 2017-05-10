@@ -13,7 +13,7 @@
 	$connect = dbConn();
 	
 	$query = 
-	"update `zetyx_board_werewolf_gameinfo` set state="게임끝" where game=2753;";
+	"update `zetyx_board_werewolf_gameinfo` set state='게임끝' where game=2753;";
 	
 	@mysql_query($query, $connect) or Error("쿼리 실행 실패", "");
 	

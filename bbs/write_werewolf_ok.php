@@ -676,10 +676,14 @@
 		$startingTime= mktime($hourS ,$minS, 0, $monthS, $dayS, $yearS);
 		
 		// subrule
+		$subrule_result = mysql_query("select * from `zetyx_board_werewolf_subrule`");
+		
 		$subRule = 0;
-		if($assaultWerewolf) $subRule += pow(2, $assaultWerewolf - 1);
-		if($randomjobDummy) $subRule += pow(2, $randomjobDummy - 1);
-		if($banTelepathy) $subRule += pow(2, $banTelepathy - 1);
+		$subruleIndex = 0;
+		while($subrule_temp = mysql_fetch_array($subrule_result)) {
+			if($subruleOption[$subruleIndex]) $subRule += pow(2, $subruleOption[$subruleIndex] - 1);
+			$subruleIndex++;
+		}
 		
 		@mysql_query(
 		// Add subRule, delay values

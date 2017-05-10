@@ -19,7 +19,7 @@ class ExpansionRule(WerewolfRule):
             rolelist = [Truecharacter.SEER, Truecharacter.MEDIUM, Truecharacter.BODYGUARD] +\
                         [Truecharacter.REVENGER, Truecharacter.SHERIFF, Truecharacter.HUMAN] +\
                         [Truecharacter.WEREWOLF, Truecharacter.LONELYWEREWOLF, Truecharacter.POSSESSED]
-            if rolelist == 10:
+            if number == 10:
                 rolelist += [Truecharacter.NOBILITY, Truecharacter.HUMAN]
                 rolelist.remove(Truecharacter.SHERIFF)
         elif number < 12:

@@ -420,7 +420,7 @@ function setColor(type){
 		$("#memo").css("color","#000");
 		break;
 	case "∫¿¿Œ¡¶æ»":
-		$("#memo").css("backgroundColor","#99ff00");
+		$("#memo").css("backgroundColor","#D2F3A2");
 		$("#memo").css("color","#000");
 		break;
 	}

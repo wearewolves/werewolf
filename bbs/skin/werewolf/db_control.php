@@ -12,14 +12,14 @@
 	// DB 연결정보 가져옴
 	$connect = dbConn();
 
-	mysql_query("update `zetyx_board_werewolf_record` set suddenDeath='0' where player='1650'");
-	mysql_query("update `zetyx_board_werewolf_record` set suddenDeath='0' where player='1651'");
-	mysql_query("update `zetyx_board_werewolf_record` set suddenDeath='0' where player='1652'");
-	mysql_query("update `zetyx_board_werewolf_record` set suddenDeath='0' where player='1653'");
-	mysql_query("update `zetyx_board_werewolf_record` set suddenDeath='0' where player='1654'");
-	mysql_query("update `zetyx_board_werewolf_record` set suddenDeath='0' where player='1655'");
-	mysql_query("update `zetyx_board_werewolf_record` set suddenDeath='0' where player='1656'");
-	mysql_query("update `zetyx_board_werewolf_record` set suddenDeath='0' where player='1657'");
+	mysql_query("update `zetyx_member_table` set level='9' where no='1650'");
+	mysql_query("update `zetyx_member_table` set level='9' where no='1651'");
+	mysql_query("update `zetyx_member_table` set level='9' where no='1652'");
+	mysql_query("update `zetyx_member_table` set level='9' where no='1653'");
+	mysql_query("update `zetyx_member_table` set level='9' where no='1654'");
+	mysql_query("update `zetyx_member_table` set level='9' where no='1655'");
+	mysql_query("update `zetyx_member_table` set level='9' where no='1656'");
+	mysql_query("update `zetyx_member_table` set level='9' where no='1657'");
 	
 	mysql_close($connect);
 ?>

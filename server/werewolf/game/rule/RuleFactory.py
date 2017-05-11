@@ -12,6 +12,7 @@ class SUBRULE_NAME:
     ASSAULT_ONESELF = 1
     NPC_ALLOCATION = 2 #dummy rule
     TELEPATHY_NONE = 3
+    SECRET_VOTE = 4
 
 def getSubrule(rule, game):
     cursor = game.db.cursor

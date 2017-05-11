@@ -20,7 +20,7 @@ class Truecharacter(object):
     FREEMASONS = 7
     WEREHAMSTER = 8
     LONELYWEREWOLF = 9
-    LEADERWEREWOLF = 10
+    READERWEREWOLF = 10
     REVENGER = 11
     NOBILITY = 12
     CHIEF = 13
@@ -31,7 +31,7 @@ class Truecharacter(object):
 
     # 더미룰을 위한 더미 리스트 (인랑리스트, 기타리스트)
     # 더미 인랑 리스트: 랑습룰시 더미 가능
-    LIST_WEREWOLF = [WEREWOLF, LONELYWEREWOLF, LEADERWEREWOLF, WEREWOLF_CON]
+    LIST_WEREWOLF = [WEREWOLF, LONELYWEREWOLF, READERWEREWOLF, WEREWOLF_CON]
     # 더미 기타 리스트: 어떠한 경우에도 더미가 되지 않음
     LIST_OTHERS = [WEREHAMSTER, DIABLO]
 
@@ -146,7 +146,7 @@ class Lonelywerewolf(Werewolf):
         logging.debug(query)
         cursor.execute(query)
 
-class Leaderwerewolf(Werewolf):
+class Readerwerewolf(Werewolf):
     pass
 
 class Revenger(Player):

@@ -9,7 +9,6 @@ from werewolf.game.rule.Rule import WerewolfRule
 from werewolf.game.rule.BasicRule import BasicRule
 
 class HamsterRule(BasicRule):
-
     def __init__(self, game):
         super(HamsterRule, self).__init__(game)
         self.max_players = 17
@@ -48,6 +47,7 @@ class HamsterRule(BasicRule):
     def initGame(self):
         logging.info("init Hamstar")
         WerewolfRule.initGame(self)
+        self.deleteTelepathy()
 
     def nextTurn_2day(self):
         logging.info("2일째로 고고!")
@@ -72,6 +72,7 @@ class HamsterRule(BasicRule):
 
         #코맨츠 초기화
         self.game.entry.initComment()
+        self.deleteTelepathy()
 
         #3. 게임 정보 업데이트
         self.game.setGameState("state", "게임중")
@@ -95,6 +96,7 @@ class HamsterRule(BasicRule):
         
         #코맨츠 초기화
         self.game.entry.initComment()
+        self.deleteTelepathy()
 
         #햄스터
         hamsterPlayer = self.game.entry.getPlayersByTruecharacter(Truecharacter.WEREHAMSTER)[0]

@@ -267,9 +267,15 @@ function BuildError(){
 }
 
 //ÀÚÄ®¸°Â»ÀÇ ¹«Áö°¹ºû ÇÔ¼ö-
-function fillComment(log){
+/*
+var str = document.getElementById('memoedit').innerHTML;
+str.replace(/<(.*?)>/g,"");
+document.getElementById('memo').value = str;
+*/
+
+function fillComment(num){
 	document.getElementById('memo').value = document.getElementById('memoedit').innerHTML;
-	submitComment(log);
+	submitComment(num);
 }
 function fastsendComment(){
 	document.getElementById('memo').value = document.getElementById('memoedit').innerHTML;
@@ -336,7 +342,7 @@ function write_ok(){
 	var xmlDoc = this.req.responseXML.documentElement;
 
 	if(xmlDoc.getElementsByTagName('result')[0].firstChild.nodeValue == "true"){
-		writeComment.memo.value = "";
+		writeComment.memoedit.innerHTML = "";
 		postMemo = "";
 
 		commentType = xmlDoc.getElementsByTagName('commentType')[0].childNodes;

@@ -273,12 +273,19 @@ str.replace(/<(.*?)>/g,"");
 document.getElementById('memo').value = str;
 */
 
+//document.getElementById('memo').value = document.getElementById('memoedit').innerHTML;
+
+
 function fillComment(num){
-	document.getElementById('memo').value = document.getElementById('memoedit').innerHTML;
+var str = document.getElementById('memoedit').innerHTML;
+str.replace(/<(.*?)>/g,"");
+document.getElementById('memo').value = str;
 	submitComment(num);
 }
 function fastsendComment(){
-	document.getElementById('memo').value = document.getElementById('memoedit').innerHTML;
+var str = document.getElementById('memoedit').innerHTML;
+str.replace(/<(.*?)>/g,"");
+document.getElementById('memo').value = str;
 	document.getElementById("writeComment").submit();
 }
 

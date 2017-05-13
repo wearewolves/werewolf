@@ -36,22 +36,29 @@ if($data['ismember']){
 // confirm whether this comment is normal or notice
 $c_normal_flag = ($data[headnum] > -2000000000) ? true : false;
 ?>
-<div class="commentBodyContents">
-	<div class="comment normal">
-	<!-- Show member photo and member name when it is a normal comment only. -->
-	<? if($c_normal_flag) { ?>
-			<div class="c_image"><?=$c_face?></div>
-	<? } ?>
-		<div class="c_info">
-		<? if($c_normal_flag) { ?>		
-			<span class="c_Name "><?=$name?></span>
-		<? } ?>
-			<span class="reg_date"><?=$date?></span>
+<? if($c_normal_flag) { ?>
+	<div class="commentBodyContents">
+		<div class="comment normal">
+				<div class="c_image"><?=$c_face?></div>
+			<div class="c_info">
+				<span class="c_Name "><?=$name?></span>
+				<span class="reg_date"><?=$date?></span>
+			</div>
+			<div class="ct" ></div>
+			<div class="message" ><?=$memo?></div>
 		</div>
-		<div class="ct" ></div>
-		<div class="message" ><?=$memo?></div>
 	</div>
-</div>
+<? } else { ?>
+	<!-- hide member photo, member name and ct when it is posted for notice -->
+	<div class="commentBodyContents">
+		<div class="comment notice">
+			<div class="c_info">
+				<span class="reg_date"><?=$date?></span>
+			</div>
+			<div class="message" ><?=$memo?></div>
+		</div>
+	</div>
+<? } ?>
 
 
 <!-- 간단한 답글 시작하는 부분 -->

@@ -272,6 +272,7 @@ function fillComment(log){
 	submitComment(log);
 }
 function fastsendComment(){
+	document.getElementById('memo').value = document.getElementById('memoedit').innerHTML;
 	document.getElementById("writeComment").submit();
 }
 
@@ -397,40 +398,40 @@ function setColor(type){
 	switch (type)
 	{
 	case "일반":
-		$("#memo").css("backgroundColor","#fff");
-		$("#memo").css("color","#000");
+		$("#memoedit").css("backgroundColor","#fff");
+		$("#memoedit").css("color","#000");
 		break;
 	case "메모":
-		$("#memo").css("backgroundColor","#DEDB9C");
-		$("#memo").css("color","#000");
+		$("#memoedit").css("backgroundColor","#DEDB9C");
+		$("#memoedit").css("color","#000");
 		break;
 	case "사망":
-		$("#memo").css("backgroundColor","#9D9D9D");
-		$("#memo").css("color","#000");
+		$("#memoedit").css("backgroundColor","#9D9D9D");
+		$("#memoedit").css("color","#000");
 		break;
 	case "비밀":
-		$("#memo").css("backgroundColor","#F77");
-		$("#memo").css("color","#000");
+		$("#memoedit").css("backgroundColor","#F77");
+		$("#memoedit").css("color","#000");
 		break;
 	case "텔레":
-		$("#memo").css("backgroundColor","#93B4B7");
-		$("#memo").css("color","#000");
+		$("#memoedit").css("backgroundColor","#93B4B7");
+		$("#memoedit").css("color","#000");
 		break;
 	case "알림":
-		$("#memo").css("backgroundColor","#121212");
-		$("#memo").css("color","");
+		$("#memoedit").css("backgroundColor","#121212");
+		$("#memoedit").css("color","");
 		break;	
 	case "편지":
-		$("#memo").css("backgroundColor","#A6E1C4");
-		$("#memo").css("color","#000");
+		$("#memoedit").css("backgroundColor","#A6E1C4");
+		$("#memoedit").css("color","#000");
 		break;	
 	case "답변":
-		$("#memo").css("backgroundColor","#A6E1C4");
-		$("#memo").css("color","#000");
+		$("#memoedit").css("backgroundColor","#A6E1C4");
+		$("#memoedit").css("color","#000");
 		break;
 	case "봉인제안":
-		$("#memo").css("backgroundColor","#D2F3A2");
-		$("#memo").css("color","#000");
+		$("#memoedit").css("backgroundColor","#D2F3A2");
+		$("#memoedit").css("color","#000");
 		break;
 	}
 	return true;

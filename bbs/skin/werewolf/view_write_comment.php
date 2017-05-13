@@ -121,7 +121,7 @@ if($totalCommentPage>=1) echo "</div>";
 		 <?=$hide_c_password_end?>
 	  <tr bgcolor=111111>
 			<td width=100%>
-			<div name="memoedit" id="memoedit" style="min-height:50px;background-color:white;color:#000;display:inline-block;" contenteditable></div>
+			<div name="memoedit" id="memoedit" style="min-height:50px;max-width:100%;background-color:white;color:#000;display:inline-block;" contenteditable></div>
 			<input type="hidden" name="memo" id="memo">
 			</td>
 			

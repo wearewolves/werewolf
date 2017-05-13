@@ -121,7 +121,7 @@ A:hover   {color:#BEBEBE;text-decoration:none;}
 		.ct{margin:35px 0px 0px 0px;float:left;background:url(ctb.gif) no-repeat 0px 0px;width:10px;height:20px;}
 		.message{margin-left:116px;color:#000;padding :5px;text-align:justify;line-height:1.5em;font-size:12px;min-height:80px;max-width:460px;word-wrap:break-word; _width:100%;_height:80px;_position:relative;_top:0px;_left:-4px;}
 
-.commentBodyContents .notice .message{background-color:#121212;margin-left:0px;}
+.commentBodyContents .notice .message{background-color:#121212;margin-left:0px;max-width:576px;}
 
 .commentBodyContents .normal .ct,.commentBodyContents .normal .message{background-color:#121212}
 

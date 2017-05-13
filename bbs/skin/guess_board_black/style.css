@@ -123,7 +123,7 @@ A:hover   {color:#BEBEBE;text-decoration:none;}
 
 .notice	.ct,.notice .message{background-color:#121212}
 
-.commentBodyContents .normal .message{background-color:#121212}
+.commentBodyContents .normal .ct,.commentBodyContents .normal .message{background-color:#121212}
 
 .normal	.ct,.normal .message{background-color:#ffffff}
 

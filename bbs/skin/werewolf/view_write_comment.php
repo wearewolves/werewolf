@@ -120,7 +120,10 @@ if($totalCommentPage>=1) echo "</div>";
 	  </tr>
 		 <?=$hide_c_password_end?>
 	  <tr bgcolor=111111>
-			<td width=100%><textarea name="memo" id="memo" <?=size(40)?> rows="5" class="red_commentw"></textarea></td>
+			<td width=100%>
+			<div name="memoedit" id="memoedit" style="min-height:50px" contenteditable></div>
+			<input type="hidden" name="memo" id="memo">
+			</td>
 			
 	</tr>
 
@@ -130,13 +133,10 @@ if($totalCommentPage>=1) echo "</div>";
 	  <table>
 		<tr>
 			<td width="100px">
-				<input type=button rows=5 onclick="document.writeComment.memo.rows=document.writeComment.memo.rows+4;" <?if($browser){?>class=red_submit<?}?> value='창 늘리기(z) ▼'  accesskey="z">
-			</td>
-			<td width="100px">
-				<input type=button onclick="submitComment(writeComment)" rows=5 <?if($browser){?>class=red_submit<?}?> value='보내기(s)' accesskey="s">
+				<input type="button" onclick="fillComment(writeComment)" rows=5 <?if($browser){?>class=red_submit<?}?> value='보내기(s)' accesskey="s">
 			</td>
 			<td>
-				 <input type=submit rows=5 style="font-size:10;"  value='비상용 보내기' title="보내기 버튼으로 로그가 올라가지 않을 때 사용하십시오.">
+				 <input type="button" onclick="fastsendComment()" style="font-size:10;" rows=5 value='비상용 보내기' title="보내기 버튼으로 로그가 올라가지 않을 때 사용하십시오.">
 			</td>
 		</tr>
 	  </table>

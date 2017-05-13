@@ -286,7 +286,7 @@ document.getElementById('memo').value = document.getElementById('memoedit').inne
 }
 
 function submitComment(obj){
-	if(obj.memo.value.length<10 ){
+	if(obj.memo.value.length<3 ){
 		alert("내용이 너무 짧습니다. ("+obj.memo.value.length+")");
 		return false;
 	}

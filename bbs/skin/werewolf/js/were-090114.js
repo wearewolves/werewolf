@@ -345,7 +345,7 @@ function write_ok(){
 	var xmlDoc = this.req.responseXML.documentElement;
 
 	if(xmlDoc.getElementsByTagName('result')[0].firstChild.nodeValue == "true"){
-		$("#memoedit").innerHTML = "";
+		$("#memoedit").html() = "";
 		postMemo = "";
 
 		commentType = xmlDoc.getElementsByTagName('commentType')[0].childNodes;

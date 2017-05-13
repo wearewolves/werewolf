@@ -277,15 +277,11 @@ document.getElementById('memo').value = str;
 
 
 function fillComment(num){
-var str = document.getElementById('memoedit').innerHTML;
-str.replace(/<(.*?)>/g,"");
-document.getElementById('memo').value = str;
+document.getElementById('memo').value = document.getElementById('memoedit').innerHTML;
 	submitComment(num);
 }
 function fastsendComment(){
-var str = document.getElementById('memoedit').innerHTML;
-str.replace(/<(.*?)>/g,"");
-document.getElementById('memo').value = str;
+document.getElementById('memo').value = document.getElementById('memoedit').innerHTML;
 	document.getElementById("writeComment").submit();
 }
 

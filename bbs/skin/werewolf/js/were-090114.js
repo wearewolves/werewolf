@@ -266,6 +266,15 @@ function BuildError(){
 	//alert("에러가 발생했습니다!!!!!!! \n\nreadyState:"+ this.req.readyState + "\nstatus: "+ this.req.status +"\nheaders: "+ this.req.getAllResponseHeaders());
 }
 
+//자칼린쨩의 무지갯빛 함수-
+function fillComment(log){
+	document.getElementById('memo').value = document.getElementById('memoedit').innerHTML;
+	submitComment(log);
+}
+function fastsendComment(){
+	document.getElementById("writeComment").submit();
+}
+
 function submitComment(obj){
 	if(obj.memo.value.length<10 ){
 		alert("내용이 너무 짧습니다. ("+obj.memo.value.length+")");

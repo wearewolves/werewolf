@@ -31,12 +31,21 @@ $c_face ="";
 if($data['ismember']){
 	$commentWriter =mysql_fetch_array(mysql_query("select * from $member_table where no='".$data['ismember']."'"));
 	if(@file_exists($commentWriter['picture'])) $c_face = "<img width='100' height='100' src='".$commentWriter['picture']."' border=0>";
-}?>
+}
+
+// confirm whether this comment is normal or notice
+$c_normal_flag = ($data[headnum] > -2000000000) ? true : false;
+?>
 <div class="commentBodyContents">
 	<div class="comment normal">
+	<!-- Show member photo and member name when it is a normal comment only. -->
+	<? if($c_normal_flag) { ?>
 			<div class="c_image"><?=$c_face?></div>
-		<div class="c_info">		
+	<? } ?>
+		<div class="c_info">
+		<? if($c_normal_flag) { ?>		
 			<span class="c_Name "><?=$name?></span>
+		<? } ?>
 			<span class="reg_date"><?=$date?></span>
 		</div>
 		<div class="ct" ></div>

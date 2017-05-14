@@ -121,7 +121,7 @@ if($totalCommentPage>=1) echo "</div>";
 		 <?=$hide_c_password_end?>
 	  <tr bgcolor=111111>
 			<td width=100%>		
-			<div name="memoedit" id="memoedit" style="color:#000;padding :5px;text-align:justify;line-height:1.5em;font-size:12px;min-height:80px;width:500px;word-wrap:break-word;_height:80px;_position:relative;_top:0px;_left:-4px;white-space:pre;display:inline-block;" contenteditable></div>
+			<div name="memoedit" id="memoedit" contenteditable></div>
 			<input type="hidden" name="memo" id="memo">
 			</td>
 			
@@ -153,6 +153,15 @@ if($totalCommentPage>=1) echo "</div>";
 <script>
 checkCommentType();
 document.onload = initCommentType();
+
+document.querySelector("div[contenteditable]").addEventListener("paste", function(e) {
+	// cancel paste
+	e.preventDefault();
+	// get text representation of clipboard
+	var text = e.clipboardData.getData("text/plain");
+	// insert text manually
+	document.execCommand("insertHTML", false, text); 
+});
 </script>
 
 <?}?>

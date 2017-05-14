@@ -298,7 +298,9 @@ label, .buttonCommentPage{cursor: pointer;}
 #timer{
 }
 
-BODY,TD,input,div,form,TEXTAREA,center,option,pre,blockquote {font-size:9pt;color:#666666;font-family:±¼¸²;}
+BODY,TD,input,div,form,TEXTAREA,center,option,pre,blockquote {font-size:9pt;color:#666666;font-family:Â±Â¼Â¸Â²;}
+TEXTAREA {-webkit-text-size-adjust: 100%}
+
 TD {line-height:140%}
 input {border:solid 0;border-color:ffffff}
 
@@ -317,17 +319,17 @@ body{
 	*/
 }
 
-A:link    {color:666666;text-decoration:none;font-family:±¼¸²;font-size:9pt;}
-A:visited {color:666666;text-decoration:none;font-family:±¼¸²;font-size:9pt;}
-A:active  {color:ff6666;text-decoration:none;font-family:±¼¸²;font-size:9pt;}
-A:hover  {color:666666;text-decoration:none;font-family:±¼¸²;font-size:9pt;}
+A:link    {color:666666;text-decoration:none;font-family:Â±Â¼Â¸Â²;font-size:9pt;}
+A:visited {color:666666;text-decoration:none;font-family:Â±Â¼Â¸Â²;font-size:9pt;}
+A:active  {color:ff6666;text-decoration:none;font-family:Â±Â¼Â¸Â²;font-size:9pt;}
+A:hover  {color:666666;text-decoration:none;font-family:Â±Â¼Â¸Â²;font-size:9pt;}
 
 
-.red_8 {font-family:±¼¸²;font-size:9pt;color:#666666}
-.red_7 {font-family:±¼¸²;font-size:8pt;color:#666666}
+.red_8 {font-family:Â±Â¼Â¸Â²;font-size:9pt;color:#666666}
+.red_7 {font-family:Â±Â¼Â¸Â²;font-size:8pt;color:#666666}
 
 
-.red_comment {font-family:±¼¸²;font-size:7pt;}
+.red_comment {font-family:Â±Â¼Â¸Â²;font-size:7pt;}
 .red_search {border:solid 1;border-color:eeeeee;height:18px;width:100px;color:666666;}
 .red_input {border:solid 1;border-color:eeeeee}
 .red_textarea {border:solid 1;border-color:eeeeee;background-color:FFFDFB;width:350;}

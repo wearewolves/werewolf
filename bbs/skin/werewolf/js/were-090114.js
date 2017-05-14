@@ -266,27 +266,19 @@ function BuildError(){
 	//alert("에러가 발생했습니다!!!!!!! \n\nreadyState:"+ this.req.readyState + "\nstatus: "+ this.req.status +"\nheaders: "+ this.req.getAllResponseHeaders());
 }
 
-//자칼린쨩의 무지갯빛 함수-
-/*
-var str = document.getElementById('memoedit').innerHTML;
-str.replace(/<(.*?)>/g,"");
-document.getElementById('memo').value = str;
-*/
-
-//document.getElementById('memo').value = document.getElementById('memoedit').innerHTML;
-
-
-function fillComment(num){
-document.getElementById('memo').value = document.getElementById('memoedit').innerHTML;
-	submitComment(num);
+// New Comment box
+function fillComment(obj) {
+	document.getElementById('memo').value = document.getElementById('memoedit').innerText;
+	submitComment(obj);
 }
-function fastsendComment(){
-document.getElementById('memo').value = document.getElementById('memoedit').innerHTML;
+
+function fastsendComment() {
+	document.getElementById('memo').value = document.getElementById('memoedit').innerText;
 	document.getElementById("writeComment").submit();
 }
 
 function submitComment(obj){
-	if(obj.memo.value.length<3 ){
+	if(obj.memo.value.length<10 ){
 		alert("내용이 너무 짧습니다. ("+obj.memo.value.length+")");
 		return false;
 	}
@@ -345,7 +337,9 @@ function write_ok(){
 	var xmlDoc = this.req.responseXML.documentElement;
 
 	if(xmlDoc.getElementsByTagName('result')[0].firstChild.nodeValue == "true"){
+		// initialize memoedit
 		$("#memoedit").empty();
+		writeComment.memo.value = "";
 		postMemo = "";
 
 		commentType = xmlDoc.getElementsByTagName('commentType')[0].childNodes;
@@ -718,7 +712,7 @@ $(function(){
 		});
 	});
 
-	$("#memo").keyup(function(event){
+	$("#memoedit").keyup(function(event){
 		if($(this).val() == "봉인 제안"){
 			var r = confirm("봉인을 제안하시겠습니까? 봉인은 게임 진행을 중단시키는 것입니다.\n\n봉인을 제안하면 봉인을 찬성,반대하는 투표가 시작됩니다.\n사건 발생 시간까지 찬성표가 과반수보다 많으면 게임이 봉인됩니다.\n봉인 논의는 한 게임당 한번만 가능합니다.");
 			if (r == true) {

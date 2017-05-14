@@ -148,7 +148,7 @@ class BasicRule(WerewolfRule):
 
     def deleteTelepathy(self):
         from werewolf.game.rule.RuleFactory import SUBRULE_NAME, getSubrule
-        tele = getSubrule(SUBRULE_NAME.NPC_ALLOCATION, self.game)
+        tele = getSubrule(SUBRULE_NAME.TELEPATHY_NONE, self.game)
         if tele:
             cursor = self.game.db.cursor
             query = """update `zetyx_board_werewolf_entry` set telepathy ='0' where game = '%s'"""

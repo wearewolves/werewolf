@@ -266,7 +266,7 @@ function BuildError(){
 	//alert("에러가 발생했습니다!!!!!!! \n\nreadyState:"+ this.req.readyState + "\nstatus: "+ this.req.status +"\nheaders: "+ this.req.getAllResponseHeaders());
 }
 
-// New Comment box
+// New Comment box (#memoedit)
 function fillComment(obj) {
 	document.getElementById('memo').value = document.getElementById('memoedit').innerText;
 	submitComment(obj);
@@ -712,14 +712,15 @@ $(function(){
 		});
 	});
 
-	$("#memoedit").keyup(function(event){
-		if($(this).val() == "봉인 제안"){
+	$("#memoedit").keyup(function(event) {
+		//if($(this).val() == "봉인 제안") {
+		if($(this).text() == "봉인 제안") {
 			var r = confirm("봉인을 제안하시겠습니까? 봉인은 게임 진행을 중단시키는 것입니다.\n\n봉인을 제안하면 봉인을 찬성,반대하는 투표가 시작됩니다.\n사건 발생 시간까지 찬성표가 과반수보다 많으면 게임이 봉인됩니다.\n봉인 논의는 한 게임당 한번만 가능합니다.");
 			if (r == true) {
 			    var reason = prompt("봉인을 제안하는 이유를 적어주세요.", "자세하게 적어주시기 바랍니다.");
 
-				try{
-					var obj = $("#writeComment")
+				try {
+					var obj = $("#writeComment");
 					
 					prams="page="+obj.find("[name=page]").val();
 					prams+="&id="+obj.find("[name=id]").val();
@@ -737,20 +738,20 @@ $(function(){
 					prams+="&memo="+encodeURIComponent(reason);
 					prams+="&SID="+encodeURIComponent(SID);
 
-					soundPlay = false;;
+					soundPlay = false;
 					var writer= new net.ContentLoader("skin/werewolf/were_comment_type_ok.php",write_ok,BuildError,"POST",prams);
 					//obj.memo.value = obj.memo.value + prams;
 					return false;
 				}
-				catch(ee){
-					alert(ee.description );
+				catch(ee) {
+					alert(ee.description);
 					return false;
 				}
 
 			} else {
 				txt = "봉인 제안은 신중하게 해주시기 바랍니다.";
-				alert(txt)
-			}			
+				alert(txt);
+			}
 		}
 	})
 

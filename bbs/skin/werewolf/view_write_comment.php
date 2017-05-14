@@ -154,6 +154,7 @@ if($totalCommentPage>=1) echo "</div>";
 checkCommentType();
 document.onload = initCommentType();
 
+// Paste text only
 document.querySelector("div[contenteditable]").addEventListener("paste", function(e) {
 	// cancel paste
 	e.preventDefault();

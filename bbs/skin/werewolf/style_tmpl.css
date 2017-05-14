@@ -266,7 +266,6 @@ label, .buttonCommentPage{cursor: pointer;}
 	_position: relative;
 	min-height: 80px;
 	width: 500px;
-	white-space: pre-wrap;
 	word-wrap: break-word;
 	text-align: justify;
 	color: #000;

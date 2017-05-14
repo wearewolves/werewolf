@@ -257,8 +257,22 @@ label, .buttonCommentPage{cursor: pointer;}
 	background: url(image/webnav_header.gif) no-repeat -445px -10px;
 }
 
-
-
+/* memoedit style */
+#memoedit {
+	padding: 5px;
+	_height: 80px;
+	_top: 0px;
+	_left: -4px;
+	_position: relative;
+	min-height: 80px;
+	width: 500px;
+	word-wrap: break-word;
+	text-align: justify;
+	color: #000;
+	line-height: 1.5em;
+	font-size: 12px;
+	display: inline-block;
+}
 
 #script{
 	float:left;

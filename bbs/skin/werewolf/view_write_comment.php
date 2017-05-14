@@ -120,9 +120,9 @@ if($totalCommentPage>=1) echo "</div>";
 	  </tr>
 		 <?=$hide_c_password_end?>
 	  <tr bgcolor=111111>
-			<td width=100%>		
+			<td width=100%>
 			<div name="memoedit" id="memoedit" contenteditable></div>
-			<input type="hidden" name="memo" id="memo">
+			<textarea name="memo" id="memo" <?=size(40)?> rows="5" class="red_commentw" style="display: none;"></textarea>
 			</td>
 			
 	</tr>
@@ -136,7 +136,7 @@ if($totalCommentPage>=1) echo "</div>";
 				<input type="button" onclick="fillComment(writeComment)" rows=5 <?if($browser){?>class=red_submit<?}?> value='보내기(s)' accesskey="s">
 			</td>
 			<td>
-				 <input type="button" onclick="fastsendComment()" style="font-size:10;" rows=5 value='비상용 보내기' title="보내기 버튼으로 로그가 올라가지 않을 때 사용하십시오.">
+				 <input type="button" onclick="fastsendComment()" rows=5 style="font-size:10;"  value='비상용 보내기' title="보내기 버튼으로 로그가 올라가지 않을 때 사용하십시오.">
 			</td>
 		</tr>
 	  </table>
@@ -153,15 +153,6 @@ if($totalCommentPage>=1) echo "</div>";
 <script>
 checkCommentType();
 document.onload = initCommentType();
-
-document.querySelector("div[contenteditable]").addEventListener("paste", function(e) {
-	// cancel paste
-	e.preventDefault();
-	// get text representation of clipboard
-	var text = e.clipboardData.getData("text/plain");
-	// insert text manually
-	document.execCommand("insertHTML", false, text); 
-});
 </script>
 
 <?}?>

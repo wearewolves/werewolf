@@ -58,14 +58,16 @@ class Npc(Character):
     def toDeathByWerewolf(self):
         self.toDeath("습격")
 
-    def writeWill(self):
-        cursor = self.game.db.cursor
-        query = "select * from `zetyx_board_werewolf_character` where no = '%s'"
-        query %= (self.character)
-        logging.debug(query)
-        cursor.execute(query)
-        character_detail = cursor.fetchone()
-        super(Npc, self).writeWill(character_detail['comment'], "일반")
+    def writeWill(self, comment=None, logtype="일반"):
+        if comment is None:
+            cursor = self.game.db.cursor
+            query = "select * from `zetyx_board_werewolf_character` where no = '%s'"
+            query %= (self.character)
+            logging.debug(query)
+            cursor.execute(query)
+            character_detail = cursor.fetchone()
+            comment = character_detail['comment']
+        super(Npc, self).writeWill(character_detail['comment'], logtype)
 
 class Player(Character):
     def setLevel(self, level):

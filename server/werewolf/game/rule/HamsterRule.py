@@ -12,7 +12,6 @@ class HamsterRule(BasicRule):
     def __init__(self, game):
         super(HamsterRule, self).__init__(game)
         self.max_players = 17
-        self.truecharacter_list[17] = self.truecharacter_list[16] + [Truecharacter.WEREHAMSTER]
         logging.debug("Hamstar Rule")
 
     def getTruecharacterList(self, number):

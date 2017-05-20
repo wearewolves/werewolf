@@ -11,13 +11,13 @@ install:
 script:
 - cp server/config_example.py server/config.py
 - python server/next.cgi
+- npm install gulp
+- npm install gulp -g
+- npm install vinyl-ftp gulp-util minimist --save-dev
 - chmod +x staging.sh
 - "./staging.sh  $STAGING_FTP_USER  $STAGING_FTP_PASSWORD"
 before_deploy:
 - rm server/config.py
-- npm install gulp
-- npm install gulp -g
-- npm install vinyl-ftp gulp-util minimist --save-dev
 - chmod +x deploy.sh
 deploy:
   skip_cleanup: true

@@ -5,6 +5,8 @@ var minimist = require('minimist');
 var args = minimist(process.argv.slice(2));
 
 function release(conn) {
+  var remotePath = '/www/';
+
   gulp.src(['release/**/*.*'])
     .pipe(conn.newer(remotePath))
     .pipe(conn.dest(remotePath));  
@@ -15,7 +17,6 @@ function release(conn) {
 }
 
 gulp.task('deploy', function() {
-  var remotePath = '/www/';
   var conn = ftp.create({
     host: 'werewolf6.cafe24.com',
     user: args.user,
@@ -27,7 +28,6 @@ gulp.task('deploy', function() {
   release(conn)
 });
 gulp.task('staging', function() {
-  var remotePath = '/www/';
   var conn = ftp.create({
     host: 'werewolf7.cafe24.com',
     user: args.user,

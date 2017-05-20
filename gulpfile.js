@@ -3,6 +3,17 @@ var ftp = require('vinyl-ftp');
 var gutil = require('gulp-util');
 var minimist = require('minimist');
 var args = minimist(process.argv.slice(2));
+
+function release(conn) {
+  gulp.src(['release/**/*.*'])
+    .pipe(conn.newer(remotePath))
+    .pipe(conn.dest(remotePath));  
+  gulp.src(['server/next.cgi'])
+    .pipe(conn.mode(remotePath +'server','0755'))
+    .pipe(conn.newer(remotePath + 'server'))
+    .pipe(conn.dest(remotePath + 'server'));
+}
+
 gulp.task('deploy', function() {
   var remotePath = '/www/';
   var conn = ftp.create({
@@ -13,12 +24,17 @@ gulp.task('deploy', function() {
     maxConnections: 4
   });
 
-  gulp.src(['release/**/*.*'])
-    .pipe(conn.newer(remotePath))
-    .pipe(conn.dest(remotePath));
+  release(conn)
+});
+gulp.task('staging', function() {
+  var remotePath = '/www/';
+  var conn = ftp.create({
+    host: 'werewolf7.cafe24.com',
+    user: args.user,
+    password: args.password,
+    log: gutil.log,
+    maxConnections: 4
+  });
 
-  gulp.src(['server/next.cgi'])
-    .pipe(conn.mode(remotePath +'server','0755'))
-    .pipe(conn.newer(remotePath + 'server'))
-    .pipe(conn.dest(remotePath + 'server'));
+  release(conn)
 });

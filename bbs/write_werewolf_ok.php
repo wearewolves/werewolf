@@ -673,9 +673,22 @@
 
 		//$deathtime= mktime($hour ,$min, 0, date("m",time()+86400), $day, date("Y",time()+86400));			
 		$deathtime= mktime($hour ,$min, 0, $month, $day, $year);			
-		$startingTime= mktime($hourS ,$minS, 0, $monthS, $dayS, $yearS);			
+		$startingTime= mktime($hourS ,$minS, 0, $monthS, $dayS, $yearS);
+		
+		// subrule
+		$subrule_result = mysql_query("select * from `zetyx_board_werewolf_subrule`");
+		
+		$subRule = 0;
+		$subruleIndex = 0;
+		while($subrule_temp = mysql_fetch_array($subrule_result)) {
+			if($subruleOption[$subruleIndex]) $subRule += pow(2, $subruleOption[$subruleIndex] - 1);
+			$subruleIndex++;
+		}
+		
 		@mysql_query(
-		"INSERT INTO `$t_board"."_$id"."_gameinfo` ( `game` , `day` ,`startingTime` , `deathtime` , `players` ,  `result`,`state`,`termOfDay`,`characterSet`,`rule`,`useTimetable`) VALUES ('$no', '0', '$startingTime', '$deathtime',  '1', '' ,'준비중','$termOfDay','$characterSet','$rule','$useTimetable');") or error("7".mysql_error());
+		// Add subRule, delay values
+		//"INSERT INTO `$t_board"."_$id"."_gameinfo` (`game`, `day`, `startingTime`, `deathtime`, `players`, `result`, `state`, `termOfDay`, `characterSet`, `rule`, `useTimetable`) VALUES ('$no', '0', '$startingTime', '$deathtime', '1', '', '준비중', '$termOfDay', '$characterSet', '$rule', '$useTimetable');") or error("7".mysql_error());
+		"INSERT INTO `$t_board"."_$id"."_gameinfo` (`game`, `day`, `startingTime`, `deathtime`, `players`, `result`, `state`, `termOfDay`, `characterSet`, `rule`, `subRule`, `useTimetable`, `delay`) VALUES ('$no', '0', '$startingTime', '$deathtime', '1', '', '준비중', '$termOfDay', '$characterSet', '$rule', '$subRule', '$useTimetable', '0');") or error("7".mysql_error());
 
 
 

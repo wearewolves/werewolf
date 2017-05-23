@@ -4,7 +4,7 @@ import random
 import logging
 from werewolf.database.DATABASE     import DATABASE
 
-class Character:
+class Character(object):
     def __init__(self, game, entry):
         self.game = game
 
@@ -46,6 +46,11 @@ class Character:
         logging.debug(query)
         cursor.execute(query)
 
+    def writeWill(self, comment, logtype):
+        deathTime = self.game.deathTime
+        self.game.writeComment(1, "게임 마스터", "password", comment, "123.123.123.123", logtype, self.character, deathTime)
+        logging.debug("%s write %s (%s)", self, comment, logtype)
+
     def __str__(self):
         return "[<Character> id: %s, character: %s, role: %s]"%(self.id, self.character, self.truecharacter)
 
@@ -53,15 +58,16 @@ class Npc(Character):
     def toDeathByWerewolf(self):
         self.toDeath("습격")
 
-    def writeWill(self):
-        cursor = self.game.db.cursor
-        query = "select * from `zetyx_board_werewolf_character` where no = '%s'"
-        query %= (self.character)
-        logging.debug(query)
-        cursor.execute(query)
-        deathTime = self.game.deathTime
-        character_detail = cursor.fetchone()
-        self.game.writeComment(1, "게임 마스터", "password", character_detail['comment'], "123.123.123.123", "일반", self.character, deathTime)
+    def writeWill(self, comment=None, logtype="일반"):
+        if comment is None:
+            cursor = self.game.db.cursor
+            query = "select * from `zetyx_board_werewolf_character` where no = '%s'"
+            query %= (self.character)
+            logging.debug(query)
+            cursor.execute(query)
+            character_detail = cursor.fetchone()
+            comment = character_detail['comment']
+        super(Npc, self).writeWill(character_detail['comment'], logtype)
 
 class Player(Character):
     def setLevel(self, level):

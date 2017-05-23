@@ -5,19 +5,18 @@ env:
   - secure: skOK0udFMkIfhI1xKfkBjZkJEAjJe2h3A9rbkNsFTuhGaHX/sQBwqDBxG28RTV1d5PRfzpboW4sVRYCG2jslfwp3kNtzWmLve7RO3Bxm+YyR3s0+cVsXd2OvL+faecRQU6DK+P4vBvOzLkfokyGrIaMvxTo2ZJcEJtKNgsP64nsW4MlKonewCd1YZW5gHgOeMlZ8OqhHZf4JEcHnOzpyEuJ5lE1yLlpors9cJ549jIDOQzKq9NjeqjLPeQeNuxlPEUTMFLZFDaxGsRRwcXIsavha+W6ssBvDdbpS4IUrulprsKUrH/HSa+Z/YAaMDPvEEDpPtrvsJQsd1ffvTu2G1jOTKefQ81+Bku7WSJlwCQ2qqTRUSFfQq9kFsw3GNUqenGRWtwXdyoB+IczxfEuqEcrAuVmaEOHMcd6mkqNObbN3/mzg0qRWOhmpGMWHWsCUzn5SFAjFesNXJrAVvWHXaUOmMwhUwqwp65zjKcYgEl4epSb5Lq8FndWRHonZy6rgEmYf6BA13fbwG4j3niJeP2R04fBf3myYoo2hG4kv0KH+93otTyaSB+jchZyrbJF/OYp+uTjx+HTkCWytREz9TM21SdUogQP5G58h3+zfPM0mf4ea0AKpF6bDtT7TfBkW2ZbiQRuyJBH4JstgicsWJautqPq2xOfEmQbO3kGPhCk=
   - secure: giqptkaeMa6BO87rQ2xDXwYIYJMZhT74wIui2IeT/50zyUmb3wRzoyXLEv+Zv33LNRZadbmaMMk72n7GKCvHrll6NEXqVPJRn1r/B2VNzAqeFati4KFFD9NAc1HbWOCDHkOmFX9Pzek5x4VvRR2A+zQvI3LUWF8PDDnT0+EJXdsmtAP3X97l4LtpCkOraRhHdf0HlArE5VfxhTcJB+98uwxreWJ/PUGYvHwf3aWvVtDFzq4VK5Yf+VtWn4eZjR2U7WKMfpCaXL+iyho/yOpJtCoI53Ntyxs/1GS8NcPE2FakZvikoOTcA1KUk7XBGugvfmHX0/cZnU4WuE52LF5mrpxXexdux1uieWXZGedmEeA5OkpYwFhS5XidAtkAbNF6Pt0pRWzKAI/wg9lsscl4l8b9ke+uUx/g1KnH6zZaaYMqGCnddoE9AIHC4p5h/becNruDdkCh6qazfVXYu1adz1gtLcd2q8B3eLzUzr0Nh7aT5v7H9p9yVL6QSv3Mn5YncMRxf4hcT59Ro3Z3hYYgrLzO4OysW4XgAMvW2q7a/Yaq8NT9cZq9zgl8S0HQ5eSiHG+t4BTHSSYsfvKZZjl+CO7IfoMHSG5w3Ivn3QC3Zl4Xx5c+78OhvWz3J97tG4g6+9thE057jXQBkLdC11hNU8Ipn8+QBL6J9qcZgilc43Y=
 install:
-  - pip install MySQL-python
-
-script: 
-  - cp server/config_example.py server/config.py
-  - python server/next.cgi
-
+- pip install MySQL-python
+script:
+- cp server/config_example.py server/config.py
+- python server/next.cgi
+- npm install gulp
+- npm install gulp -g
+- npm install vinyl-ftp gulp-util minimist --save-dev
+- chmod +x staging.sh
+- "./staging.sh  $STAGING_FTP_USER  $STAGING_FTP_PASSWORD"
 before_deploy:
-  - rm server/config.py
-  - npm install gulp
-  - npm install gulp -g
-  - npm install vinyl-ftp gulp-util minimist --save-dev
-  - chmod +x deploy.sh
-
+- rm server/config.py
+- chmod +x deploy.sh
 deploy:
   skip_cleanup: true
   provider: script

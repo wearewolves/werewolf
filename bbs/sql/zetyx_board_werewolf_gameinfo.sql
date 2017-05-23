@@ -33,3 +33,6 @@ CREATE TABLE `zetyx_board_werewolf_gameinfo` (
 ALTER TABLE  `zetyx_board_werewolf_gameinfo` ADD  `seal` VARCHAR( 10 ) NOT NULL DEFAULT  'Á¦¾È';
 ALTER TABLE  `zetyx_board_werewolf_gameinfo` ADD  `seal_yes` INT( 1 ) UNSIGNED NOT NULL DEFAULT  '0';
 ALTER TABLE  `zetyx_board_werewolf_gameinfo` ADD  `seal_no` INT( 1 ) UNSIGNED NOT NULL DEFAULT  '0';
+
+ALTER TABLE `zetyx_board_werewolf_gameinfo` ADD `subRule` INT(20) NOT NULL DEFAULT '0' AFTER `rule`;
+ALTER TABLE `zetyx_board_werewolf_gameinfo` ADD `delay` MEDIUMINT(13) NOT NULL DEFAULT '0';

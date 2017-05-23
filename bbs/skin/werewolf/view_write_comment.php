@@ -120,7 +120,10 @@ if($totalCommentPage>=1) echo "</div>";
 	  </tr>
 		 <?=$hide_c_password_end?>
 	  <tr bgcolor=111111>
-			<td width=100%><textarea name="memo" id="memo" <?=size(40)?> rows="5" class="red_commentw"></textarea></td>
+			<td width=100%>
+			<div name="memoedit" id="memoedit" contenteditable></div>
+			<textarea name="memo" id="memo" <?=size(40)?> rows="5" class="red_commentw" style="display: none;"></textarea>
+			</td>
 			
 	</tr>
 
@@ -130,13 +133,10 @@ if($totalCommentPage>=1) echo "</div>";
 	  <table>
 		<tr>
 			<td width="100px">
-				<input type=button rows=5 onclick="document.writeComment.memo.rows=document.writeComment.memo.rows+4;" <?if($browser){?>class=red_submit<?}?> value='창 늘리기(z) ▼'  accesskey="z">
-			</td>
-			<td width="100px">
-				<input type=button onclick="submitComment(writeComment)" rows=5 <?if($browser){?>class=red_submit<?}?> value='보내기(s)' accesskey="s">
+				<input type="button" onclick="fillComment(writeComment)" rows=5 <?if($browser){?>class=red_submit<?}?> value='보내기(s)' accesskey="s">
 			</td>
 			<td>
-				 <input type=submit rows=5 style="font-size:10;"  value='비상용 보내기' title="보내기 버튼으로 로그가 올라가지 않을 때 사용하십시오.">
+				 <input type="button" onclick="fastsendComment()" rows=5 style="font-size:10;"  value='비상용 보내기' title="보내기 버튼으로 로그가 올라가지 않을 때 사용하십시오.">
 			</td>
 		</tr>
 	  </table>
@@ -153,6 +153,16 @@ if($totalCommentPage>=1) echo "</div>";
 <script>
 checkCommentType();
 document.onload = initCommentType();
+
+// Paste text only
+document.querySelector("div[contenteditable]").addEventListener("paste", function(e) {
+	// cancel paste
+	e.preventDefault();
+	// get text representation of clipboard
+	var text = e.clipboardData.getData("text/plain");
+	// insert text manually
+	document.execCommand("insertHTML", false, text); 
+});
 </script>
 
 <?}?>
@@ -338,16 +348,22 @@ document.onload = initCommentType();
 //echo "\$orderCondition:".$orderCondition."<br>";
 
 
-
 			$assault_list =  DB_array("no","character","$DB_entry where game = $no and alive='생존' and truecharacter $orderCondition");	
 			$assault_list = array_values($assault_list);
+			
+			// 2017/05/07 epi : 랑습룰 체크 부분
+			$CheckAssaultWerewolf = checkSubRule($gameinfo['subRule'], 1);
 //echo "\$assault_list:";print_r($assault_list);echo "<br><br>";
 ?>
 			
 			
 			
 			
-			<?=DBselect("injured","","character",$character_list,"$DB_entry where game=$no and alive = '생존'","font-size:9pt;width=100","",$assault_list);?>
+			<?if($CheckAssaultWerewolf){?>
+				<?=DBselect("injured","","character",$character_list,"$DB_entry where game=$no and alive = '생존'","font-size:9pt;width=100","","");?>
+			<? }else {?>
+				<?=DBselect("injured","","character",$character_list,"$DB_entry where game=$no and alive = '생존'","font-size:9pt;width=100","",$assault_list);?>
+			<?}?>
 			 을 살해 대상으로 지목한다.
 		</td>
 		<td align=center width=70><font class=red_8><input type=submit rows=5 <?if($browser){?>class=red_submit_s<?}?> value='지목하기' accesskey="f"></td>

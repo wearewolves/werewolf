@@ -266,6 +266,17 @@ function BuildError(){
 	//alert("에러가 발생했습니다!!!!!!! \n\nreadyState:"+ this.req.readyState + "\nstatus: "+ this.req.status +"\nheaders: "+ this.req.getAllResponseHeaders());
 }
 
+// New Comment box (#memoedit)
+function fillComment(obj) {
+	document.getElementById('memo').value = document.getElementById('memoedit').innerText;
+	submitComment(obj);
+}
+
+function fastsendComment() {
+	document.getElementById('memo').value = document.getElementById('memoedit').innerText;
+	document.getElementById("writeComment").submit();
+}
+
 function submitComment(obj){
 	if(obj.memo.value.length<10 ){
 		alert("내용이 너무 짧습니다. ("+obj.memo.value.length+")");
@@ -326,6 +337,8 @@ function write_ok(){
 	var xmlDoc = this.req.responseXML.documentElement;
 
 	if(xmlDoc.getElementsByTagName('result')[0].firstChild.nodeValue == "true"){
+		// initialize memoedit
+		$("#memoedit").empty();
 		writeComment.memo.value = "";
 		postMemo = "";
 
@@ -388,40 +401,40 @@ function setColor(type){
 	switch (type)
 	{
 	case "일반":
-		$("#memo").css("backgroundColor","#fff");
-		$("#memo").css("color","#000");
+		$("#memoedit").css("backgroundColor","#fff");
+		$("#memoedit").css("color","#000");
 		break;
 	case "메모":
-		$("#memo").css("backgroundColor","#DEDB9C");
-		$("#memo").css("color","#000");
+		$("#memoedit").css("backgroundColor","#DEDB9C");
+		$("#memoedit").css("color","#000");
 		break;
 	case "사망":
-		$("#memo").css("backgroundColor","#9D9D9D");
-		$("#memo").css("color","#000");
+		$("#memoedit").css("backgroundColor","#9D9D9D");
+		$("#memoedit").css("color","#000");
 		break;
 	case "비밀":
-		$("#memo").css("backgroundColor","#F77");
-		$("#memo").css("color","#000");
+		$("#memoedit").css("backgroundColor","#F77");
+		$("#memoedit").css("color","#000");
 		break;
 	case "텔레":
-		$("#memo").css("backgroundColor","#93B4B7");
-		$("#memo").css("color","#000");
+		$("#memoedit").css("backgroundColor","#93B4B7");
+		$("#memoedit").css("color","#000");
 		break;
 	case "알림":
-		$("#memo").css("backgroundColor","#121212");
-		$("#memo").css("color","");
+		$("#memoedit").css("backgroundColor","#121212");
+		$("#memoedit").css("color","");
 		break;	
 	case "편지":
-		$("#memo").css("backgroundColor","#A6E1C4");
-		$("#memo").css("color","#000");
+		$("#memoedit").css("backgroundColor","#A6E1C4");
+		$("#memoedit").css("color","#000");
 		break;	
 	case "답변":
-		$("#memo").css("backgroundColor","#A6E1C4");
-		$("#memo").css("color","#000");
+		$("#memoedit").css("backgroundColor","#A6E1C4");
+		$("#memoedit").css("color","#000");
 		break;
 	case "봉인제안":
-		$("#memo").css("backgroundColor","#99ff00");
-		$("#memo").css("color","#000");
+		$("#memoedit").css("backgroundColor","#D2F3A2");
+		$("#memoedit").css("color","#000");
 		break;
 	}
 	return true;
@@ -699,14 +712,15 @@ $(function(){
 		});
 	});
 
-	$("#memo").keyup(function(event){
-		if($(this).val() == "봉인 제안"){
+	$("#memoedit").keyup(function(event) {
+		//if($(this).val() == "봉인 제안") {
+		if($(this).text() == "봉인 제안") {
 			var r = confirm("봉인을 제안하시겠습니까? 봉인은 게임 진행을 중단시키는 것입니다.\n\n봉인을 제안하면 봉인을 찬성,반대하는 투표가 시작됩니다.\n사건 발생 시간까지 찬성표가 과반수보다 많으면 게임이 봉인됩니다.\n봉인 논의는 한 게임당 한번만 가능합니다.");
 			if (r == true) {
 			    var reason = prompt("봉인을 제안하는 이유를 적어주세요.", "자세하게 적어주시기 바랍니다.");
 
-				try{
-					var obj = $("#writeComment")
+				try {
+					var obj = $("#writeComment");
 					
 					prams="page="+obj.find("[name=page]").val();
 					prams+="&id="+obj.find("[name=id]").val();
@@ -724,20 +738,20 @@ $(function(){
 					prams+="&memo="+encodeURIComponent(reason);
 					prams+="&SID="+encodeURIComponent(SID);
 
-					soundPlay = false;;
+					soundPlay = false;
 					var writer= new net.ContentLoader("skin/werewolf/were_comment_type_ok.php",write_ok,BuildError,"POST",prams);
 					//obj.memo.value = obj.memo.value + prams;
 					return false;
 				}
-				catch(ee){
-					alert(ee.description );
+				catch(ee) {
+					alert(ee.description);
 					return false;
 				}
 
 			} else {
 				txt = "봉인 제안은 신중하게 해주시기 바랍니다.";
-				alert(txt)
-			}			
+				alert(txt);
+			}
 		}
 	})
 

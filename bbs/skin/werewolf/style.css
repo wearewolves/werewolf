@@ -228,7 +228,7 @@
 
 	.commentNotice{border-top:1px solid  #222;padding:5px;margin:5px 0px;}
 	.commentNotice .notice{background:#121212;padding:10px;text-overflow : ellipsis; overflow : visible ;width:100%;word-break:break-all;}
-	.commentNotice .seal{background:#d2f3a2;padding:10px;text-overflow : ellipsis; overflow : visible ;width:100%;word-break:break-all;}
+	.commentNotice .seal{background:#D2F3A2;padding:10px;text-overflow : ellipsis; overflow : visible ;width:100%;word-break:break-all;}
 #commentContainer .buttonCommentPage{
 	width:100%;margin: 1px 0px; tbackground:#111;color:#A30;text-align:center;vertical-align: text-bottom;position:relative;
 	padding:5px 0px;height:25px;voice-family:"\"}\"";voice-family:inherit;height:15px;
@@ -258,8 +258,23 @@ label, .buttonCommentPage{cursor: pointer;}
 	background: url(image/webnav_header.gif) no-repeat -445px -10px;
 }
 
-
-
+/* memoedit style */
+#memoedit {
+	padding: 5px;
+	_height: 80px;
+	_top: 0px;
+	_left: -4px;
+	_position: relative;
+	min-height: 80px;
+	width: 500px;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+	text-align: justify;
+	color: #000;
+	line-height: 1.5em;
+	font-size: 12px;
+	display: inline-block;
+}
 
 #script{
 	float:left;

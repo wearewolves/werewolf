@@ -61,6 +61,5 @@ $c_normal_flag = ($data[headnum] > -2000000000) ? true : false;
 <? } ?>
 
 
-<!-- °£´ÜÇÑ ´ä±Û ½ÃÀÛÇÏ´Â ºÎºĞ -->
-<?=$hide_comment_start?> 
-
+<!-- ê°„ë‹¨í•œ ë‹µê¸€ ì‹œì‘í•˜ëŠ” ë¶€ë¶„ -->
+<?=$hide_comment_start?>

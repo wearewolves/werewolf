@@ -8,8 +8,11 @@
 	$gameinfo=mysql_fetch_array(mysql_query("select * from $DB_gameinfo where game=$no"));
 	$rule=mysql_fetch_array(mysql_query("select * from $DB_rule where no=$gameinfo[rule]"));
 	if($member[no])	$entry = mysql_fetch_array(mysql_query("select * from $DB_entry where game=$no and player = $member[no]"));
-
+	
 	$character_list = DB_array("no","character","$DB_character where `set` = '$gameinfo[characterSet]'");
+	
+	// Check subrules
+	$CheckSecretVote = checkSubRule($gameinfo['subRule'], 4);
 	//----------------------------------------------------------------------
 	//세팅
 	//마을 사람 이미지가 있는 주소
@@ -197,6 +200,23 @@
 		<div class="state">룰</div>
 		<div class="content">
 			<?echo $rule['name'];?>
+		</div>
+	</div>
+	<div class="viewState">
+		<div class="state">서브룰</div>
+		<div class="content">
+			<?
+				if($gameinfo['subRule'] == 0) echo "없음";
+				else {
+					$subrule_result = mysql_query("select * from `zetyx_board_werewolf_subrule`");
+					
+					while($subrule_temp = mysql_fetch_array($subrule_result)) {
+						if(checkSubRule($gameinfo['subRule'], $subrule_temp[no])) {
+							echo $subrule_temp[name]."<br>";
+						}
+					}
+				}
+			?>
 		</div>
 	</div>
 	<div class="viewState">
@@ -544,9 +564,20 @@ if($is_admin and 0){
 			}
 			else echo "<td>생존 </td>";
 //3
-			$temp_vote=mysql_fetch_array(mysql_query("select * from `$DB_vote` where `game` = $no and `day` = $viewDay-1 and `voter` = $t;"));
-			echo "<td>&nbsp;".$character_list[$temp_vote['candidacy']];
-			if($data['truecharacter']==15  and $temp_vote['candidacy'] and $viewMode=="all") echo "x2";
+			echo "<td>&nbsp;";
+			// subrule : secret vote
+			if($CheckSecretVote) {
+				if($viewMode == "all") {
+					$temp_vote=mysql_fetch_array(mysql_query("select * from `$DB_vote` where `game` = $no and `day` = $viewDay-1 and `voter` = $t;"));
+					echo $character_list[$temp_vote['candidacy']];
+					if($data['truecharacter'] == 15 and $temp_vote['candidacy']) echo "x2";
+				}
+			}
+			else {
+				$temp_vote=mysql_fetch_array(mysql_query("select * from `$DB_vote` where `game` = $no and `day` = $viewDay-1 and `voter` = $t;"));
+				echo $character_list[$temp_vote['candidacy']];
+				if($data['truecharacter'] == 15 and $temp_vote['candidacy'] and $viewMode == "all") echo "x2";
+			}
 			echo "</td>";
 
 
@@ -602,9 +633,20 @@ if($is_admin and 0){
 			}
 			else echo "<td>생존 </td>";
 //3
-			$temp_vote=mysql_fetch_array(mysql_query("select * from `$DB_vote` where `game` = $no and `day` = $viewDay-1 and `voter` = $t;"));
-			echo "<td>&nbsp;".$character_list[$temp_vote['candidacy']];
-			if($data['truecharacter']==15  and $temp_vote['candidacy'] and $viewMode=="all") echo "x2";
+			echo "<td>&nbsp;";
+			// subrule : secret vote
+			if($CheckSecretVote) {
+				if($viewMode == "all") {
+					$temp_vote=mysql_fetch_array(mysql_query("select * from `$DB_vote` where `game` = $no and `day` = $viewDay-1 and `voter` = $t;"));
+					echo $character_list[$temp_vote['candidacy']];
+					if($data['truecharacter'] == 15 and $temp_vote['candidacy']) echo "x2";
+				}
+			}
+			else {
+				$temp_vote=mysql_fetch_array(mysql_query("select * from `$DB_vote` where `game` = $no and `day` = $viewDay-1 and `voter` = $t;"));
+				echo $character_list[$temp_vote['candidacy']];
+				if($data['truecharacter'] == 15 and $temp_vote['candidacy'] and $viewMode == "all") echo "x2";
+			}
 			echo "</td>";
 
 //4		

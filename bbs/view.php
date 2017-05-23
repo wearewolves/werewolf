@@ -48,7 +48,7 @@
 	
 	// 비밀 마을 참여자는 참여를 취소할 때까지 재입장시 비밀번호를 요구하지 않는다
 	if($setup[skinname] == "werewolf" && $member[no] && $data[is_secret] && !$is_admin && $data[ismember] != $member[no] && $member[level] > $setup[grant_view_secret])
-		$entry = mysql_fetch_array(mysql_query("select * from zetyx_board_werewolf_entry where game=$no and player = $member[no]"));
+		$entry = mysql_fetch_array(mysql_query("select * from zetyx_board_werewolf_entry where game=$no and player=$member[no]"));
 
 // 비밀글이고 패스워드가 틀리고 관리자가 아니면 에러 표시
 	//if($data[is_secret]&&!$is_admin&&$data[ismember]!=$member[no]&&$member[level]>$setup[grant_view_secret]) {

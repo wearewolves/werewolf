@@ -298,6 +298,12 @@ CREATE TABLE `zetyx_board_werewolf_gameinfo` (
   `bad` int(2) unsigned NOT NULL default '0'
 ) TYPE=MyISAM;
 
+ALTER TABLE  `zetyx_board_werewolf_gameinfo` ADD  `seal` VARCHAR( 10 ) NOT NULL DEFAULT  '제안';
+ALTER TABLE  `zetyx_board_werewolf_gameinfo` ADD  `seal_yes` INT( 1 ) UNSIGNED NOT NULL DEFAULT  '0';
+ALTER TABLE  `zetyx_board_werewolf_gameinfo` ADD  `seal_no` INT( 1 ) UNSIGNED NOT NULL DEFAULT  '0';
+
+ALTER TABLE `zetyx_board_werewolf_gameinfo` ADD `subRule` INT(20) NOT NULL DEFAULT '0' AFTER `rule`;
+ALTER TABLE `zetyx_board_werewolf_gameinfo` ADD `delay` MEDIUMINT(13) NOT NULL DEFAULT '0';
 
 # phpMyAdmin MySQL-Dump
 # version 2.3.3pl1

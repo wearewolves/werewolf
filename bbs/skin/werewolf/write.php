@@ -319,7 +319,6 @@ function changeTermOfDay(obj){
 	</td>
 </tr>
 
-
 <tr valign=top>
   <td>
   <img src=<?=$dir?>/t.gif border=0 height=1><br>
@@ -336,6 +335,35 @@ function changeTermOfDay(obj){
 				echo DBselect1("rule"," ","no","name","$DB_rule","class='input' ".$disabled,$gameinfo['rule'],"");?>
 	</td>
 </tr>
+
+<tr valign=top>
+  <td>
+  <img src=<?=$dir?>/t.gif border=0 height=1><br>
+  <table  cellspacing=0 cellpadding=0 width=100% height=100%>
+  <tr><td align=right><font class=red_8>서브룰</font></td>
+  </tr></table>
+  </td>
+	<td>&nbsp;
+		<?
+			$subrule_result = mysql_query("select * from `zetyx_board_werewolf_subrule`");
+			
+			$bDisabled = ($mode == "modify") ? true : false;
+			
+			while($subrule_temp = mysql_fetch_array($subrule_result)) {
+				if($bDisabled) {
+					if(checkSubRule($gameinfo['subRule'], $subrule_temp[no])) $subruleChecked = "checked";
+					else $subruleChecked = "";
+				?>
+					<input type="checkbox" name="subruleOption[]" value="<?=$subrule_temp[no]?>" <?=$subruleChecked?> disabled> <?=$subrule_temp[name]?>&nbsp;&nbsp;
+				<? } else { ?>
+					<input type="checkbox" name="subruleOption[]" value="<?=$subrule_temp[no]?>"> <?=$subrule_temp[name]?>&nbsp;&nbsp;
+				<? }
+				
+				if($subrule_temp[no] % 3 == 0) echo "<br>&nbsp;";
+			} ?>
+	</td>
+</tr>
+
 <tr valign=top>
   <td>
   <img src=<?=$dir?>/t.gif border=0 height=1><br>
@@ -355,12 +383,12 @@ function changeTermOfDay(obj){
 			$bDisabled = ($mode == "modify") ? true : false;
 
 			if($bDisabled) { ?>
-			<input type="hidden" name="characterSet" id="characterSetInput" value="<?=$gameinfo['characterSet']?>">
-			<input type="text" name="characterSetName" class="input" style="width:200px" id="characterSetNameInput" value="<? echo get_characterSetName("$DB_characterSet where no = $gameinfo[characterSet]"); ?>" disabled>
+				<input type="hidden" name="characterSet" id="characterSetInput" value="<?=$gameinfo['characterSet']?>">
+				<input type="text" name="characterSetName" class="input" style="width:200px" id="characterSetNameInput" value="<? echo get_characterSetName("$DB_characterSet where no = $gameinfo[characterSet]"); ?>" disabled>
 		<? } else { ?>
-			<input type="hidden" name="characterSet" id="characterSetInput" value="<? echo init_characterSet(0, "no", "$DB_characterSet"); ?>">
-			<input type="text" name="characterSetName" class="input" style="width:200px" id="characterSetNameInput" value="<? echo init_characterSet(0, "name", "$DB_characterSet"); ?>" disabled>
-			<button type="button" id="RPSetBtn" onclick="openModal()">선택하기</button>
+				<input type="hidden" name="characterSet" id="characterSetInput" value="<? echo init_characterSet(0, "no", "$DB_characterSet"); ?>">
+				<input type="text" name="characterSetName" class="input" style="width:200px" id="characterSetNameInput" value="<? echo init_characterSet(0, "name", "$DB_characterSet"); ?>" disabled>
+				<button type="button" id="RPSetBtn" onclick="openModal()">선택하기</button>
 		<? } ?>
 		
 		<div id="modal-window" class="modal">

@@ -1,5 +1,5 @@
 /*********************************************
-* ìŠ¤í‚¨íŒŒì¼ ê³µí†µìœ¼ë¡œ  ë“¤ì–´ê°„ ìŠ¤íƒ€ì¼ ì‹œíŠ¸
+* ½ºÅ²ÆÄÀÏ °øÅëÀ¸·Î  µé¾î°£ ½ºÅ¸ÀÏ ½ÃÆ®
 *********************************************/
 td, select, input, div, form, textarea, center, option, pre, blockquote{font-size:8pt; font-family:verdana; color:#656565;letter-spacing:0px;line-height:160%}
 
@@ -35,7 +35,7 @@ A:hover   {color:#BEBEBE;text-decoration:none;}
 
 
 /*********************************************
-* list  ìŠ¤íƒ€ì¼ ì‹œíŠ¸
+* list  ½ºÅ¸ÀÏ ½ÃÆ®
 *********************************************/
 #list {width:100%;border:0;border-top:1px solid #151515;text-align:center;margin:0px}
 #list tr{height:30;}
@@ -46,28 +46,28 @@ A:hover   {color:#BEBEBE;text-decoration:none;}
 #list .notice{background-color:#151515;}
 
 /*********************************************
-* view  ìŠ¤íƒ€ì¼ ì‹œíŠ¸
+* view  ½ºÅ¸ÀÏ ½ÃÆ®
 *********************************************/
 #view {width:100%;margin:40px 0px;}
 #view td{border-bottom:1px solid #151515;font-size:12px;font-family:tahoma;letter-spacing:0px;}
 #view .subject{background-color:#151515; font-style:bold;font-size:11pt;color:#999999;}
 
 /*********************************************
-* WritePage ìŠ¤íƒ€ì¼ ì‹œíŠ¸
+* WritePage ½ºÅ¸ÀÏ ½ÃÆ®
 *********************************************/
 #WritePage {width:100%;}
 #WritePage input{width:50%;border:solid 1px #333333;font-family:verdana;font-size:8pt;height:18px;background-color:transparent;}
 #WritePage textarea {width:100%;border:solid 1px #333333; background-color:transparent; overflow-x:auto; overflow-y:auto; no-repeat fixed right bottom}
 
 /*********************************************
-* comment  ìŠ¤íƒ€ì¼ ì‹œíŠ¸
+* comment  ½ºÅ¸ÀÏ ½ÃÆ®
 *********************************************/
 .comment {width:100%;border-bottom:1px solid #151515;}
 .comment td{font-size:12px;font-family:tahoma;letter-spacing:0px;}
 .comment .name{font-style:bold;font-size:11pt;color:#999999;}
 
 /*********************************************
-* writeComment ìŠ¤íƒ€ì¼ ì‹œíŠ¸
+* writeComment ½ºÅ¸ÀÏ ½ÃÆ®
 *********************************************/
 #writeComment textarea {width:100%;border:solid 1px #333333; background-color:transparent; overflow-x:auto; overflow-y:auto; no-repeat fixed right bottom}
 
@@ -138,3 +138,5 @@ A:hover   {color:#BEBEBE;text-decoration:none;}
 .grave .ct,.grave .message{background-color:#9D9D9D}
 
 .secretletter .ct,.secretletter .message{background-color:#A6E1C4}
+
+.secretanswer .ct,.secretanswer .message{background-color:#A6E1C4}

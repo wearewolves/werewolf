@@ -1,7 +1,7 @@
-[![Build Status](https://travis-ci.org/otherwolves/werewolf.svg?branch=master)](https://travis-ci.org/otherwolves/werewolf)
+[![Build Status](https://travis-ci.org/wearewolves/werewolf.svg?branch=master)](https://travis-ci.org/wearewolves/werewolf)
 
-# werewolf.co.kr
-"인랑"의 "1일 서버"의 소스입니다.
+# werewolf6.cafe24.co.kr
+"인랑"의 "30분 서버"의 소스입니다.
 
 ## 개발
 소스 공개를 통해서 인랑 유저분들과 함께 인랑을 개발 할 수 있는 환경을 만들었습니다.

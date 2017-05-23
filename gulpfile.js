@@ -6,7 +6,7 @@ var args = minimist(process.argv.slice(2));
 gulp.task('deploy', function() {
   var remotePath = '/www/';
   var conn = ftp.create({
-    host: 'werewolf.co.kr',
+    host: 'werewolf6.cafe24.com',
     user: args.user,
     password: args.password,
     log: gutil.log,

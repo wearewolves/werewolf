@@ -18,7 +18,7 @@ function release(conn) {
 
 gulp.task('deploy', function() {
   var conn = ftp.create({
-    host: 'werewolf.co.kr',
+    host: 'werewolf6.cafe24.com',
     user: args.user,
     password: args.password,
     log: gutil.log,

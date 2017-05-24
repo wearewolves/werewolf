@@ -400,7 +400,7 @@ $REQUEST_URI = "$PHP_SELF"."$_QU"."$QUERY_STRING";
 <head>
 	<title><?=$setup[title]?></title>
 	<meta http-equiv=Content-Type content=text/html; charset=EUC-KR>
-	<link rel=StyleSheet HREF=<?=$stylefile?>?v=<?php echo filemtime('<?=$stylefile?>')?> type=text/css title=style>
+	<link rel=StyleSheet HREF=<?=$stylefile?>?v=<?php echo filemtime(<?=$stylefile?>)?> type=text/css title=style>
 	<?if($setup[use_formmail]) echo $zbLayerScript;?>
 	<?if($scriptfile) include "script/".$scriptfile;?>
 </head>
@@ -424,7 +424,7 @@ $REQUEST_URI = "$PHP_SELF"."$_QU"."$QUERY_STRING";
 <html>
 <head>
 	<meta http-equiv=Content-Type content=text/html; charset=EUC-KR>
-	<link rel=StyleSheet HREF=style.css?v=<?php echo filemtime('style.css')?> type=text/css title=style>
+	<link rel=StyleSheet HREF=style.css?v=<?php echo filemtime(style.css)?> type=text/css title=style>
 	<?=$script?>
 </head>
 <body topmargin='0'  leftmargin='0' marginwidth='0' marginheight='0' <?=$body?>>

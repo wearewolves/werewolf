@@ -22,7 +22,7 @@
 
 	if($member[no] <> 1) exit();
 ?>
-<link rel="stylesheet" href="css/table.werewolfStyle.css" type="text/css" />
+<link rel="stylesheet" href="css/table.werewolfStyle.css?v=<?php echo filemtime('css/table.werewolfStyle.css')?>" type="text/css" />
 <?
 
 

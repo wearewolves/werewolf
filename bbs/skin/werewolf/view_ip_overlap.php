@@ -23,7 +23,7 @@
 	if(!$member) exit();
 	if($member[no] <> 1 and !$player) $player = $member[no];
 ?>
-<link rel="stylesheet" href="css/table.werewolfStyle.css" type="text/css" />
+<link rel="stylesheet" href="css/table.werewolfStyle.css?v=<?php echo filemtime('css/table.werewolfStyle.css')?>" type="text/css" />
 <?
 require_once("class/DB.php");
 require_once("class/CheckOverlapIdByIp.php");

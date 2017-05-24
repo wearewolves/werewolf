@@ -78,7 +78,7 @@
 <head>
 	<title><?=$setup[title]?></title>
 	<meta http-equiv=Content-Type content=text/html; charset=EUC-KR>
-	<link rel=StyleSheet HREF=skin/<?=$setup[skinname]?>/style.css type=text/css title=style>
+	<link rel=StyleSheet HREF=skin/<?=$setup[skinname]?>/style.css?v=<?php echo filemtime('skin/<?=$setup[skinname]?>/style.css')?> type=text/css title=style>
 </head>
 <body topmargin='10'  leftmargin='10' marginwidth='10' marginheight='10' <?
 	if($setup[bg_color]) echo " bgcolor=".$setup[bg_color];

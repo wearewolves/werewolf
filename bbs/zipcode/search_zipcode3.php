@@ -2,7 +2,7 @@
 <head>
 <title>Search ZipCode</title>
 <meta http-equiv="Content-Type" content="text/html; charset=euc-kr"> 
-<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="stylesheet" href="style.css?v=<?php echo filemtime('style.css')?>" type="text/css">
 
 <script>
 <!--

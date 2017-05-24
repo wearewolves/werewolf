@@ -416,7 +416,7 @@ ini_set('session.auto_start','1');
 	<meta property="og:description" content="24시간 진행되는 하드코어 마피아 게임 & 타뷸라의 늑대. 웹 추리 게임의 진수를 느껴보세요!">
 	<meta property="og:image" content="http://vignette1.wikia.nocookie.net/werewolf/images/b/bb/Werewolfmain.png/revision/latest/scale-to-width-down/500?cb=20120926180652&path-prefix=ko">
 	<meta property="og:url" content="http://werewolf.co.kr">
-	<link rel=StyleSheet HREF=<?=$stylefile?> type=text/css title=style>
+	<link rel=StyleSheet HREF=<?=$stylefile?>?v=<?php echo filemtime('<?=$stylefile?>')?> type=text/css title=style>
 	<link rel="shortcut icon" type="image/x-icon" href="http://werewolf5.cafe24.com/favicon.ico" />
 	<?if($setup[use_formmail]) echo $zbLayerScript;?>
 	<?if($scriptfile) include "script/".$scriptfile;?>
@@ -441,7 +441,7 @@ ini_set('session.auto_start','1');
 <html>
 <head>
 	<meta http-equiv=Content-Type content=text/html; charset=EUC-KR>
-	<link rel=StyleSheet HREF=style.css type=text/css title=style>
+	<link rel=StyleSheet HREF=style.css?v=<?php echo filemtime('style.css')?> type=text/css title=style>
 	<?=$script?>
 </head>
 <body topmargin='0'  leftmargin='0' marginwidth='0' marginheight='0' <?=$body?>>

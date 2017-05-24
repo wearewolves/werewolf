@@ -1,7 +1,7 @@
-<script type="text/javascript" src="skin/<?=$id?>/js/jquery-1.12.4.min.js?v=<?php echo filemtime('skin/'.$id.'/js/jquery-1.12.4.min.js'); ?>"></script>
-<script type="text/javascript" src="skin/<?=$id?>/js/jquery.floatbox.js?v=<?php echo filemtime('skin/'.$id.'/js/jquery.floatbox.js'); ?>"></script>
-<script type="text/javascript" src="skin/<?=$id?>/js/were-090114.js?v=<?php echo filemtime('skin/'.$id.'/js/were-090114.js'); ?>"></script>
-<script type="text/javascript" src="skin/<?=$id?>/js/image-picker.min.js?v=<?php echo filemtime('skin/'.$id.'/js/image-picker.min.js'); ?>"></script>
+<script type="text/javascript" src="skin/<?=$id?>/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="skin/<?=$id?>/js/jquery.floatbox.js"></script>
+<script type="text/javascript" src="skin/<?=$id?>/js/were-090114.js"></script>
+<script type="text/javascript" src="skin/<?=$id?>/js/image-picker.min.js"></script>
 <?
 	//----------------------------------------------------------------------
 	//데이터 초기화
@@ -466,8 +466,8 @@
 </div>
 
 
-<link rel="stylesheet" href="skin/<?=$id?>/css/table.werewolfStyle.css?v=<?php echo filemtime('skin/'.$id.'/css/table.werewolfStyle.css'); ?>" type="text/css" />
-<link rel="stylesheet" href="skin/<?=$id?>/css/image-picker.css?v=<?php echo filemtime('skin/'.$id.'/css/image-picker.css'); ?>" type="text/css" />
+<link rel="stylesheet" href="skin/<?=$id?>/css/table.werewolfStyle.css" type="text/css" />
+<link rel="stylesheet" href="skin/<?=$id?>/css/image-picker.css" type="text/css" />
 <?
 if($is_admin and 0){
 	require_once("class/TableMaker.php");

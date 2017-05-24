@@ -8,9 +8,7 @@
 
 		if((time () - $buffer) > 70){
 			//echo "'서버가 작동 중입니다.";
-			$notice[1] = "서버가 죽었습니다!!게임이 진행되지 않습니다!!
-			레켄베르에게 연락해서 서버를 살리라고 전해주세요! 
-			(이메일: rekenber@gmail.com, MSN: kijuli@hotmail.com)";
+			$notice[1] = $notice_serverdown;
 			$notice[1] = nl2br($notice[1]);
 			$noticeColor ="#FF9966";
 		} else {

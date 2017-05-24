@@ -3,8 +3,8 @@
 
 ?>
 <!-- role playing set selector js, css files -->
-<script type="text/javascript" src="skin/werewolf/js/werewolf-role-playing-set.js"></script>
-<link rel="stylesheet" type="text/css" href="skin/werewolf/css/werewolf-role-playing-set.css">
+<script type="text/javascript" src="skin/werewolf/js/werewolf-role-playing-set.js?v=<?php echo filemtime('skin/werewolf/js/werewolf-role-playing-set.js'); ?>"></script>
+<link rel="stylesheet" type="text/css" href="skin/werewolf/css/werewolf-role-playing-set.css?v=<?php echo filemtime('skin/werewolf/css/werewolf-role-playing-set.css'); ?>">
 <SCRIPT LANGUAGE="JavaScript">
 <!--
 function zb_formresize(obj) {

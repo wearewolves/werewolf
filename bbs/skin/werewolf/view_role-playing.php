@@ -74,8 +74,8 @@ function changeCharacterSetByNum(selectCharacterSet){
 </script>
 
 <!-- role playing set selector js, css files -->
-<script type="text/javascript" src="js/werewolf-role-playing-set.js"></script>
-<link rel="stylesheet" type="text/css" href="css/werewolf-role-playing-set.css">
+<script type="text/javascript" src="js/werewolf-role-playing-set.js?v=<?php echo filemtime('js/werewolf-role-playing-set.js'); ?>"></script>
+<link rel="stylesheet" type="text/css" href="css/werewolf-role-playing-set.css?v=<?php echo filemtime('css/werewolf-role-playing-set.css'); ?>">
 
 
 <?

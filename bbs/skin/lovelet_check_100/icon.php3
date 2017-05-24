@@ -1,7 +1,7 @@
 <html>
 <head>
 <title>Icon Preview</title>
-<link rel="stylesheet" type="text/css" href="style.css?v=<?php echo filemtime('style.css'); ?>">
+<link rel="stylesheet" type="text/css" href="style.css">
 <script language language="JavaScript">
 <!--
 function chgicon(num)

@@ -178,7 +178,7 @@
 	<div class="viewState">
 		<div class="state">사건이 시작된 날</div>
 		<div class="content">
-			<?echo date("m",$gameinfo['deathtime'])."월 ".date("d",$gameinfo['deathtime'])." 일";?>
+			<?echo date("m",$gameinfo['deathtime'])."월 ".date("d",$gameinfo['deathtime'])."일";?>
 		</div>
 	</div>
 	<?}?>
@@ -186,8 +186,8 @@
 		<div class="state">사건이 발생하는 시간</div>
 		<div class="content">
 			<?
-			$accidentTiem =$gameinfo['deathtime'] + $gameinfo['termOfDay']*$viewDay;
-		echo date("H",$accidentTiem)."시 ".date("i",$accidentTiem)." 분";?>
+			$accidentTiem = $gameinfo['deathtime'] + $gameinfo['termOfDay']*$viewDay;
+		echo date("H",$accidentTiem)."시 ".date("i",$accidentTiem)."분";?>
 		</div>
 	</div>
 	<div class="viewState">
@@ -220,10 +220,16 @@
 		</div>
 	</div>
 	<div class="viewState">
+		<div class="state">N분룰</div>
+		<div class="content">
+			<?echo $gameinfo['delay']."분";?>
+		</div>
+	</div>
+	<div class="viewState">
 		<div class="state">롤 플레잉 세트</div>
 		<div class="content">
 			<?
-				$ruleplayingSet =mysql_fetch_array(mysql_query("select * from `".$db->characterSet."` where `no`= '".$gameinfo['characterSet']."'"));
+				$ruleplayingSet = mysql_fetch_array(mysql_query("select * from `".$db->characterSet."` where `no`= '".$gameinfo['characterSet']."'"));
 				echo "<a href='skin/".$id."/view_role-playing.php?id=".$id."&set=".$ruleplayingSet['no']."'>". $ruleplayingSet['name']."</a>";
 			?>
 		</div>

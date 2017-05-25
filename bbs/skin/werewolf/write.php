@@ -327,8 +327,7 @@ function changeTermOfDay(obj){
   <tr><td align=right><font class=red_8>·ê</font></td>
   </tr></table>
   </td>
-	<td>
-
+	<td>&nbsp;
 				<?
 				if($mode == "modify") $disabled= "DISABLED=true";
 				else $disabled ="";

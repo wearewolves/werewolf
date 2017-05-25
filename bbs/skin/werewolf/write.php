@@ -328,7 +328,6 @@ function changeTermOfDay(obj){
   </tr></table>
   </td>
 	<td>&nbsp;
-
 				<?
 				if($mode == "modify") $disabled= "DISABLED=true";
 				else $disabled ="";
@@ -344,7 +343,7 @@ function changeTermOfDay(obj){
   <tr><td align=right><font class=red_8>¼­ºê·ê</font></td>
   </tr></table>
   </td>
-	<td>&nbsp;
+	<td>
 		<?
 			$subrule_result = mysql_query("select * from `zetyx_board_werewolf_subrule`");
 			
@@ -360,7 +359,7 @@ function changeTermOfDay(obj){
 					<input type="checkbox" name="subruleOption[]" value="<?=$subrule_temp[no]?>"> <?=$subrule_temp[name]?>&nbsp;&nbsp;
 				<? }
 				
-				if($subrule_temp[no] % 3 == 0) echo "<br>&nbsp;";
+				if($subrule_temp[no] % 3 == 0) echo "<br>";
 			} ?>
 	</td>
 </tr>
@@ -372,7 +371,7 @@ function changeTermOfDay(obj){
   <tr><td align=right><font class=red_8>NºÐ·ê</font></td>
   </tr></table>
   </td>
-	<td>&nbsp;&nbsp;
+	<td>&nbsp;
 		<?
 			$bDisabled = ($mode == "modify") ? true : false;
 			if($bDisabled) { ?>
@@ -390,7 +389,7 @@ function changeTermOfDay(obj){
   <tr><td align=right><font class=red_8>·Ñ ÇÃ·¹À× ¼¼Æ®</font></td>
   </tr></table>
   </td>
-	<td>&nbsp;&nbsp;
+	<td>&nbsp;
 				<!--?
 				if($mode == "modify") $disabled= "DISABLED=true";
 				else $disabled ="";

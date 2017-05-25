@@ -328,11 +328,12 @@ function changeTermOfDay(obj){
   </tr></table>
   </td>
 	<td>&nbsp;
-				<?
-				if($mode == "modify") $disabled= "DISABLED=true";
-				else $disabled ="";
-				
-				echo DBselect1("rule"," ","no","name","$DB_rule","class='input' ".$disabled,$gameinfo['rule'],"");?>
+		<?
+			if($mode == "modify") $disabled= "DISABLED=true";
+			else $disabled ="";
+			
+			echo DBselect1("rule"," ","no","name","$DB_rule","class='input' ".$disabled,$gameinfo['rule'],"");
+		?>
 	</td>
 </tr>
 
@@ -343,7 +344,7 @@ function changeTermOfDay(obj){
   <tr><td align=right><font class=red_8>서브룰</font></td>
   </tr></table>
   </td>
-	<td>
+	<td>&nbsp;
 		<?
 			$subrule_result = mysql_query("select * from `zetyx_board_werewolf_subrule`");
 			
@@ -359,7 +360,7 @@ function changeTermOfDay(obj){
 					<input type="checkbox" name="subruleOption[]" value="<?=$subrule_temp[no]?>"> <?=$subrule_temp[name]?>&nbsp;&nbsp;
 				<? }
 				
-				if($subrule_temp[no] % 3 == 0) echo "<br>";
+				if($subrule_temp[no] % 3 == 0) echo "<br>&nbsp;";
 			} ?>
 	</td>
 </tr>
@@ -375,7 +376,7 @@ function changeTermOfDay(obj){
 		<?
 			$bDisabled = ($mode == "modify") ? true : false;
 			if($bDisabled) { ?>
-				<input type="text" name="delayM" size="4" MAXLENGTH="4" value="<?=$gameinfo['delay']?>" disabled class="input">분
+				<input type="text" name="delayM" size="4" MAXLENGTH="4" value="<?=$gameinfo['delay'] / 60?>" disabled class="input">분
 			<? } else { ?>
 				<input type="text" name="delayM" size="4" MAXLENGTH="4" value="0" class="input">분
 			<? } ?>

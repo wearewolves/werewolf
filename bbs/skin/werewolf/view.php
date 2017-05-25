@@ -222,7 +222,7 @@
 	<div class="viewState">
 		<div class="state">NºÐ·ê</div>
 		<div class="content">
-			<?echo $gameinfo['delay']."ºÐ";?>
+			<? echo ($gameinfo['delay'] / 60)."ºÐ"; ?>
 		</div>
 	</div>
 	<div class="viewState">

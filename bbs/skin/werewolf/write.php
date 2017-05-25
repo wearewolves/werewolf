@@ -376,7 +376,7 @@ function changeTermOfDay(obj){
 		<?
 			$bDisabled = ($mode == "modify") ? true : false;
 			if($bDisabled) { ?>
-				<input type="text" name="delayM" size="4" MAXLENGTH="4" value="<?=$gameinfo['delay']?>" disabled class="input">Ка
+				<input type="text" name="delayM" size="4" MAXLENGTH="4" value="<?=$gameinfo['delay'] / 60?>" disabled class="input">Ка
 			<? } else { ?>
 				<input type="text" name="delayM" size="4" MAXLENGTH="4" value="0" class="input">Ка
 			<? } ?>

@@ -45,6 +45,8 @@ class Game:
         elif self.useTimetable == 1:
             AllAlivePlayerCounter = self.entry.getAllAlivePlayerCounter()
             AllConfirmCounter = self.entry.getAllConfirmCounter()
+            logging.debug("준비 완료: %s within %s", AllConfirmCounter, AllAlivePlayerCounter)
+            logging.debug("Type of AllConfirmCounter: %s", type(AllConfirmCounter))
 
             if self.day == 0:
                 deathtime = self.deathTime

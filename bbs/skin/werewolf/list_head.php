@@ -7,7 +7,7 @@
 		fclose($handleLog );
 
 		if((time () - $buffer) > 70){
-			//echo "'서버가 작동 중입니다.";
+			//echo "'서버가 작동 중입니다."
 			$notice[1] = $notice_serverdown;
 			$notice[1] = nl2br($notice[1]);
 			$noticeColor ="#FF9966";

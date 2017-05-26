@@ -2,6 +2,7 @@
 import time
 import random
 import logging
+import config
 from werewolf.database.DATABASE     import DATABASE
 from werewolf.game.entry.Role       import *
 
@@ -48,6 +49,8 @@ class Entry:
         return noMannerPlayers
 
     def getMaxNoCommentCount(self):
+        if config.server == "test group":
+            return 1000
         if self.game.termOfDay <= 1800:
             maxSuddenCount = 3
         else:

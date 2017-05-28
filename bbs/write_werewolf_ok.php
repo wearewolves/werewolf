@@ -58,8 +58,10 @@
 	if($termOfDay <> 60 and $termOfDay <> 900  and $termOfDay <> 1200 and $termOfDay <> 1500 and $termOfDay <> 1800 and $termOfDay <> 86400)	$termOfDay = 1800;
 	
 	// limit for delay
-	$delayS = $delayM * 60;
-	if($delayS >= $termOfDay) Error("N분룰 시간을 다시 입력해주시기 바랍니다. (".($termOfDay / 60)." 보다 작게 입력)"); 
+	$delayBeforeS = $delayBeforeM * 60;
+	$delayAfterS = $delayAfterM * 60;
+	if($delayBeforeS < 0 or $delayBeforeS >= $termOfDay) Error("발언 제한 시간(사건 발생 직전)을 다시 입력해주시기 바랍니다. (0에서 ".($termOfDay / 60 - 1)." 사이로 입력)");
+	if($delayAfterS < 0 or $delayAfterS >= $termOfDay) Error("발언 제한 시간(사건 발생 직후)을 다시 입력해주시기 바랍니다. (0에서 ".($termOfDay / 60 - 1)." 사이로 입력)");
 
 	if(!$is_admin&&$setup[grant_notice]<$member[level]) $notice = 0;
 
@@ -692,7 +694,7 @@
 		@mysql_query(
 		// Add subRule, delay values
 		//"INSERT INTO `$t_board"."_$id"."_gameinfo` (`game`, `day`, `startingTime`, `deathtime`, `players`, `result`, `state`, `termOfDay`, `characterSet`, `rule`, `useTimetable`) VALUES ('$no', '0', '$startingTime', '$deathtime', '1', '', '준비중', '$termOfDay', '$characterSet', '$rule', '$useTimetable');") or error("7".mysql_error());
-		"INSERT INTO `$t_board"."_$id"."_gameinfo` (`game`, `day`, `startingTime`, `deathtime`, `players`, `result`, `state`, `termOfDay`, `characterSet`, `rule`, `subRule`, `useTimetable`, `delay`) VALUES ('$no', '0', '$startingTime', '$deathtime', '1', '', '준비중', '$termOfDay', '$characterSet', '$rule', '$subRule', '$useTimetable', '$delayS');") or error("7".mysql_error());
+		"INSERT INTO `$t_board"."_$id"."_gameinfo` (`game`, `day`, `startingTime`, `deathtime`, `players`, `result`, `state`, `termOfDay`, `characterSet`, `rule`, `subRule`, `useTimetable`, `delayAfter`, `delayBefore`, `delayAfterUsed`, `delayBeforeUsed`) VALUES ('$no', '0', '$startingTime', '$deathtime', '1', '', '준비중', '$termOfDay', '$characterSet', '$rule', '$subRule', '$useTimetable', '$delayAfterS', '$delayBeforeS', '0', '0');") or error("7".mysql_error());
 
 
 

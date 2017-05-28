@@ -86,17 +86,18 @@ class ExpansionRule(WerewolfRule):
         #일반 로그를 쓰지 않은 사람을 체크한다.
         self.game.entry.checkNoCommentPlayer()
 
-        #투표 -살아 있는 참가자가 투표를 했는지 체크, 않했다면 랜덤 투표
+        #투표 - 살아있는 참가자가 투표를 했는지 체크, 안 했다면 랜덤 투표
         victim = self.decideByMajority()
         if victim:
             if victim.truecharacter == Truecharacter.DIABLO:
                 if victim.awaken():
+                    logging.info("디아블로 승리")
                     self.game.setGameState("win", "3")
                     if self.game.termOfDay == 60:
                         self.game.setGameState("state", GAME_STATE.TESTOVER)
                     else:
                         self.game.setGameState("state", GAME_STATE.GAMEOVER)
-                    logging.info("디아블로 승리")
+                    self.game.entry.allocComment()
                     self.game.setGameState("day", self.game.day+1)
                     return
             victim.toDeath("심판")
@@ -133,6 +134,7 @@ class ExpansionRule(WerewolfRule):
                 self.game.setGameState("state", GAME_STATE.TESTOVER)
             else:
                 self.game.setGameState("state", GAME_STATE.GAMEOVER)
+            self.game.entry.allocComment()
 
         elif not werewolfRace:
             logging.info("인간 승리")
@@ -141,6 +143,8 @@ class ExpansionRule(WerewolfRule):
                 self.game.setGameState("state", GAME_STATE.TESTOVER)
             else:
                 self.game.setGameState("state", GAME_STATE.GAMEOVER)
+            self.game.entry.allocComment()
+
         else:
             logging.info("계속 진행")
             #self.game.setGameState("state","게임중")

@@ -73,7 +73,7 @@ class BasicRule(WerewolfRule):
         #일반 로그를 쓰지 않은 사람을 체크한다.
         self.game.entry.checkNoCommentPlayer()
 
-        #투표 -살아 있는 참가자가 투표를 했는지 체크, 않했다면 랜덤 투표
+        #투표 - 살아있는 참가자가 투표를 했는지 체크, 안 했다면 랜덤 투표
         victim = self.decideByMajority()
         if victim:
             victim.toDeath("심판")
@@ -111,6 +111,7 @@ class BasicRule(WerewolfRule):
                 self.game.setGameState("state", GAME_STATE.TESTOVER)
             else:
                 self.game.setGameState("state", GAME_STATE.GAMEOVER)
+            self.game.entry.allocComment()
 
         elif not werewolfRace:
             logging.info("인간 승리")
@@ -119,6 +120,8 @@ class BasicRule(WerewolfRule):
                 self.game.setGameState("state", GAME_STATE.TESTOVER)
             else:
                 self.game.setGameState("state", GAME_STATE.GAMEOVER)
+            self.game.entry.allocComment()
+
         else:
             logging.info("계속 진행")
             #self.game.setGameState("state","게임중")

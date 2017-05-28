@@ -183,7 +183,7 @@
 	</div>
 	<?}?>
 	<div class="viewState">
-		<div class="state">사건이 발생하는 시간</div>
+		<div class="state">사건이 발생하는 시각</div>
 		<div class="content">
 			<?
 			$accidentTiem = $gameinfo['deathtime'] + $gameinfo['termOfDay']*$viewDay;

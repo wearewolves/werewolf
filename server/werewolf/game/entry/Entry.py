@@ -138,7 +138,7 @@ class Entry:
         query %= (self.game.game)
         logging.debug(query)
         cursor.execute(query)
-		
+
     def allocComment(self):
         cursor = self.game.db.cursor
 		
@@ -155,7 +155,7 @@ class Entry:
         query %= (self.game.game)
         logging.debug(query)
         cursor.execute(query)
-		
+
     def freeComment(self):
         cursor = self.game.db.cursor
 		

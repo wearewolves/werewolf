@@ -3,6 +3,13 @@
 	padding: 10px 20px;
 	background: #111111;
 	border: solid 1px #151515;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+
 }
 .DisplayBoard ol {
 	margin:0px;

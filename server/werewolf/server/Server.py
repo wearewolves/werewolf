@@ -74,7 +74,7 @@ class Server:
                     for rec in recs:
                         game = Game(rec, database)
                         game.nextTurn()
-						game.checkDelay()
+                        game.checkDelay()
 
                     cursor.close()
                     database.conn.close()

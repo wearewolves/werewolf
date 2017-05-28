@@ -38,22 +38,22 @@ class WerewolfRule(Rule):
         raise NotImplementedError
     def nextTurn_Xday(self):
         raise NotImplementedError
-		
+
     def checkDelayToAllocComment(self):
         if self.game.state == GAME_STATE.PLAYING:
-			logging.info("로그 충전 완료")
-			self.game.entry.allocComment()
+            logging.info("로그 충전 완료")
+            self.game.entry.allocComment()
         elif self.game.state == GAME_STATE.GAMEOVER or self.game.state == GAME_STATE.TESTOVER:
-			logging.info("로그 충전 완료")
-			self.game.entry.allocComment()
-			
+            logging.info("로그 충전 완료")
+            self.game.entry.allocComment()
+
     def checkDelayToFreeComment(self):
         if self.game.state == GAME_STATE.PLAYING:
-			logging.info("로그 해제 완료")
-			self.game.entry.freeComment()
+            logging.info("로그 해제 완료")
+            self.game.entry.freeComment()
         elif self.game.state == GAME_STATE.GAMEOVER or self.game.state == GAME_STATE.TESTOVER:
-			logging.info("로그 해제 완료")
-			self.game.entry.freeComment()
+            logging.info("로그 해제 완료")
+            self.game.entry.freeComment()
 
     def initGame(self):
         #플레이해본 사람

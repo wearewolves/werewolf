@@ -44,7 +44,7 @@ class HamsterRule(BasicRule):
                     BasicRule.nextTurn_Xday(self)
 
     def initGame(self):
-        logging.info("init Hamstar")
+        logging.info("init Hamstar Rule")
         WerewolfRule.initGame(self)
         self.deleteTelepathy()
 
@@ -69,7 +69,7 @@ class HamsterRule(BasicRule):
         for noMannerPlayer in noMannerPlayers:
             noMannerPlayer.toDeath("돌연 ")
 
-        #코맨츠 초기화
+        #코멘트 초기화
         self.game.entry.initComment()
         self.deleteTelepathy()
 
@@ -93,7 +93,7 @@ class HamsterRule(BasicRule):
         for noMannerPlayer in noMannerPlayers:
             noMannerPlayer.toDeath("돌연 ")
         
-        #코맨츠 초기화
+        #코멘트 초기화
         self.game.entry.initComment()
         self.deleteTelepathy()
 

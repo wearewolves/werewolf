@@ -51,7 +51,7 @@ class ExpansionRule(WerewolfRule):
         return rolelist
 
     def initGame(self):
-        logging.info("init expansion rule")
+        logging.info("init Expansion Rule")
         WerewolfRule.initGame(self)
     
     def writePlayerWill(self):
@@ -74,7 +74,7 @@ class ExpansionRule(WerewolfRule):
         for noMannerPlayer in noMannerPlayers:
             noMannerPlayer.toDeath("돌연 ")
 
-        #코맨츠 초기화
+        #코멘트 초기화
         self.game.entry.initComment()
 
         #3. 게임 정보 업데이트
@@ -106,7 +106,7 @@ class ExpansionRule(WerewolfRule):
         for noMannerPlayer in noMannerPlayers:
             noMannerPlayer.toDeath("돌연 ")
 
-        #코맨츠 초기화
+        #코멘트 초기화
         self.game.entry.initComment()
 
         #습격!

@@ -74,7 +74,7 @@ class Game:
 
     def checkDelay(self):
         # 코멘트 충전
-        if self.delayAfterUsed == 0:
+        if self.state == "게임중" and self.delayAfterUsed == 0:
             if self.day == 1 and self.delayAfter > 0:
                 if time.time() >= (self.deathTime + self.delayAfter):
                     logging.info("%s: 로그 충전!", self.game)
@@ -84,7 +84,7 @@ class Game:
                 self.rule.checkDelayToAllocComment()
 		
         # 코멘트 해제
-        if self.delayBeforeUsed == 0 and self.delayBefore > 0:
+        if self.state == "게임중" and self.delayBeforeUsed == 0 and self.delayBefore > 0:
             # 1일 서버
             if self.useTimetable == 0 and time.time() >= (self.deathTime + self.termOfDay * self.day - self.delayBefore):
                 logging.info("%s: 로그 해제!", self.game)

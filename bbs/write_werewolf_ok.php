@@ -62,6 +62,7 @@
 	$delayAfterS = $delayAfterM * 60;
 	if($delayBeforeS < 0 or $delayBeforeS >= $termOfDay) Error("발언 제한 시간(사건 발생 직전)을 다시 입력해주시기 바랍니다. (0에서 ".($termOfDay / 60 - 1)." 사이로 입력)");
 	if($delayAfterS < 0 or $delayAfterS >= $termOfDay) Error("발언 제한 시간(사건 발생 직후)을 다시 입력해주시기 바랍니다. (0에서 ".($termOfDay / 60 - 1)." 사이로 입력)");
+	if(($delayBeforeS + $delayAfterS) >= $termOfDay) Error("발언 제한 시간(직전 & 직후)을 다시 입력해주시기 바랍니다. (총합이 0에서 ".($termOfDay / 60 - 1)." 사이가 되도록 입력)");
 
 	if(!$is_admin&&$setup[grant_notice]<$member[level]) $notice = 0;
 

@@ -67,13 +67,20 @@ class Server:
                     database = DATABASE(config.user, config.passwd, config.db)
                     cursor = database.cursor
 
-                    cursor.execute("select * from `zetyx_board_werewolf_gameinfo` where `state` ='게임중' or `state` ='준비중'  ")
+                    # nextTurn
+                    cursor.execute("select * from `zetyx_board_werewolf_gameinfo` where `state` = '게임중' or `state` = '준비중'")
                     logging.debug("Cursor's rowcount: %d", cursor.rowcount)
                     recs = cursor.fetchall()
-
                     for rec in recs:
                         game = Game(rec, database)
                         game.nextTurn()
+
+                    # checkDelay
+                    cursor.execute("select * from `zetyx_board_werewolf_gameinfo` where `state` = '게임중' or `state` = '준비중'")
+                    logging.debug("Cursor's rowcount: %d", cursor.rowcount)
+                    recs = cursor.fetchall()
+                    for rec in recs:
+                        game = Game(rec, database)
                         game.checkDelay()
 
                     cursor.close()

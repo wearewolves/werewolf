@@ -124,8 +124,50 @@ class Entry:
 
     def initComment(self):
         cursor = self.game.db.cursor
+		
         query = """update `zetyx_board_werewolf_entry` 
-        set comment = '0', normal ='20', memo  ='10' , secret  ='40' , grave  ='20', telepathy ='1' ,isConfirm='0'
+        set comment = '0', normal = '0', memo  = '10' , secret = '40' , grave = '20', telepathy = '1', isConfirm = '0'
+        where game = '%s'"""
+        query %= (self.game.game)
+        logging.debug(query)
+        cursor.execute(query)
+		
+        query = """update `zetyx_board_werewolf_gameinfo` 
+        set delayAfterUsed = '0', delayBeforeUsed = '0'
+        where game = '%s'"""
+        query %= (self.game.game)
+        logging.debug(query)
+        cursor.execute(query)
+		
+    def allocComment(self):
+        cursor = self.game.db.cursor
+		
+        query = """update `zetyx_board_werewolf_entry` 
+        set normal = '20'
+        where game = '%s'"""
+        query %= (self.game.game)
+        logging.debug(query)
+        cursor.execute(query)
+		
+        query = """update `zetyx_board_werewolf_gameinfo` 
+        set delayAfterUsed = '1'
+        where game = '%s'"""
+        query %= (self.game.game)
+        logging.debug(query)
+        cursor.execute(query)
+		
+    def freeComment(self):
+        cursor = self.game.db.cursor
+		
+        query = """update `zetyx_board_werewolf_entry` 
+        set normal = '0'
+        where game = '%s'"""
+        query %= (self.game.game)
+        logging.debug(query)
+        cursor.execute(query)
+		
+        query = """update `zetyx_board_werewolf_gameinfo` 
+        set delayBeforeUsed = '1'
         where game = '%s'"""
         query %= (self.game.game)
         logging.debug(query)

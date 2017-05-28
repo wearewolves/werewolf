@@ -60,7 +60,7 @@ class BasicRule(WerewolfRule):
         for noMannerPlayer in noMannerPlayers:
             noMannerPlayer.toDeath("돌연 ")
 
-        #코맨츠 초기화
+        #코멘트 초기화
         self.game.entry.initComment()
         self.deleteTelepathy()
 
@@ -83,7 +83,7 @@ class BasicRule(WerewolfRule):
         for noMannerPlayer in noMannerPlayers:
             noMannerPlayer.toDeath("돌연 ")
 
-        #코맨츠 초기화
+        #코멘트 초기화
         self.game.entry.initComment()
         self.deleteTelepathy()
 

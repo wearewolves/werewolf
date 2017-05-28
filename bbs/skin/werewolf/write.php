@@ -324,6 +324,26 @@ function changeTermOfDay(obj){
   <td>
   <img src=<?=$dir?>/t.gif border=0 height=1><br>
   <table  cellspacing=0 cellpadding=0 width=100% height=100%>
+  <tr><td align=right><font class=red_8>발언 제한 시간</font></td>
+  </tr></table>
+  </td>
+	<td>&nbsp;
+		<?
+			$bDisabled = ($mode == "modify") ? true : false;
+			if($bDisabled) { ?>
+				사건 발생 직전 <input type="text" name="delayBeforeM" size="4" MAXLENGTH="4" value="<?=$gameinfo['delayBefore'] / 60?>" disabled class="input">분<br>&nbsp;
+				사건 발생 직후 <input type="text" name="delayAfterM" size="4" MAXLENGTH="4" value="<?=$gameinfo['delayAfter'] / 60?>" disabled class="input">분
+			<? } else { ?>
+				사건 발생 직전 <input type="text" name="delayBeforeM" size="4" MAXLENGTH="4" value="0" class="input">분<br>&nbsp;
+				사건 발생 직후 <input type="text" name="delayAfterM" size="4" MAXLENGTH="4" value="0" class="input">분
+			<? } ?>
+	</td>
+</tr>
+
+<tr valign=top>
+  <td>
+  <img src=<?=$dir?>/t.gif border=0 height=1><br>
+  <table  cellspacing=0 cellpadding=0 width=100% height=100%>
   <tr><td align=right><font class=red_8>룰</font></td>
   </tr></table>
   </td>
@@ -362,24 +382,6 @@ function changeTermOfDay(obj){
 				
 				if($subrule_temp[no] % 3 == 0) echo "<br>&nbsp;";
 			} ?>
-	</td>
-</tr>
-
-<tr valign=top>
-  <td>
-  <img src=<?=$dir?>/t.gif border=0 height=1><br>
-  <table  cellspacing=0 cellpadding=0 width=100% height=100%>
-  <tr><td align=right><font class=red_8>N분룰</font></td>
-  </tr></table>
-  </td>
-	<td>&nbsp;
-		<?
-			$bDisabled = ($mode == "modify") ? true : false;
-			if($bDisabled) { ?>
-				<input type="text" name="delayM" size="4" MAXLENGTH="4" value="<?=$gameinfo['delay'] / 60?>" disabled class="input">분
-			<? } else { ?>
-				<input type="text" name="delayM" size="4" MAXLENGTH="4" value="0" class="input">분
-			<? } ?>
 	</td>
 </tr>
 

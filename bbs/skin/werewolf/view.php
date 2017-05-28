@@ -191,6 +191,13 @@
 		</div>
 	</div>
 	<div class="viewState">
+		<div class="state">발언 제한 시간</div>
+		<div class="content">
+			<? echo "사건 발생 직전 ".($gameinfo['delayBefore'] / 60)."분<br>"; ?>
+			<? echo "사건 발생 직후 ".($gameinfo['delayAfter'] / 60)."분"; ?>
+		</div>
+	</div>
+	<div class="viewState">
 		<div class="state">마을 사람</div>
 		<div class="content">
 			<?echo $gameinfo['players']."명";?>
@@ -217,12 +224,6 @@
 					}
 				}
 			?>
-		</div>
-	</div>
-	<div class="viewState">
-		<div class="state">N분룰</div>
-		<div class="content">
-			<? echo ($gameinfo['delay'] / 60)."분"; ?>
 		</div>
 	</div>
 	<div class="viewState">

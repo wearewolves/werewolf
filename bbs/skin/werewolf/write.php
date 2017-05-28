@@ -182,7 +182,7 @@ function zb_formresize(obj) {
   <td>
   <img src=<?=$dir?>/t.gif border=0 height=1><br>
   <table  cellspacing=0 cellpadding=0 width=100% height=100%>
-  <tr><td align=right><font class=red_8>사건 발생 시간</font></td>
+  <tr><td align=right><font class=red_8>사건 발생 시각</font></td>
   </tr></table>
   </td>
 	<td>&nbsp;

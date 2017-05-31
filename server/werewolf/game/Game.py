@@ -91,10 +91,7 @@ class Game:
                 self.rule.checkDelayToFreeComment()
             # 30분 서버
             elif self.useTimetable == 1:
-                if self.day == 0:
-                    deathtime = self.deathTime
-                else:
-                    deathtime = self.getTimetable()['reg_date'] + self.termOfDay
+                deathtime = self.getTimetable()['reg_date'] + self.termOfDay
                 if time.time() >= (deathtime - self.delayBefore):
                     logging.info("%s: 로그 해제!", self.game)
                     self.rule.checkDelayToFreeComment()

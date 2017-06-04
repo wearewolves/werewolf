@@ -15,6 +15,7 @@
 
 /* Modal Content/Box */
 .modal-content {
+    z-index: 2;
     background-color: #000000;
     margin: 60px auto; /* 60px from the top and centered */
     border: 1px solid #888;
@@ -42,9 +43,9 @@
 
 /* Style the tab */
 .tabheader {
+    z-index: 4;
     width: 67%; /* Could be more or less, depending on screen size */
     margin: 20px;
-    background-color: #000000;
     position: fixed;
 }
 
@@ -80,6 +81,7 @@ div.tab button.active {
 
 /* Style the tab content */
 .tabcontent {
+    z-index: 3;
     margin: 20px;
     margin-top: 124px;
     display: none;

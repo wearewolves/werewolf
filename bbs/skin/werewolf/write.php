@@ -419,8 +419,8 @@ function changeTermOfDay(obj){
 					<input type="text" id="RPSetInput" onkeyup="searchRPSet()" placeholder="Search for names...">
 					
 					<div class="tab">
-					  <button type="button" class="tablinks" onclick="openList(event, 'listByTimeSort')">제작순</button>
-					  <button type="button" class="tablinks" onclick="openList(event, 'listByAscendingSort')">가나다순</button>
+						<button type="button" class="tablinks" onclick="openList(event, 'listByTimeSort')">제작순</button>
+						<button type="button" class="tablinks" onclick="openList(event, 'listByAscendingSort')">가나다순</button>
 					</div>
 				</div>
 

@@ -179,7 +179,7 @@ function goto_characterSet($DB, $sort) {
 	<!-- role playing set selector -->
 	<td>
 		<input type="text" name="characterSetName" class="input" style="width:200px" id="characterSetNameInput" value="<? echo get_characterSetName("`$db->characterSet` where no = $set"); ?>" disabled>
-		<button type="button" id="RPSetBtn" onclick="openModalCustomed('<?=$selectindex=?>')">선택하기</button>
+		<button type="button" id="RPSetBtn" onclick="openModalCustomed('<?=$selectindex?>')">선택하기</button>
 	</td>
 	<td width=><a href="view_private_record.php?id=<?=$id?>&player=<?=$characterSet['ismember']?>"><?=" 제작자:".$characterSet['maker']?></a></td>
 </tr>

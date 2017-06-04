@@ -44,6 +44,7 @@
 .tabheader {
     width: 67%; /* Could be more or less, depending on screen size */
     padding: 20px;
+    background-color: #000000;
     position: fixed;
 }
 

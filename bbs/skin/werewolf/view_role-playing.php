@@ -75,6 +75,7 @@ function changeCharacterSetByNum(selectCharacterSet, selectIndex){
 </script>
 
 <!-- role playing set selector js, css files -->
+<script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="js/werewolf-role-playing-set.js"></script>
 <link rel="stylesheet" type="text/css" href="css/werewolf-role-playing-set.css">
 
@@ -151,9 +152,9 @@ function goto_characterSet($DB, $sort) {
 		}
 
 		if($used)
-			$characterSetList .= "<li id=\"CS".$selectIndex."\" onclick=\"changeCharacterSetByNum('$temp[no]', '$selectIndex')\">".$temp[name]."</li>";
+			$characterSetList .= "<li onclick=\"changeCharacterSetByNum('$temp[no]', '$selectIndex')\">".$temp[name]."</li>";
 		else
-			$characterSetList .= "<li id=\"CS".$selectIndex."\" onclick=\"changeCharacterSetByNum('$temp[no]', '$selectIndex')\">".$temp[name]." <font color='#ff3838'>(사용 불가)</font></li>";
+			$characterSetList .= "<li onclick=\"changeCharacterSetByNum('$temp[no]', '$selectIndex')\">".$temp[name]." <font color='#ff3838'>(사용 불가)</font></li>";
 		
 		$selectIndex++;
 	}

@@ -21,7 +21,7 @@
     width: 73%; /* Could be more or less, depending on screen size */
     height: 79%;
     overflow-x: hidden; /* Scrollbar ON/OFF */
-    overflow-y: auto;
+    overflow-y: hidden;
 }
 
 /* The Close Button */
@@ -85,6 +85,8 @@ div.tab button.active {
     display: none;
     -webkit-animation: fadeEffect 1s;
     animation: fadeEffect 1s;
+    overflow-x: hidden; /* Scrollbar ON/OFF */
+    overflow-y: auto;
 }
 
 /* Fade in tabs 

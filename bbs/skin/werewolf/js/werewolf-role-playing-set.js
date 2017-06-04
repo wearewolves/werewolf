@@ -22,13 +22,13 @@ function openModal() {
 }
 
 function openModalCustomed(selectIndex) {
-	var modal-content;
+	var modalContent;
 	
 	openModal();
 	
 	// Set scroll's position
-	modal-content = document.getElementsByClassName("modal-content");
-	modal-content.scrollTo(0, 41 * selectIndex);
+	modalContent = document.getElementsByClassName("modal-content");
+	modalContent.scrollTo(0, 41 * selectIndex);
 }
 
 // Initialize lists on modal window. Open the default(first) list.

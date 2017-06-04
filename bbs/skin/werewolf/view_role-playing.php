@@ -139,17 +139,19 @@ function goto_characterSet($DB, $sort) {
 		$used = true;
 		
 		// Check not used role playing set
-		foreach($not_used_characterSet_no as $not_used_characterSet_no_value) {
-			if($temp[no] == $not_used_characterSet_no_value) {
-				$used = false;
-				break;
+		if($not_used_characterSet_no) {
+			foreach($not_used_characterSet_no as $not_used_characterSet_no_value) {
+				if($temp[no] == $not_used_characterSet_no_value) {
+					$used = false;
+					break;
+				}
 			}
 		}
 
 		if($used)
-			$characterSetList .= "<li onclick=\"changeCharacterSetByNum('$temp[no]')\">".$temp[name]."</li>";
+			$characterSetList .= "<li onclick=\"changeCharacterSetByNum('$temp[no]')\">".$temp[name]."</li>\n";
 		else
-			$characterSetList .= "<li onclick=\"changeCharacterSetByNum('$temp[no]')\">".$temp[name]." <font color='#ff3838'>(사용 불가)</font></li>";
+			$characterSetList .= "<li onclick=\"changeCharacterSetByNum('$temp[no]')\">".$temp[name]." <font color='#ff3838'>(사용 불가)</font></li>\n";
 	}
 	return $characterSetList;
 }

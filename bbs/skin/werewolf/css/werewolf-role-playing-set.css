@@ -1,8 +1,8 @@
 /* The Modal (background) */
 .modal {
+    z-index: 1; /* Sit on top */
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
     left: 0;
     top: 0;
     width: 100%; /* Full width */
@@ -46,6 +46,7 @@
     z-index: 4;
     width: 67%; /* Could be more or less, depending on screen size */
     margin: 20px;
+    background-color: #000000;
     position: fixed;
 }
 

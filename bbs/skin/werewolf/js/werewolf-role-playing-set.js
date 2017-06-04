@@ -15,10 +15,20 @@ function openModal() {
 	
 	// When the user clicks anywhere outside of the modal, close it
 	window.onclick = function(event) {
-		if (event.target == modal) {
+		if(event.target == modal) {
 			modal.style.display = "none";
 		}
 	}
+}
+
+function openModalCustomed(selectIndex) {
+	var modal-content;
+	
+	openModal();
+	
+	// Set scroll's position
+	modal-content = document.getElementsByClassName("modal-content");
+	modal-content.scrollTo(0, 41 * selectIndex);
 }
 
 // Initialize lists on modal window. Open the default(first) list.
@@ -102,7 +112,6 @@ function searchRPSet() {
     // Loop through all list items, and hide those who don't match the search query
     for (i = 0; i < li.length; i++) {
         if (li[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
-            li[i].style.fontSize = "16px";
             li[i].style.display = "";
         } else {
             li[i].style.display = "none";

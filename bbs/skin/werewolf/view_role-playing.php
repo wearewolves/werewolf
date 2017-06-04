@@ -67,9 +67,10 @@ function changeCharacterSet(selectCharacterSet){
 	window.location.replace("view_role-playing.php?id=<?=$id?>&set=" + selectCharacterSet.value);
 }
 
-function changeCharacterSetByNum(selectCharacterSet){
+function changeCharacterSetByNum(selectCharacterSet, selectIndex){
 	selectCharacterSet = parseInt(selectCharacterSet, 10);
-	window.location.replace("view_role-playing.php?id=<?=$id?>&set=" + selectCharacterSet + "&history=<?=$set?>");
+	selectIndex = parseInt(selectIndex, 10);
+	window.location.replace("view_role-playing.php?id=<?=$id?>&set=" + selectCharacterSet + "&selectindex=" + selectIndex);
 }
 </script>
 
@@ -135,6 +136,7 @@ function goto_characterSet($DB, $sort) {
 	unset($i);
 	
 	$characterSetList = "";
+	$selectIndex = 0;
 	while($temp = mysql_fetch_array($result)) {
 		$used = true;
 		
@@ -149,15 +151,18 @@ function goto_characterSet($DB, $sort) {
 		}
 
 		if($used)
-			$characterSetList .= "<li onclick=\"changeCharacterSetByNum('$temp[no]')\">".$temp[name]."</li>";
+			$characterSetList .= "<li onclick=\"changeCharacterSetByNum('$temp[no]', '$selectIndex')\">".$temp[name]."</li>";
 		else
-			$characterSetList .= "<li onclick=\"changeCharacterSetByNum('$temp[no]')\">".$temp[name]." <font color='#ff3838'>(사용 불가)</font></li>";
+			$characterSetList .= "<li onclick=\"changeCharacterSetByNum('$temp[no]', '$selectIndex')\">".$temp[name]." <font color='#ff3838'>(사용 불가)</font></li>";
+		
+		$selectIndex++;
 	}
 	return $characterSetList;
 }
 
 
 	if(!$set) $set = 1;
+	if(!$selectindex) $selectindex = 0;
 
 	$characterSet_list = DB_array("no","name","`".$db->characterSet."`");
 
@@ -174,7 +179,7 @@ function goto_characterSet($DB, $sort) {
 	<!-- role playing set selector -->
 	<td>
 		<input type="text" name="characterSetName" class="input" style="width:200px" id="characterSetNameInput" value="<? echo get_characterSetName("`$db->characterSet` where no = $set"); ?>" disabled>
-		<button type="button" id="RPSetBtn" onclick="openModal()">선택하기</button>
+		<button type="button" id="RPSetBtn" onclick="openModalCustomed('<?=$selectindex=?>')">선택하기</button>
 	</td>
 	<td width=><a href="view_private_record.php?id=<?=$id?>&player=<?=$characterSet['ismember']?>"><?=" 제작자:".$characterSet['maker']?></a></td>
 </tr>

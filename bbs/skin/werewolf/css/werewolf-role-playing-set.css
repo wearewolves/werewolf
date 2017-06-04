@@ -43,7 +43,7 @@
 /* Style the tab */
 .tabheader {
     width: 67%; /* Could be more or less, depending on screen size */
-    padding: 20px;
+    padding: 20px 20px 5px;
     background-color: #000000;
     position: fixed;
 }

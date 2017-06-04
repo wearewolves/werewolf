@@ -27,7 +27,6 @@ function openModalCustomed(selectIndex) {
 	openModal();
 	
 	// Set scroll's position
-	//modalContent = document.getElementsByClassName("modal-content");
 	selectListItem = document.getElementById("CS" + selectIndex);
 	selectListItem.scrollIntoView(true);
 }

@@ -2,7 +2,7 @@
 if($totalCommentPage>=1) echo "</div>";	
 ?>
 </div>
-	
+
 <?
 	$termOfDay="";
 	floor($gameinfo['termOfDay']/86400 ) and $termOfDay .= floor($gameinfo['termOfDay']/86400 )."ÀÏ";

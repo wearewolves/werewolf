@@ -32,7 +32,7 @@ function initOpenList() {
     input.value = "";
 
     // Get all elements with class="tabcontent" and hide them
-	/*     tabcontent = document.getElementsByClassName("tabcontent");
+    tabcontent = document.getElementsByClassName("tabcontent");
     for (i = 0; i < tabcontent.length; i++) {
         tabcontent[i].style.display = "none";
 		
@@ -41,7 +41,7 @@ function initOpenList() {
 		for (j = 0; j < li.length; j++) {
 			li[j].style.display = "";
 		}
-    } */
+    }
 
     // Get all elements with class="tablinks" and remove the class "active"
     tablinks = document.getElementsByClassName("tablinks");

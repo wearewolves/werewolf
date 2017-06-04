@@ -21,6 +21,16 @@ function openModal() {
 	}
 }
 
+function openModalCustomed(selectIndex) {
+	var modal-content;
+	
+	openModal();
+	
+	// Set scroll's position
+	modal-content = document.getElementsByClassName("modal-content");
+	modal-content.scrollTo(0, 41 * selectIndex);
+}
+
 // Initialize lists on modal window. Open the default(first) list.
 function initOpenList() {
     var tabcontent, tablinks;

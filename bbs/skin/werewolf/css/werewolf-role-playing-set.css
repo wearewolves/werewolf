@@ -1,8 +1,8 @@
 /* The Modal (background) */
 .modal {
-    z-index: 1; /* Sit on top */
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
     left: 0;
     top: 0;
     width: 100%; /* Full width */
@@ -15,7 +15,6 @@
 
 /* Modal Content/Box */
 .modal-content {
-    z-index: 2;
     background-color: #000000;
     margin: 60px auto; /* 60px from the top and centered */
     border: 1px solid #888;
@@ -43,10 +42,8 @@
 
 /* Style the tab */
 .tabheader {
-    z-index: 4;
     width: 67%; /* Could be more or less, depending on screen size */
-    margin: 20px;
-    background-color: #000000;
+    padding: 20px;
     position: fixed;
 }
 
@@ -82,11 +79,9 @@ div.tab button.active {
 
 /* Style the tab content */
 .tabcontent {
-    z-index: 3;
-    margin: 20px;
-    margin-top: 124px;
+    margin-top: 130px;
+    padding: 0px 32px 26px;
     display: none;
-    padding: 6px 12px;
     -webkit-animation: fadeEffect 1s;
     animation: fadeEffect 1s;
 }

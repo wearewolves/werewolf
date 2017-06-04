@@ -17,10 +17,9 @@
 .modal-content {
     background-color: #000000;
     margin: 60px auto; /* 60px from the top and centered */
-    padding: 20px;
     border: 1px solid #888;
-    width: 70%; /* Could be more or less, depending on screen size */
-    height: 70%;
+    width: 73%; /* Could be more or less, depending on screen size */
+    height: 79%;
     overflow-x: hidden; /* Scrollbar ON/OFF */
     overflow-y: auto;
 }
@@ -44,7 +43,7 @@
 /* Style the tab */
 .tabheader {
     width: 67%; /* Could be more or less, depending on screen size */
-    background-color: #000000;
+    margin: 20px;
     position: fixed;
 }
 
@@ -80,7 +79,8 @@ div.tab button.active {
 
 /* Style the tab content */
 .tabcontent {
-    margin-top: 104px;
+    margin: 20px;
+    margin-top: 124px;
     display: none;
     padding: 6px 12px;
     -webkit-animation: fadeEffect 1s;

@@ -153,7 +153,7 @@ function set_characterSet($DB, $sort) {
 	
 	$characterSetList = "";
 	while($temp = mysql_fetch_array($result)) {
-		$characterSetList .= "<li onclick=\"selectRPSet('$temp[no]', '$temp[name]')\">".$temp[name]."</li>\n";
+		$characterSetList .= "<li onclick=\"selectRPSet('$temp[no]', '$temp[name]')\">".$temp[name]."</li>";
 	}
 	return $characterSetList;
 }

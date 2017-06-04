@@ -27,8 +27,9 @@ function openModalCustomed(selectIndex) {
 	openModal();
 	
 	// Set scroll's position
-	selectListItem = document.getElementById("CS" + selectIndex);
-	selectListItem.scrollIntoView(true);
+	//selectListItem = document.getElementById("CS" + selectIndex);
+	//selectListItem.scrollIntoView(true);
+	window.scrollTo(0, 41*selectIndex);
 }
 
 // Initialize lists on modal window. Open the default(first) list.

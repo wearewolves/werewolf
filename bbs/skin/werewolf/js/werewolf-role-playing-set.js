@@ -21,8 +21,21 @@ function openModal() {
 	}
 }
 
-function openModalCustomed(selectIndex) {
+function openModalCustomed(selectList, selectIndex) {
 	openModal();
+	
+	// Set the used list
+	if(selectList == 1) {
+		var tabcontent, tablinks;
+		tabcontent = document.getElementsByClassName("tabcontent");
+		tablinks = document.getElementsByClassName("tablinks");
+		
+		tabcontent[0].style.display = "none";
+		tablinks[0].className = tablinks[0].className.replace(" active", "");
+		
+		tabcontent[1].style.display = "block";
+		tablinks[1].className += " active";
+	}
 	
 	// Set scroll's position
 	$(".modal-content").scrollTop(41 * selectIndex);

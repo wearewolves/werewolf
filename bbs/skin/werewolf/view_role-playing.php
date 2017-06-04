@@ -71,7 +71,7 @@ function changeCharacterSetByNum(selectCharacterSet, selectIndex){
 	selectCharacterSet = parseInt(selectCharacterSet, 10);
 	selectIndex = parseInt(selectIndex, 10);
 	
-    var tablinks, tabcontentID;
+	var tablinks, tabcontentID;
 	tablinks = document.getElementsByClassName("tablinks");
 	tabcontentID = tablinks[0].className.indexOf(" active") !== -1 ? 0 : 1;
 	

@@ -122,6 +122,12 @@ div.tab button.active {
 	cursor: pointer;
 }
 
+.RPSetUL li:visited {
+    background-color: #161616;
+}
 .RPSetUL li:hover {
     background-color: #161616; /* Add a hover effect to all links, except for headers */
+}
+.RPSetUL li:active {
+    background-color: white;
 }

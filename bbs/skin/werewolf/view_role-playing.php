@@ -71,11 +71,10 @@ function changeCharacterSetByNum(selectCharacterSet, selectIndex){
 	selectCharacterSet = parseInt(selectCharacterSet, 10);
 	selectIndex = parseInt(selectIndex, 10);
 	
-	var tablinks, tabcontentID;
-	tablinks = document.getElementsByClassName("tablinks");
-	tabcontentID = tablinks[0].className.indexOf(" active") !== -1 ? 0 : 1;
+	var tablinks = document.getElementsByClassName("tablinks");
+	var tabcontentID = tablinks[0].className.indexOf(" active") !== -1 ? 0 : 1;
 	
-	window.location.replace("view_role-playing.php?id=<?=$id?>&set=" + selectCharacterSet + "&selectlist=" + tabcontentID + "&selectindex=" + selectIndex);
+	window.location.replace("view_role-playing.php?id=<?=$id?>&set=" + selectCharacterSet + "&selectindex=" + selectIndex + "&selectlist=" + tabcontentID);
 }
 </script>
 
@@ -157,22 +156,20 @@ function goto_characterSet($DB, $sort) {
 		}
 
 		if($used)
-			$characterSetList .= "<li onclick=\"changeCharacterSetByNum('$temp[no]', '$selectIndex')\">".$temp[name]."</li>";
+			$characterSetList .= "<li id=\"CS".$selectIndex."\" onclick=\"changeCharacterSetByNum('$temp[no]', '$selectIndex')\">".$temp[name]."</li>";
 		else
-			$characterSetList .= "<li onclick=\"changeCharacterSetByNum('$temp[no]', '$selectIndex')\">".$temp[name]." <font color='#ff3838'>(사용 불가)</font></li>";
+			$characterSetList .= "<li id=\"CS".$selectIndex."\" onclick=\"changeCharacterSetByNum('$temp[no]', '$selectIndex')\">".$temp[name]." <font color='#ff3838'>(사용 불가)</font></li>";
 		
 		$selectIndex++;
 	}
 	return $characterSetList;
 }
 
-
 	if(!$set) $set = 1;
-	if(!$selectlist) $selectlist = 0;
 	if(!$selectindex) $selectindex = 0;
+	if(!$selectlist) $selectlist = 0;
 
 	$characterSet_list = DB_array("no","name","`".$db->characterSet."`");
-
 
 	$sql="select *  from  `".$db->characterSet."` where `no` = $set";
 	$characterSet	 = mysql_fetch_array(mysql_query($sql));
@@ -186,7 +183,7 @@ function goto_characterSet($DB, $sort) {
 	<!-- role playing set selector -->
 	<td>
 		<input type="text" name="characterSetName" class="input" style="width:200px" id="characterSetNameInput" value="<? echo get_characterSetName("`$db->characterSet` where no = $set"); ?>" disabled>
-		<button type="button" id="RPSetBtn" onclick="openModalCustomed('<?=$selectlist?>', '<?=$selectindex?>')">선택하기</button>
+		<button type="button" id="RPSetBtn" onclick="openModalCustomed('<?=$selectindex?>', '<?=$selectlist?>')">선택하기</button>
 	</td>
 	<td width=><a href="view_private_record.php?id=<?=$id?>&player=<?=$characterSet['ismember']?>"><?=" 제작자:".$characterSet['maker']?></a></td>
 </tr>
@@ -265,7 +262,6 @@ function goto_characterSet($DB, $sort) {
 		</tr>
 	<thead>
 </table>
-
 
 
 <table id="record">

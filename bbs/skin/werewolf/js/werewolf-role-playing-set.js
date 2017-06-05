@@ -24,6 +24,8 @@ function openModal() {
 function openModalCustomed(selectIndex, selectList) {
 	openModal();
 	
+	var posY = $("#listByTimeSort .CS" + selectIndex.toString(10)).offset().top - $("#listByTimeSort .CS0").offset().top;
+	
 	// Set the used list
 	if(selectList == 1) {
 		var tabcontent, tablinks;
@@ -36,10 +38,11 @@ function openModalCustomed(selectIndex, selectList) {
 		
 		tabcontent[1].style.display = "block";
 		tablinks[1].className += " active";
+		
+		posY = $("#listByAscendingSort .CS" + selectIndex.toString(10)).offset().top - $("#listByAscendingSort .CS0").offset().top;
 	}
 	
 	// Set scrollbar's position
-	var posY = $("#CS" + selectIndex.toString(10)).offset().top - $("#CS0").offset().top;
 	$(".modal-content").scrollTop(posY);
 }
 

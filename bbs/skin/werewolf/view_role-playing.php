@@ -156,9 +156,9 @@ function goto_characterSet($DB, $sort) {
 		}
 
 		if($used)
-			$characterSetList .= "<li id=\"CS".$selectIndex."\" onclick=\"changeCharacterSetByNum('$temp[no]', '$selectIndex')\">".$temp[name]."</li>";
+			$characterSetList .= "<li class=\"CS".$selectIndex."\" onclick=\"changeCharacterSetByNum('$temp[no]', '$selectIndex')\">".$temp[name]."</li>";
 		else
-			$characterSetList .= "<li id=\"CS".$selectIndex."\" onclick=\"changeCharacterSetByNum('$temp[no]', '$selectIndex')\">".$temp[name]." <font color='#ff3838'>(사용 불가)</font></li>";
+			$characterSetList .= "<li class=\"CS".$selectIndex."\" onclick=\"changeCharacterSetByNum('$temp[no]', '$selectIndex')\">".$temp[name]." <font color='#ff3838'>(사용 불가)</font></li>";
 		
 		$selectIndex++;
 	}

@@ -21,12 +21,13 @@ function openModal() {
 	}
 }
 
-function openModalCustomed(selectList, selectIndex) {
+function openModalCustomed(selectIndex, selectList) {
 	openModal();
 	
 	// Set the used list
 	if(selectList == 1) {
 		var tabcontent, tablinks;
+		
 		tabcontent = document.getElementsByClassName("tabcontent");
 		tablinks = document.getElementsByClassName("tablinks");
 		
@@ -37,8 +38,9 @@ function openModalCustomed(selectList, selectIndex) {
 		tablinks[1].className += " active";
 	}
 	
-	// Set scroll's position
-	$(".modal-content").scrollTop(41 * selectIndex);
+	// Set scrollbar's position
+	var posY = $("#CS" + selectIndex.toString(10)).scrollTop() - $("#CS0").scrollTop();
+	$(".modal-content").scrollTop(posY);
 }
 
 // Initialize lists on modal window. Open the default(first) list.

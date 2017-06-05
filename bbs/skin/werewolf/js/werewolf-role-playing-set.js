@@ -39,7 +39,7 @@ function openModalCustomed(selectIndex, selectList) {
 	}
 	
 	// Set scrollbar's position
-	var posY = $("#CS" + selectIndex.toString(10)).scrollTop() - $("#CS0").scrollTop();
+	var posY = $("#CS" + selectIndex.toString(10)).offset().top - $("#CS0").offset().top;
 	$(".modal-content").scrollTop(posY);
 }
 

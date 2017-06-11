@@ -1,7 +1,7 @@
 <script type="text/javascript" src="skin/<?=$id?>/js/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="skin/<?=$id?>/js/jquery.floatbox.js"></script>
-<script type="text/javascript" src="skin/<?=$id?>/js/were-090114.js"></script>
 <script type="text/javascript" src="skin/<?=$id?>/js/image-picker.min.js"></script>
+<script type="text/javascript" src="skin/<?=$id?>/js/were-090114.js?ver=<?php echo filemtime('skin/'.$id.'/js/were-090114.js'); ?>"></script>
 <?
 	//----------------------------------------------------------------------
 	//데이터 초기화
@@ -193,8 +193,8 @@
 	<div class="viewState">
 		<div class="state">발언 제한 시간</div>
 		<div class="content">
-			<? echo "사건 발생 직전 ".($gameinfo['delayBefore'] / 60)."분<br>"; ?>
-			<? echo "사건 발생 직후 ".($gameinfo['delayAfter'] / 60)."분"; ?>
+			<? echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;사건 발생 직전 ".($gameinfo['delayBefore'] / 60)."분<br>"; ?>
+			<? echo " 시작 사건 발생 직후 ".($gameinfo['delayAfter'] / 60)."분"; ?>
 		</div>
 	</div>
 	<div class="viewState">
@@ -473,8 +473,8 @@
 </div>
 
 
-<link rel="stylesheet" href="skin/<?=$id?>/css/table.werewolfStyle.css" type="text/css" />
-<link rel="stylesheet" href="skin/<?=$id?>/css/image-picker.css" type="text/css" />
+<link rel="stylesheet" href="skin/<?=$id?>/css/image-picker.css?ver=<?php echo filemtime('skin/'.$id.'/css/image-picker.css'); ?>" type="text/css" />
+<link rel="stylesheet" href="skin/<?=$id?>/css/table.werewolfStyle.css?ver=<?php echo filemtime('skin/'.$id.'/css/table.werewolfStyle.css'); ?>" type="text/css" />
 <?
 if($is_admin and 0){
 	require_once("class/TableMaker.php");
@@ -541,7 +541,6 @@ if($is_admin and 0){
 		<tr><td>No</td><td><?="<a href='$PHP_SELF?id=$id&no=$no&viewDay=$viewDay&viewMode=$viewMode' >"?>마을 사람</a></td><td>상태</td><td>투표 대상</td><td>&nbsp;</td><td>&nbsp;</td></tr>
 	</thead>
 	<tbody>
-
 <?	// 플레이어 출력
 	$i=1;
 	$temp_result=mysql_query("select * from $DB_entry where game = $no and (alive= '생존' or $viewDay <= deathday) order by alive desc,deathday desc,victim");
@@ -553,9 +552,10 @@ if($is_admin and 0){
 
 			echo "<tr onMouseOver=this.style.backgroundColor='#090909' onMouseOut=this.style.backgroundColor=''>";
 //1
-			echo "<td align=center class='red_8'>$i</td>";	++$i;		
+			echo "<td align=center class='red_8'>$i</td>";	++$i;
 //1
-			echo "<td><input type='checkbox' id='$t' class='characterButton' value='$t' checked='checked'/>" .
+			echo "<td><a href='$PHP_SELF?id=$id&no=$no&viewDay=$viewDay&viewMode=$viewMode&viewChar=$t'><img src='skin/$id/image/filter.png' border='0' title='클릭 - $character_list[$t]님의 로그만 봅니다.'></a>".
+					"<input type='checkbox' id='$t' class='characterButton' value='$t' checked='checked'/>".
 					"<label for='$t' title='클릭 - 필터링\n더블 클릭 - $character_list[$t]님의 로그만 봅니다.'>$character_list[$t]</label></td>";			
 		
 //2
@@ -607,7 +607,6 @@ if($is_admin and 0){
 	</tbody>
 </table>
 
-
 <table id="deathPlayerList">
 	<col width=17><col width=140></col><col width=100></col><col width=125></col><col width=120></col><col width=></col>
 	<tbody>
@@ -624,7 +623,8 @@ if($is_admin and 0){
 //1
 			echo "<td align=center class='red_8'>$i</td>";	++$i;		
 //1
-			echo "<td><input type='checkbox' id='$t' class='characterButton' value='$t' checked='checked'/>" .
+			echo "<td><a href='$PHP_SELF?id=$id&no=$no&viewDay=$viewDay&viewMode=$viewMode&viewChar=$t'><img src='skin/$id/image/filter.png' border='0' title='클릭 - $character_list[$t]님의 로그만 봅니다.'></a>".
+					"<input type='checkbox' id='$t' class='characterButton' value='$t' checked='checked'/>".
 					"<label for='$t'>$character_list[$t]</label></td>";			
 		
 //2

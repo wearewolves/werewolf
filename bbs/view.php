@@ -60,7 +60,7 @@
 				head();
 				$a_list="<a onfocus=blur() href='zboard.php?$href$sort'>";    
 				$a_view="<Zeroboard ";
-				$title="이 글은 비밀글입니다.<br>비밀번호를 입력하여 주십시오";
+				$title="이 글은 비밀글입니다.<br>비밀번호를 입력하여 주십시오.";
 				$input_password="<input type=password name=password autocomplete=off size=20 maxlength=20 class=input>";
 				if(eregi(":\/\/",$dir)||eregi("\.\.",$dir)) $dir="./";
 				include $dir."/ask_password.php";

@@ -3,8 +3,8 @@
 
 ?>
 <!-- role playing set selector js, css files -->
-<script type="text/javascript" src="skin/werewolf/js/werewolf-role-playing-set.js"></script>
-<link rel="stylesheet" type="text/css" href="skin/werewolf/css/werewolf-role-playing-set.css">
+<script type="text/javascript" src="skin/werewolf/js/werewolf-role-playing-set.js?ver=<?php echo filemtime('skin/werewolf/js/werewolf-role-playing-set.js'); ?>"></script>
+<link rel="stylesheet" type="text/css" href="skin/werewolf/css/werewolf-role-playing-set.css?ver=<?php echo filemtime('skin/werewolf/css/werewolf-role-playing-set.css'); ?>">
 <SCRIPT LANGUAGE="JavaScript">
 <!--
 function zb_formresize(obj) {
@@ -331,11 +331,11 @@ function changeTermOfDay(obj){
 		<?
 			$bDisabled = ($mode == "modify") ? true : false;
 			if($bDisabled) { ?>
-				사건 발생 직전 <input type="text" name="delayBeforeM" size="4" MAXLENGTH="4" value="<?=$gameinfo['delayBefore'] / 60?>" disabled class="input">분<br>&nbsp;
-				사건 발생 직후 <input type="text" name="delayAfterM" size="4" MAXLENGTH="4" value="<?=$gameinfo['delayAfter'] / 60?>" disabled class="input">분
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;사건 발생 직전 <input type="text" name="delayBeforeM" size="4" MAXLENGTH="4" value="<?=$gameinfo['delayBefore'] / 60?>" disabled class="input">분<br>&nbsp;
+				시작 사건 발생 직후 <input type="text" name="delayAfterM" size="4" MAXLENGTH="4" value="<?=$gameinfo['delayAfter'] / 60?>" disabled class="input">분
 			<? } else { ?>
-				사건 발생 직전 <input type="text" name="delayBeforeM" size="4" MAXLENGTH="4" value="0" class="input">분<br>&nbsp;
-				사건 발생 직후 <input type="text" name="delayAfterM" size="4" MAXLENGTH="4" value="0" class="input">분
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;사건 발생 직전 <input type="text" name="delayBeforeM" size="4" MAXLENGTH="4" value="0" class="input">분<br>&nbsp;
+				시작 사건 발생 직후 <input type="text" name="delayAfterM" size="4" MAXLENGTH="4" value="0" class="input">분
 			<? } ?>
 	</td>
 </tr>

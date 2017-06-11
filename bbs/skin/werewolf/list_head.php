@@ -2,11 +2,11 @@
 
 	$handleLog = fopen($_zb_server_path."werewolfLatestWorking.txt", "r");
 
-	if( $handleLog){
+	if($handleLog) {
 		$buffer = fgets($handleLog , 4096);
 		fclose($handleLog );
 
-		if((time () - $buffer) > 70){
+		if((time () - $buffer) > 70) {
 			//echo "'서버가 작동 중입니다."
 			$notice[1] = $notice_serverdown;
 			$notice[1] = nl2br($notice[1]);
@@ -16,16 +16,42 @@
 		}
 
 	}
-if($notice[1]){?>
+if($notice[1]) { ?>
 <div class="noticeTop">
+<h1 align=left></h1>
 	<font color="<?=$noticeColor?>">
 	<?=$notice[1]?>
 	</font>
 <h1 align=left></h1>
 </div>
-<?}?>
+<? } ?>
 
-<?if($playCount<3 and !$is_admin){?>
+<!-- notifications start -->
+<?
+if($member[no]) {
+	$entry = mysql_query("select t_entry.* from zetyx_board_werewolf_entry t_entry, zetyx_board_werewolf_gameinfo t_gameinfo where t_entry.player = ".$member[no]." and t_entry.game = t_gameinfo.game and (t_gameinfo.state = '준비중' or (t_gameinfo.state = '게임중' and t_entry.comment = 0));");
+	
+	if(mysql_num_rows($entry) > 0) {
+?>
+		<div id="parti_notification" class="my-notify-warning">
+			현재 다음 마을에 참여 중입니다. 상태를 확인하거나 돌연사하지 않도록 로그를 남겨주세요.
+			<?
+				while($temp = mysql_fetch_array($entry)) {
+					$game = mysql_fetch_array(mysql_query("select * from `zetyx_board_$id` where no = ".$temp['game']));
+					
+					echo "<br><br><a href='view.php?id=$id&no=".$game['no']."'>".$game['subject']."</a>";
+				}
+			?>
+		</div>
+<?	}
+
+	unset($entry);
+	unset($game);
+}
+?>
+<!-- notifications end -->
+
+<? if($playCount<3 and !$is_admin) { ?>
 	<div id="notice">
 		<h1>인랑에 처음 오셨다면...</h1>
 		<ol>
@@ -34,7 +60,7 @@ if($notice[1]){?>
 			?>			
 		</ol>
 	</div>
-<?}?>
+<? } ?>
 
 <div id="notice">
 <h1>게임의 재미를 반감 하는 금지 행동들</h1>

@@ -80,8 +80,8 @@ function changeCharacterSetByNum(selectCharacterSet, selectIndex){
 
 <!-- role playing set selector js, css files -->
 <script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
-<script type="text/javascript" src="js/werewolf-role-playing-set.js"></script>
-<link rel="stylesheet" type="text/css" href="css/werewolf-role-playing-set.css">
+<script type="text/javascript" src="js/werewolf-role-playing-set.js?ver=<?php echo filemtime('js/werewolf-role-playing-set.js'); ?>"></script>
+<link rel="stylesheet" type="text/css" href="css/werewolf-role-playing-set.css?ver=<?php echo filemtime('css/werewolf-role-playing-set.css'); ?>">
 
 
 <?

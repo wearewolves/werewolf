@@ -13,14 +13,6 @@
 	$GLOBALS['Database'] = new DB($id);
 	$db= new DB($id);
 	
-
-
-
-
-
-
-
-
 ?>
 <!-- HTML 시작 -->
 <!-- 게시판 처음에 글수 페이지수 접속현황 로그인 회원가입 표시 -->
@@ -38,4 +30,3 @@
 	<?=$a_logout?>&nbsp;logout</a>
 	<?=$a_setup?>&nbsp;admin</a>
 </div>
-

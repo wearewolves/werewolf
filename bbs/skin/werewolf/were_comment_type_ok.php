@@ -474,8 +474,8 @@ $DBLastComment = mysql_fetch_array(mysql_query("select max(comment) from $DB_wer
 			$total=mysql_fetch_array(mysql_query("select count(*) from $t_comment"."_$id where parent='$no'"));
 			mysql_query("update $t_board"."_$id set total_comment='$total[0]' where no='$no'") or error(mysql_error());
 
-			// 코맨드 여부를 기록
-			if($c_type =="일반"  and !$entry['comment']){
+			// 코멘트 여부를 기록
+			if($c_type == "일반"  and !$entry['comment']) {
 				mysql_query("update $DB_entry set comment = '1' where game = '$parent' and  `character` = '$entry[character]'") or error(mysql_error());
 			}
 

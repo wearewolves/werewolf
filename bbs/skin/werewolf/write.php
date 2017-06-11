@@ -3,8 +3,8 @@
 
 ?>
 <!-- role playing set selector js, css files -->
-<script type="text/javascript" src="skin/werewolf/js/werewolf-role-playing-set.js"></script>
-<link rel="stylesheet" type="text/css" href="skin/werewolf/css/werewolf-role-playing-set.css">
+<script type="text/javascript" src="skin/werewolf/js/werewolf-role-playing-set.js?ver=<?php echo filemtime('skin/werewolf/js/werewolf-role-playing-set.js'); ?>"></script>
+<link rel="stylesheet" type="text/css" href="skin/werewolf/css/werewolf-role-playing-set.css?ver=<?php echo filemtime('skin/werewolf/css/werewolf-role-playing-set.css'); ?>">
 <SCRIPT LANGUAGE="JavaScript">
 <!--
 function zb_formresize(obj) {
@@ -89,7 +89,7 @@ function zb_formresize(obj) {
 	   <?=$hide_notice_end?>
        <?=$hide_secret_start?>
 	   <?  $disable =  (!$is_admin and ($gameinfo['state'] <> '준비중' and $gameinfo['state'] <> '')) ?  'disabled' : '' ;?>
- 		<? if($mode =="modify") $disable= 'disabled' ;?>
+ 		<? if($mode == "modify") $disable= 'disabled' ;?>
 
 	   비밀 마을 <input type=checkbox name=is_secret <?=$secret?> value=1 <?=$disable?> >
 	   <?=$hide_secret_end?>
@@ -105,7 +105,8 @@ function zb_formresize(obj) {
   <tr><td align=right><font class=red_8>마을 이름</font></td>
   </tr></table>
   </td>
-  <td>&nbsp;<input type=text name=subject value="<?=$subject?>" size=30 maxlength=30 style=width:220px  class="input"></td>
+  <td>&nbsp;
+	<input type=text name=subject value="<?=$subject?>" size=30 maxlength=30 style=width:220px  class="input"></td>
 </tr>
 
  <!--
@@ -181,7 +182,7 @@ function zb_formresize(obj) {
   <td>
   <img src=<?=$dir?>/t.gif border=0 height=1><br>
   <table  cellspacing=0 cellpadding=0 width=100% height=100%>
-  <tr><td align=right><font class=red_8>사건 발생 시간</font></td>
+  <tr><td align=right><font class=red_8>사건 발생 시각</font></td>
   </tr></table>
   </td>
 	<td>&nbsp;
@@ -235,11 +236,11 @@ function zb_formresize(obj) {
 				<input name=dYear size=4 MAXLENGTH=4 value=<?=$d_yearV?> disabled class="input">년
 				<input type=hidden name=month size=4 MAXLENGTH=2 value=<?=$monthV?> disabled class="input">
 				<input name=dMonth size=4 MAXLENGTH=2 value=<?=$d_monthV?> disabled class="input">월
-				<? $disable =  $is_admin ?  '' : 'disabled'; ?>
-				<input type=hidden name=day size=4 MAXLENGTH=2  value=<?=$dayV?> <?=$disable?>  class="input">
-				<input name=dDay size=4 MAXLENGTH=2  value=<?=$d_dayV?> <?=$disable?>  class="input">일
+				<? $disable = $is_admin ?  '' : 'disabled'; ?>
+				<input type=hidden name=day size=4 MAXLENGTH=2  value=<?=$dayV?> <?=$disable?> class="input">
+				<input name=dDay size=4 MAXLENGTH=2  value=<?=$d_dayV?> <?=$disable?> class="input">일
 
-				<select name=hour value=<?=$hourV?> <? if($gameinfo['state'] <> "준비중" and $mode =="modify")echo "DISABLED";?> class="input">
+				<select name=hour value=<?=$hourV?> <? if($gameinfo['state'] <> "준비중" and $mode == "modify") echo "DISABLED"; ?> class="input">
 					<option value='0' <?if($hourV=='0') echo "SELECTED";?>>00 </option>
 					<option value='1' <?if($hourV=='1') echo "SELECTED";?>>01 </option>
 					<option value='2' <?if($hourV=='2') echo "SELECTED";?>>02 </option>
@@ -265,7 +266,7 @@ function zb_formresize(obj) {
 					<option value='22' <?if($hourV=='22') echo "SELECTED";?>>22 </option>
 					<option value='23' <?if($hourV=='23') echo "SELECTED";?>>23 </option>
 				</select>시
-				<input type=text name=min  size=4 MAXLENGTH=2 value='<?=$minV?>' <? if($gameinfo['state'] <> "준비중" and $mode =="modify")echo "DISABLED";?> class="input">분
+				<input type=text name=min size=4 MAXLENGTH=2 value='<?=$minV?>' <? if($gameinfo['state'] <> "준비중" and $mode == "modify")echo "DISABLED";?> class="input">분
 	</td>
 </tr>
 <script>
@@ -301,7 +302,7 @@ function changeTermOfDay(obj){
   </td>
 	<td>&nbsp;
 
-				<select class='input' onchange=changeTermOfDay(this) name=termOfDay value=<?=$termOfDay?> <? if($mode =="modify")echo "DISABLED=true";?> >
+				<select class='input' onchange=changeTermOfDay(this) name=termOfDay value=<?=$termOfDay?> <? if($mode == "modify")echo "DISABLED=true";?> >
 				<? if($server['host'] == "werewolf6.cafe24.com"){ ?>
 					<option value='900' <?if($termOfDay=='900') echo "SELECTED";?>>15 분 </option>
 					<option value='1200' <?if($termOfDay=='1200') echo "SELECTED";?>>20 분 </option>
@@ -323,16 +324,36 @@ function changeTermOfDay(obj){
   <td>
   <img src=<?=$dir?>/t.gif border=0 height=1><br>
   <table  cellspacing=0 cellpadding=0 width=100% height=100%>
+  <tr><td align=right><font class=red_8>발언 제한 시간</font></td>
+  </tr></table>
+  </td>
+	<td>&nbsp;
+		<?
+			$bDisabled = ($mode == "modify") ? true : false;
+			if($bDisabled) { ?>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;사건 발생 직전 <input type="text" name="delayBeforeM" size="4" MAXLENGTH="4" value="<?=$gameinfo['delayBefore'] / 60?>" disabled class="input">분<br>&nbsp;
+				시작 사건 발생 직후 <input type="text" name="delayAfterM" size="4" MAXLENGTH="4" value="<?=$gameinfo['delayAfter'] / 60?>" disabled class="input">분
+			<? } else { ?>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;사건 발생 직전 <input type="text" name="delayBeforeM" size="4" MAXLENGTH="4" value="0" class="input">분<br>&nbsp;
+				시작 사건 발생 직후 <input type="text" name="delayAfterM" size="4" MAXLENGTH="4" value="0" class="input">분
+			<? } ?>
+	</td>
+</tr>
+
+<tr valign=top>
+  <td>
+  <img src=<?=$dir?>/t.gif border=0 height=1><br>
+  <table  cellspacing=0 cellpadding=0 width=100% height=100%>
   <tr><td align=right><font class=red_8>룰</font></td>
   </tr></table>
   </td>
 	<td>&nbsp;
-
-				<?
-				if($mode =="modify") $disabled= "DISABLED=true";
-				else $disabled ="";
-				
-				echo DBselect1("rule"," ","no","name","$DB_rule","class='input' ".$disabled,$gameinfo['rule'],"");?>
+		<?
+			if($mode == "modify") $disabled= "DISABLED=true";
+			else $disabled ="";
+			
+			echo DBselect1("rule"," ","no","name","$DB_rule","class='input' ".$disabled,$gameinfo['rule'],"");
+		?>
 	</td>
 </tr>
 
@@ -373,7 +394,7 @@ function changeTermOfDay(obj){
   </td>
 	<td>&nbsp;
 				<!--?
-				if($mode =="modify") $disabled= "DISABLED=true";
+				if($mode == "modify") $disabled= "DISABLED=true";
 				else $disabled ="";
 				
 				echo DBselect1("characterSet","","no","name","$DB_characterSet where is_use = 1","class='input' ".$disabled,$gameinfo['characterSet'],"");
@@ -393,12 +414,14 @@ function changeTermOfDay(obj){
 		
 		<div id="modal-window" class="modal">
 			<div class="modal-content">
-				<span id="closeX">&times;</span>
-				<input type="text" id="RPSetInput" onkeyup="searchRPSet()" placeholder="Search for names...">
-
-				<div class="tab">
-				  <button type="button" class="tablinks" onclick="openList(event, 'listByTimeSort')">제작순</button>
-				  <button type="button" class="tablinks" onclick="openList(event, 'listByAscendingSort')">가나다순</button>
+				<div class="tabheader">
+					<span id="closeX">&times;</span>
+					<input type="text" id="RPSetInput" onkeyup="searchRPSet()" placeholder="Search for names...">
+					
+					<div class="tab">
+						<button type="button" class="tablinks" onclick="openList(event, 'listByTimeSort')">제작순</button>
+						<button type="button" class="tablinks" onclick="openList(event, 'listByAscendingSort')">가나다순</button>
+					</div>
 				</div>
 
 				<div id="listByTimeSort" class="tabcontent">

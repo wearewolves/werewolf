@@ -32,7 +32,7 @@
   if($mode=="modify" and !$is_admim and  $member[no] <> 1) {
 	  $DB_gameinfo=$t_board."_".$id."_gameinfo";
 	  $gameinfo=mysql_fetch_array(mysql_query("select * from $DB_gameinfo where game=$no"));
-	  if($gameinfo['state'] <> "준비중" ) Error("준비 중일때만 마을을 수정할 수 있습니다.");
+	  if($gameinfo['state'] <> "준비중" ) Error("준비 중일 때만 마을을 수정할 수 있습니다.");
   }
 
 
@@ -53,9 +53,16 @@
 	}
 
 
-	if($min < 0  or  59 < $min) Error("분을 다시 입력해 주시기 바랍니다.(00에서 59사이로 입력)");
-	if($hour < 0  or  23 < $hour) Error("시를 다시 입력해 주시기 바랍니다.");
+	if($min < 0  or  59 < $min) Error("분을 다시 입력해주시기 바랍니다. (00에서 59 사이로 입력)");
+	if($hour < 0  or  23 < $hour) Error("시를 다시 입력해주시기 바랍니다.");
 	if($termOfDay <> 60 and $termOfDay <> 900  and $termOfDay <> 1200 and $termOfDay <> 1500 and $termOfDay <> 1800 and $termOfDay <> 86400)	$termOfDay = 1800;
+	
+	// limit for delay
+	$delayBeforeS = $delayBeforeM * 60;
+	$delayAfterS = $delayAfterM * 60;
+	if($delayBeforeS < 0 or $delayBeforeS >= $termOfDay) Error("발언 제한 시간(사건 발생 직전)을 다시 입력해주시기 바랍니다. (0에서 ".($termOfDay / 60 - 1)." 사이로 입력)");
+	if($delayAfterS < 0 or $delayAfterS >= $termOfDay) Error("발언 제한 시간(사건 발생 직후)을 다시 입력해주시기 바랍니다. (0에서 ".($termOfDay / 60 - 1)." 사이로 입력)");
+	if(($delayBeforeS + $delayAfterS) >= $termOfDay) Error("발언 제한 시간(직전 & 직후)을 다시 입력해주시기 바랍니다. (총합이 0에서 ".($termOfDay / 60 - 1)." 사이가 되도록 입력)");
 
 	if(!$is_admin&&$setup[grant_notice]<$member[level]) $notice = 0;
 
@@ -607,24 +614,24 @@
 	}
 
 //게임 정보 입력
-	if($mode=="modify"&&$no) {
+	if($mode=="modify" && $no) {
 		$DB_gameinfo=$t_board."_".$id."_gameinfo";
 		$gameinfo=mysql_fetch_array(mysql_query("select * from $DB_gameinfo where game=$no"));
 		
-		if($gameinfo['state'] == "준비중"){
+		if($gameinfo['state'] == "준비중") {
 			$year=date("Y",$gameinfo['deathtime']);
 			$month=date("m",$gameinfo['deathtime']);
 
 			if(!$is_admin or !$day)	$day=date("d",$gameinfo['deathtime']);
 
-			$deathtime= mktime($hour ,$min, 0, $month, $day, $year);		
+			$deathtime = mktime($hour ,$min, 0, $month, $day, $year);		
 
-			if( $deathtime < time())error("시간을 다시 설정해 주세요.");
+			if($deathtime < time()) error("시간을 다시 설정해 주세요.");
 
-			$startingTime= mktime($hourS ,$minS, 0, $monthS, $dayS, $yearS);		
+			$startingTime = mktime($hourS ,$minS, 0, $monthS, $dayS, $yearS);		
 
 			if($deathtime != $gameinfo['deathtime']){
-					$dtime= mktime($hour ,$min, 0, date("m"),date("d"),date("y"));	
+				$dtime= mktime($hour ,$min, 0, date("m"),date("d"),date("y"));	
 		
 				$rangeOfTime = 1800;
 
@@ -671,9 +678,9 @@
 			$useTimetable = 0;
 		}
 
-		//$deathtime= mktime($hour ,$min, 0, date("m",time()+86400), $day, date("Y",time()+86400));			
-		$deathtime= mktime($hour ,$min, 0, $month, $day, $year);			
-		$startingTime= mktime($hourS ,$minS, 0, $monthS, $dayS, $yearS);
+		//$deathtime = mktime($hour ,$min, 0, date("m",time()+86400), $day, date("Y",time()+86400));			
+		$deathtime = mktime($hour ,$min, 0, $month, $day, $year);			
+		$startingTime = mktime($hourS ,$minS, 0, $monthS, $dayS, $yearS);
 		
 		// subrule
 		$subrule_result = mysql_query("select * from `zetyx_board_werewolf_subrule`");
@@ -688,7 +695,7 @@
 		@mysql_query(
 		// Add subRule, delay values
 		//"INSERT INTO `$t_board"."_$id"."_gameinfo` (`game`, `day`, `startingTime`, `deathtime`, `players`, `result`, `state`, `termOfDay`, `characterSet`, `rule`, `useTimetable`) VALUES ('$no', '0', '$startingTime', '$deathtime', '1', '', '준비중', '$termOfDay', '$characterSet', '$rule', '$useTimetable');") or error("7".mysql_error());
-		"INSERT INTO `$t_board"."_$id"."_gameinfo` (`game`, `day`, `startingTime`, `deathtime`, `players`, `result`, `state`, `termOfDay`, `characterSet`, `rule`, `subRule`, `useTimetable`, `delay`) VALUES ('$no', '0', '$startingTime', '$deathtime', '1', '', '준비중', '$termOfDay', '$characterSet', '$rule', '$subRule', '$useTimetable', '0');") or error("7".mysql_error());
+		"INSERT INTO `$t_board"."_$id"."_gameinfo` (`game`, `day`, `startingTime`, `deathtime`, `players`, `result`, `state`, `termOfDay`, `characterSet`, `rule`, `subRule`, `useTimetable`, `delayAfter`, `delayBefore`, `delayAfterUsed`, `delayBeforeUsed`) VALUES ('$no', '0', '$startingTime', '$deathtime', '1', '', '준비중', '$termOfDay', '$characterSet', '$rule', '$subRule', '$useTimetable', '$delayAfterS', '$delayBeforeS', '0', '0');") or error("7".mysql_error());
 
 
 

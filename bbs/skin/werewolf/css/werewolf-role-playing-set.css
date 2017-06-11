@@ -9,20 +9,19 @@
     height: 100%; /* Full height */
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-	overflow: auto; /* Enable scroll if needed */
-	font-family: "굴림";
+    overflow: visible;
+    font-family: "굴림";
 }
 
 /* Modal Content/Box */
 .modal-content {
     background-color: #000000;
     margin: 60px auto; /* 60px from the top and centered */
-    padding: 20px;
     border: 1px solid #888;
-    width: 70%; /* Could be more or less, depending on screen size */
-	height: 70%;
-	overflow-x: hidden; /* Scrollbar ON/OFF */
-	overflow-y: auto;
+    width: 73%; /* Could be more or less, depending on screen size */
+    height: 79%;
+    overflow-x: hidden; /* Scrollbar ON/OFF */
+    overflow-y: auto;
 }
 
 /* The Close Button */
@@ -42,6 +41,13 @@
 
 
 /* Style the tab */
+.tabheader {
+    width: 67%; /* Could be more or less, depending on screen size */
+    padding: 20px 20px 5px;
+    background-color: #000000;
+    position: fixed;
+}
+
 div.tab {
     overflow: hidden;
     border: 1px solid #272727;
@@ -50,7 +56,7 @@ div.tab {
 
 /* Style the buttons inside the tab */
 div.tab button {
-	border: inherit;
+    border: inherit;
     background-color: inherit;
     float: left;
     border: none;
@@ -58,8 +64,8 @@ div.tab button {
     cursor: pointer;
     padding: 14px 16px;
     transition: 0.3s;
-	width: 50%;
-	color: #a0a0a0;
+    width: 50%;
+    color: #a0a0a0;
 }
 
 /* Change background color of buttons on hover */
@@ -74,13 +80,14 @@ div.tab button.active {
 
 /* Style the tab content */
 .tabcontent {
+    margin-top: 130px;
+    padding: 0px 32px 26px;
     display: none;
-    padding: 6px 12px;
     -webkit-animation: fadeEffect 1s;
     animation: fadeEffect 1s;
 }
 
-/* Fade in tabs */
+/* Fade in tabs 
 @-webkit-keyframes fadeEffect {
     from {opacity: 0;}
     to {opacity: 1;}
@@ -90,6 +97,7 @@ div.tab button.active {
     from {opacity: 0;}
     to {opacity: 1;}
 }
+*/
 
 
 #RPSetInput {
@@ -117,9 +125,9 @@ div.tab button.active {
     text-decoration: none; /* Remove default text underline */
     font-size: 16px; /* Increase the font-size */
     color: #a0a0a0; /* Add text color */
-	text-align: left;
+    text-align: left;
     display: block; /* Make it into a block element to fill the whole list */
-	cursor: pointer;
+    cursor: pointer;
 }
 
 .RPSetUL li:hover {

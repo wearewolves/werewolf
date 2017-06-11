@@ -684,7 +684,6 @@ $(function(){
 		
 		setCookie(gameNo+"_"+event.target.value,event.target.checked);
 	});
-
 	
 	$('.characterButton + label').dblclick(function(event){
 		location.replace(gameLink +"view.php?id=werewolf&no="+gameNo+"&viewDay="+gameDay+"&viewMode="+viewMode+"&viewChar="+$(this).attr("for"));
@@ -699,7 +698,7 @@ $(function(){
 				$("."+event.target.value).filter("."+this.value).fadeOut();
 		});
 		*/
-	});	
+	});
 	
 	$('.commentButton').click(function(event){
 		$('.characterButton').each(function(index){

@@ -41,7 +41,7 @@
    login.password.focus();
    return false;
   }
-  check=confirm("자동 로그인 기능을 사용하시겠습니까?\n\n자동 로그인 사용 시 다음 접속부터는 로그인을 하실 필요가 없습니다.\n\n단, 게임방, 학교 등 공공장소에서 이용 시 개인 정보가 유출될 수 있으니 조심하여 주십시오");
+  check=confirm("자동 로그인 기능을 사용하시겠습니까?\n\n자동 로그인 사용 시 다음 접속부터는 로그인을 하실 필요가 없습니다.\n\n단, 게임방, 학교 등 공공장소에서 이용 시 개인 정보가 유출될 수 있으니 조심하여 주십시오.");
   if(check) {login.auto_login.value=1;}
   return true;
  }

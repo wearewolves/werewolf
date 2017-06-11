@@ -13,7 +13,10 @@ import config
 
 class Server:
     def __init__(self):
-        loggerLevel = logging.INFO
+        if config.server == "test group":
+            loggerLevel = logging.DEBUG
+        else:
+            loggerLevel = logging.INFO
         loggingFormat = "%(asctime)s [%(filename)-25s:%(lineno)-3s]\t%(levelname)-8s\t%(message)s"
 
         try:
@@ -64,13 +67,21 @@ class Server:
                     database = DATABASE(config.user, config.passwd, config.db)
                     cursor = database.cursor
 
-                    cursor.execute("select * from `zetyx_board_werewolf_gameinfo` where `state` ='게임중' or `state` ='준비중'  ")
+                    # nextTurn
+                    cursor.execute("select * from `zetyx_board_werewolf_gameinfo` where `state` = '게임중' or `state` = '준비중'")
                     logging.debug("Cursor's rowcount: %d", cursor.rowcount)
                     recs = cursor.fetchall()
-
                     for rec in recs:
                         game = Game(rec, database)
                         game.nextTurn()
+
+                    # checkDelay
+                    cursor.execute("select * from `zetyx_board_werewolf_gameinfo` where `state` = '게임중' or `state` = '준비중'")
+                    logging.debug("Cursor's rowcount: %d", cursor.rowcount)
+                    recs = cursor.fetchall()
+                    for rec in recs:
+                        game = Game(rec, database)
+                        game.checkDelay()
 
                     cursor.close()
                     database.conn.close()

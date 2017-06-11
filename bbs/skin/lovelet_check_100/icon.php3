@@ -16,7 +16,7 @@ self.close();
 <body bgcolor="white" text="black" link="blue" vlink="purple" alink="red" leftmargin="0" marginwidth="0" topmargin="0" marginheight="0">
 <table border=0 cellspacing=0 cellpadding=0 align=center>
 	<tr height=40>
-		<td align=center>아이콘을 선택하세요~</td>
+		<td align=center>아이콘을 선택하세요~!!!</td>
 	</tr>
 <tr><td align=center>
 <table border=0 cellspacing=0 cellpadding=0 width=320 height=160>

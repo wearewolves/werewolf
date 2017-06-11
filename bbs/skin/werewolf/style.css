@@ -1,8 +1,18 @@
+/* import for notification message style */
+@import url('//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+
 .DisplayBoard{
 	margin:5px 10px;
 	padding: 10px 20px;
 	background: #111111;
 	border: solid 1px #151515;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+
 }
 .DisplayBoard ol {
 	margin:0px;
@@ -36,12 +46,12 @@
 }
 
 #notice{
-	margin:10px 10px;
+	margin: 10px 10px;
 	padding: 0px 20px;
 	background: #111111;
 	border: solid 1px #151515;
-	text-align:left;
-	line-height:140%;
+	text-align: left;
+	line-height: 140%;
 }
 #notice h1 {
 	text-align:center;
@@ -95,13 +105,13 @@
 	color:#AAA;
 }
 
-.noticeTop{
-	margin:10px 10px;
+.noticeTop {
+	margin: 10px 10px;
 	padding: 0px 20px;
 	background: #111111;
 	border: solid 1px #151515;
-	text-align:left;
-	line-height:140%;
+	text-align: left;
+	line-height: 140%;
 }
 .noticeTop h1 {
 	text-align:center;
@@ -115,7 +125,6 @@
 	margin:10px 5px;
 	border-bottom: solid 1px #151515;
 }
-
 
 .roomReady .name{
 	width:80%;
@@ -133,6 +142,7 @@
 	margin:10px 5px;
 	border-bottom: solid 1px #151515;
 }
+
 .roomPlaying .enter {
 	font-size:25px;
 	color:#A30;
@@ -149,23 +159,18 @@
 	background-repeat: no-repeat;
 	display: inline-block;
 }
-
 .player {	   
 	background-position: -137px -2px;
 }
-
 .heart{	   
 	background-position: -70px -2px;
 }
-
 .death {	   
 	background-position: 0px -19px;
 }
 .clock{
 	background-position: -306px -19px;
 }
-
-
 
 .roomPlaying .name{
 	width:80%;
@@ -177,7 +182,6 @@
 .roomPlaying .name A{
 	color:#A50;
 }
-
 
 .roomEnd{
 	border-bottom: solid 1px #151515;
@@ -229,6 +233,7 @@
 	.commentNotice{border-top:1px solid  #222;padding:5px;margin:5px 0px;}
 	.commentNotice .notice{background:#121212;padding:10px;text-overflow : ellipsis; overflow : visible ;width:100%;word-break:break-all;}
 	.commentNotice .seal{background:#D2F3A2;padding:10px;text-overflow : ellipsis; overflow : visible ;width:100%;word-break:break-all;}
+
 #commentContainer .buttonCommentPage{
 	width:100%;margin: 1px 0px; tbackground:#111;color:#A30;text-align:center;vertical-align: text-bottom;position:relative;
 	padding:5px 0px;height:25px;voice-family:"\"}\"";voice-family:inherit;height:15px;
@@ -326,7 +331,6 @@ A:hover  {color:666666;text-decoration:none;font-family:±¼¸²;font-size:9pt;}
 .red_8 {font-family:±¼¸²;font-size:9pt;color:#666666}
 .red_7 {font-family:±¼¸²;font-size:8pt;color:#666666}
 
-
 .red_comment {font-family:±¼¸²;font-size:7pt;}
 .red_search {border:solid 1;border-color:eeeeee;height:18px;width:100px;color:666666;}
 .red_input {border:solid 1;border-color:eeeeee}
@@ -373,4 +377,60 @@ A:hover  {color:666666;text-decoration:none;font-family:±¼¸²;font-size:9pt;}
 
 .openPage {
 	background-color:#444444;
+}
+
+/* notification message style */
+.my-notify-info, .my-notify-success, .my-notify-warning, .my-notify-error {
+    padding:10px;
+    margin:10px 0;
+ 
+}
+.my-notify-info:before, .my-notify-success:before, .my-notify-warning:before, .my-notify-error:before {
+    font-family:FontAwesome;
+    font-style:normal;
+    font-weight:400;
+    speak:none;
+    display:inline-block;
+    text-decoration:inherit;
+    width:1em;
+    margin-right:.2em;
+    text-align:center;
+    font-variant:normal;
+    text-transform:none;
+    line-height:1em;
+    margin-left:.2em;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale
+}
+.my-notify-info:before {
+    content:"\f05a";
+}
+.my-notify-success:before {
+    content:'\f00c';
+}
+.my-notify-warning:before {
+    content:'\f071';
+}
+.my-notify-error:before {
+    content:'\f057';
+}
+.my-notify-info {
+    color: #00529B;
+    background-color: #BDE5F8;
+}
+.my-notify-success {
+    color: #4F8A10;
+    background-color: #DFF2BF;
+}
+.my-notify-warning {
+    color: #9F6000;
+    background-color: #FEEFB3;
+}
+.my-notify-error {
+    color: #D8000C;
+    background-color: #FFBABA;
+}
+
+#parti_notification {
+    margin: 10px 10px;
 }

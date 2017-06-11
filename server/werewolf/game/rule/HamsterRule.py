@@ -44,7 +44,7 @@ class HamsterRule(BasicRule):
                     BasicRule.nextTurn_Xday(self)
 
     def initGame(self):
-        logging.info("init Hamstar")
+        logging.info("init Hamstar Rule")
         WerewolfRule.initGame(self)
         self.deleteTelepathy()
 
@@ -69,7 +69,7 @@ class HamsterRule(BasicRule):
         for noMannerPlayer in noMannerPlayers:
             noMannerPlayer.toDeath("돌연 ")
 
-        #코맨츠 초기화
+        #코멘트 초기화
         self.game.entry.initComment()
         self.deleteTelepathy()
 
@@ -83,7 +83,7 @@ class HamsterRule(BasicRule):
         #일반 로그를 쓰지 않은 사람을 체크한다.
         self.game.entry.checkNoCommentPlayer()
 
-        #투표 -살아 있는 참가자가 투표를 했는지 체크, 안했다면 랜덤 투표
+        #투표 - 살아있는 참가자가 투표를 했는지 체크, 안 했다면 랜덤 투표
         victim = self.decideByMajority()
         if victim:
             victim.toDeath("심판")
@@ -93,7 +93,7 @@ class HamsterRule(BasicRule):
         for noMannerPlayer in noMannerPlayers:
             noMannerPlayer.toDeath("돌연 ")
         
-        #코맨츠 초기화
+        #코멘트 초기화
         self.game.entry.initComment()
         self.deleteTelepathy()
 
@@ -133,6 +133,8 @@ class HamsterRule(BasicRule):
                 logging.info("인랑 승리")
                 self.game.setGameState("win", "1")
 
+            self.game.entry.allocComment()
+
         elif not werewolfRace:
             if self.game.termOfDay == 60:
                 self.game.setGameState("state", GAME_STATE.TESTOVER)
@@ -145,6 +147,9 @@ class HamsterRule(BasicRule):
             else:
                 logging.info("인간 승리")
                 self.game.setGameState("win", "0")
+
+            self.game.entry.allocComment()
+
         else:
             logging.info("계속 진행")
             #self.game.setGameState("state","게임중")

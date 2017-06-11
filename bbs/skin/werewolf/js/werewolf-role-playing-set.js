@@ -15,10 +15,35 @@ function openModal() {
 	
 	// When the user clicks anywhere outside of the modal, close it
 	window.onclick = function(event) {
-		if (event.target == modal) {
+		if(event.target == modal) {
 			modal.style.display = "none";
 		}
 	}
+}
+
+function openModalCustomed(selectIndex, selectList) {
+	openModal();
+	
+	var posY = $("#listByTimeSort .CS" + selectIndex.toString(10)).offset().top - $("#listByTimeSort .CS0").offset().top;
+	
+	// Set the used list
+	if(selectList == 1) {
+		var tabcontent, tablinks;
+		
+		tabcontent = document.getElementsByClassName("tabcontent");
+		tablinks = document.getElementsByClassName("tablinks");
+		
+		tabcontent[0].style.display = "none";
+		tablinks[0].className = tablinks[0].className.replace(" active", "");
+		
+		tabcontent[1].style.display = "block";
+		tablinks[1].className += " active";
+		
+		posY = $("#listByAscendingSort .CS" + selectIndex.toString(10)).offset().top - $("#listByAscendingSort .CS0").offset().top;
+	}
+	
+	// Set scrollbar's position
+	$(".modal-content").scrollTop(posY);
 }
 
 // Initialize lists on modal window. Open the default(first) list.

@@ -9,7 +9,6 @@ import logging
 class Game:
     def __init__(self, rec, db):
         self.game = rec['game']
-#        self.rule       = rec['rule']
         self.day = rec['day']
         self.deathTime = rec['deathtime']
         self.players = rec['players']
@@ -24,6 +23,10 @@ class Game:
         self.seal = rec['seal']
         self.seal_yes = rec['seal_yes']
         self.seal_no = rec['seal_no']
+        self.delayAfter = rec['delayAfter']
+        self.delayBefore = rec['delayBefore']
+        self.delayAfterUsed = rec['delayAfterUsed']
+        self.delayBeforeUsed = rec['delayBeforeUsed']
         self.rule = RuleFactory.getRule(rec['rule'], self)
         self.entry = Entry(self)
         self.db = db
@@ -45,6 +48,8 @@ class Game:
         elif self.useTimetable == 1:
             AllAlivePlayerCounter = self.entry.getAllAlivePlayerCounter()
             AllConfirmCounter = self.entry.getAllConfirmCounter()
+            logging.debug("준비 완료: %s within %s", AllConfirmCounter, AllAlivePlayerCounter)
+            logging.debug("Type of AllConfirmCounter: %s", type(AllConfirmCounter))
 
             if self.day == 0:
                 deathtime = self.deathTime
@@ -66,6 +71,30 @@ class Game:
                 logging.info("%s: 다음 날로..", self.getName())
                 self.setTimetable()
                 self.rule.nextTurn()
+
+    def checkDelay(self):
+        # 코멘트 충전
+        if self.state == "게임중" and self.delayAfterUsed == 0:
+            if self.day == 1 and self.delayAfter > 0:
+                if time.time() >= (self.deathTime + self.delayAfter):
+                    logging.info("%s: 로그 충전!", self.game)
+                    self.rule.checkDelayToAllocComment()
+            else:
+                logging.info("%s: 로그 충전!", self.game)
+                self.rule.checkDelayToAllocComment()
+		
+        # 코멘트 해제
+        if self.state == "게임중" and self.delayBeforeUsed == 0 and self.delayBefore > 0:
+            # 1일 서버
+            if self.useTimetable == 0 and time.time() >= (self.deathTime + self.termOfDay * self.day - self.delayBefore):
+                logging.info("%s: 로그 해제!", self.game)
+                self.rule.checkDelayToFreeComment()
+            # 30분 서버
+            elif self.useTimetable == 1:
+                deathtime = self.getTimetable()['reg_date'] + self.termOfDay
+                if time.time() >= (deathtime - self.delayBefore):
+                    logging.info("%s: 로그 해제!", self.game)
+                    self.rule.checkDelayToFreeComment()
 
     def minus_division(self, division):
         cursor = self.db.cursor

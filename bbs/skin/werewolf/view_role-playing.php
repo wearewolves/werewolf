@@ -67,15 +67,21 @@ function changeCharacterSet(selectCharacterSet){
 	window.location.replace("view_role-playing.php?id=<?=$id?>&set=" + selectCharacterSet.value);
 }
 
-function changeCharacterSetByNum(selectCharacterSet){
+function changeCharacterSetByNum(selectCharacterSet, selectIndex){
 	selectCharacterSet = parseInt(selectCharacterSet, 10);
-	window.location.replace("view_role-playing.php?id=<?=$id?>&set=" + selectCharacterSet);
+	selectIndex = parseInt(selectIndex, 10);
+	
+	var tablinks = document.getElementsByClassName("tablinks");
+	var tabcontentID = tablinks[0].className.indexOf(" active") !== -1 ? 0 : 1;
+	
+	window.location.replace("view_role-playing.php?id=<?=$id?>&set=" + selectCharacterSet + "&selectindex=" + selectIndex + "&selectlist=" + tabcontentID);
 }
 </script>
 
 <!-- role playing set selector js, css files -->
-<script type="text/javascript" src="js/werewolf-role-playing-set.js"></script>
-<link rel="stylesheet" type="text/css" href="css/werewolf-role-playing-set.css">
+<script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="js/werewolf-role-playing-set.js?ver=<?php echo filemtime('js/werewolf-role-playing-set.js'); ?>"></script>
+<link rel="stylesheet" type="text/css" href="css/werewolf-role-playing-set.css?ver=<?php echo filemtime('css/werewolf-role-playing-set.css'); ?>">
 
 
 <?
@@ -135,30 +141,35 @@ function goto_characterSet($DB, $sort) {
 	unset($i);
 	
 	$characterSetList = "";
+	$selectIndex = 0;
 	while($temp = mysql_fetch_array($result)) {
 		$used = true;
 		
 		// Check not used role playing set
-		foreach($not_used_characterSet_no as $not_used_characterSet_no_value) {
-			if($temp[no] == $not_used_characterSet_no_value) {
-				$used = false;
-				break;
+		if($not_used_characterSet_no) {
+			foreach($not_used_characterSet_no as $not_used_characterSet_no_value) {
+				if($temp[no] == $not_used_characterSet_no_value) {
+					$used = false;
+					break;
+				}
 			}
 		}
 
 		if($used)
-			$characterSetList .= "<li onclick=\"changeCharacterSetByNum('$temp[no]')\">".$temp[name]."</li>";
+			$characterSetList .= "<li class=\"CS".$selectIndex."\" onclick=\"changeCharacterSetByNum('$temp[no]', '$selectIndex')\">".$temp[name]."</li>";
 		else
-			$characterSetList .= "<li onclick=\"changeCharacterSetByNum('$temp[no]')\">".$temp[name]." <font color='#ff3838'>(사용 불가)</font></li>";
+			$characterSetList .= "<li class=\"CS".$selectIndex."\" onclick=\"changeCharacterSetByNum('$temp[no]', '$selectIndex')\">".$temp[name]." <font color='#ff3838'>(사용 불가)</font></li>";
+		
+		$selectIndex++;
 	}
 	return $characterSetList;
 }
 
-
 	if(!$set) $set = 1;
+	if(!$selectindex) $selectindex = 0;
+	if(!$selectlist) $selectlist = 0;
 
 	$characterSet_list = DB_array("no","name","`".$db->characterSet."`");
-
 
 	$sql="select *  from  `".$db->characterSet."` where `no` = $set";
 	$characterSet	 = mysql_fetch_array(mysql_query($sql));
@@ -172,7 +183,7 @@ function goto_characterSet($DB, $sort) {
 	<!-- role playing set selector -->
 	<td>
 		<input type="text" name="characterSetName" class="input" style="width:200px" id="characterSetNameInput" value="<? echo get_characterSetName("`$db->characterSet` where no = $set"); ?>" disabled>
-		<button type="button" id="RPSetBtn" onclick="openModal()">선택하기</button>
+		<button type="button" id="RPSetBtn" onclick="openModalCustomed('<?=$selectindex?>', '<?=$selectlist?>')">선택하기</button>
 	</td>
 	<td width=><a href="view_private_record.php?id=<?=$id?>&player=<?=$characterSet['ismember']?>"><?=" 제작자:".$characterSet['maker']?></a></td>
 </tr>
@@ -180,12 +191,14 @@ function goto_characterSet($DB, $sort) {
 
 <div id="modal-window" class="modal">
 	<div class="modal-content">
-		<span id="closeX">&times;</span>
-		<input type="text" id="RPSetInput" onkeyup="searchRPSet()" placeholder="Search for names...">
-
-		<div class="tab">
-		  <button type="button" class="tablinks" onclick="openList(event, 'listByTimeSort')">제작순</button>
-		  <button type="button" class="tablinks" onclick="openList(event, 'listByAscendingSort')">가나다순</button>
+		<div class="tabheader">
+			<span id="closeX">&times;</span>
+			<input type="text" id="RPSetInput" onkeyup="searchRPSet()" placeholder="Search for names...">
+			
+			<div class="tab">
+				<button type="button" class="tablinks" onclick="openList(event, 'listByTimeSort')">제작순</button>
+				<button type="button" class="tablinks" onclick="openList(event, 'listByAscendingSort')">가나다순</button>
+			</div>
 		</div>
 
 		<div id="listByTimeSort" class="tabcontent">
@@ -249,7 +262,6 @@ function goto_characterSet($DB, $sort) {
 		</tr>
 	<thead>
 </table>
-
 
 
 <table id="record">

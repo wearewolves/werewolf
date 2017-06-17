@@ -90,7 +90,7 @@ class BasicRule(WerewolfRule):
         #습격!
         assaultVictim = self.decideByWerewolf()
         if assaultVictim:
-            logging.info("assaultVictim: %s", assaultVictim)
+            logging.debug("assaultVictim: %s", assaultVictim)
             self.assaultByWerewolf(assaultVictim, victim)
 
         #종료 조건 확인

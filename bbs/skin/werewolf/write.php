@@ -331,11 +331,27 @@ function changeTermOfDay(obj){
 		<?
 			$bDisabled = ($mode == "modify") ? true : false;
 			if($bDisabled) { ?>
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;사건 발생 직전 <input type="text" name="delayBeforeM" size="4" MAXLENGTH="4" value="<?=$gameinfo['delayBefore'] / 60?>" disabled class="input">분<br>&nbsp;
-				시작 사건 발생 직후 <input type="text" name="delayAfterM" size="4" MAXLENGTH="4" value="<?=$gameinfo['delayAfter'] / 60?>" disabled class="input">분
+				<!--
+				<span class="align-right">
+					<span>
+					-->
+						사건 발생 직전 <input type="text" name="delayBeforeM" size="4" MAXLENGTH="4" value="<?=$gameinfo['delayBefore'] / 60?>" disabled class="input">분<br>&nbsp;
+						마을 시작 직후 <input type="text" name="delayAfterM" size="4" MAXLENGTH="4" value="<?=$gameinfo['delayAfter'] / 60?>" disabled class="input">분
+					<!--
+					</span>
+				</span>
+				-->
 			<? } else { ?>
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;사건 발생 직전 <input type="text" name="delayBeforeM" size="4" MAXLENGTH="4" value="0" class="input">분<br>&nbsp;
-				시작 사건 발생 직후 <input type="text" name="delayAfterM" size="4" MAXLENGTH="4" value="0" class="input">분
+				<!--
+				<span class="align-right">
+					<span>
+					-->
+						사건 발생 직전 <input type="text" name="delayBeforeM" size="4" MAXLENGTH="4" value="0" class="input">분<br>&nbsp;
+						마을 시작 직후 <input type="text" name="delayAfterM" size="4" MAXLENGTH="4" value="0" class="input">분
+					<!--
+					</span>
+				</span>
+				-->
 			<? } ?>
 	</td>
 </tr>

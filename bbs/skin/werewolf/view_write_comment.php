@@ -47,10 +47,16 @@ if($totalCommentPage>=1) echo "</div>";
 	<col width=80></col><col width=></col><col width=70></col>
 	<tr align=center bgcolor=111111> 
 	  <td height=20 rowspan='4' valign='top'>
-	  <?if($entry){
-			$player_character=mysql_fetch_array(mysql_query("select * from $DB_character where no = ".$entry['character'].""));
-			echo "<img width='100' height='100' src='".$characterImageFolder.$player_character['half_image']."'>";
-		}?>
+	  <? // character image on/off
+			if($entry) {
+				if($viewImage === "off") {
+					echo "<div style='width:100; height:100;'></div>";
+				}
+				else {
+					$player_character=mysql_fetch_array(mysql_query("select * from $DB_character where no = ".$entry['character'].""));
+					echo "<img width='100' height='100' src='".$characterImageFolder.$player_character['half_image']."'>";
+				}
+			} ?>
 	</td>
 	  <td colspan=2 align='left'><?=$character_list[$entry[character]]?></td>
 	 </tr>

@@ -185,16 +185,23 @@
 	<div class="viewState">
 		<div class="state">사건이 발생하는 시각</div>
 		<div class="content">
-			<?
+		<?
 			$accidentTiem = $gameinfo['deathtime'] + $gameinfo['termOfDay']*$viewDay;
-		echo date("H",$accidentTiem)."시 ".date("i",$accidentTiem)."분";?>
+			echo date("H",$accidentTiem)."시 ".date("i",$accidentTiem)."분";
+		?>
 		</div>
 	</div>
 	<div class="viewState">
 		<div class="state">발언 제한 시간</div>
 		<div class="content">
-			<? echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;사건 발생 직전 ".($gameinfo['delayBefore'] / 60)."분<br>"; ?>
-			<? echo " 시작 사건 발생 직후 ".($gameinfo['delayAfter'] / 60)."분"; ?>
+			<!--
+			<span class="align-right">
+			-->
+				<? echo "사건 발생 직전 ".($gameinfo['delayBefore'] / 60)."분<br>"; ?>
+				<? echo "마을 시작 직후 ".($gameinfo['delayAfter'] / 60)."분"; ?>
+			<!--
+			</span>
+			-->
 		</div>
 	</div>
 	<div class="viewState">

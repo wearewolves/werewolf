@@ -1,6 +1,3 @@
-/* import for notification message style */
-@import url('//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
-
 .DisplayBoard{
 	margin:5px 10px;
 	padding: 10px 20px;
@@ -203,6 +200,7 @@
 	.viewState .state{float:left;width:120px;height:18px;padding:2px 5px;background:#111;color:#A30;}
 	* html .viewState .state{float:left;width:130px;height:18px;padding:2px 5px;background:#111;color:#A30;}
 	.viewState .content{margin-left:135;width:75%;_width:100%;}
+	/* span.align-right{display:flex;text-align:right;} */
 
 #commentContainer{width:95%;text-align:left;margin-left:auto;	margin-right:auto;}
 	.comment{	padding:10px 5px;border-top: solid 1px #222;min-height:80px;_height:100%;}
@@ -377,60 +375,4 @@ A:hover  {color:666666;text-decoration:none;font-family:±¼¸²;font-size:9pt;}
 
 .openPage {
 	background-color:#444444;
-}
-
-/* notification message style */
-.my-notify-info, .my-notify-success, .my-notify-warning, .my-notify-error {
-    padding:10px;
-    margin:10px 0;
- 
-}
-.my-notify-info:before, .my-notify-success:before, .my-notify-warning:before, .my-notify-error:before {
-    font-family:FontAwesome;
-    font-style:normal;
-    font-weight:400;
-    speak:none;
-    display:inline-block;
-    text-decoration:inherit;
-    width:1em;
-    margin-right:.2em;
-    text-align:center;
-    font-variant:normal;
-    text-transform:none;
-    line-height:1em;
-    margin-left:.2em;
-    -webkit-font-smoothing:antialiased;
-    -moz-osx-font-smoothing:grayscale
-}
-.my-notify-info:before {
-    content:"\f05a";
-}
-.my-notify-success:before {
-    content:'\f00c';
-}
-.my-notify-warning:before {
-    content:'\f071';
-}
-.my-notify-error:before {
-    content:'\f057';
-}
-.my-notify-info {
-    color: #00529B;
-    background-color: #BDE5F8;
-}
-.my-notify-success {
-    color: #4F8A10;
-    background-color: #DFF2BF;
-}
-.my-notify-warning {
-    color: #9F6000;
-    background-color: #FEEFB3;
-}
-.my-notify-error {
-    color: #D8000C;
-    background-color: #FFBABA;
-}
-
-#parti_notification {
-    margin: 10px 10px;
 }

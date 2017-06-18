@@ -186,7 +186,10 @@
 		<div class="state">사건이 발생하는 시각</div>
 		<div class="content">
 		<?
-			if($gameinfo['state'] == "준비중" or $gameinfo['useTimetable'] == 0) {
+			if($viewDay == 0) {
+				$accidentTiem = $gameinfo['deathtime'];
+			}
+			elseif($gameinfo['state'] == "준비중" or $gameinfo['useTimetable'] == 0) {
 				$accidentTiem = $gameinfo['deathtime'] + $gameinfo['termOfDay']*$viewDay;
 			}
 			elseif($gameinfo['useTimetable'] == 1) {

@@ -186,7 +186,13 @@
 		<div class="state">사건이 발생하는 시각</div>
 		<div class="content">
 		<?
-			$accidentTiem = $gameinfo['deathtime'] + $gameinfo['termOfDay']*$viewDay;
+			if($gameinfo['state'] == "준비중" or $gameinfo['useTimetable'] == 0) {
+				$accidentTiem = $gameinfo['deathtime'] + $gameinfo['termOfDay']*$viewDay;
+			}
+			elseif($gameinfo['useTimetable'] == 1) {
+				$timetable = mysql_fetch_array(mysql_query("select * from `zetyx_board_werewolf_timetable` where `game` = $gameinfo['game'] and `day` = $viewDay-1"));
+				$accidentTiem = $timetable['reg_date'] + $gameinfo['termOfDay'];
+			}
 			echo date("H",$accidentTiem)."시 ".date("i",$accidentTiem)."분";
 		?>
 		</div>

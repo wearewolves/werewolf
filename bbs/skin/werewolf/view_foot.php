@@ -121,11 +121,11 @@ if(($gameinfo['state']=="게임중" and $truecharacter['forecast-odd'] and $entry['
 
 <?if(!($gameinfo['state'] == "게임끝" or $gameinfo['state'] == "테스트" )){ 
 	if($gameinfo['state'] == "준비중" or $gameinfo['useTimetable']==0){
-		$timer =$gameinfo['deathtime'] + $gameinfo['termOfDay']*$gameinfo['day'] -time();
+		$timer = $gameinfo['deathtime'] + $gameinfo['termOfDay']*$gameinfo['day'] - time();
 	}
 	elseif($gameinfo['useTimetable']==1){
-		$timetable=mysql_fetch_array(mysql_query("select * from `zetyx_board_werewolf_timetable` where `game` = $gameinfo[game] and   `day` = $gameinfo[day]-1"));
-		$timer = $timetable['reg_date']+ $gameinfo['termOfDay'] - time();
+		$timetable=mysql_fetch_array(mysql_query("select * from `zetyx_board_werewolf_timetable` where `game` = $gameinfo[game] and `day` = $gameinfo[day]-1"));
+		$timer = $timetable['reg_date'] + $gameinfo['termOfDay'] - time();
 	}
 	?>
 <script type="text/javascript">
@@ -142,7 +142,6 @@ function checkTime(i)
 // if (i<10)   {i="0" + i}
   return i
 }
-
  
  function startTime()
 {
@@ -153,7 +152,6 @@ function checkTime(i)
       min--;
       sec = 59;
    }
-
    else if( sec==0 && min==0 && hour > 0)
    {
 		hour--;
@@ -166,8 +164,10 @@ function checkTime(i)
 		sec = 0;
 		//window.location.reload();
    }
+   
 	document.getElementById('timer').innerHTML=zeroFill(hour)+":"+zeroFill(min)+":"+zeroFill(sec)
 }
+
 function zeroFill(value){
 	if(0 <= value && value <= 9){
 		return "0"+value;
@@ -187,13 +187,13 @@ function formcheck(f){
 
 <div class="DisplayBoard" id="displayTimer">
 	<?if($gameinfo['day']){?>
-		<span>오늘은 <?=$gameinfo['day']?>일 째 날입니다. </span>
+		<span>오늘은 <?=$gameinfo['day']?>일째 날입니다. </span>
 	<?}
 		else{?>
 		<span> 참여 인원 모집 중</span>
 	<?}?>
 	<br />
-	<?echo date("H",$accidentTiem)."시 ".date("i",$accidentTiem)." 분";?> - <span id="timer"></span>
+	<?echo date("H",$accidentTiem)."시 ".date("i",$accidentTiem)."분";?> - <span id="timer"></span>
 </div>
 <?}?>
 

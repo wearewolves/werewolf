@@ -190,7 +190,7 @@
 				$accidentTiem = $gameinfo['deathtime'] + $gameinfo['termOfDay']*$viewDay;
 			}
 			elseif($gameinfo['useTimetable'] == 1) {
-				$timetable = mysql_fetch_array(mysql_query("select * from `zetyx_board_werewolf_timetable` where `game` = $gameinfo['game'] and `day` = $viewDay-1"));
+				$timetable = mysql_fetch_array(mysql_query("select * from `zetyx_board_werewolf_timetable` where `game` = $gameinfo[game] and `day` = $viewDay-1"));
 				$accidentTiem = $timetable['reg_date'] + $gameinfo['termOfDay'];
 			}
 			echo date("H",$accidentTiem)."½Ã ".date("i",$accidentTiem)."ºÐ";

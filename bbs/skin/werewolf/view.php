@@ -159,7 +159,7 @@
 	<div class="viewState">
 		<div class="state">인원 모집</div>
 		<div class="content">
-			<?echo date("m",$gameinfo['deathtime'])."월 ".date("d",$gameinfo['deathtime'])." 일 ".date("H",$gameinfo['deathtime'])."시 ".date("i",$gameinfo['deathtime'])." 분";?> 이후로 인원이 모이면 게임이 시작됩니다.
+			<?echo date("m",$gameinfo['deathtime'])."월 ".date("d",$gameinfo['deathtime'])."일 ".date("H",$gameinfo['deathtime'])."시 ".date("i",$gameinfo['deathtime'])."분";?> 이후로 인원이 모이면 게임이 시작됩니다.
 		</div>
 	</div>
 	<?}?>
@@ -186,7 +186,16 @@
 		<div class="state">사건이 발생하는 시각</div>
 		<div class="content">
 		<?
-			$accidentTiem = $gameinfo['deathtime'] + $gameinfo['termOfDay']*$viewDay;
+			if($viewDay == 0) {
+				$accidentTiem = $gameinfo['deathtime'];
+			}
+			elseif($gameinfo['state'] == "준비중" or $gameinfo['useTimetable'] == 0) {
+				$accidentTiem = $gameinfo['deathtime'] + $gameinfo['termOfDay']*$viewDay;
+			}
+			elseif($gameinfo['useTimetable'] == 1) {
+				$timetable = mysql_fetch_array(mysql_query("select * from `zetyx_board_werewolf_timetable` where `game` = $gameinfo[game] and `day` = $viewDay-1"));
+				$accidentTiem = $timetable['reg_date'] + $gameinfo['termOfDay'];
+			}
 			echo date("H",$accidentTiem)."시 ".date("i",$accidentTiem)."분";
 		?>
 		</div>

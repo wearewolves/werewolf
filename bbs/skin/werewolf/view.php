@@ -159,7 +159,7 @@
 	<div class="viewState">
 		<div class="state">인원 모집</div>
 		<div class="content">
-			<?echo date("m",$gameinfo['deathtime'])."월 ".date("d",$gameinfo['deathtime'])." 일 ".date("H",$gameinfo['deathtime'])."시 ".date("i",$gameinfo['deathtime'])." 분";?> 이후로 인원이 모이면 게임이 시작됩니다.
+			<?echo date("m",$gameinfo['deathtime'])."월 ".date("d",$gameinfo['deathtime'])."일 ".date("H",$gameinfo['deathtime'])."시 ".date("i",$gameinfo['deathtime'])."분";?> 이후로 인원이 모이면 게임이 시작됩니다.
 		</div>
 	</div>
 	<?}?>

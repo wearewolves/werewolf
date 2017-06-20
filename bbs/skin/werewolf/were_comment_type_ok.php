@@ -272,7 +272,7 @@ $DBLastComment = mysql_fetch_array(mysql_query("select max(comment) from $DB_wer
 //				echo "<result>alert</result>\n";
 //				echo "<alert>3시 00분 이후부터 로그를 작성할 수 있습니다. 3시 이후에 꼭 새로고침을 해주세요. 안 그러면 로그가 깨집니다.</alert>";
 //	}
-	elseif($entry['alive'] == "생존" and $entry['normal'] == 0) {
+	elseif($c_type == "일반" and $entry['alive'] == "생존" and $entry['normal'] == 0) {
 				echo "<result>alert</result>\n";
 				echo "<alert>일반 로그를 더 이상 작성할 수 없습니다.</alert>";
 	}
@@ -383,7 +383,7 @@ $DBLastComment = mysql_fetch_array(mysql_query("select max(comment) from $DB_wer
 							break;
 			case "메모": if($entry and $entry['memo'] > 0) {
 								$writeComment = true;
-								@mysql_query("update $DB_entry set memo=$entry[memo] - 1 where game=$parent  and player = $member[no] ") or error(mysql_error());
+								@mysql_query("update $DB_entry set memo=$entry[memo] - 1 where game=$parent and player = $member[no]") or error(mysql_error());
 							}		
 							break;
 			case "비밀": if($entry['alive']=="생존" and $truecharacter['secretchat'] and $entry['secret'] > 0) {
@@ -398,7 +398,7 @@ $DBLastComment = mysql_fetch_array(mysql_query("select max(comment) from $DB_wer
 							break;
 			case "사망": if($entry['alive']=="사망" and $entry['grave'] > 0) {
 								$writeComment = true;
-								@mysql_query("update $DB_entry set grave=$entry[grave] - 1 where game=$parent and player = $member[no] ") or error(mysql_error());
+								@mysql_query("update $DB_entry set grave=$entry[grave] - 1 where game=$parent and player = $member[no]") or error(mysql_error());
 							}		
 							break;
 			case "알림":if($is_admin){$writeComment = true;}
@@ -414,13 +414,13 @@ $DBLastComment = mysql_fetch_array(mysql_query("select max(comment) from $DB_wer
 			case "봉인제안":if($gameinfo['state']=="게임중" and $entry and $entry['seal'] > 0) {
 								if($gameinfo['seal'] == '제안'){
 									$writeComment = true;
-									@mysql_query("update `$DB_entry` set `seal` = $entry[seal] - 1 where game=$parent  and player = $member[no] ") or error(mysql_error());
+									@mysql_query("update `$DB_entry` set `seal` = $entry[seal] - 1 where game=$parent  and player = $member[no]") or error(mysql_error());
 									@mysql_query("update `$DB_gameinfo` set `seal` = '논의' where game = $no" ) or die("게임 상태를 수정 중에 오류가 발생했습니다.");
 									@mysql_query("update `$DB_entry` set `seal` = '5' where game = $no") or die("게임에 참여한 플레이어 수를 갱신중에 오류가 발생했습니다.");
 								}
 								if($gameinfo['seal'] == '논의'){
 									$writeComment = true;
-									@mysql_query("update `$DB_entry` set `seal` = $entry[seal] - 1 where game=$parent  and player = $member[no] ") or error(mysql_error());				
+									@mysql_query("update `$DB_entry` set `seal` = $entry[seal] - 1 where game=$parent and player = $member[no]") or error(mysql_error());				
 								}
 							}
 							break;
@@ -480,13 +480,13 @@ $DBLastComment = mysql_fetch_array(mysql_query("select max(comment) from $DB_wer
 			}
 
 			//비밀 편지
-			if($c_type =="편지" ){				
+			if($c_type =="편지"){				
 				 $sql = 	"INSERT INTO `$DB_secretletter` ( `game` , `day` , `from` ,`to`,`message`) VALUES ('$no', '$gameinfo[day]','$entry[character]' , '$secretletterTo', $commentID);";
 				@mysql_query($sql) or die("입력 중에 오류가 발생했습니다.".$sql);
 			}
 
 			//비밀 편지 답장
-			if($c_type =="답변" ){				
+			if($c_type =="답변"){				
 				 $sql = 	"update `$DB_secretletter` set `answer` = $commentID where  `game` =$no and  `day` = ($gameinfo[day]-1) ;";
 				@mysql_query($sql) or die("입력 중에 오류가 발생했습니다.".$sql);
 			}

@@ -8,7 +8,7 @@ $secretmessage=mysql_fetch_array(mysql_query($sql));
 if($secretmessage and (($secretmessage['to'] ==$entry['character'] and $entry['alive']=="생존") or $viewMode =="all") and $viewDay>1){?>
 <div class="letter">
 	<h1>
-		어제 밤 <u><?=$character_list[$secretmessage['from']]?></u>씨로부터 편지가 도착했습니다.
+		어젯밤 <u><?=$character_list[$secretmessage['from']]?></u> 씨로부터 편지가 도착했습니다.
 	</h1>
 	<div class="message">
 			<?	
@@ -22,7 +22,7 @@ if($secretmessage and (($secretmessage['to'] ==$entry['character'] and $entry['a
 
 
 <?	
-if(($gameinfo['state']=="게임중" and $truecharacter['forecast'] and $entry['alive']=="생존")or $gameinfo['state']=="게임끝" and $viewDay > 1  ){
+if(($gameinfo['state']=="게임중" and $truecharacter['forecast'] and $entry['alive']=="생존")or $gameinfo['state']=="게임끝" and $viewDay > 1){
 	$forecast_result =mysql_fetch_array(mysql_query("select * from $DB_revelation where game='$no' and day=$viewDay -1 and type = '점'"));
 
 	if($forecast_result ){
@@ -31,8 +31,8 @@ if(($gameinfo['state']=="게임중" and $truecharacter['forecast'] and $entry['aliv
 		<span class="head">점괘 결과</span>
 		<span>
 			<? echo $character_list[$forecast_result['mystery']];	
-			if($forecast_result[result] == 0 or $forecast_result[result] == 2 ) echo "씨는 인간";
-			else echo "씨는 인랑";
+			if($forecast_result[result] == 0 or $forecast_result[result] == 2) echo " 씨는 인간";
+			else echo " 씨는 인랑";
 			?>
 		</span>
 	</div>
@@ -49,8 +49,8 @@ if(($gameinfo['state']=="게임중" and $truecharacter['forecast-odd'] and $entry['
 		<span class="head">점괘 결과</span>
 		<span>
 			<? echo $character_list[$forecast_result['mystery']];	
-			if($forecast_result[result] == 0 or $forecast_result[result] == 2 ) echo "씨는 인간";
-			else echo "씨는 인랑";
+			if($forecast_result[result] == 0 or $forecast_result[result] == 2 ) echo " 씨는 인간";
+			else echo " 씨는 인랑";
 			?>
 		</span>
 	</div>
@@ -59,18 +59,18 @@ if(($gameinfo['state']=="게임중" and $truecharacter['forecast-odd'] and $entry['
 
 
 
-<?	if(($gameinfo['state']=="게임중" and $truecharacter['mediumism'] and $entry['alive']=="생존")or $gameinfo['state']=="게임끝" and $viewDay > 2  ){
-	$sql = "SELECT * FROM `$DB_entry` WHERE `game` = $no AND `deathday` = $viewDay -1 AND `deathtype` LIKE '심판' ";
+<?	if(($gameinfo['state']=="게임중" and $truecharacter['mediumism'] and $entry['alive']=="생존")or $gameinfo['state']=="게임끝" and $viewDay > 2){
+	$sql = "SELECT * FROM `$DB_entry` WHERE `game` = $no AND `deathday` = $viewDay -1 AND `deathtype` LIKE '심판'";
 	$mediumism =mysql_fetch_array(mysql_query($sql));
 
-	if($mediumism ){
+	if($mediumism){
 ?>
 	<div class="DisplayBoard alignleft">
 		<span class="head">영매 결과</span>
 		<span>
 			<?
 				echo $character_list[$mediumism[character]];
-				if($mediumism[truecharacter]==5 or $mediumism[truecharacter]==9 or $mediumism[truecharacter]==10 or $mediumism[truecharacter]==14) echo "씨는 인랑";else echo "씨는 인간";
+				if($mediumism[truecharacter]==5 or $mediumism[truecharacter]==9 or $mediumism[truecharacter]==10 or $mediumism[truecharacter]==14) echo " 씨는 인랑"; else echo " 씨는 인간";
 			?>
 		</span>
 	</div>
@@ -78,7 +78,7 @@ if(($gameinfo['state']=="게임중" and $truecharacter['forecast-odd'] and $entry['
 }?>
 
 
-<?	if(($gameinfo['state']=="게임중" and $truecharacter['guard']  and $entry['alive']=="생존" ) or $gameinfo['state']=="게임끝" and $viewDay >2 ) {
+<?	if(($gameinfo['state']=="게임중" and $truecharacter['guard'] and $entry['alive']=="생존") or $gameinfo['state']=="게임끝" and $viewDay > 2) {
 		$guard_result =mysql_fetch_array(mysql_query("select * from $DB_guard where game='$no' and day=$viewDay - 1"));
 		$assault_result =mysql_fetch_array(mysql_query("select * from $DB_deathNote_result where game='$no' and day=$viewDay - 1"));
 		
@@ -86,14 +86,14 @@ if(($gameinfo['state']=="게임중" and $truecharacter['forecast-odd'] and $entry['
 			<div class="DisplayBoard alignleft">
 				<span class="head">보호 결과</span>
 				<span>
-					<?if($assault_result[injured] == $guard_result[purpose]) echo "어제 밤 ".$character_list[$guard_result[purpose]]."씨를 향한 인랑의 습격을 막았다!";
-					else  echo "어제 밤 ".$character_list[$guard_result[purpose]]."씨 주변에선 아무 일도 일어 나지 않았다.";?>
+					<?if($assault_result[injured] == $guard_result[purpose]) echo "어젯밤 ".$character_list[$guard_result[purpose]]." 씨를 향한 인랑의 습격을 막았다!";
+					else echo "어젯밤 ".$character_list[$guard_result[purpose]]." 씨 주변에서는 아무 일도 일어나지 않았다.";?>
 				</span>
 			</div>
 		<?}?>
 <?	}?>
 
-<?	if(($gameinfo['state']=="게임중" and $truecharacter['detect']  and $entry['alive']=="생존" ) or $gameinfo['state']=="게임끝" and $viewDay > 1 ) {
+<?	if(($gameinfo['state']=="게임중" and $truecharacter['detect'] and $entry['alive']=="생존") or $gameinfo['state']=="게임끝" and $viewDay > 1) {
 	$sql="select * from $DB_detect where game='$no' and day=$viewDay -1 ";
 	$detectResult =mysql_fetch_array(mysql_query($sql));
 
@@ -101,7 +101,7 @@ if(($gameinfo['state']=="게임중" and $truecharacter['forecast-odd'] and $entry['
 		$sql = "select * from $DB_entry where `game`='$no' and `character` = '".$detectResult['target']."'";
 		$target_entry = mysql_fetch_array(mysql_query($sql)) or die($sql);
 	
-		$resultText = $character_list[$detectResult['target']]."씨는 " ;
+		$resultText = $character_list[$detectResult['target']]." 씨는 " ;
 		if($target_entry['truecharacter'] == 1) $resultText .= "평범하다";
 		else $resultText .= "비범하다";
 		?>
@@ -119,11 +119,11 @@ if(($gameinfo['state']=="게임중" and $truecharacter['forecast-odd'] and $entry['
 */
 ?>
 
-<?if(!($gameinfo['state'] == "게임끝" or $gameinfo['state'] == "테스트" )){ 
+<?if(!($gameinfo['state'] == "게임끝" or $gameinfo['state'] == "테스트")) { 
 	if($gameinfo['state'] == "준비중" or $gameinfo['useTimetable']==0){
 		$timer = $gameinfo['deathtime'] + $gameinfo['termOfDay']*$gameinfo['day'] - time();
 	}
-	elseif($gameinfo['useTimetable']==1){
+	elseif($gameinfo['useTimetable']==1) {
 		$timetable=mysql_fetch_array(mysql_query("select * from `zetyx_board_werewolf_timetable` where `game` = $gameinfo[game] and `day` = $gameinfo[day]-1"));
 		$timer = $timetable['reg_date'] + $gameinfo['termOfDay'] - time();
 	}
@@ -187,7 +187,7 @@ function formcheck(f){
 
 <div class="DisplayBoard" id="displayTimer">
 	<?if($gameinfo['day']){?>
-		<span>오늘은 <?=$gameinfo['day']?>일째 날입니다. </span>
+		<span>오늘은 <?=$gameinfo['day']?>일째 날입니다.</span>
 	<?}
 		else{?>
 		<span> 참여 인원 모집 중</span>
@@ -197,7 +197,7 @@ function formcheck(f){
 </div>
 <?}?>
 
-<!--환경 설정 -->
+<!-- 환경 설정 -->
 <!-- 로그 알림 소리 설정 -->
 <span  id="playerpp"></span>
 
@@ -221,10 +221,10 @@ function formcheck(f){
 
 </script>
 
-	<!-- 로딩할 로그 갯수 설정 -->
+	<!-- 로딩할 로그 개수 설정 -->
 	<div>
 		<span id="limit"></span>
-		<select id="readLimit"><option value="5">5</option><option value="10">10</option><option value="15">15</option><option value="20">20</option></select><label for="readLimit"  title="선택해 주세요.">개씩 보기</label>
+		<select id="readLimit"><option value="5">5</option><option value="10">10</option><option value="15">15</option><option value="20">20</option></select><label for="readLimit"  title="선택해주세요.">개씩 보기</label>
 	</div>
 	<!-- 로그 선택 -->
 	<div id="">
@@ -247,7 +247,7 @@ function formcheck(f){
 	</div>
 </div>
 
-<!-- 새로고침에 대한 경고 -->
+<!-- 새로 고침에 대한 경고 -->
 <div id="notice">
 <h1>새로운 덧글을 보기 위해 새로 고침을 하지 마세요. 덧글이 자동으로 갱신됩니다.</h1>
 </div>
@@ -270,15 +270,15 @@ function formcheck(f){
 <?	$noCommentPlayer_list = DB_array("no","character","$DB_entry where game = $no and alive='생존' and victim = 0 and comment = 0 ");
 	if ($gameinfo['state']=="게임중" and $noCommentPlayer_list and $viewDay == $gameinfo['day']  ){?>
 <div class="DisplayBoard" id="NoCommentPlayerList">
-		<h1>지금까지 발언이 없는 마을 사람들입니다. </h1>
+		<h1>지금까지 발언이 없는 마을 사람입니다.</h1>
 		<?if($gameinfo['termOfDay'] > 1800 ){?>
-			<h1>하루 동안 일반 로그를 쓰지 않으면 죽습니다.(돌연사) </h1>
+			<h1>하루 동안 일반 로그를 쓰지 않으면 죽습니다. (돌연사)</h1>
 		<?}else{?>
-			<h1>하루 동안 일반 로그를 쓰지 않은 횟수가 <?=$MaxSuddenCountUnder30M?>회가 되면 죽습니다.(돌연사)</h1>
+			<h1>하루 동안 일반 로그를 쓰지 않은 횟수가 <?=$MaxSuddenCountUnder30M?>회가 되면 죽습니다. (돌연사)</h1>
 			
 
 			<?if($entry['suddenCount']){?>
-				<h1><?=$entry['suddenCount']?>회 발언을 안했습니다.</h1>
+				<h1><?=$entry['suddenCount']?>회 발언을 안 했습니다.</h1>
 			<?}?>
 		<?}?>
 
@@ -322,10 +322,10 @@ $(document).ready(function(){
 		if($gameinfo['players'] < $rule['max_player']){
 
 			if($member['level'] == 8){
-				echo "비매너 플레이어로 처리 중 입니다. 게임에 참여하려면<a href=''>[등업 방법]</a>을 읽어 주세요. ";
+				echo "비매너 플레이어로 처리 중입니다. 게임에 참여하려면 <a href=''>[등업 방법]</a>을 읽어주세요.";
 			}	
 			elseif($member['no']  <  1){
-					echo "로그인 해주세요. ";
+					echo "로그인 해주세요.";
 			}			
 			elseif($member[no]==1) $canPlay = true;
 			elseif($gameinfo['termOfDay'] > 1800){
@@ -334,8 +334,8 @@ $(document).ready(function(){
 				}
 				elseif($member['level'] == 9){
 					echo "신규 회원이시군요.<br>";
-					echo " 24시간 게임에 참여하려면<a href=''>[등업 방법]</a>을 읽어 주세요.<br> ";
-					echo "30분 마을은 바로 참여 할 수 있습니다.";
+					echo "24시간 게임에 참여하려면 <a href=''>[등업 방법]</a>을 읽어주세요.<br>";
+					echo "30분 마을은 바로 참여할 수 있습니다.";
 
 					$canPlay = false;
 				}
@@ -352,7 +352,7 @@ $(document).ready(function(){
 
 	if($canPlay){
 		if($playCount >= $fiducialPlayCount and $NowPlayingCount < $AttandMaxCountOver3 or $playCount < $fiducialPlayCount and $NowPlayingCount < $AttandMaxCountUnder3){
-			echo "$NowPlayingCount 개 게임에 참여 중 입니다. <br/>";
+			echo "$NowPlayingCount 개 게임에 참여 중입니다.<br/>";
 			$entryCharacter = DB_array("character","character","$DB_entry where game='$no' ");
 			if($entryCharacter) $orderCondition = orderCondition($entryCharacter);
 			else $orderCondition = "in (0)";
@@ -360,7 +360,7 @@ $(document).ready(function(){
 			?>
 			
 			<!-- customize the confirm message for participation -->
-			<? if($server['host'] == "werewolf6.cafe24.com") { ?>
+			<? if($gameinfo['useTimetable'] == 1) { ?>
 				<form method=post name=addPlayer action=<?="$PHP_SELF?id=$id&no=$no&function=addPlayer&password=$password"?>  enctype="multipart/form-datas" 
 				onsubmit="return confirm('게임에 참여하기 전에!!\n\n1. 인랑은 대화로 진행되는 게임입니다. 매너 있는 대화를 해주세요.\n\n2. 게임에 참여하면 끝날 때까지 성실히 활동해 주십시오.\n(게임이 시작해서 끝날 때까지 3~4시간 정도가 걸립니다. 중간에 포기하는 일이 없도록 합시다.)\n(불가피한 경우 같이 플레이하는 분들에게 양해를 구하시기 바랍니다.)\n\n동의하시면 확인을 눌러주세요.')">
 			<? } else { ?>
@@ -378,8 +378,6 @@ $(document).ready(function(){
 				<select name='selectCharacter' id="role_select">
 				<?
 					$characterQuery = mysql_query("select * from $DB_character where `set` = $gameinfo[characterSet] and `no` not $orderCondition order by 'no'");
-					//$characterArray = mysql_fetch_array($characterQuery);
-					//for($rc=0;$rc<count($characterArray);$rc++){
 					for($rc=0; $characterArray = mysql_fetch_array($characterQuery); $rc++) {
 						echo "<option data-img-src='".$characterImageFolder.$characterArray['half_image']."' value='".$characterArray['no']."'>".$character_list[$characterArray['no']]."</option>\n";
 					}
@@ -391,7 +389,7 @@ $(document).ready(function(){
 			<input type="submit" name="temp" value="게임 참여하기" style="border: 2px solid #666666; background-color: #111111; color: #666666; padding: 5px 15px; margin: 4px 2px; text-align: center; font-family: '돋움', '맑은 고딕', '나눔고딕'; text-decoration: none; font-size: 14px;">
 			</form>
 		<?}
-		else echo "$NowPlayingCount 개 게임에 참여 중 입니다.<br/><br/> 더 이상 게임에 참여 할 수 없습니다.";
+		else echo "$NowPlayingCount 개 게임에 참여 중입니다.<br/><br/>더 이상 게임에 참여할 수 없습니다.";
 	}
 ?>	
 </div>
@@ -406,27 +404,27 @@ $(document).ready(function(){
 <h1>관리자 메뉴</h1>
 <?
 	// echo "<a href=$PHP_SELF?id=$id&no=$no&function=suddenDeathCheck title='발언이 없는 플레이어를 돌연사 체크한다.'>돌연사 체크</a></br>"; 
-	//	echo "<a href=$PHP_SELF?id=$id&no=$no&function=delRecord >점수 기록 삭제</a></br>"; 
-		echo "<a href=$PHP_SELF?id=$id&no=$no&function=2222 >봉인하기</a></br>"; 
-		echo "<a href=$PHP_SELF?id=$id&no=$no&function=1111 >버그로</a></br>"; 
-		echo "<a href=$PHP_SELF?id=$id&no=$no&function=record >점수 기록하기</a></br>"; 
-		echo "<a href=$PHP_SELF?id=$id&no=$no&function=preparation >준비하기</a></br>"; 
-		echo "<a href=$PHP_SELF?id=$id&no=$no&function=start >시작하기</a></span></br>"; 
-		echo "<a href=$PHP_SELF?id=$id&no=$no&function=forwardAday >하루 앞으로 </a></br>"; 
-		echo "<a href=$PHP_SELF?id=$id&no=$no&function=backAday >하루 뒤로 </a></br>"; 
-	//	echo "<a href=$PHP_SELF?id=$id&no=$no&function=resurrection >부활시키기</a></br>"; 
-		echo "<a href=$PHP_SELF?id=$id&no=$no&function=postNoManner >소명 게시하기</a></br>"; 
+	//	echo "<a href=$PHP_SELF?id=$id&no=$no&function=delRecord>점수 기록 삭제</a></br>"; 
+		echo "<a href=$PHP_SELF?id=$id&no=$no&function=2222>봉인하기</a></br>"; 
+		echo "<a href=$PHP_SELF?id=$id&no=$no&function=1111>버그로</a></br>"; 
+		echo "<a href=$PHP_SELF?id=$id&no=$no&function=record>점수 기록하기</a></br>"; 
+		echo "<a href=$PHP_SELF?id=$id&no=$no&function=preparation>준비하기</a></br>"; 
+		echo "<a href=$PHP_SELF?id=$id&no=$no&function=start>시작하기</a></span></br>"; 
+		echo "<a href=$PHP_SELF?id=$id&no=$no&function=forwardAday>하루 앞으로</a></br>"; 
+		echo "<a href=$PHP_SELF?id=$id&no=$no&function=backAday>하루 뒤로</a></br>"; 
+	//	echo "<a href=$PHP_SELF?id=$id&no=$no&function=resurrection>부활시키기</a></br>"; 
+		echo "<a href=$PHP_SELF?id=$id&no=$no&function=postNoManner>소명 게시하기</a></br>"; 
 		if ($is_admin AND 0){?>
 		<form   method=post name=writeCommnet action=<?="$PHP_SELF"?>  enctype="multipart/form-data"s>
 		<input type=hidden name=id value=<?=$id?>>
 		<input type=hidden name=no value=<?=$no?>>
 		<input type=hidden name=function value="writeCommnet">
 
-		<input type="submit" name="temp" value="덧글 쓰기 테스트" style="background:#000;" ></form></td>
+		<input type="submit" name="temp" value="덧글 쓰기 테스트" style="background:#000;"></form></td>
 		<?}
-	// echo "<a href=$PHP_SELF?id=$id&no=$no&function=writeCommnet title='writeCommnet함수 테스트'>덧글 쓰기 테스트</a></br>"; 
+	// echo "<a href=$PHP_SELF?id=$id&no=$no&function=writeCommnet title='writeCommnet 함수 테스트'>덧글 쓰기 테스트</a></br>"; 
 	// echo "<a href=$PHP_SELF?id=$id&no=$no&function=CommentCheck title='모든 플레이어를 발언한 상태로 만든다.'>돌연사 금지</a></br>"; 
-	// echo "<a href=$PHP_SELF?id=$id&no=$no&function=CommentNumInit title='모든 플레이어의 발언 수를 초기화 한다.'>발언수 초기화</a>"; 
+	// echo "<a href=$PHP_SELF?id=$id&no=$no&function=CommentNumInit title='모든 플레이어의 발언 수를 초기화한다.'>발언수 초기화</a>"; 
 	 ?>	
 </div>
 <?}?>

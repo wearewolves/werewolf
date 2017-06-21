@@ -10,18 +10,18 @@ from werewolf.game.rule.Rule import WerewolfRule
 class InstantRule(WerewolfRule):
     def __init__(self, game):
         super(InstantRule, self).__init__(game)
-        self.min_players = 7
-        self.max_players = 8
+        self.min_players = 8
+        self.max_players = 9
         logging.debug("instant rule")
 
     def getTruecharacterList(self, number):
-        if number == 7:
-            rolelist = [Truecharacter.SEER, Truecharacter.BODYGUARD] +\
-                        [Truecharacter.REVENGER] + [Truecharacter.HUMAN]*2 +\
-                        [Truecharacter.WEREWOLF]*2
-        elif number == 8:
+        if number == 8:
             rolelist = [Truecharacter.SEER, Truecharacter.BODYGUARD] +\
                         [Truecharacter.REVENGER] + [Truecharacter.HUMAN]*3 +\
+                        [Truecharacter.WEREWOLF]*2
+        elif number == 9:
+            rolelist = [Truecharacter.SEER, Truecharacter.BODYGUARD] +\
+                        [Truecharacter.REVENGER] + [Truecharacter.HUMAN]*4 +\
                         [Truecharacter.WEREWOLF]*2
 						
         logging.debug('The instant rolelist for %d: %s', number, rolelist)

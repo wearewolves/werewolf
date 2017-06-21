@@ -12,7 +12,8 @@
 	// DB 연결정보 가져옴
 	$connect = dbConn();
 
-	mysql_query("INSERT INTO `zetyx_board_werewolf_rule` (`no`, `name`, `min_player`, `max_player`) VALUES (5, '인스턴트', 7, 8);");
+	mysql_query("INSERT INTO `zetyx_board_werewolf_rule` (`no`, `name`, `min_player`, `max_player`) VALUES (4, '신뢰도', 11, 17);");
+	mysql_query("update `zetyx_board_werewolf_rule` set min_player = '8', max_player = '9' where no = 5;");
 	
 	mysql_close($connect);
 ?>

@@ -35,8 +35,8 @@ class RuleFactory:
             from werewolf.game.rule.HamsterRule import HamsterRule
             return HamsterRule(game)
         elif rule == RULE_NAME.EXPANSION:
-            from werewolf.game.rule.ExpensionRule import ExpansionRule
-            return ExpansionRule(game)
+            from werewolf.game.rule.ExpensionRule import ExpensionRule
+            return ExpensionRule(game)
         elif rule == RULE_NAME.CONFIDENCE:
             from werewolf.game.rule.ConfidenceRule import ConfidenceRule
             return ConfidenceRule(game)

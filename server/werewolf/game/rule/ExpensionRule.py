@@ -12,7 +12,7 @@ class ExpensionRule(WerewolfRule):
         super(ExpensionRule, self).__init__(game)
         self.min_players = 9
         self.max_players = 17
-        logging.debug("expansion rule")
+        logging.debug("expension rule")
 
     def getTruecharacterList(self, number):
         if number < 11:

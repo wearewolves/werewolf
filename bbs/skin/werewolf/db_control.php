@@ -14,6 +14,5 @@
 
 	
 	mysql_query("DELETE FROM `zetyx_board_werewolf_rule` where no='5';");
-	mysql_query("INSERT INTO `zetyx_board_werewolf_rule` (`no`, `name`, `min_player`, `max_player`) VALUES (5, '인스턴트', 8, 9);");
 	mysql_close($connect);
 ?>

@@ -31,36 +31,28 @@ class InstantRule(WerewolfRule):
     def initGame(self):
         logging.info("init Instant Rule")
         WerewolfRule.initGame(self)
-		self.deletenormallog()
+        self.deletenormallog()
 
 		#점쟁이를 찾는다
         seerPlayer = self.game.entry.getPlayersByTruecharacter(Truecharacter.SEER)[0]
+        #랜덤으로 점설정을 해준다.
         seerPlayer.seerRandom()
 
-		self.nextTurn_2day();
-
-    def nextTurn_2day(self):
-        logging.info("2일째로 고고!")
-
-        #일반 로그를 쓰지 않은 사람을 체크한다.
-        self.game.entry.checkNoCommentPlayer()
-
-        #희생양 NPC 습격
+        # 2일째로 진행
         victim = self.game.entry.getVictim()
         victim.toDeathByWerewolf()
-
-        #코멘트 초기화
         self.game.entry.initComment()
-		self.deleteNormallog()
-
-        #3. 게임 정보 업데이트
+        self.deleteNormallog()
         self.game.setGameState("state", "게임중")
         self.game.setGameState("day", self.game.day+1)
+
+    def nextTurn_2day(self):
+        raise NotImplementedError("InstantRule must not call nextTurn_2day")
 
     def nextTurn_Xday(self):
         logging.info("다음 날로 고고!")
 		
-		if self.game.day > 2:
+        if self.game.day > 2:
 			#일반 로그를 쓰지 않은 사람을 체크한다.
 			self.game.entry.checkNoCommentPlayer()
 
@@ -76,8 +68,6 @@ class InstantRule(WerewolfRule):
 
         #코멘트 초기화
         self.game.entry.initComment()
-		if self.game.day == 2:
-			self.deletenormallog()
 
         #습격!
         assaultVictim = self.decideByWerewolf()
@@ -189,10 +179,10 @@ class InstantRule(WerewolfRule):
         injured = random.choice(injured_list)
         logging.debug("Injured: %s in %s", injured, [str(player) for player in injured_list])
         return self.game.entry.getCharacter(injured)
-		
-	def deleteNormallog(self):
-		cursor = self.game.db.cursor
-		query = """update `zetyx_board_werewolf_entry` set normal ='0' where game = '%s'"""
-		query %= (self.game.game)
-		logging.debug(query)
-		cursor.execute(query)
+
+    def deleteNormallog(self):
+        cursor = self.game.db.cursor
+        query = """update `zetyx_board_werewolf_entry` set normal ='0' where game = '%s'"""
+        query %= (self.game.game)
+        logging.debug(query)
+        cursor.execute(query)

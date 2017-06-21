@@ -68,25 +68,25 @@ class Seer(Player):
         return cursor.fetchone()
 
 	def seerRandom(self):
-		# 모든 인원을 찾는다
+        # 모든 인원을 찾는다
         allEntry = getAllEntry()
-		# 랜덤 한 명을 고른다
-		while True:
+        # 랜덤 한 명을 고른다
+        while True:
             targetPlayer = random.choice(allEntry)
             if targetPlayer.character == self.character:
                 logging.debug("random assault choose oneself: %s -> %s", self, targetPlayer)
             else:
                 break
-		logging.debug("random seer: %s -> %s", self, targetPlayer)
-		# race를 찾는다
-		cursor = self.game.db.cursor
+        logging.debug("random seer: %s -> %s", self, targetPlayer)
+        # race를 찾는다
+        cursor = self.game.db.cursor
         query = "SELECT race FROM `zetyx_board_werewolf_truecharacter` WHERE no ='%s'"
         query %= (targetPlayer.truecharacter)
         logging.debug(query)
         cursor.execute(query)
-		targetrace = cursor.fetchone()
-		# 설정한다
-		cursor2 = self.game.db.cursor
+        targetrace = cursor.fetchone()
+        # 설정한다
+        cursor2 = self.game.db.cursor
         query2 = "INSERT INTO `zetyx_board_werewolf_revelation`(`game`,`day`,`type`,`prophet`,`mystery`,`result`) VALUES ('%s','%s','점' ,'%s','%s','%s');"
         query2 %= (self.game.game, self.game.day, self.character, targetPlayer.character, targetrace)
         logging.debug(query2)

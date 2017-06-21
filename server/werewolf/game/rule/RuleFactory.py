@@ -7,7 +7,7 @@ class RULE_NAME:
     HAMSTER = 2
     EXPANSION = 3
     CONFIDENCE = 4
-	INSTANT = 5
+    INSTANT = 5
 
 class SUBRULE_NAME:
     ASSAULT_ONESELF = 1

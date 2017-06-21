@@ -193,7 +193,7 @@ class Entry:
         
         query = "SELECT * FROM `zetyx_board_werewolf_entry` WHERE game ='%s' and  victim = '0'"
         query %= (self.game.game)
-		logging.debug(query)
+        logging.debug(query)
         cursor.execute(query)
         return self.makePlayer(cursor.fetchall())
     """

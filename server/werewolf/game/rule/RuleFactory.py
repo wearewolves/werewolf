@@ -40,7 +40,7 @@ class RuleFactory:
         elif rule == RULE_NAME.CONFIDENCE:
             from werewolf.game.rule.ConfidenceRule import ConfidenceRule
             return ConfidenceRule(game)
-		elif rule == RULE_NAME.INSTANT:
+        elif rule == RULE_NAME.INSTANT:
             from werewolf.game.rule.InstantRule import InstantRule
             return InstantRule(game)
     getRule = staticmethod(getRule)

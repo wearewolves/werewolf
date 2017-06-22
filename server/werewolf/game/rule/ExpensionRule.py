@@ -7,12 +7,12 @@ from werewolf.game.entry.Role import Truecharacter
 from werewolf.game.entry.Role import Race
 from werewolf.game.rule.Rule import WerewolfRule
 
-class ExpansionRule(WerewolfRule):
+class ExpensionRule(WerewolfRule):
     def __init__(self, game):
-        super(ExpansionRule, self).__init__(game)
+        super(ExpensionRule, self).__init__(game)
         self.min_players = 9
         self.max_players = 17
-        logging.debug("expansion rule")
+        logging.debug("expension rule")
 
     def getTruecharacterList(self, number):
         if number < 11:
@@ -51,7 +51,7 @@ class ExpansionRule(WerewolfRule):
         return rolelist
 
     def initGame(self):
-        logging.info("init Expansion Rule")
+        logging.info("init Expension Rule")
         WerewolfRule.initGame(self)
     
     def writePlayerWill(self):
@@ -62,7 +62,7 @@ class ExpansionRule(WerewolfRule):
     def nextTurn_2day(self):
         logging.info("2일째로 고고!")
 
-        #일반 로그를 쓰지 않은 사람을 체크한다. 
+        #일반 로그를 쓰지 않은 사람을 체크한다.
         self.game.entry.checkNoCommentPlayer()
 
         #희생양 NPC 습격

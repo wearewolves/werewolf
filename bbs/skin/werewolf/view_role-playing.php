@@ -14,7 +14,7 @@
 	$member  = member_info();
 
 // 게시판 설정을 가져옴
-//error($_zb_path); 
+//error($_zb_path);
 	$setup=get_table_attrib($id);
 	if(!$setup[no]) error("존재하지 않는 게시판 입니다.","window.close");
 
@@ -308,6 +308,10 @@ function goto_characterSet($DB, $sort) {
 							case 2: $rule = "햄스터"; 
 										break;
 							case 3: $rule = "익스펜션";
+										break;
+							case 4: $rule = "신뢰도";
+										break;
+							case 5: $rule = "인스턴트";
 										break;
 						}
 

@@ -12,7 +12,7 @@
 	$_zb_path = realpath("../../")."/";
 	include $_zb_path."lib.php";
 
-// DB 연결정보와 회원정보 가져옴
+// DB 연결정보와 회원정보 가져옴 
 	$connect = dbConn();
 	$member  = member_info();
 
@@ -150,10 +150,6 @@
 							case 2: $rule = "햄스터"; 
 										break;
 							case 3: $rule = "익스펜션";
-										break;
-							case 4: $rule = "신뢰도";
-										break;
-							case 5: $rule = "인스턴트";
 										break;
 						}
 

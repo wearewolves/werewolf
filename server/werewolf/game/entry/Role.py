@@ -29,10 +29,10 @@ class Truecharacter(object):
     SEER_ODD = 16
     WEREWOLF_CON = 17
 
-    # ë”ë¯¸ë£°ì„ ìœ„í•œ ë”ë¯¸ ë¦¬ìŠ¤íŠ¸ (ì¸ë‘ë¦¬ìŠ¤íŠ¸, ê¸°íƒ€ë¦¬ìŠ¤íŠ¸)
-    # ë”ë¯¸ ì¸ë‘ ë¦¬ìŠ¤íŠ¸: ë‘ìŠµë£°ì‹œ ë”ë¯¸ ê°€ëŠ¥
+    # ´õ¹Ì·êÀ» À§ÇÑ ´õ¹Ì ¸®½ºÆ® (ÀÎ¶û¸®½ºÆ®, ±âÅ¸¸®½ºÆ®) 
+    # ´õ¹Ì ÀÎ¶û ¸®½ºÆ®: ¶û½À·ê½Ã ´õ¹Ì °¡´É
     LIST_WEREWOLF = [WEREWOLF, LONELYWEREWOLF, READERWEREWOLF, WEREWOLF_CON]
-    # ë”ë¯¸ ê¸°íƒ€ ë¦¬ìŠ¤íŠ¸: ì–´ë– í•œ ê²½ìš°ì—ë„ ë”ë¯¸ê°€ ë˜ì§€ ì•ŠìŒ
+    # ´õ¹Ì ±âÅ¸ ¸®½ºÆ®: ¾î¶°ÇÑ °æ¿ì¿¡µµ ´õ¹Ì°¡ µÇÁö ¾ÊÀ½
     LIST_OTHERS = [WEREHAMSTER, DIABLO]
 
     #@staticmethod
@@ -61,36 +61,11 @@ class Human(Player):
 class Seer(Player):
     def openEye(self):
         cursor = self.game.db.cursor
-        query = "select * from `zetyx_board_werewolf_revelation`  where `game` = '%s' and `day` ='%s' and type = 'ì '; "
+        query = "select * from `zetyx_board_werewolf_revelation`  where `game` = '%s' and `day` ='%s' and type = 'Á¡'; "
         query %= (self.game.game, self.game.day)
         logging.debug(query)
         cursor.execute(query)
         return cursor.fetchone()
-
-    def seerRandom(self):
-        # ëª¨ë“  ì¸ì›ì„ ì°¾ëŠ”ë‹¤
-        allEntry = getAllEntry()
-        # ëœë¤ í•œ ëª…ì„ ê³ ë¥¸ë‹¤
-        while True:
-            targetPlayer = random.choice(allEntry)
-            if targetPlayer.character == self.character:
-                logging.debug("random assault choose oneself: %s -> %s", self, targetPlayer)
-            else:
-                break
-        logging.debug("random seer: %s -> %s", self, targetPlayer)
-        # raceë¥¼ ì°¾ëŠ”ë‹¤
-        cursor = self.game.db.cursor
-        query = "SELECT race FROM `zetyx_board_werewolf_truecharacter` WHERE no ='%s'"
-        query %= (targetPlayer.truecharacter)
-        logging.debug(query)
-        cursor.execute(query)
-        targetrace = cursor.fetchone()
-        # ì„¤ì •í•œë‹¤
-        cursor2 = self.game.db.cursor
-        query2 = "INSERT INTO `zetyx_board_werewolf_revelation`(`game`,`day`,`type`,`prophet`,`mystery`,`result`) VALUES ('%s','%s','ì ' ,'%s','%s','%s');"
-        query2 %= (self.game.game, self.game.day, self.character, targetPlayer.character, targetrace)
-        logging.debug(query2)
-        cursor2.execute(query2)
 
 class Medium(Player):
     pass
@@ -100,8 +75,8 @@ class Possessed(Player):
 
 class Werewolf(Player):
     def toDeath(self, deathType):
-        # íˆ¬í‘œì‚¬ì¸ ê²½ìš°, ìŠµê²© ì„¤ì • í•´ì œ
-        if deathType == "ì‹¬íŒ" and self.hasAssault():
+        # ÅõÇ¥»çÀÎ °æ¿ì, ½À°İ ¼³Á¤ ÇØÁ¦
+        if deathType == "½ÉÆÇ" and self.hasAssault():
             cursor = self.game.db.cursor
             query = "delete from `zetyx_board_werewolf_deathNote` where game = '%s' and day = '%s' and `werewolf` = '%s'"
             query %= (self.game.game, self.game.day, self.character)
@@ -176,7 +151,7 @@ class Readerwerewolf(Werewolf):
 
 class Revenger(Player):
     def toDeath(self, deathType):
-        if deathType == "ìŠµê²©":
+        if deathType == "½À°İ":
             self.revenge()
         Player.toDeath(self, deathType)
 
@@ -191,11 +166,11 @@ class Revenger(Player):
         if target is not None:
             target = self.game.entry.getCharacter(target['target'])
             logging.debug("revenge target: %s", target)
-            if target.alive == "ìƒì¡´":
+            if target.alive == "»ıÁ¸":
                 guard = None
                 hunterPlayer = self.game.entry.getPlayersByTruecharacter(Truecharacter.BODYGUARD)[0]
 
-                if hunterPlayer.alive == "ìƒì¡´":
+                if hunterPlayer.alive == "»ıÁ¸":
                     logging.debug("hunterPlayer: %s", hunterPlayer)
                     guard = hunterPlayer.guard()
                     if guard is not None:
@@ -203,16 +178,16 @@ class Revenger(Player):
                         logging.debug("guard: %s", guard)
 
                 if guard and target.id == guard.id:
-                    logging.debug("ë³µìˆ˜ ì‹¤íŒ¨: ì„ ë°©")
+                    logging.debug("º¹¼ö ½ÇÆĞ: ¼±¹æ")
                 else:
-                    logging.debug("ë³µìˆ˜ ì„±ê³µ")
-                    target.toDeath("ìŠµê²©")
+                    logging.debug("º¹¼ö ¼º°ø")
+                    target.toDeath("½À°İ")
         else:
             logging.debug("revenge target: None")
 
 class Nobility(Player):
     def toDeath(self, deathType):
-        if deathType <> "ì‹¬íŒ":
+        if deathType <> "½ÉÆÇ":
             Player.toDeath(self, deathType)
         logging.debug("nobility is voted.")
 
@@ -221,7 +196,7 @@ class Chief(Player):
 
 class Diablo(Player):
     def toDeath(self, deathType):
-        if deathType <> "ìŠµê²©":
+        if deathType <> "½À°İ":
             Player.toDeath(self, deathType)
 
     def awaken(self):

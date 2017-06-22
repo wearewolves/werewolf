@@ -21,7 +21,7 @@ class Entry:
 
         noMannerPlayers = self.getNoMannerPlayers()
         logging.debug("noMannerPlayers: %s", [str(player) for player in noMannerPlayers])
-        #print noMannerPlayers
+        #print noMannerPlayers 
 
         for player in noMannerPlayers:
             player.recordSuddenDeath()
@@ -191,11 +191,13 @@ class Entry:
     def getAllEntry(self):
         cursor = self.db.cursor
         
-        query = "SELECT * FROM `zetyx_board_werewolf_entry` WHERE game ='%s' and  victim = '0'"
-        query %= (self.game.game)
-        logging.debug(query)
+        query = "SELECT player FROM `zetyx_board_werewolf_entry` WHERE game ='%s' and  victim = '0'"
+        query%=self.game.game
+        #print query
         cursor.execute(query)
-        return self.makePlayer(cursor.fetchall())
+        allEntry = list(cursor.fetchall())
+        #print list(allEntry)
+        return allEntry        
     """
 
     def getEntryByRace(self, truecharacter, alive="»ýÁ¸"):

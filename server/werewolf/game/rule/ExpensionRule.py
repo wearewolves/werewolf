@@ -51,7 +51,7 @@ class ExpensionRule(WerewolfRule):
         return rolelist
 
     def initGame(self):
-        logging.info("init Expansion Rule")
+        logging.info("init Expension Rule")
         WerewolfRule.initGame(self)
     
     def writePlayerWill(self):

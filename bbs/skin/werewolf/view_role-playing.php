@@ -14,7 +14,7 @@
 	$member  = member_info();
 
 // 게시판 설정을 가져옴
-//error($_zb_path); 
+//error($_zb_path);
 	$setup=get_table_attrib($id);
 	if(!$setup[no]) error("존재하지 않는 게시판 입니다.","window.close");
 

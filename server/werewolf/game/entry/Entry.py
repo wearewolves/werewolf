@@ -21,7 +21,7 @@ class Entry:
 
         noMannerPlayers = self.getNoMannerPlayers()
         logging.debug("noMannerPlayers: %s", [str(player) for player in noMannerPlayers])
-        #print noMannerPlayers 
+        #print noMannerPlayers
 
         for player in noMannerPlayers:
             player.recordSuddenDeath()

@@ -62,7 +62,7 @@ class ExpansionRule(WerewolfRule):
     def nextTurn_2day(self):
         logging.info("2일째로 고고!")
 
-        #일반 로그를 쓰지 않은 사람을 체크한다. 
+        #일반 로그를 쓰지 않은 사람을 체크한다.
         self.game.entry.checkNoCommentPlayer()
 
         #희생양 NPC 습격

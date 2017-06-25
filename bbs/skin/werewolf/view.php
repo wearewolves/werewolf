@@ -1,5 +1,3 @@
-
-
 <script type="text/javascript" src="skin/<?=$id?>/js/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="skin/<?=$id?>/js/jquery.floatbox.js"></script>
 <script type="text/javascript" src="skin/<?=$id?>/js/image-picker.min.js"></script>

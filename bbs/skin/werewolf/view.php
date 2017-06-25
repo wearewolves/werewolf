@@ -1,10 +1,12 @@
+
+
 <script type="text/javascript" src="skin/<?=$id?>/js/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="skin/<?=$id?>/js/jquery.floatbox.js"></script>
 <script type="text/javascript" src="skin/<?=$id?>/js/image-picker.min.js"></script>
 <script type="text/javascript" src="skin/<?=$id?>/js/were-090114.js?ver=<?php echo filemtime('skin/'.$id.'/js/were-090114.js'); ?>"></script>
 <?
 	//----------------------------------------------------------------------
-	//ë°ì´í„° ì´ˆê¸°í™”
+	//µ¥ÀÌÅÍ ÃÊ±âÈ­
 	$gameinfo=mysql_fetch_array(mysql_query("select * from $DB_gameinfo where game=$no"));
 	$rule=mysql_fetch_array(mysql_query("select * from $DB_rule where no=$gameinfo[rule]"));
 	if($member[no])	$entry = mysql_fetch_array(mysql_query("select * from $DB_entry where game=$no and player = $member[no]"));
@@ -14,32 +16,32 @@
 	// Check subrules
 	$CheckSecretVote = checkSubRule($gameinfo['subRule'], 4);
 	//----------------------------------------------------------------------
-	//ì„¸íŒ…
-	//ë§ˆì„ ì‚¬ëŒ ì´ë¯¸ì§€ê°€ ìˆëŠ” ì£¼ì†Œ
+	//¼¼ÆÃ
+	//¸¶À» »ç¶÷ ÀÌ¹ÌÁö°¡ ÀÖ´Â ÁÖ¼Ò
 	$characterImageFolder = "skin/".$id."/character/".$gameinfo['characterSet']."/";
 
-	//ì „ì²´ ìˆœìœ„ ê¸°ë¡
+	//ÀüÃ¼ ¼øÀ§ ±â·Ï
 	$writeRecord = true;
 	//----------------------------------------------------------------------
-	// ë¹„ë°€ê¸€
+	// ºñ¹Ğ±Û
 	if(!$data[is_secret]) $password = "";
 
-	if(!$is_admin and $gameinfo['startingTime'] > time()) error("ì˜ˆì•½ëœ ë§ˆì„ì…ë‹ˆë‹¤.");
+	if(!$is_admin and $gameinfo['startingTime'] > time()) error("¿¹¾àµÈ ¸¶À»ÀÔ´Ï´Ù.");
 	if ($viewDay=="" or $viewDay > $gameinfo['day'] or $viewDay < 0) $viewDay = $gameinfo['day'];
 
-	if($gameinfo['state']=="ê²Œì„ë" or $gameinfo['state']=="ë²„ê·¸"or $gameinfo['state']=="í…ŒìŠ¤íŠ¸" ){?>
+	if($gameinfo['state']=="°ÔÀÓ³¡" or $gameinfo['state']=="¹ö±×"or $gameinfo['state']=="Å×½ºÆ®" ){?>
 		<div id="notice">
-			<h1> ê²Œì„ì´ ì¢…ë£Œë˜ì—ˆìŠµë‹ˆë‹¤. ëª¨ë“  ë¡œê·¸ë¥¼ ì½ìœ¼ì‹œë ¤ë©´ ì•„ë˜ì˜ [ì „ì²´]ë¥¼ ëˆŒëŸ¬ì£¼ì„¸ìš”. </h1>
+			<h1> °ÔÀÓÀÌ Á¾·áµÇ¾ú½À´Ï´Ù. ¸ğµç ·Î±×¸¦ ÀĞÀ¸½Ã·Á¸é ¾Æ·¡ÀÇ [ÀüÃ¼]¸¦ ´­·¯ÁÖ¼¼¿ä. </h1>
 			</div>
 	<?}
 
-	if($entry and ($gameinfo['state'] == "ê²Œì„ì¤‘" or $gameinfo['state'] == "ë²„ê·¸" or $gameinfo['state'] == "í…ŒìŠ¤íŠ¸")){
+	if($entry and ($gameinfo['state'] == "°ÔÀÓÁß" or $gameinfo['state'] == "¹ö±×" or $gameinfo['state'] == "Å×½ºÆ®")){
 		$truecharacter =mysql_fetch_array(mysql_query("select * from $DB_truecharacter where no=$entry[truecharacter]"));
 		$vote =mysql_fetch_array(mysql_query("select * from $DB_vote where game=$no and voter = $entry[character] and day = $gameinfo[day]"));
 
-		if($truecharacter['forecast'])$forecast =mysql_fetch_array(mysql_query("select * from $DB_revelation where game='$no' and prophet='$entry[character]' and day='$gameinfo[day]' and type = 'ì '"));
-		if($truecharacter['forecast-odd'])$forecastOdd =mysql_fetch_array(mysql_query("select * from $DB_revelation where game='$no' and prophet='$entry[character]' and day='$gameinfo[day]' and type = 'ì '"));
-		if($truecharacter['mediumism'])$mediumism =mysql_fetch_array(mysql_query("SELECT * FROM `$DB_entry` WHERE `game` = $no AND `deathday` = $viewDay -1 AND `deathtype` LIKE 'ì‹¬íŒ' "));
+		if($truecharacter['forecast'])$forecast =mysql_fetch_array(mysql_query("select * from $DB_revelation where game='$no' and prophet='$entry[character]' and day='$gameinfo[day]' and type = 'Á¡'"));
+		if($truecharacter['forecast-odd'])$forecastOdd =mysql_fetch_array(mysql_query("select * from $DB_revelation where game='$no' and prophet='$entry[character]' and day='$gameinfo[day]' and type = 'Á¡'"));
+		if($truecharacter['mediumism'])$mediumism =mysql_fetch_array(mysql_query("SELECT * FROM `$DB_entry` WHERE `game` = $no AND `deathday` = $viewDay -1 AND `deathtype` LIKE '½ÉÆÇ' "));
 
 		if($truecharacter['assault'])$assault =mysql_fetch_array(mysql_query("select * from $DB_deathNote where game='$no' and werewolf = '$entry[character]' and day='$gameinfo[day]'"));
 
@@ -52,22 +54,22 @@
 		if($truecharacter['assault-con'])$assaultCon =mysql_fetch_array(mysql_query("select * from $DB_deathNote where game='$no' and werewolf = '$entry[character]' and day='$gameinfo[day]'"));
 	}
 
-	if($gameinfo['state'] == "ì¤€ë¹„ì¤‘") {
+	if($gameinfo['state'] == "ÁØºñÁß") {
 		if($is_admin and $viewMode) {
 			if($viewMode == "all") $viewMode = "all";
 			elseif($viewMode == "del") $viewMode = "del";
-			else $viewMode = "ì¼ë°˜";
+			else $viewMode = "ÀÏ¹İ";
 		}
-		else $viewMode = "ì¼ë°˜";
+		else $viewMode = "ÀÏ¹İ";
 	}
-	elseif($gameinfo['state'] == "ê²Œì„ì¤‘") {
+	elseif($gameinfo['state'] == "°ÔÀÓÁß") {
 		if($entry) {
-			if($entry['alive'] == "ì‚¬ë§") $viewMode = "death";
+			if($entry['alive'] == "»ç¸Á") $viewMode = "death";
 			else {
 				if($truecharacter['telepathy']) $viewMode = "tele";
 				elseif($truecharacter['secretchat']) $viewMode = "sec";
 				elseif($truecharacter['secretletter']) $viewMode = "letter";
-				else $viewMode = "ì¼ë°˜";
+				else $viewMode = "ÀÏ¹İ";
 			}
 		}
 		elseif($is_admin and $viewMode) {
@@ -79,42 +81,42 @@
 			elseif($viewMode == "del") $viewMode = "del";
 			elseif($viewMode == "test") $viewMode = "test";
 			elseif($viewMode == "letter") $viewMode = "letter";
-			else $viewMode = "ì¼ë°˜";
+			else $viewMode = "ÀÏ¹İ";
 		}
-		else $viewMode = "ì¼ë°˜";
+		else $viewMode = "ÀÏ¹İ";
 	}
-	elseif($gameinfo['state'] == "ê²Œì„ë" and !$viewMode) $viewMode = "ì¼ë°˜";
+	elseif($gameinfo['state'] == "°ÔÀÓ³¡" and !$viewMode) $viewMode = "ÀÏ¹İ";
 
-	if($viewMode == "all") $commentType = "('ì¼ë°˜','ì•Œë¦¼','ë´‰ì¸ì œì•ˆ','ë¹„ë°€','ì‚¬ë§','í…”ë ˆ','ë©”ëª¨','í¸ì§€','ë‹µë³€')";
-	elseif($viewMode == "death") $commentType = "('ì¼ë°˜','ì•Œë¦¼','ë´‰ì¸ì œì•ˆ','ì‚¬ë§')";
-	elseif($viewMode == "tele") $commentType = "('ì¼ë°˜','ì•Œë¦¼','ë´‰ì¸ì œì•ˆ','í…”ë ˆ')";
-	elseif($viewMode == "letter") $commentType = "('ì¼ë°˜','ì•Œë¦¼','ë´‰ì¸ì œì•ˆ','í¸ì§€','ë‹µë³€')";
-	elseif($viewMode == "sec") $commentType = "('ì¼ë°˜','ì•Œë¦¼','ë´‰ì¸ì œì•ˆ','ë¹„ë°€')";
-	elseif($viewMode == "memo") $commentType = "('ì¼ë°˜','ì•Œë¦¼','ë´‰ì¸ì œì•ˆ','ë©”ëª¨')";
-	elseif($viewMode == "del") $commentType = "('ì¼ë°˜','ì•Œë¦¼','ë´‰ì¸ì œì•ˆ','ë¹„ë°€','ì‚¬ë§','í…”ë ˆ','ë©”ëª¨','í¸ì§€','ë‹µë³€')";
-	else $commentType = "('ì¼ë°˜','ì•Œë¦¼','ë´‰ì¸ì œì•ˆ')";
+	if($viewMode == "all") $commentType = "('ÀÏ¹İ','¾Ë¸²','ºÀÀÎÁ¦¾È','ºñ¹Ğ','»ç¸Á','ÅÚ·¹','¸Ş¸ğ','ÆíÁö','´äº¯')";
+	elseif($viewMode == "death") $commentType = "('ÀÏ¹İ','¾Ë¸²','ºÀÀÎÁ¦¾È','»ç¸Á')";
+	elseif($viewMode == "tele") $commentType = "('ÀÏ¹İ','¾Ë¸²','ºÀÀÎÁ¦¾È','ÅÚ·¹')";
+	elseif($viewMode == "letter") $commentType = "('ÀÏ¹İ','¾Ë¸²','ºÀÀÎÁ¦¾È','ÆíÁö','´äº¯')";
+	elseif($viewMode == "sec") $commentType = "('ÀÏ¹İ','¾Ë¸²','ºÀÀÎÁ¦¾È','ºñ¹Ğ')";
+	elseif($viewMode == "memo") $commentType = "('ÀÏ¹İ','¾Ë¸²','ºÀÀÎÁ¦¾È','¸Ş¸ğ')";
+	elseif($viewMode == "del") $commentType = "('ÀÏ¹İ','¾Ë¸²','ºÀÀÎÁ¦¾È','ºñ¹Ğ','»ç¸Á','ÅÚ·¹','¸Ş¸ğ','ÆíÁö','´äº¯')";
+	else $commentType = "('ÀÏ¹İ','¾Ë¸²','ºÀÀÎÁ¦¾È')";
 	
-//[ì¼ì •ì— ë”°ë¥¸ ì´ë²¤íŠ¸ ì‹œì‘]////////////////////////////////////////////////////////////////////////////	
+//[ÀÏÁ¤¿¡ µû¸¥ ÀÌº¥Æ® ½ÃÀÛ]////////////////////////////////////////////////////////////////////////////	
 	// -----------------------------------------------------------------------------------//
-	// ì‚¬ê±´ ë°œìƒ ì‹œê°„ ì²´í¬
+	// »ç°Ç ¹ß»ı ½Ã°£ Ã¼Å©
 	//
-	//ë°œìƒ ì¡°ê±´: ì‚¬ê±´ ë°œìƒ ì‹œê°„ì´ ì§€ë‚¬ë‹¤ë©´
-	//ë°œìƒ ë¶„ê¸°: 
-	//			          1. ê²Œì„ ì§„í–‰ 1ì¼ì§¸
-	//			          2. ê²Œì„ ì§„í–‰ 2ì¼ì§¸
-	//			          3. ê²Œì„ ì§„í–‰ 3ì¼ì§¸
+	//¹ß»ı Á¶°Ç: »ç°Ç ¹ß»ı ½Ã°£ÀÌ Áö³µ´Ù¸é
+	//¹ß»ı ºĞ±â: 
+	//			          1. °ÔÀÓ ÁøÇà 1ÀÏÂ°
+	//			          2. °ÔÀÓ ÁøÇà 2ÀÏÂ°
+	//			          3. °ÔÀÓ ÁøÇà 3ÀÏÂ°
 	// -----------------------------------------------------------------------------------//
 	flush(); 
 
 	require_once("lib/functionForPlayer.php");
 	if($is_admin and $useAdminTool)require_once("lib/functionForAdmin.php");
 
-	$dayList ="<div class='viewDay'>";//<a href=$PHP_SELF?id=$id&no=$no&viewDay=0>í”„ë¡¤ë¡œê·¸ </a>";
+	$dayList ="<div class='viewDay'>";//<a href=$PHP_SELF?id=$id&no=$no&viewDay=0>ÇÁ·Ñ·Î±× </a>";
 
 	for($indx=0;$indx<=$gameinfo['day'];$indx++){
-		if($indx == $gameinfo['day'] and( $gameinfo['state']=="ê²Œì„ë" or  $gameinfo['state']=="í…ŒìŠ¤íŠ¸")) $printDay = "ì—í•„ë¡œê·¸";
-		elseif($indx ==0) $printDay= "í”„ë¡¤ë¡œê·¸ ";
-		else $printDay= $indx."ì¼ì§¸";
+		if($indx == $gameinfo['day'] and( $gameinfo['state']=="°ÔÀÓ³¡" or  $gameinfo['state']=="Å×½ºÆ®")) $printDay = "¿¡ÇÊ·Î±×";
+		elseif($indx ==0) $printDay= "ÇÁ·Ñ·Î±× ";
+		else $printDay= $indx."ÀÏÂ°";
 
 		if($viewDay == $indx) $active = "class ='selectedMode'";
 		else  $active ="class =''";
@@ -125,111 +127,111 @@
 
 	echo $dayList;
 
-	$modeList= "<div class='viewMode' ><a href=$PHP_SELF?id=$id&no=$no&viewDay=$viewDay&viewChar=$viewChar&viewMode=ì¼ë°˜> ì¼ë°˜ </a>";
-	$modeList .="<a href=$PHP_SELF?id=$id&no=$no&viewDay=$viewDay&viewChar=$viewChar&viewMode=death>ì‚¬ë§ </a>";
-	$modeList .="<a href=$PHP_SELF?id=$id&no=$no&viewDay=$viewDay&viewChar=$viewChar&viewMode=sec>ë¹„ë°€ ëŒ€í™” </a>";
-	$modeList .="<a href=$PHP_SELF?id=$id&no=$no&viewDay=$viewDay&viewChar=$viewChar&viewMode=tele>í…”ë ˆíŒŒì‹œ </a>";
-	$modeList .="<a href=$PHP_SELF?id=$id&no=$no&viewDay=$viewDay&viewChar=$viewChar&viewMode=letter>ë¹„ë°€ í¸ì§€ </a>";
-	$modeList .="<a href=$PHP_SELF?id=$id&no=$no&viewDay=$viewDay&viewChar=$viewChar&viewMode=memo>ë©”ëª¨ </a>";
-	$modeList .="<a href=$PHP_SELF?id=$id&no=$no&viewDay=$viewDay&viewChar=$viewChar&viewMode=all> ì „ì²´ </a>";
-	if($is_admin)$modeList .="<a href=$PHP_SELF?id=$id&no=$no&viewDay=$viewDay&viewChar=$viewChar&viewMode=del>ì‚­ì œ </a>";
-	if($is_admin)$modeList .="<a href='log/".$gameinfo['game']."-log.txt' target='_blank'>ë¡œê·¸ </a>";
+	$modeList= "<div class='viewMode' ><a href=$PHP_SELF?id=$id&no=$no&viewDay=$viewDay&viewChar=$viewChar&viewMode=ÀÏ¹İ> ÀÏ¹İ </a>";
+	$modeList .="<a href=$PHP_SELF?id=$id&no=$no&viewDay=$viewDay&viewChar=$viewChar&viewMode=death>»ç¸Á </a>";
+	$modeList .="<a href=$PHP_SELF?id=$id&no=$no&viewDay=$viewDay&viewChar=$viewChar&viewMode=sec>ºñ¹Ğ ´ëÈ­ </a>";
+	$modeList .="<a href=$PHP_SELF?id=$id&no=$no&viewDay=$viewDay&viewChar=$viewChar&viewMode=tele>ÅÚ·¹ÆÄ½Ã </a>";
+	$modeList .="<a href=$PHP_SELF?id=$id&no=$no&viewDay=$viewDay&viewChar=$viewChar&viewMode=letter>ºñ¹Ğ ÆíÁö </a>";
+	$modeList .="<a href=$PHP_SELF?id=$id&no=$no&viewDay=$viewDay&viewChar=$viewChar&viewMode=memo>¸Ş¸ğ </a>";
+	$modeList .="<a href=$PHP_SELF?id=$id&no=$no&viewDay=$viewDay&viewChar=$viewChar&viewMode=all> ÀüÃ¼ </a>";
+	if($is_admin)$modeList .="<a href=$PHP_SELF?id=$id&no=$no&viewDay=$viewDay&viewChar=$viewChar&viewMode=del>»èÁ¦ </a>";
+	if($is_admin)$modeList .="<a href='log/".$gameinfo['game']."-log.txt' target='_blank'>·Î±× </a>";
 	$modeList .="</div>";
 
-	if($gameinfo['state']=="ê²Œì„ë" or $gameinfo['state']=="ë´‰ì¸" or $gameinfo['state']=="ë²„ê·¸"  or $gameinfo['state']=="í…ŒìŠ¤íŠ¸" or ($is_admin)) echo $modeList;
+	if($gameinfo['state']=="°ÔÀÓ³¡" or $gameinfo['state']=="ºÀÀÎ" or $gameinfo['state']=="¹ö±×"  or $gameinfo['state']=="Å×½ºÆ®" or ($is_admin)) echo $modeList;
 ?>
 
 <div id="viewStateAll">
 	<div class="viewState">
-		<div class="state">ë§ˆì„ ì´ë¦„</div>
+		<div class="state">¸¶À» ÀÌ¸§</div>
 		<div class="content"><?=$subject?></div>
 	</div>
 
 	<?if($data['x'] == 1 ){?>
 	<div class="viewState">
-		<div class="state">ë§ˆì„ ì†Œê°œ</div>
+		<div class="state">¸¶À» ¼Ò°³</div>
 		<div class="content">
 			<?=$memo?>
 		</div>
 	</div>
 	<?}?>
 	
-	<?	// ê²Œì„ì´ ì‹œì‘ë˜ë©´ ê²Œì„ì´ ì‹œì‘í•œ ë‚ ì§œê°€ ë³´ì¸ë‹¤.
-		if ($gameinfo['state'] == "ì¤€ë¹„ì¤‘" and $gameinfo['players']<>$rule[max_player]) {?>
+	<?	// °ÔÀÓÀÌ ½ÃÀÛµÇ¸é °ÔÀÓÀÌ ½ÃÀÛÇÑ ³¯Â¥°¡ º¸ÀÎ´Ù.
+		if ($gameinfo['state'] == "ÁØºñÁß" and $gameinfo['players']<>$rule[max_player]) {?>
 	<div class="viewState">
-		<div class="state">ì¸ì› ëª¨ì§‘</div>
+		<div class="state">ÀÎ¿ø ¸ğÁı</div>
 		<div class="content">
-			<?echo date("m",$gameinfo['deathtime'])."ì›” ".date("d",$gameinfo['deathtime'])."ì¼ ".date("H",$gameinfo['deathtime'])."ì‹œ ".date("i",$gameinfo['deathtime'])."ë¶„";?> ì´í›„ë¡œ ì¸ì›ì´ ëª¨ì´ë©´ ê²Œì„ì´ ì‹œì‘ë©ë‹ˆë‹¤.
+			<?echo date("m",$gameinfo['deathtime'])."¿ù ".date("d",$gameinfo['deathtime'])."ÀÏ ".date("H",$gameinfo['deathtime'])."½Ã ".date("i",$gameinfo['deathtime'])."ºĞ";?> ÀÌÈÄ·Î ÀÎ¿øÀÌ ¸ğÀÌ¸é °ÔÀÓÀÌ ½ÃÀÛµË´Ï´Ù.
 		</div>
 	</div>
 	<?}?>
-	<?	// ê²Œì„ì´ ì‹œì‘ë˜ë©´ ê²Œì„ì´ ì‹œì‘í•œ ë‚ ì§œê°€ ë³´ì¸ë‹¤.
-		if ($gameinfo['state'] == "ì¤€ë¹„ì¤‘" and $gameinfo['players']==$rule[max_player] ) {?>
+	<?	// °ÔÀÓÀÌ ½ÃÀÛµÇ¸é °ÔÀÓÀÌ ½ÃÀÛÇÑ ³¯Â¥°¡ º¸ÀÎ´Ù.
+		if ($gameinfo['state'] == "ÁØºñÁß" and $gameinfo['players']==$rule[max_player] ) {?>
 	<div class="viewState">
-		<div class="state">ì¸ì› ëª¨ì§‘</div>
+		<div class="state">ÀÎ¿ø ¸ğÁı</div>
 		<div class="content">
-			ë§ˆì„ ì‚¬ëŒë“¤ì´ ëª¨ì˜€ìŠµë‹ˆë‹¤.<br /> 
-			<?echo date("m",$gameinfo['deathtime'])."ì›” ".date("d",$gameinfo['deathtime'])." ì¼ ".date("H",$gameinfo['deathtime'])."ì‹œ ".date("i",$gameinfo['deathtime'])." ë¶„";?> ë¶€í„° ê²Œì„ì´ ì‹œì‘ë©ë‹ˆë‹¤.
+			¸¶À» »ç¶÷µéÀÌ ¸ğ¿´½À´Ï´Ù.<br /> 
+			<?echo date("m",$gameinfo['deathtime'])."¿ù ".date("d",$gameinfo['deathtime'])." ÀÏ ".date("H",$gameinfo['deathtime'])."½Ã ".date("i",$gameinfo['deathtime'])." ºĞ";?> ºÎÅÍ °ÔÀÓÀÌ ½ÃÀÛµË´Ï´Ù.
 		</div>
 	</div>
 	<?}?>
-	<?	// ê²Œì„ì´ ì‹œì‘ë˜ë©´ ê²Œì„ì´ ì‹œì‘í•œ ë‚ ì§œê°€ ë³´ì¸ë‹¤.
-		if ($gameinfo['state'] <> "ì¤€ë¹„ì¤‘") {?>
+	<?	// °ÔÀÓÀÌ ½ÃÀÛµÇ¸é °ÔÀÓÀÌ ½ÃÀÛÇÑ ³¯Â¥°¡ º¸ÀÎ´Ù.
+		if ($gameinfo['state'] <> "ÁØºñÁß") {?>
 	<div class="viewState">
-		<div class="state">ì‚¬ê±´ì´ ì‹œì‘ëœ ë‚ </div>
+		<div class="state">»ç°ÇÀÌ ½ÃÀÛµÈ ³¯</div>
 		<div class="content">
-			<?echo date("m",$gameinfo['deathtime'])."ì›” ".date("d",$gameinfo['deathtime'])."ì¼";?>
+			<?echo date("m",$gameinfo['deathtime'])."¿ù ".date("d",$gameinfo['deathtime'])."ÀÏ";?>
 		</div>
 	</div>
 	<?}?>
 	<div class="viewState">
-		<div class="state">ì‚¬ê±´ì´ ë°œìƒí•˜ëŠ” ì‹œê°</div>
+		<div class="state">»ç°ÇÀÌ ¹ß»ıÇÏ´Â ½Ã°¢</div>
 		<div class="content">
 		<?
 			if($viewDay == 0) {
 				$accidentTiem = $gameinfo['deathtime'];
 			}
-			elseif($gameinfo['state'] == "ì¤€ë¹„ì¤‘" or $gameinfo['useTimetable'] == 0) {
+			elseif($gameinfo['state'] == "ÁØºñÁß" or $gameinfo['useTimetable'] == 0) {
 				$accidentTiem = $gameinfo['deathtime'] + $gameinfo['termOfDay']*$viewDay;
 			}
 			elseif($gameinfo['useTimetable'] == 1) {
 				$timetable = mysql_fetch_array(mysql_query("select * from `zetyx_board_werewolf_timetable` where `game` = $gameinfo[game] and `day` = $viewDay-1"));
 				$accidentTiem = $timetable['reg_date'] + $gameinfo['termOfDay'];
 			}
-			echo date("H",$accidentTiem)."ì‹œ ".date("i",$accidentTiem)."ë¶„";
+			echo date("H",$accidentTiem)."½Ã ".date("i",$accidentTiem)."ºĞ";
 		?>
 		</div>
 	</div>
 	<div class="viewState">
-		<div class="state">ë°œì–¸ ì œí•œ ì‹œê°„</div>
+		<div class="state">¹ß¾ğ Á¦ÇÑ ½Ã°£</div>
 		<div class="content">
 			<!--
 			<span class="align-right">
 			-->
-				<? echo "ì‚¬ê±´ ë°œìƒ ì§ì „ ".($gameinfo['delayBefore'] / 60)."ë¶„<br>"; ?>
-				<? echo "ë§ˆì„ ì‹œì‘ ì§í›„ ".($gameinfo['delayAfter'] / 60)."ë¶„"; ?>
+				<? echo "»ç°Ç ¹ß»ı Á÷Àü ".($gameinfo['delayBefore'] / 60)."ºĞ<br>"; ?>
+				<? echo "¸¶À» ½ÃÀÛ Á÷ÈÄ ".($gameinfo['delayAfter'] / 60)."ºĞ"; ?>
 			<!--
 			</span>
 			-->
 		</div>
 	</div>
 	<div class="viewState">
-		<div class="state">ë§ˆì„ ì‚¬ëŒ</div>
+		<div class="state">¸¶À» »ç¶÷</div>
 		<div class="content">
-			<?echo $gameinfo['players']."ëª…";?>
+			<?echo $gameinfo['players']."¸í";?>
 		</div>
 	</div>
 	<div class="viewState">
-		<div class="state">ë£°</div>
+		<div class="state">·ê</div>
 		<div class="content">
 			<?echo $rule['name'];?>
 		</div>
 	</div>
 	<div class="viewState">
-		<div class="state">ì„œë¸Œë£°</div>
+		<div class="state">¼­ºê·ê</div>
 		<div class="content">
 			<?
-				if($gameinfo['subRule'] == 0) echo "ì—†ìŒ";
+				if($gameinfo['subRule'] == 0) echo "¾øÀ½";
 				else {
 					$subrule_result = mysql_query("select * from `zetyx_board_werewolf_subrule`");
 					
@@ -243,7 +245,7 @@
 		</div>
 	</div>
 	<div class="viewState">
-		<div class="state">ë¡¤ í”Œë ˆì‰ ì„¸íŠ¸</div>
+		<div class="state">·Ñ ÇÃ·¹À× ¼¼Æ®</div>
 		<div class="content">
 			<?
 				$ruleplayingSet = mysql_fetch_array(mysql_query("select * from `".$db->characterSet."` where `no`= '".$gameinfo['characterSet']."'"));
@@ -252,49 +254,49 @@
 		</div>
 	</div>
 	<div class="viewState">
-		<div class="state">ì§„í–‰ ìƒí™©</div>
+		<div class="state">ÁøÇà »óÈ²</div>
 		<div class="content">
 		<?
-			if($gameinfo['state']=="ì¤€ë¹„ì¤‘"){
-				if($gameinfo['players']==16) echo "ì°¸ì—¬ ì¸ì›ì´ ëª¨ë‘ ëª¨ì˜€ìŠµë‹ˆë‹¤.";
-				else echo "ì°¸ì—¬ ì¸ì› ëª¨ì§‘ ì¤‘";				
+			if($gameinfo['state']=="ÁØºñÁß"){
+				if($gameinfo['players']==16) echo "Âü¿© ÀÎ¿øÀÌ ¸ğµÎ ¸ğ¿´½À´Ï´Ù.";
+				else echo "Âü¿© ÀÎ¿ø ¸ğÁı Áß";				
 			}
 			else{
-				if (	$viewDay == 0)				echo "ì°¸ì—¬ ì¸ì› ëª¨ì§‘ ì¤‘";
-				elseif ($viewDay == $gameinfo['day'] and $gameinfo['state']=="ê²Œì„ë"  )		echo "ëª¨ë“  ìƒí™©ì´ ì¢…ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.";
-				else	echo $viewDay."ì¼ì§¸ ë‚ ì…ë‹ˆë‹¤.";
+				if (	$viewDay == 0)				echo "Âü¿© ÀÎ¿ø ¸ğÁı Áß";
+				elseif ($viewDay == $gameinfo['day'] and $gameinfo['state']=="°ÔÀÓ³¡"  )		echo "¸ğµç »óÈ²ÀÌ Á¾·áµÇ¾ú½À´Ï´Ù.";
+				else	echo $viewDay."ÀÏÂ° ³¯ÀÔ´Ï´Ù.";
 			}
 		?>
 		</div>
 	</div>
-	<?	// ì¤€ë¹„ ì¤‘ì¼ë•Œ
+	<?	// ÁØºñ ÁßÀÏ¶§
 		if ($viewDay =="0") {?>
 	<div class="viewState">
 		<div class="state"></div>
 		<div class="content">
-			ë‚®ì€ ì¸ê°„ì˜ í–‰ì„¸ë¥¼ í•˜ê³ , ë°¤ì— ì •ì²´ë¥¼ ë‚˜íƒ€ë‚¸ë‹¤ê³  í•˜ëŠ” ì¸ë‘.<br />
-			ê·¸ ì¸ë‘ì´, ì´ ë§ˆì„ì— ì„ì—¬ ìˆë‹¤ëŠ” ì†Œë¬¸ì´ í¼ì¡Œë‹¤.<br />
-			ë§ˆì„ ì‚¬ëŒë“¤ì€ ë°˜ì‹ ë°˜ì˜ í•˜ë©´ì„œë„, ë§ˆì„ ìˆ™ì†Œì— ëª¨ì´ê²Œ ë˜ì—ˆë‹¤.
+			³·Àº ÀÎ°£ÀÇ Çà¼¼¸¦ ÇÏ°í, ¹ã¿¡ Á¤Ã¼¸¦ ³ªÅ¸³½´Ù°í ÇÏ´Â ÀÎ¶û.<br />
+			±× ÀÎ¶ûÀÌ, ÀÌ ¸¶À»¿¡ ¼¯¿© ÀÖ´Ù´Â ¼Ò¹®ÀÌ ÆÛÁ³´Ù.<br />
+			¸¶À» »ç¶÷µéÀº ¹İ½Å¹İÀÇ ÇÏ¸é¼­µµ, ¸¶À» ¼÷¼Ò¿¡ ¸ğÀÌ°Ô µÇ¾ú´Ù.
 		</div>
 	</div>
 	<?	}?>
-	<?	// 1ì¼
+	<?	// 1ÀÏ
 		if ($viewDay =="1") {?>
 	<div class="viewState">
 		<div class="state"></div>
 		<div class="content">
-			ì´ì œ ë‹¹ì‹ ì€ ë‹¹ì‹ ì˜ ë³¸ì„±ì„ ê¹¨ë‹«ê²Œ ëœë‹¤.<br />
-			ë‹¹ì‹ ì€ ì¸ê°„ì¸ê°€ ì•„ë‹ˆë©´ ì¸ë‘ì¸ê°€!<br />
+			ÀÌÁ¦ ´ç½ÅÀº ´ç½ÅÀÇ º»¼ºÀ» ±ú´İ°Ô µÈ´Ù.<br />
+			´ç½ÅÀº ÀÎ°£ÀÎ°¡ ¾Æ´Ï¸é ÀÎ¶ûÀÎ°¡!<br />
 			<br />
-			<? if($entry)echo "ë‹¹ì‹ ì€ <span style='border:solid 1;border-color:#333333;width:60px' align=center><font color =#000000> ". $truecharacter_list[$entry[truecharacter]]." </font></span>ì…ë‹ˆë‹¤.";?>
+			<? if($entry)echo "´ç½ÅÀº <span style='border:solid 1;border-color:#333333;width:60px' align=center><font color =#000000> ". $truecharacter_list[$entry[truecharacter]]." </font></span>ÀÔ´Ï´Ù.";?>
 		</div>
 	</div>
 	<?	}?>	
-	<?//2ì¼ ë¶€í„°
+	<?//2ÀÏ ºÎÅÍ
 		if (1 < $viewDay) {?>
 			<?
 				$death_player_list;
-				$death_list = mysql_query("select * from $DB_entry where game=$no and deathday = $viewDay-1 and deathtype ='ëŒì—°'");	
+				$death_list = mysql_query("select * from $DB_entry where game=$no and deathday = $viewDay-1 and deathtype ='µ¹¿¬'");	
 	
 				while($death=mysql_fetch_array($death_list)){
 					$death_player_list .= "<div style='width:120px;text-align:left'>".$character_list[$death['character']]."</div>";
@@ -302,48 +304,48 @@
 	
 				if($death_player_list){?>
 	<div class="viewState">
-		<div class="state">ëŒì—°ì‚¬</div>
+		<div class="state">µ¹¿¬»ç</div>
 		<div class="content">
-					<?echo "ë§ˆì„ì— ëŒì—°ì‚¬ê°€ ë°œìƒí–ˆìŠµë‹ˆë‹¤.<br> ëŒì—°ì‚¬í•œ ë§ˆì„ ì‚¬ëŒì€ ì•„ë˜ì™€ ê°™ìŠµë‹ˆë‹¤.<br><br>".$death_player_list;?>
+					<?echo "¸¶À»¿¡ µ¹¿¬»ç°¡ ¹ß»ıÇß½À´Ï´Ù.<br> µ¹¿¬»çÇÑ ¸¶À» »ç¶÷Àº ¾Æ·¡¿Í °°½À´Ï´Ù.<br><br>".$death_player_list;?>
 		</div>
 	</div>
 			<?}?>
 			
 
 			<?if($rule['no'] == 1 ){?>
-				<?$death = mysql_fetch_array(mysql_query("select * from $DB_entry where game=$no and deathday = $viewDay-1 and deathtype ='ì‹¬íŒ'"));				
+				<?$death = mysql_fetch_array(mysql_query("select * from $DB_entry where game=$no and deathday = $viewDay-1 and deathtype ='½ÉÆÇ'"));				
 				if($death){?>
 	<div class="viewState">
-		<div class="state">íˆ¬í‘œ</div>
+		<div class="state">ÅõÇ¥</div>
 		<div class="content">				
-				<?echo $character_list[$death['character']]." ì”¨ê°€ íˆ¬í‘œ ê²°ê³¼ë¡œ ëª© ë§¤ë‹¬ì•„ì¡ŒìŠµë‹ˆë‹¤.<br>" ;?>
+				<?echo $character_list[$death['character']]." ¾¾°¡ ÅõÇ¥ °á°ú·Î ¸ñ ¸Å´Ş¾ÆÁ³½À´Ï´Ù.<br>" ;?>
 		</div>
 	</div>	
 				<?}?>
 				
-				<?$death = mysql_fetch_array(mysql_query("select * from $DB_entry where game=$no and deathday = $viewDay-1 and deathtype ='ìŠµê²©'"));	?>
+				<?$death = mysql_fetch_array(mysql_query("select * from $DB_entry where game=$no and deathday = $viewDay-1 and deathtype ='½À°İ'"));	?>
 	<div class="viewState">
-		<div class="state">ìŠµê²©</div>
+		<div class="state">½À°İ</div>
 		<div class="content">				
-				<?if($death){ echo $character_list[$death['character']]."ì˜ ì‹œì²´ê°€ ë°œê²¬ë˜ì—ˆìŠµë‹ˆë‹¤.<br>ì§€ë‚œë°¤ ì¸ë‘ì—ê²Œ ìŠµê²©ë°›ì€ ê²ƒìœ¼ë¡œ ë³´ì…ë‹ˆë‹¤.<br>";}
-				else{echo "ì§€ë‚œë°¤ì—ëŠ” ìŠµê²©ì´ ì—†ì—ˆë‹¤. ì¸ë‘ì´ ìŠµê²©ì— ì‹¤íŒ¨í•œ ê²ƒì¼ê¹Œ...?<br>";}?>
+				<?if($death){ echo $character_list[$death['character']]."ÀÇ ½ÃÃ¼°¡ ¹ß°ßµÇ¾ú½À´Ï´Ù.<br>Áö³­¹ã ÀÎ¶û¿¡°Ô ½À°İ¹ŞÀº °ÍÀ¸·Î º¸ÀÔ´Ï´Ù.<br>";}
+				else{echo "Áö³­¹ã¿¡´Â ½À°İÀÌ ¾ø¾ú´Ù. ÀÎ¶ûÀÌ ½À°İ¿¡ ½ÇÆĞÇÑ °ÍÀÏ±î...?<br>";}?>
 		</div>
 	</div>
 			<?}?>
 
 			<?if($rule['no'] == 2 ){?>
-				<?$death = mysql_fetch_array(mysql_query("select * from $DB_entry where game=$no and deathday = $viewDay-1 and deathtype ='ì‹¬íŒ'"));				
+				<?$death = mysql_fetch_array(mysql_query("select * from $DB_entry where game=$no and deathday = $viewDay-1 and deathtype ='½ÉÆÇ'"));				
 				if($death){?>
 	<div class="viewState">
-		<div class="state">íˆ¬í‘œ</div>
+		<div class="state">ÅõÇ¥</div>
 		<div class="content">				
-				<?echo $character_list[$death['character']]." ì”¨ê°€ íˆ¬í‘œ ê²°ê³¼ì— ì˜í•´ ìƒë§¤ì¥ë‹¹í–ˆìŠµë‹ˆë‹¤.<br>" ;?>
+				<?echo $character_list[$death['character']]." ¾¾°¡ ÅõÇ¥ °á°ú¿¡ ÀÇÇØ »ı¸ÅÀå´çÇß½À´Ï´Ù.<br>" ;?>
 		</div>
 	</div>	
 				<?}?>
 
 			
-			<?	$death_list = mysql_query("select * from $DB_entry where game=$no and deathday = $viewDay-1 and deathtype ='ìŠµê²©'");	
+			<?	$death_list = mysql_query("select * from $DB_entry where game=$no and deathday = $viewDay-1 and deathtype ='½À°İ'");	
 				$death_player_list ="";
 
 					while($death=mysql_fetch_array($death_list)){
@@ -352,46 +354,46 @@
 				if($death_player_list){?>
 	
 	<div class="viewState">
-		<div class="state">ìŠµê²©</div>
+		<div class="state">½À°İ</div>
 		<div class="content">
-				<?echo "ì§€ë‚œë°¤ì€ ì™ ì§€ ì†Œë€ìŠ¤ëŸ¬ì› ë‹¤. ë¶ˆê¸¸í•œ ìƒê°ì— ë°–ì„ ë‚´ë‹¤ë³´ë‹ˆ<br />ë¬´ì°¸íˆ ì‚´í•´ëœ ì‹œì²´ê°€ ìˆì—ˆë‹¤â€¦ ì£½ì€ ìì˜ ì´ë¦„ì€â€¦<br /><br />".$death_player_list;?>
+				<?echo "Áö³­¹ãÀº ¿ØÁö ¼Ò¶õ½º·¯¿ü´Ù. ºÒ±æÇÑ »ı°¢¿¡ ¹ÛÀ» ³»´Ùº¸´Ï<br />¹«ÂüÈ÷ »ìÇØµÈ ½ÃÃ¼°¡ ÀÖ¾ú´Ù¡¦ Á×Àº ÀÚÀÇ ÀÌ¸§Àº¡¦<br /><br />".$death_player_list;?>
 		</div>
 	</div>
 				<?}
 				else{?>
 	<div class="viewState">
-		<div class="state">ìŠµê²©</div>
+		<div class="state">½À°İ</div>
 		<div class="content">
-				<?echo "ì§€ë‚œë°¤ì€ ë„ˆë¬´ë‚˜ë„ ì¡°ìš©í–ˆë‹¤. ëˆˆì„ ëœ¨ê³  ë°–ì„ ë‚´ë‹¤ë³´ì•˜ì§€ë§Œ,<br />ì•„ë¬´ ì¼ë„ ì—†ì—ˆë˜ ê²ƒ ê°™ë‹¤. ì´ê±´ ì–´ì°Œ ëœ ì¼ì¼ê¹Œâ€¦?";?>
+				<?echo "Áö³­¹ãÀº ³Ê¹«³ªµµ Á¶¿ëÇß´Ù. ´«À» ¶ß°í ¹ÛÀ» ³»´Ùº¸¾ÒÁö¸¸,<br />¾Æ¹« ÀÏµµ ¾ø¾ú´ø °Í °°´Ù. ÀÌ°Ç ¾îÂî µÈ ÀÏÀÏ±î¡¦?";?>
 		</div>
 	</div>	
 	<?}}?>
 
 
 			<?if($rule['no'] == 3 ){?>
-				<?$death = mysql_fetch_array(mysql_query("select * from $DB_entry where game=$no and deathday = $viewDay-1 and deathtype ='ì‹¬íŒ'"));				
+				<?$death = mysql_fetch_array(mysql_query("select * from $DB_entry where game=$no and deathday = $viewDay-1 and deathtype ='½ÉÆÇ'"));				
 				if($death){?>
 					<div class="viewState">
-						<div class="state">íˆ¬í‘œ</div>
+						<div class="state">ÅõÇ¥</div>
 							<div class="content">				
-								<?echo $character_list[$death['character']]." ì”¨ê°€ íˆ¬í‘œ ê²°ê³¼ë¡œ ëª© ë§¤ë‹¬ì•„ì¡ŒìŠµë‹ˆë‹¤.<br>" ;?>
+								<?echo $character_list[$death['character']]." ¾¾°¡ ÅõÇ¥ °á°ú·Î ¸ñ ¸Å´Ş¾ÆÁ³½À´Ï´Ù.<br>" ;?>
 							</div>
 						</div>	
 				<?}
 				else if($viewDay>2){?>
 					<div class="viewState">
-						<div class="state">íˆ¬í‘œ</div>
+						<div class="state">ÅõÇ¥</div>
 						<div class="content">
-								<?echo "íˆ¬í‘œ ê²°ê³¼ì— ë”°ë¼ í˜•ì„ ì§‘í–‰í•˜ë ¤ëŠ” ìˆœê°„..<br>";
-									if($gameinfo['state']=="ê²Œì„ë" and $viewDay == $gameinfo['day']) echo "ë§ˆì„ì€ ì–´ë‘ ì— ë’¤ë®ì˜€ë‹¤.";
-									else echo "ê·€ì¡±ì„ì´ ë°í˜€ì¡Œë‹¤.";
+								<?echo "ÅõÇ¥ °á°ú¿¡ µû¶ó ÇüÀ» ÁıÇàÇÏ·Á´Â ¼ø°£..<br>";
+									if($gameinfo['state']=="°ÔÀÓ³¡" and $viewDay == $gameinfo['day']) echo "¸¶À»Àº ¾îµÒ¿¡ µÚµ¤¿´´Ù.";
+									else echo "±ÍÁ·ÀÓÀÌ ¹àÇôÁ³´Ù.";
 								?>
 						</div>
 					</div>	
 				<?}?>
 
 			
-			<?	$death_list = mysql_query("select * from $DB_entry where game=$no and deathday = $viewDay-1 and deathtype ='ìŠµê²©'");	
+			<?	$death_list = mysql_query("select * from $DB_entry where game=$no and deathday = $viewDay-1 and deathtype ='½À°İ'");	
 				$death_player_list ="";
 
 					while($death=mysql_fetch_array($death_list)){
@@ -400,17 +402,17 @@
 				if($death_player_list){?>
 	
 	<div class="viewState">
-		<div class="state">ìŠµê²©</div>
+		<div class="state">½À°İ</div>
 		<div class="content">
-				<?echo "ì§€ë‚œë°¤ì€ ì™ ì§€ ì†Œë€ìŠ¤ëŸ¬ì› ë‹¤. ë¶ˆê¸¸í•œ ìƒê°ì— ë°–ì„ ë‚´ë‹¤ë³´ë‹ˆ<br />ë¬´ì°¸íˆ ì‚´í•´ëœ ì‹œì²´ê°€ ìˆì—ˆë‹¤â€¦ ì£½ì€ ìì˜ ì´ë¦„ì€â€¦<br /><br />".$death_player_list;?>
+				<?echo "Áö³­¹ãÀº ¿ØÁö ¼Ò¶õ½º·¯¿ü´Ù. ºÒ±æÇÑ »ı°¢¿¡ ¹ÛÀ» ³»´Ùº¸´Ï<br />¹«ÂüÈ÷ »ìÇØµÈ ½ÃÃ¼°¡ ÀÖ¾ú´Ù¡¦ Á×Àº ÀÚÀÇ ÀÌ¸§Àº¡¦<br /><br />".$death_player_list;?>
 		</div>
 	</div>
 				<?}
 				else{?>
 	<div class="viewState">
-		<div class="state">ìŠµê²©</div>
+		<div class="state">½À°İ</div>
 		<div class="content">
-				<?echo "ì§€ë‚œë°¤ì€ ë„ˆë¬´ë‚˜ë„ ì¡°ìš©í–ˆë‹¤. ëˆˆì„ ëœ¨ê³  ë°–ì„ ë‚´ë‹¤ë³´ì•˜ì§€ë§Œ,<br />ì•„ë¬´ ì¼ë„ ì—†ì—ˆë˜ ê²ƒ ê°™ë‹¤. ì´ê±´ ì–´ì°Œ ëœ ì¼ì¼ê¹Œâ€¦?";?>
+				<?echo "Áö³­¹ãÀº ³Ê¹«³ªµµ Á¶¿ëÇß´Ù. ´«À» ¶ß°í ¹ÛÀ» ³»´Ùº¸¾ÒÁö¸¸,<br />¾Æ¹« ÀÏµµ ¾ø¾ú´ø °Í °°´Ù. ÀÌ°Ç ¾îÂî µÈ ÀÏÀÏ±î¡¦?";?>
 		</div>
 	</div>	
 	<?}}?>
@@ -418,34 +420,34 @@
 
 
 	<?	}?>	
-	<?	if ($viewDay ==$gameinfo['day'] and $gameinfo['state']=="ê²Œì„ë") {?>
+	<?	if ($viewDay ==$gameinfo['day'] and $gameinfo['state']=="°ÔÀÓ³¡") {?>
 		<div class="viewState">
 			<div class="state"></div>
-			<div class="content">ê²Œì„ì´ ì¢…ë£Œë˜ì—ˆìŠµë‹ˆë‹¤. <br />	<br />	
+			<div class="content">°ÔÀÓÀÌ Á¾·áµÇ¾ú½À´Ï´Ù. <br />	<br />	
 		<?
 			if($gameinfo['win'] == 1)
-				echo "ë” ì´ìƒ ì¸ë‘ì—ê²Œ ëŒ€í•­í•  ìˆ˜ ìˆì„ ì •ë„ì˜ ë§ˆì„ ì‚¬ëŒì€ ë‚¨ì•„ìˆì§€ ì•Šë‹¤... <br />ì¸ë‘ì€ ë‚¨ì€ ë§ˆì„ ì‚¬ëŒì„ ì „ë¶€ ì¡ì•„ë¨¹ì€ í›„, ë‹¤ë¥¸ í¬ìƒìë¥¼ ì°¾ì•„ ì´ ë§ˆì„ì„ ë– ë‚¬ë‹¤.";
+				echo "´õ ÀÌ»ó ÀÎ¶û¿¡°Ô ´ëÇ×ÇÒ ¼ö ÀÖÀ» Á¤µµÀÇ ¸¶À» »ç¶÷Àº ³²¾ÆÀÖÁö ¾Ê´Ù... <br />ÀÎ¶ûÀº ³²Àº ¸¶À» »ç¶÷À» ÀüºÎ Àâ¾Æ¸ÔÀº ÈÄ, ´Ù¸¥ Èñ»ıÀÚ¸¦ Ã£¾Æ ÀÌ ¸¶À»À» ¶°³µ´Ù.";
 			elseif($gameinfo['win'] == 0) 
-				echo "ëª¨ë“  ì¸ë‘ì„ í‡´ì¹˜í•˜ì—¬ ë§ˆì„ì— í‰í™”ê°€ ì°¾ì•„ì™”ë‹¤.<br />ì´ì œ ì¸ë‘ì„ ë‘ë ¤ì›Œí•  í•„ìš”ëŠ” ì—†ì–´ì¡Œë‹¤!";
+				echo "¸ğµç ÀÎ¶ûÀ» ÅğÄ¡ÇÏ¿© ¸¶À»¿¡ ÆòÈ­°¡ Ã£¾Æ¿Ô´Ù.<br />ÀÌÁ¦ ÀÎ¶ûÀ» µÎ·Á¿öÇÒ ÇÊ¿ä´Â ¾ø¾îÁ³´Ù!";
 			elseif($gameinfo['win']==2)
-				echo "...ëª¨ë“  ê²ƒì´ ëë‚¬ë‹¤ê³  ìƒê°í–ˆë‹¤. í•˜ì§€ë§Œ ì‚´ì•„ë‚¨ì€ ìë“¤ì€ ë³´ì•˜ë‹¤.<br />ë§ˆì„ ì–´ê·€ì—ì„œë¶€í„° ëª°ë ¤ë“œëŠ” ìˆ˜ë§ì€ í–„ìŠ¤í„°ì˜ ë¬´ë¦¬ë¥¼... <br /><br />.....ì‚´ì•„ë‚¨ì€ ìë“¤ì€ ëª¨ë‘ í–„ìŠ¤í„°ì—ê²Œ ì¡ì•„ë¨¹í˜”ë‹¤.";
+				echo "...¸ğµç °ÍÀÌ ³¡³µ´Ù°í »ı°¢Çß´Ù. ÇÏÁö¸¸ »ì¾Æ³²Àº ÀÚµéÀº º¸¾Ò´Ù.<br />¸¶À» ¾î±Í¿¡¼­ºÎÅÍ ¸ô·Áµå´Â ¼ö¸¹Àº ÇÜ½ºÅÍÀÇ ¹«¸®¸¦... <br /><br />.....»ì¾Æ³²Àº ÀÚµéÀº ¸ğµÎ ÇÜ½ºÅÍ¿¡°Ô Àâ¾Æ¸ÔÇû´Ù.";
 			elseif($gameinfo['win']==3)
-				echo "ì¹¨ìš¸í•œ ë¶„ìœ„ê¸° ê°€ìš´ë° íˆ¬í‘œ ê²°ê³¼ë¥¼ ì§‘í–‰í•˜ë ¤ëŠ” ìˆœê°„..<br>
+				echo "Ä§¿ïÇÑ ºĞÀ§±â °¡¿îµ¥ ÅõÇ¥ °á°ú¸¦ ÁıÇàÇÏ·Á´Â ¼ø°£..<br>
 						<br>
-						ë””ì•„ë¸”ë¡œê°€ ê°ì„±í–ˆë‹¤.<br>
-						ê´´ì„±ì„ ì§€ë¥´ë©° ë””ì•„ë¸”ë¡œëŠ” ë§ˆì„ì„ ì•ˆë“œë¡œë©”ë‹¤ë¡œ ë³´ë‚´ë²„ë ¸ë‹¤.. bye~";
+						µğ¾Æºí·Î°¡ °¢¼ºÇß´Ù.<br>
+						±«¼ºÀ» Áö¸£¸ç µğ¾Æºí·Î´Â ¸¶À»À» ¾Èµå·Î¸Ş´Ù·Î º¸³»¹ö·È´Ù.. bye~";
 		?>
 			</div>
 		</div>
 	<?	}?>	
-	<?if($entry['alive']== "ìƒì¡´" and $forecast_result){?>
+	<?if($entry['alive']== "»ıÁ¸" and $forecast_result){?>
 		<div class="viewState">
-			<div class="state">ì ê´˜ ê²°ê³¼</div>
+			<div class="state">Á¡±¥ °á°ú</div>
 			<div class="content">
-				<?="ì ê´˜ê°€ ë‚˜ì™”ë‹¤. ".$character_list[$forecast_result['mystery']]?>
+				<?="Á¡±¥°¡ ³ª¿Ô´Ù. ".$character_list[$forecast_result['mystery']]?>
 				<?	
-					if($forecast_result[result] == 0 or $forecast_result[result] == 2) echo " ì”¨ëŠ” ì¸ê°„ì´ë‹¤.";
-					else echo " ì”¨ëŠ” ì¸ë‘ì´ë‹¤.";
+					if($forecast_result[result] == 0 or $forecast_result[result] == 2) echo " ¾¾´Â ÀÎ°£ÀÌ´Ù.";
+					else echo " ¾¾´Â ÀÎ¶ûÀÌ´Ù.";
 					?>
 
 			
@@ -457,13 +459,13 @@
 			<div class="state"></div>
 			<div class="content">
 			<?
-				if ($gameinfo['players']==11) echo "ì•„ë¬´ë˜ë„ ì´ ì•ˆì—ëŠ”, ë§ˆì„ì‚¬ëŒì´ 5ëª…, ì¸ë‘ì´ 2ëª…, ì ìŸì´ê°€ 1ëª…,<br />ì˜ë§¤ìê°€ 1ëª…, ê´‘ì¸ì´ 1ëª…, ì‚¬ëƒ¥ê¾¼ì´ 1ëª… ìˆëŠ” ê²ƒ ê°™ë‹¤.";
-				if ($gameinfo['players']==12) echo "ì•„ë¬´ë˜ë„ ì´ ì•ˆì—ëŠ”, ë§ˆì„ì‚¬ëŒì´ 6ëª…, ì¸ë‘ì´ 2ëª…, ì ìŸì´ê°€ 1ëª…,<br />ì˜ë§¤ìê°€ 1ëª…, ê´‘ì¸ì´ 1ëª…, ì‚¬ëƒ¥ê¾¼ì´ 1ëª… ìˆëŠ” ê²ƒ ê°™ë‹¤."; 
-				if ($gameinfo['players']==13) echo "ì•„ë¬´ë˜ë„ ì´ ì•ˆì—ëŠ”, ë§ˆì„ì‚¬ëŒì´ 7ëª…, ì¸ë‘ì´ 2ëª…, ì ìŸì´ê°€ 1ëª…,<br />ì˜ë§¤ìê°€ 1ëª…, ê´‘ì¸ì´ 1ëª…, ì‚¬ëƒ¥ê¾¼ì´ 1ëª… ìˆëŠ” ê²ƒ ê°™ë‹¤.";
-				if ($gameinfo['players']==14) echo "ì•„ë¬´ë˜ë„ ì´ ì•ˆì—ëŠ”, ë§ˆì„ì‚¬ëŒì´ 8ëª…, ì¸ë‘ì´ 2ëª…, ì ìŸì´ê°€ 1ëª…,<br />ì˜ë§¤ìê°€ 1ëª…, ê´‘ì¸ì´ 1ëª…, ì‚¬ëƒ¥ê¾¼ì´ 1ëª… ìˆëŠ” ê²ƒ ê°™ë‹¤.";
-				if ($gameinfo['players']==15) echo "ì•„ë¬´ë˜ë„ ì´ ì•ˆì—ëŠ”, ë§ˆì„ì‚¬ëŒì´ 8ëª…, ì¸ë‘ì´ 3ëª…, ì ìŸì´ê°€ 1ëª…,<br />ì˜ë§¤ìê°€ 1ëª…, ê´‘ì¸ì´ 1ëª…, ì‚¬ëƒ¥ê¾¼ì´ 1ëª… ìˆëŠ” ê²ƒ ê°™ë‹¤.";
-				if ($gameinfo['players']==16) echo "ì•„ë¬´ë˜ë„ ì´ ì•ˆì—ëŠ”, ë§ˆì„ì‚¬ëŒì´ 7ëª…, ì¸ë‘ì´ 3ëª…, ì ìŸì´ê°€ 1ëª…,<br />ì˜ë§¤ìê°€ 1ëª…, ê´‘ì¸ì´ 1ëª…, ì‚¬ëƒ¥ê¾¼ì´ 1ëª…, ì´ˆëŠ¥ë ¥ìê°€ 2ëª… ìˆëŠ” ê²ƒ ê°™ë‹¤.";
-				if ($gameinfo['players']==17) echo "ì•„ë¬´ë˜ë„ ì´ ì•ˆì—ëŠ”, ë§ˆì„ì‚¬ëŒì´ 7ëª…, ì¸ë‘ì´ 3ëª…, ì ìŸì´ê°€ 1ëª…, ì˜ë§¤ìê°€ 1ëª…,<br />ê´‘ì¸ì´ 1ëª…, ì‚¬ëƒ¥ê¾¼ì´ 1ëª…, ì´ˆëŠ¥ë ¥ìê°€ 2ëª…, í–„ìŠ¤í„°ê°€ 1ë§ˆë¦¬ ìˆëŠ” ê²ƒ ê°™ë‹¤.";
+				if ($gameinfo['players']==11) echo "¾Æ¹«·¡µµ ÀÌ ¾È¿¡´Â, ¸¶À»»ç¶÷ÀÌ 5¸í, ÀÎ¶ûÀÌ 2¸í, Á¡ÀïÀÌ°¡ 1¸í,<br />¿µ¸ÅÀÚ°¡ 1¸í, ±¤ÀÎÀÌ 1¸í, »ç³É²ÛÀÌ 1¸í ÀÖ´Â °Í °°´Ù.";
+				if ($gameinfo['players']==12) echo "¾Æ¹«·¡µµ ÀÌ ¾È¿¡´Â, ¸¶À»»ç¶÷ÀÌ 6¸í, ÀÎ¶ûÀÌ 2¸í, Á¡ÀïÀÌ°¡ 1¸í,<br />¿µ¸ÅÀÚ°¡ 1¸í, ±¤ÀÎÀÌ 1¸í, »ç³É²ÛÀÌ 1¸í ÀÖ´Â °Í °°´Ù."; 
+				if ($gameinfo['players']==13) echo "¾Æ¹«·¡µµ ÀÌ ¾È¿¡´Â, ¸¶À»»ç¶÷ÀÌ 7¸í, ÀÎ¶ûÀÌ 2¸í, Á¡ÀïÀÌ°¡ 1¸í,<br />¿µ¸ÅÀÚ°¡ 1¸í, ±¤ÀÎÀÌ 1¸í, »ç³É²ÛÀÌ 1¸í ÀÖ´Â °Í °°´Ù.";
+				if ($gameinfo['players']==14) echo "¾Æ¹«·¡µµ ÀÌ ¾È¿¡´Â, ¸¶À»»ç¶÷ÀÌ 8¸í, ÀÎ¶ûÀÌ 2¸í, Á¡ÀïÀÌ°¡ 1¸í,<br />¿µ¸ÅÀÚ°¡ 1¸í, ±¤ÀÎÀÌ 1¸í, »ç³É²ÛÀÌ 1¸í ÀÖ´Â °Í °°´Ù.";
+				if ($gameinfo['players']==15) echo "¾Æ¹«·¡µµ ÀÌ ¾È¿¡´Â, ¸¶À»»ç¶÷ÀÌ 8¸í, ÀÎ¶ûÀÌ 3¸í, Á¡ÀïÀÌ°¡ 1¸í,<br />¿µ¸ÅÀÚ°¡ 1¸í, ±¤ÀÎÀÌ 1¸í, »ç³É²ÛÀÌ 1¸í ÀÖ´Â °Í °°´Ù.";
+				if ($gameinfo['players']==16) echo "¾Æ¹«·¡µµ ÀÌ ¾È¿¡´Â, ¸¶À»»ç¶÷ÀÌ 7¸í, ÀÎ¶ûÀÌ 3¸í, Á¡ÀïÀÌ°¡ 1¸í,<br />¿µ¸ÅÀÚ°¡ 1¸í, ±¤ÀÎÀÌ 1¸í, »ç³É²ÛÀÌ 1¸í, ÃÊ´É·ÂÀÚ°¡ 2¸í ÀÖ´Â °Í °°´Ù.";
+				if ($gameinfo['players']==17) echo "¾Æ¹«·¡µµ ÀÌ ¾È¿¡´Â, ¸¶À»»ç¶÷ÀÌ 7¸í, ÀÎ¶ûÀÌ 3¸í, Á¡ÀïÀÌ°¡ 1¸í, ¿µ¸ÅÀÚ°¡ 1¸í,<br />±¤ÀÎÀÌ 1¸í, »ç³É²ÛÀÌ 1¸í, ÃÊ´É·ÂÀÚ°¡ 2¸í, ÇÜ½ºÅÍ°¡ 1¸¶¸® ÀÖ´Â °Í °°´Ù.";
 			?>
 			</div>
 		</div>
@@ -473,15 +475,15 @@
 			<div class="state"></div>
 			<div class="content">
 			<?
-				if ($gameinfo['players']==9) echo "ì•„ë¬´ë˜ë„ ì´ ì•ˆì—ëŠ” ì¸ë‘ 1ëª…, ì™¸ë¡œìš´ ëŠ‘ëŒ€ 1ëª…, ê´‘ì¸ 1ëª…, ì ìŸì´ 1ëª…, ì˜ë§¤ì 1ëª…,<br>ì‚¬ëƒ¥ê¾¼ 1ëª…, ë³µìˆ˜ì 1ëª…, ë³´ì•ˆê´€ 1ëª…, ë§ˆì„ì‚¬ëŒ 1ëª…ì´ ìˆëŠ” ê²ƒ ê°™ë‹¤.";
-				if ($gameinfo['players']==10) echo "ì•„ë¬´ë˜ë„ ì´ ì•ˆì—ëŠ” ì¸ë‘ 1ëª…, ì™¸ë¡œìš´ ëŠ‘ëŒ€ 1ëª…, ê´‘ì¸ 1ëª…, ì ìŸì´ 1ëª…, ì˜ë§¤ì 1ëª…,<br>ì‚¬ëƒ¥ê¾¼ 1ëª…, ë³µìˆ˜ì 1ëª…, ê·€ì¡± 1ëª…, ë§ˆì„ì‚¬ëŒ 2ëª…ì´ ìˆëŠ” ê²ƒ ê°™ë‹¤.";
-				if ($gameinfo['players']==11) echo "ì•„ë¬´ë˜ë„ ì´ ì•ˆì—ëŠ” ì¸ë‘ 1ëª…, ì¸ë‘ ë¦¬ë” 1ëª…, ê´‘ì¸ 1ëª…, ì ìŸì´ 1ëª…, ì˜ë§¤ì 1ëª…,<br>ì‚¬ëƒ¥ê¾¼ 1ëª…, ì´Œì¥ 1ëª…,ë³´ì•ˆê´€ 1ëª…, ë§ˆì„ì‚¬ëŒ 3ëª…ì´ ìˆëŠ” ê²ƒ ê°™ë‹¤.";
-				if ($gameinfo['players']==12) echo "ì•„ë¬´ë˜ë„ ì´ ì•ˆì—ëŠ” ì¸ë‘ 1ëª…, ì¸ë‘ ë¦¬ë” 1ëª…, ê´‘ì¸ 1ëª…,<br>ì ìŸì´ 1ëª…, ì˜ë§¤ì 1ëª…, ì‚¬ëƒ¥ê¾¼ 1ëª…, ì´Œì¥ 1ëª…, ë§ˆì„ì‚¬ëŒ 5ëª…ì´ ìˆëŠ” ê²ƒ ê°™ë‹¤.";
-				if ($gameinfo['players']==13) echo "ì•„ë¬´ë˜ë„ ì´ ì•ˆì—ëŠ” ì¸ë‘ 1ëª…, ì¸ë‘ ë¦¬ë” 1ëª…, ì™¸ë¡œìš´ ëŠ‘ëŒ€ 1ëª…, ê´‘ì¸ 1ëª…,<br>ì ìŸì´ 1ëª…, ì˜ë§¤ì 1ëª…, ì‚¬ëƒ¥ê¾¼ 1ëª…, ë³µìˆ˜ì 1ëª…, ì´Œì¥ 1ëª…, ê·€ì¡± 1ëª…, ë³´ì•ˆê´€ 1ëª…, ë§ˆì„ì‚¬ëŒ 2ëª…ì´ ìˆëŠ” ê²ƒ ê°™ë‹¤.";
-				if ($gameinfo['players']==14) echo "ì•„ë¬´ë˜ë„ ì´ ì•ˆì—ëŠ” ì¸ë‘ 1ëª…, ì¸ë‘ ë¦¬ë” 1ëª…, ì™¸ë¡œìš´ ëŠ‘ëŒ€ 1ëª…, ê´‘ì¸ 1ëª…,<br>ì ìŸì´ 1ëª…, ì˜ë§¤ì 1ëª…, ì‚¬ëƒ¥ê¾¼ 1ëª…, ë³µìˆ˜ì 1ëª…, ì´Œì¥ 1ëª…, ê·€ì¡± 1ëª…, ë§ˆì„ì‚¬ëŒ 4ëª…ì´ ìˆëŠ” ê²ƒ ê°™ë‹¤.";
-				if ($gameinfo['players']==15) echo "ì•„ë¬´ë˜ë„ ì´ ì•ˆì—ëŠ” ì¸ë‘ 2ëª…, ì¸ë‘ ë¦¬ë” 1ëª…, ì™¸ë¡œìš´ ëŠ‘ëŒ€ 1ëª…, ê´‘ì¸ 1ëª…,<br>ì ìŸì´ 1ëª…, ì˜ë§¤ì 1ëª…, ì‚¬ëƒ¥ê¾¼ 1ëª…, ë³µìˆ˜ì 1ëª…, ì´Œì¥ 1ëª…, ê·€ì¡± 1ëª…, ë³´ì•ˆê´€ 1ëª…, ë§ˆì„ì‚¬ëŒ 3ëª…ì´ ìˆëŠ” ê²ƒ ê°™ë‹¤.";
-				if ($gameinfo['players']==16) echo "ì•„ë¬´ë˜ë„ ì´ ì•ˆì—ëŠ” ì¸ë‘ 2ëª…, ì¸ë‘ ë¦¬ë” 1ëª…, ì™¸ë¡œìš´ ëŠ‘ëŒ€ 1ëª…, ê´‘ì¸ 1ëª…,<br>ì ìŸì´ 1ëª…, ì˜ë§¤ì 1ëª…, ì‚¬ëƒ¥ê¾¼ 1ëª…, ë³µìˆ˜ì 1ëª…, ì´Œì¥ 1ëª…, ê·€ì¡± 1ëª…, ë§ˆì„ì‚¬ëŒ 5ëª…ì´ ìˆëŠ” ê²ƒ ê°™ë‹¤.";
-				if ($gameinfo['players']==17) echo "ì•„ë¬´ë˜ë„ ì´ ì•ˆì—ëŠ” ì¸ë‘ 2ëª…, ì¸ë‘ ë¦¬ë” 1ëª…, ì™¸ë¡œìš´ ëŠ‘ëŒ€ 1ëª…, ê´‘ì¸ 1ëª…,<br>ì ìŸì´ 1ëª…, ì˜ë§¤ì 1ëª…, ì‚¬ëƒ¥ê¾¼ 1ëª…, ë³µìˆ˜ì 1ëª…, ì´Œì¥ 1ëª…, ê·€ì¡± 1ëª…, ë§ˆì„ì‚¬ëŒ 5ëª…, ê·¸ë¦¬ê³  ë””ì•„ë¸”ë¡œê°€ ìˆëŠ” ê²ƒ ê°™ë‹¤.";
+				if ($gameinfo['players']==9) echo "¾Æ¹«·¡µµ ÀÌ ¾È¿¡´Â ÀÎ¶û 1¸í, ¿Ü·Î¿î ´Á´ë 1¸í, ±¤ÀÎ 1¸í, Á¡ÀïÀÌ 1¸í, ¿µ¸ÅÀÚ 1¸í,<br>»ç³É²Û 1¸í, º¹¼öÀÚ 1¸í, º¸¾È°ü 1¸í, ¸¶À»»ç¶÷ 1¸íÀÌ ÀÖ´Â °Í °°´Ù.";
+				if ($gameinfo['players']==10) echo "¾Æ¹«·¡µµ ÀÌ ¾È¿¡´Â ÀÎ¶û 1¸í, ¿Ü·Î¿î ´Á´ë 1¸í, ±¤ÀÎ 1¸í, Á¡ÀïÀÌ 1¸í, ¿µ¸ÅÀÚ 1¸í,<br>»ç³É²Û 1¸í, º¹¼öÀÚ 1¸í, ±ÍÁ· 1¸í, ¸¶À»»ç¶÷ 2¸íÀÌ ÀÖ´Â °Í °°´Ù.";
+				if ($gameinfo['players']==11) echo "¾Æ¹«·¡µµ ÀÌ ¾È¿¡´Â ÀÎ¶û 1¸í, ÀÎ¶û ¸®´õ 1¸í, ±¤ÀÎ 1¸í, Á¡ÀïÀÌ 1¸í, ¿µ¸ÅÀÚ 1¸í,<br>»ç³É²Û 1¸í, ÃÌÀå 1¸í,º¸¾È°ü 1¸í, ¸¶À»»ç¶÷ 3¸íÀÌ ÀÖ´Â °Í °°´Ù.";
+				if ($gameinfo['players']==12) echo "¾Æ¹«·¡µµ ÀÌ ¾È¿¡´Â ÀÎ¶û 1¸í, ÀÎ¶û ¸®´õ 1¸í, ±¤ÀÎ 1¸í,<br>Á¡ÀïÀÌ 1¸í, ¿µ¸ÅÀÚ 1¸í, »ç³É²Û 1¸í, ÃÌÀå 1¸í, ¸¶À»»ç¶÷ 5¸íÀÌ ÀÖ´Â °Í °°´Ù.";
+				if ($gameinfo['players']==13) echo "¾Æ¹«·¡µµ ÀÌ ¾È¿¡´Â ÀÎ¶û 1¸í, ÀÎ¶û ¸®´õ 1¸í, ¿Ü·Î¿î ´Á´ë 1¸í, ±¤ÀÎ 1¸í,<br>Á¡ÀïÀÌ 1¸í, ¿µ¸ÅÀÚ 1¸í, »ç³É²Û 1¸í, º¹¼öÀÚ 1¸í, ÃÌÀå 1¸í, ±ÍÁ· 1¸í, º¸¾È°ü 1¸í, ¸¶À»»ç¶÷ 2¸íÀÌ ÀÖ´Â °Í °°´Ù.";
+				if ($gameinfo['players']==14) echo "¾Æ¹«·¡µµ ÀÌ ¾È¿¡´Â ÀÎ¶û 1¸í, ÀÎ¶û ¸®´õ 1¸í, ¿Ü·Î¿î ´Á´ë 1¸í, ±¤ÀÎ 1¸í,<br>Á¡ÀïÀÌ 1¸í, ¿µ¸ÅÀÚ 1¸í, »ç³É²Û 1¸í, º¹¼öÀÚ 1¸í, ÃÌÀå 1¸í, ±ÍÁ· 1¸í, ¸¶À»»ç¶÷ 4¸íÀÌ ÀÖ´Â °Í °°´Ù.";
+				if ($gameinfo['players']==15) echo "¾Æ¹«·¡µµ ÀÌ ¾È¿¡´Â ÀÎ¶û 2¸í, ÀÎ¶û ¸®´õ 1¸í, ¿Ü·Î¿î ´Á´ë 1¸í, ±¤ÀÎ 1¸í,<br>Á¡ÀïÀÌ 1¸í, ¿µ¸ÅÀÚ 1¸í, »ç³É²Û 1¸í, º¹¼öÀÚ 1¸í, ÃÌÀå 1¸í, ±ÍÁ· 1¸í, º¸¾È°ü 1¸í, ¸¶À»»ç¶÷ 3¸íÀÌ ÀÖ´Â °Í °°´Ù.";
+				if ($gameinfo['players']==16) echo "¾Æ¹«·¡µµ ÀÌ ¾È¿¡´Â ÀÎ¶û 2¸í, ÀÎ¶û ¸®´õ 1¸í, ¿Ü·Î¿î ´Á´ë 1¸í, ±¤ÀÎ 1¸í,<br>Á¡ÀïÀÌ 1¸í, ¿µ¸ÅÀÚ 1¸í, »ç³É²Û 1¸í, º¹¼öÀÚ 1¸í, ÃÌÀå 1¸í, ±ÍÁ· 1¸í, ¸¶À»»ç¶÷ 5¸íÀÌ ÀÖ´Â °Í °°´Ù.";
+				if ($gameinfo['players']==17) echo "¾Æ¹«·¡µµ ÀÌ ¾È¿¡´Â ÀÎ¶û 2¸í, ÀÎ¶û ¸®´õ 1¸í, ¿Ü·Î¿î ´Á´ë 1¸í, ±¤ÀÎ 1¸í,<br>Á¡ÀïÀÌ 1¸í, ¿µ¸ÅÀÚ 1¸í, »ç³É²Û 1¸í, º¹¼öÀÚ 1¸í, ÃÌÀå 1¸í, ±ÍÁ· 1¸í, ¸¶À»»ç¶÷ 5¸í, ±×¸®°í µğ¾Æºí·Î°¡ ÀÖ´Â °Í °°´Ù.";
 			?>
 			</div>
 		</div>
@@ -497,26 +499,26 @@ if($is_admin and 0){
 	$tableMaker = new TableMaker;
 	$tableMaker->setTableStyle("werewolfStyle");
 
-	$tableHead = array("No","<a href='$PHP_SELF?id=$id&no=$no&viewDay=$viewDay&viewMode=$viewMode' >ë§ˆì„ ì‚¬ëŒ</a>","ìƒíƒœ","íˆ¬í‘œ ëŒ€ìƒ","&nbsp;","&nbsp;");
+	$tableHead = array("No","<a href='$PHP_SELF?id=$id&no=$no&viewDay=$viewDay&viewMode=$viewMode' >¸¶À» »ç¶÷</a>","»óÅÂ","ÅõÇ¥ ´ë»ó","&nbsp;","&nbsp;");
 	$tableCol ="<col width=17><col width=120></col><col width=100></col><col width=125></col><col width=120></col><col width=></col>";
 	$tableBody= array();
 
 	$i=1;
-	$temp_result=mysql_query("select * from $DB_entry where game = $no and (alive= 'ìƒì¡´' or $viewDay <= deathday) order by alive desc,deathday desc,victim");
+	$temp_result=mysql_query("select * from $DB_entry where game = $no and (alive= '»ıÁ¸' or $viewDay <= deathday) order by alive desc,deathday desc,victim");
 		while($data=mysql_fetch_array($temp_result)){
 
 			$t=$data[character];
 		
-			if($data['deathtype'] == "ì‹¬íŒ"){
-				$deathType = "íˆ¬í‘œ";
+			if($data['deathtype'] == "½ÉÆÇ"){
+				$deathType = "ÅõÇ¥";
 			}
 			else $deathType = $data['deathtype'];
 
-			if ($data['alive']=="ì‚¬ë§"){
-				if ($viewDay <= $data['deathday']){$alive  = "ìƒì¡´";}
-				else {	$alive = $data['deathday']."ì¼ì§¸ ì‚¬ë§-".$deathType;}
+			if ($data['alive']=="»ç¸Á"){
+				if ($viewDay <= $data['deathday']){$alive  = "»ıÁ¸";}
+				else {	$alive = $data['deathday']."ÀÏÂ° »ç¸Á-".$deathType;}
 			}
-			else $alive ="ìƒì¡´";
+			else $alive ="»ıÁ¸";
 
 			$temp_vote=mysql_fetch_array(mysql_query("select * from `$DB_vote` where `game` = $no and `day` = $viewDay-1 and `voter` = $t;"));
 			if($temp_vote['candidacy'])
@@ -554,12 +556,12 @@ if($is_admin and 0){
 <table id="playerList">
 	<col width=17><col width=140></col><col width=100></col><col width=125></col><col width=120></col><col width=></col>
 	<thead>
-		<tr><td>No</td><td><?="<a href='$PHP_SELF?id=$id&no=$no&viewDay=$viewDay&viewMode=$viewMode' >"?>ë§ˆì„ ì‚¬ëŒ</a></td><td>ìƒíƒœ</td><td>íˆ¬í‘œ ëŒ€ìƒ</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+		<tr><td>No</td><td><?="<a href='$PHP_SELF?id=$id&no=$no&viewDay=$viewDay&viewMode=$viewMode' >"?>¸¶À» »ç¶÷</a></td><td>»óÅÂ</td><td>ÅõÇ¥ ´ë»ó</td><td>&nbsp;</td><td>&nbsp;</td></tr>
 	</thead>
 	<tbody>
-<?	// í”Œë ˆì´ì–´ ì¶œë ¥
+<?	// ÇÃ·¹ÀÌ¾î Ãâ·Â
 	$i=1;
-	$temp_result=mysql_query("select * from $DB_entry where game = $no and (alive= 'ìƒì¡´' or $viewDay <= deathday) order by alive desc,deathday desc,victim");
+	$temp_result=mysql_query("select * from $DB_entry where game = $no and (alive= '»ıÁ¸' or $viewDay <= deathday) order by alive desc,deathday desc,victim");
 	
 		while($data=mysql_fetch_array($temp_result)){
 			 $playerMember=mysql_fetch_array(mysql_query("select * from zetyx_member_table where no = $data[player]"));
@@ -570,22 +572,22 @@ if($is_admin and 0){
 //1
 			echo "<td align=center class='red_8'>$i</td>";	++$i;
 //1
-			echo "<td><a href='$PHP_SELF?id=$id&no=$no&viewDay=$viewDay&viewMode=$viewMode&viewChar=$t'><img src='skin/$id/image/filter.png' border='0' title='í´ë¦­ - $character_list[$t]ë‹˜ì˜ ë¡œê·¸ë§Œ ë´…ë‹ˆë‹¤.'></a>".
+			echo "<td><a href='$PHP_SELF?id=$id&no=$no&viewDay=$viewDay&viewMode=$viewMode&viewChar=$t'><img src='skin/$id/image/filter.png' border='0' title='Å¬¸¯ - $character_list[$t]´ÔÀÇ ·Î±×¸¸ º¾´Ï´Ù.'></a>".
 					"<input type='checkbox' id='$t' class='characterButton' value='$t' checked='checked'/>".
-					"<label for='$t' title='í´ë¦­ - í•„í„°ë§\në”ë¸” í´ë¦­ - $character_list[$t]ë‹˜ì˜ ë¡œê·¸ë§Œ ë´…ë‹ˆë‹¤.'>$character_list[$t]</label></td>";			
+					"<label for='$t' title='Å¬¸¯ - ÇÊÅÍ¸µ\n´õºí Å¬¸¯ - $character_list[$t]´ÔÀÇ ·Î±×¸¸ º¾´Ï´Ù.'>$character_list[$t]</label></td>";			
 		
 //2
 
-			if($data['deathtype'] == "ì‹¬íŒ"){
-				$deathType = "íˆ¬í‘œ";
+			if($data['deathtype'] == "½ÉÆÇ"){
+				$deathType = "ÅõÇ¥";
 			}
 			else $deathType = $data['deathtype'];
 
-			if ($data['alive']=="ì‚¬ë§"){
-				if ($viewDay <= $data['deathday']){echo "<td>ìƒì¡´</td>";}
-				else {	echo "<td>".$data['deathday']."ì¼ì§¸ ì‚¬ë§-".$deathType."</td>";}
+			if ($data['alive']=="»ç¸Á"){
+				if ($viewDay <= $data['deathday']){echo "<td>»ıÁ¸</td>";}
+				else {	echo "<td>".$data['deathday']."ÀÏÂ° »ç¸Á-".$deathType."</td>";}
 			}
-			else echo "<td>ìƒì¡´ </td>";
+			else echo "<td>»ıÁ¸ </td>";
 //3
 			echo "<td>&nbsp;";
 			// subrule : secret vote
@@ -626,9 +628,9 @@ if($is_admin and 0){
 <table id="deathPlayerList">
 	<col width=17><col width=140></col><col width=100></col><col width=125></col><col width=120></col><col width=></col>
 	<tbody>
-<?	// í”Œë ˆì´ì–´ ì¶œë ¥
+<?	// ÇÃ·¹ÀÌ¾î Ãâ·Â
 	$i=1;
-	$temp_result=mysql_query("select * from $DB_entry where game = $no and (alive <> 'ìƒì¡´'  and $viewDay > deathday) order by alive desc,deathday desc,victim");
+	$temp_result=mysql_query("select * from $DB_entry where game = $no and (alive <> '»ıÁ¸'  and $viewDay > deathday) order by alive desc,deathday desc,victim");
 	
 		while($data=mysql_fetch_array($temp_result)){
 			 $playerMember=mysql_fetch_array(mysql_query("select * from zetyx_member_table where no = $data[player]"));
@@ -639,22 +641,22 @@ if($is_admin and 0){
 //1
 			echo "<td align=center class='red_8'>$i</td>";	++$i;		
 //1
-			echo "<td><a href='$PHP_SELF?id=$id&no=$no&viewDay=$viewDay&viewMode=$viewMode&viewChar=$t'><img src='skin/$id/image/filter.png' border='0' title='í´ë¦­ - $character_list[$t]ë‹˜ì˜ ë¡œê·¸ë§Œ ë´…ë‹ˆë‹¤.'></a>".
+			echo "<td><a href='$PHP_SELF?id=$id&no=$no&viewDay=$viewDay&viewMode=$viewMode&viewChar=$t'><img src='skin/$id/image/filter.png' border='0' title='Å¬¸¯ - $character_list[$t]´ÔÀÇ ·Î±×¸¸ º¾´Ï´Ù.'></a>".
 					"<input type='checkbox' id='$t' class='characterButton' value='$t' checked='checked'/>".
 					"<label for='$t'>$character_list[$t]</label></td>";			
 		
 //2
 
-			if($data['deathtype'] == "ì‹¬íŒ"){
-				$deathType = "íˆ¬í‘œ";
+			if($data['deathtype'] == "½ÉÆÇ"){
+				$deathType = "ÅõÇ¥";
 			}
 			else $deathType = $data['deathtype'];
 
-			if ($data['alive']=="ì‚¬ë§"){
-				if ($viewDay <= $data['deathday']){echo "<td>ìƒì¡´</td>";}
-				else {	echo "<td>".$data['deathday']."ì¼ì§¸ ì‚¬ë§-".$deathType."</td>";}
+			if ($data['alive']=="»ç¸Á"){
+				if ($viewDay <= $data['deathday']){echo "<td>»ıÁ¸</td>";}
+				else {	echo "<td>".$data['deathday']."ÀÏÂ° »ç¸Á-".$deathType."</td>";}
 			}
-			else echo "<td>ìƒì¡´ </td>";
+			else echo "<td>»ıÁ¸ </td>";
 //3
 			echo "<td>&nbsp;";
 			// subrule : secret vote
@@ -729,12 +731,12 @@ var viewImage="<?=$viewImage?>";
 <?}?>
 
 
-<?//íŠ¸ë™ë°±
-	if($gameinfo['state'] == "ê²Œì„ë" or $gameinfo['state'] == "ë²„ê·¸"){	?>
+<?//Æ®·¢¹é
+	if($gameinfo['state'] == "°ÔÀÓ³¡" or $gameinfo['state'] == "¹ö±×"){	?>
 <script>
 function toClip(memo) {
         window.clipboardData.setData('Text',memo);
-        alert('ì£¼ì†Œê°€ ë³µì‚¬ë˜ì—ˆìŠµë‹ˆë‹¤');
+        alert('ÁÖ¼Ò°¡ º¹»çµÇ¾ú½À´Ï´Ù');
 }
 </script>
 
@@ -742,20 +744,20 @@ function toClip(memo) {
 
 
 
-<!-- í˜ì´ì§€ ëª¨ë‘ ì—´ê¸° ë²„íŠ¼ -->
-<button type="button" id="buttonOpenCommentPagesAll" style="border: 2px solid #666666; background-color: black; color: #666666; padding: 10px 110px; margin: 4px 2px; text-align: center; text-decoration: none; font-size: 14px; display: inline-block;">í˜ì´ì§€ ëª¨ë‘ ì—´ê¸°</button>
+<!-- ÆäÀÌÁö ¸ğµÎ ¿­±â ¹öÆ° -->
+<button type="button" id="buttonOpenCommentPagesAll" style="border: 2px solid #666666; background-color: black; color: #666666; padding: 10px 110px; margin: 4px 2px; text-align: center; text-decoration: none; font-size: 14px; display: inline-block;">ÆäÀÌÁö ¸ğµÎ ¿­±â</button>
 
 
 
 <?
-//ë§ê¸€ì„ viewDayì— ë”°ë¼ ë½‘ì•„ë‚¸ë‹¤.
+//µ¡±ÛÀ» viewDay¿¡ µû¶ó »Ì¾Æ³½´Ù.
 	//echo"select * from $t_comment"."_$id where parent='$no' and reg_date  between ".($gameinfo[deathtime] + (86400 * ( $viewDay -1)))." and   ".($gameinfo[deathtime] +  86400 * ($viewDay))."   order by no asc";
 	if($viewChar and is_numeric($viewChar)) $checkChar = " AND `character` = $viewChar ";
 
 	// Hide seal logs until the end of game except for myself and admin
 	if($checkChar)
 		// game in progress && viewChar != playing character && not admin
-		if($gameinfo['state'] == "ê²Œì„ì¤‘" && $viewChar != $character && !$is_admin) $checkChar .= "AND type != 'ë´‰ì¸ì œì•ˆ' ";
+		if($gameinfo['state'] == "°ÔÀÓÁß" && $viewChar != $character && !$is_admin) $checkChar .= "AND type != 'ºÀÀÎÁ¦¾È' ";
 
 	if(!$member[no]) $member[no] =0;
 
@@ -763,8 +765,8 @@ function toClip(memo) {
 	if(!$readLatest or $readLatest <0 or 20 < $readLatest or !is_numeric($readLatest)) $readLatest = 10;
 
 	if($gameinfo['useTimetable'] == 0){
-		if($gameinfo['state']== "ì¤€ë¹„ì¤‘" ){
-			$logCount = mysql_fetch_array(mysql_query("select count(*) from $t_comment"."_$id, $t_comment"."_$id"."_commentType where parent='$no'  AND game='$no' AND no = `comment`  AND (type in ".$commentType." or ismember = $member[no] and type like 'ë©”ëª¨')".$checkChar."order by no asc"));
+		if($gameinfo['state']== "ÁØºñÁß" ){
+			$logCount = mysql_fetch_array(mysql_query("select count(*) from $t_comment"."_$id, $t_comment"."_$id"."_commentType where parent='$no'  AND game='$no' AND no = `comment`  AND (type in ".$commentType." or ismember = $member[no] and type like '¸Ş¸ğ')".$checkChar."order by no asc"));
 			
 			$totalCommentPage = ceil( $logCount[0]/ $readLatest) ;
 
@@ -773,10 +775,10 @@ function toClip(memo) {
 			$logCount= $logCount[0] > $readLatest  ?  $readLatest * ($cPage -1) :0;
 			$l = " limit ".($logCount).", ".$readLatest ;
 
-			$sql="select * from $t_comment"."_$id, $t_comment"."_$id"."_commentType where parent='$no'  AND game='$no' AND no = `comment` AND (type in ".$commentType." or ismember = $member[no] and type like 'ë©”ëª¨')".$checkChar."order by no asc ".$l;
+			$sql="select * from $t_comment"."_$id, $t_comment"."_$id"."_commentType where parent='$no'  AND game='$no' AND no = `comment` AND (type in ".$commentType." or ismember = $member[no] and type like '¸Ş¸ğ')".$checkChar."order by no asc ".$l;
 		}
 		elseif($viewDay == 0){
-			$logCount = mysql_fetch_array(mysql_query("select count(*) from $t_comment"."_$id, $t_comment"."_$id"."_commentType where parent='$no' AND game='$no' AND no = `comment` AND (type in ".$commentType." or ismember = $member[no] and type like 'ë©”ëª¨')".$checkChar." and reg_date  < $gameinfo[deathtime]  order by no asc"));			
+			$logCount = mysql_fetch_array(mysql_query("select count(*) from $t_comment"."_$id, $t_comment"."_$id"."_commentType where parent='$no' AND game='$no' AND no = `comment` AND (type in ".$commentType." or ismember = $member[no] and type like '¸Ş¸ğ')".$checkChar." and reg_date  < $gameinfo[deathtime]  order by no asc"));			
 
 			$totalCommentPage = ceil( $logCount[0]/ $readLatest) ;
 
@@ -785,9 +787,9 @@ function toClip(memo) {
 			$logCount= $logCount[0] > $readLatest  ?  $readLatest * ($cPage -1) :0;
 			$l = " limit ".($logCount).", ".$readLatest ;
 
-			$sql="select * from $t_comment"."_$id, $t_comment"."_$id"."_commentType where parent='$no' AND game='$no' AND no = `comment` AND (type in ".$commentType." or ismember = $member[no] and type like 'ë©”ëª¨')".$checkChar." and reg_date  < $gameinfo[deathtime]  order by no asc ".$l;
+			$sql="select * from $t_comment"."_$id, $t_comment"."_$id"."_commentType where parent='$no' AND game='$no' AND no = `comment` AND (type in ".$commentType." or ismember = $member[no] and type like '¸Ş¸ğ')".$checkChar." and reg_date  < $gameinfo[deathtime]  order by no asc ".$l;
 		}
-		elseif($viewDay == $gameinfo['day'] and $gameinfo['state']=="ê²Œì„ë"){
+		elseif($viewDay == $gameinfo['day'] and $gameinfo['state']=="°ÔÀÓ³¡"){
 			$logCount = mysql_fetch_array(mysql_query("select count(*) from $t_comment"."_$id, $t_comment"."_$id"."_commentType where parent='$no'  AND game='$no' AND no = `comment` ".$checkChar." and reg_date  > ".($gameinfo[deathtime] + ($gameinfo['termOfDay'] * ( $viewDay -1)))."  order by no asc "));			
 
 			$totalCommentPage = ceil( $logCount[0]/ $readLatest) ;
@@ -826,8 +828,8 @@ function toClip(memo) {
 			else $endtime = $starttime + $gameinfo['termOfDay'];
 
 
-		if($gameinfo['state']== "ì¤€ë¹„ì¤‘" ){
-			$logCount = mysql_fetch_array(mysql_query("select count(*) from $t_comment"."_$id, $t_comment"."_$id"."_commentType where parent='$no'  AND game='$no' AND no = `comment`  AND (type in ".$commentType." or ismember = $member[no] and type like 'ë©”ëª¨')".$checkChar."order by no asc"));
+		if($gameinfo['state']== "ÁØºñÁß" ){
+			$logCount = mysql_fetch_array(mysql_query("select count(*) from $t_comment"."_$id, $t_comment"."_$id"."_commentType where parent='$no'  AND game='$no' AND no = `comment`  AND (type in ".$commentType." or ismember = $member[no] and type like '¸Ş¸ğ')".$checkChar."order by no asc"));
 			
 			$totalCommentPage = ceil( $logCount[0]/ $readLatest) ;
 
@@ -836,10 +838,10 @@ function toClip(memo) {
 			$logCount= $logCount[0] > $readLatest  ?  $readLatest * ($cPage -1) :0;
 			$l = " limit ".($logCount).", ".$readLatest ;
 
-			$sql="select * from $t_comment"."_$id, $t_comment"."_$id"."_commentType where parent='$no'  AND game='$no' AND no = `comment` AND (type in ".$commentType." or ismember = $member[no] and type like 'ë©”ëª¨')".$checkChar."order by no asc ".$l;
+			$sql="select * from $t_comment"."_$id, $t_comment"."_$id"."_commentType where parent='$no'  AND game='$no' AND no = `comment` AND (type in ".$commentType." or ismember = $member[no] and type like '¸Ş¸ğ')".$checkChar."order by no asc ".$l;
 		}
 		elseif($viewDay == 0){
-			$logCount = mysql_fetch_array(mysql_query("select count(*) from $t_comment"."_$id, $t_comment"."_$id"."_commentType where parent='$no' AND game='$no' AND no = `comment` AND (type in ".$commentType." or ismember = $member[no] and type like 'ë©”ëª¨')".$checkChar." and reg_date  < $gameinfo[deathtime]  order by no asc"));			
+			$logCount = mysql_fetch_array(mysql_query("select count(*) from $t_comment"."_$id, $t_comment"."_$id"."_commentType where parent='$no' AND game='$no' AND no = `comment` AND (type in ".$commentType." or ismember = $member[no] and type like '¸Ş¸ğ')".$checkChar." and reg_date  < $gameinfo[deathtime]  order by no asc"));			
 
 			$totalCommentPage = ceil( $logCount[0]/ $readLatest) ;
 
@@ -848,9 +850,9 @@ function toClip(memo) {
 			$logCount= $logCount[0] > $readLatest  ?  $readLatest * ($cPage -1) :0;
 			$l = " limit ".($logCount).", ".$readLatest ;
 
-			$sql="select * from $t_comment"."_$id, $t_comment"."_$id"."_commentType where parent='$no' AND game='$no' AND no = `comment` AND (type in ".$commentType." or ismember = $member[no] and type like 'ë©”ëª¨')".$checkChar." and reg_date  < $gameinfo[deathtime]  order by no asc ".$l;
+			$sql="select * from $t_comment"."_$id, $t_comment"."_$id"."_commentType where parent='$no' AND game='$no' AND no = `comment` AND (type in ".$commentType." or ismember = $member[no] and type like '¸Ş¸ğ')".$checkChar." and reg_date  < $gameinfo[deathtime]  order by no asc ".$l;
 		}
-		elseif($viewDay == $gameinfo['day'] and ($gameinfo['state']=="ê²Œì„ë" or $gameinfo['state']=="í…ŒìŠ¤íŠ¸")){
+		elseif($viewDay == $gameinfo['day'] and ($gameinfo['state']=="°ÔÀÓ³¡" or $gameinfo['state']=="Å×½ºÆ®")){
 			$sql = "select count(*) from $t_comment"."_$id, $t_comment"."_$id"."_commentType where parent='$no'  AND game='$no' AND no = `comment` ".$checkChar." and reg_date  > ".($starttime)."  order by no asc ";
 			$logCount = mysql_fetch_array(mysql_query($sql));			
 
@@ -889,7 +891,7 @@ function toClip(memo) {
 ?>
 
 
-<!-- ê°„ë‹¨í•œ ë‹µê¸€ ì‹œì‘í•˜ëŠ” ë¶€ë¶„ -->
+<!-- °£´ÜÇÑ ´ä±Û ½ÃÀÛÇÏ´Â ºÎºĞ -->
 <?=$hide_comment_start?> 
 <div id="commentContainer">
 

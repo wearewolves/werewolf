@@ -316,7 +316,7 @@
 	<div class="viewState">
 		<div class="state">투표</div>
 		<div class="content">				
-				<?echo $character_list[$death['character']]."씨가 투표 결과로 목 매달아졌습니다.<br>" ;?>
+				<?echo $character_list[$death['character']]." 씨가 투표 결과로 목 매달아졌습니다.<br>" ;?>
 		</div>
 	</div>	
 				<?}?>
@@ -325,8 +325,8 @@
 	<div class="viewState">
 		<div class="state">습격</div>
 		<div class="content">				
-				<?if($death){ echo $character_list[$death['character']]."의 시체가 발견되었습니다.<br>지난 밤 인랑에게 습격받은 것으로 보입니다.<br>";}
-				else{echo "지난 밤에는 습격이 없었다. 인랑이 습격에 실패한 것일까...?<br>";}?>
+				<?if($death){ echo $character_list[$death['character']]."의 시체가 발견되었습니다.<br>지난밤 인랑에게 습격받은 것으로 보입니다.<br>";}
+				else{echo "지난밤에는 습격이 없었다. 인랑이 습격에 실패한 것일까...?<br>";}?>
 		</div>
 	</div>
 			<?}?>
@@ -337,7 +337,7 @@
 	<div class="viewState">
 		<div class="state">투표</div>
 		<div class="content">				
-				<?echo $character_list[$death['character']]."씨가 투표 결과에 의해 생매장당했습니다.<br>" ;?>
+				<?echo $character_list[$death['character']]." 씨가 투표 결과에 의해 생매장당했습니다.<br>" ;?>
 		</div>
 	</div>	
 				<?}?>
@@ -354,7 +354,7 @@
 	<div class="viewState">
 		<div class="state">습격</div>
 		<div class="content">
-				<?echo "지난 밤은 왠지 소란스러웠다. 불길한 생각에 밖을 내다보니<br />무참히 살해된 시체가 있었다… 죽은 자의 이름은…<br /><br />".$death_player_list;?>
+				<?echo "지난밤은 왠지 소란스러웠다. 불길한 생각에 밖을 내다보니<br />무참히 살해된 시체가 있었다… 죽은 자의 이름은…<br /><br />".$death_player_list;?>
 		</div>
 	</div>
 				<?}
@@ -362,7 +362,7 @@
 	<div class="viewState">
 		<div class="state">습격</div>
 		<div class="content">
-				<?echo "지난 밤은 너무나도 조용했다. 눈을 뜨고 밖을 내다보았지만,<br />아무 일도 없었던 것 같다. 이건 어찌 된 일일까…?";?>
+				<?echo "지난밤은 너무나도 조용했다. 눈을 뜨고 밖을 내다보았지만,<br />아무 일도 없었던 것 같다. 이건 어찌 된 일일까…?";?>
 		</div>
 	</div>	
 	<?}}?>
@@ -374,7 +374,7 @@
 					<div class="viewState">
 						<div class="state">투표</div>
 							<div class="content">				
-								<?echo $character_list[$death['character']]."씨가 투표 결과로 목 매달아졌습니다.<br>" ;?>
+								<?echo $character_list[$death['character']]." 씨가 투표 결과로 목 매달아졌습니다.<br>" ;?>
 							</div>
 						</div>	
 				<?}
@@ -402,7 +402,7 @@
 	<div class="viewState">
 		<div class="state">습격</div>
 		<div class="content">
-				<?echo "지난 밤은 왠지 소란스러웠다. 불길한 생각에 밖을 내다보니<br />무참히 살해된 시체가 있었다… 죽은 자의 이름은…<br /><br />".$death_player_list;?>
+				<?echo "지난밤은 왠지 소란스러웠다. 불길한 생각에 밖을 내다보니<br />무참히 살해된 시체가 있었다… 죽은 자의 이름은…<br /><br />".$death_player_list;?>
 		</div>
 	</div>
 				<?}
@@ -410,7 +410,7 @@
 	<div class="viewState">
 		<div class="state">습격</div>
 		<div class="content">
-				<?echo "지난 밤은 너무나도 조용했다. 눈을 뜨고 밖을 내다보았지만,<br />아무 일도 없었던 것 같다. 이건 어찌 된 일일까…?";?>
+				<?echo "지난밤은 너무나도 조용했다. 눈을 뜨고 밖을 내다보았지만,<br />아무 일도 없었던 것 같다. 이건 어찌 된 일일까…?";?>
 		</div>
 	</div>	
 	<?}}?>
@@ -444,8 +444,8 @@
 			<div class="content">
 				<?="점괘가 나왔다. ".$character_list[$forecast_result['mystery']]?>
 				<?	
-					if($forecast_result[result] == 0 or $forecast_result[result] == 2) echo "씨는 인간이다.";
-					else echo "씨는 인랑이다.";
+					if($forecast_result[result] == 0 or $forecast_result[result] == 2) echo " 씨는 인간이다.";
+					else echo " 씨는 인랑이다.";
 					?>
 
 			

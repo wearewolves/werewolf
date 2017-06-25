@@ -7,6 +7,7 @@ class RULE_NAME:
     HAMSTER = 2
     EXPANSION = 3
     CONFIDENCE = 4
+    INSTANT = 5
 
 class SUBRULE_NAME:
     ASSAULT_ONESELF = 1
@@ -39,4 +40,7 @@ class RuleFactory:
         elif rule == RULE_NAME.CONFIDENCE:
             from werewolf.game.rule.ConfidenceRule import ConfidenceRule
             return ConfidenceRule(game)
+        elif rule == RULE_NAME.INSTANT:
+            from werewolf.game.rule.InstantRule import InstantRule
+            return InstantRule(game)
     getRule = staticmethod(getRule)

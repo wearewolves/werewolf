@@ -7,12 +7,12 @@ from werewolf.game.entry.Role import Truecharacter
 from werewolf.game.entry.Role import Race
 from werewolf.game.rule.Rule import WerewolfRule
 
-class ExpensionRule(WerewolfRule):
+class ExpansionRule(WerewolfRule):
     def __init__(self, game):
-        super(ExpensionRule, self).__init__(game)
+        super(ExpansionRule, self).__init__(game)
         self.min_players = 9
         self.max_players = 17
-        logging.debug("expension rule")
+        logging.debug("expansion rule")
 
     def getTruecharacterList(self, number):
         if number < 11:

@@ -137,7 +137,7 @@
 	
 
 	//데이타 가져오기, 내가 플레이한 마을 중에서 해당 플레이어가 플레이한 마을의 entry를 가져온다
-	$sql="select *  from  `".$db->entry."` where player = $player AND `game` IN (SELECT `game` FROM `".$db->entry."` WHERE player = `".$member[no]."`) ORDER BY game";
+	$sql="select * from `".$db->entry."` where `player` = $player AND `game` IN (SELECT `game` FROM `".$db->entry."` WHERE `player` = ".$member[no].") ORDER BY `game`";
 
 	$temp_result=mysql_query($sql);
 	

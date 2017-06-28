@@ -136,10 +136,9 @@
 	$lost = 0;
 	
 
-	//데이타 가져오기
-	$sql="select *  from  `".$db->entry."` where player = $player order by game";
+	//데이타 가져오기, 내가 플레이한 마을 중에서 해당 플레이어가 플레이한 마을의 entry를 가져온다
+	$sql="select *  from  `".$db->entry."` where player = $player AND `no` IN (SELECT `no` FROM `".$db->entry."` WHERE player = '".$member[no]."') ORDER BY game";
 
-    $sql ="SELECT  *     FROM  `zetyx_board_werewolf_characterSet`  WHERE  ismember ='".$player."' AND `no` IN (SELECT `no` FROM `zetyx_board_werewolf_characterSet` WHERE ismember = '".$member[no]."') ORDER  BY  `no`  ";
 	$temp_result=mysql_query($sql);
 	
 		while($entry=@mysql_fetch_array($temp_result)){?>
@@ -256,8 +255,6 @@
 	
 
 	//데이타 가져오기
-	$sql="select *  from  `".$db->entry."` where player = $player order by game";
-
 	$sql ="SELECT  *     FROM  `zetyx_board_werewolf_characterSet`  WHERE  ismember ='".$player."' AND `no` IN (SELECT `no` FROM `zetyx_board_werewolf_characterSet` WHERE ismember = '".$member[no]."') ORDER  BY  `no`  ";
 
 

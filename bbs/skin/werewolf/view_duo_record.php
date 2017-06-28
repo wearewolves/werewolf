@@ -138,6 +138,8 @@
 
 	//데이타 가져오기
 	$sql="select *  from  `".$db->entry."` where player = $player order by game";
+
+    $sql ="SELECT  *     FROM  `zetyx_board_werewolf_characterSet`  WHERE  ismember ='".$player."' AND `no` IN (SELECT `no` FROM `zetyx_board_werewolf_characterSet` WHERE ismember = '".$member[no]."') ORDER  BY  `no`  ";
 	$temp_result=mysql_query($sql);
 	
 		while($entry=@mysql_fetch_array($temp_result)){?>

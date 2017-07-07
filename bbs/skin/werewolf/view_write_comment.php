@@ -165,7 +165,6 @@ document.querySelector("div[contenteditable]").addEventListener("paste", functio
 	// cancel paste
 	e.preventDefault();
 	
-	// get text representation of clipboard
 	if(e.clipboardData) {
 		var text = e.clipboardData.getData("text/plain");
 		// insert text manually

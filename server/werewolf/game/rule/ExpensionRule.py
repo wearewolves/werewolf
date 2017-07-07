@@ -57,7 +57,7 @@ class ExpansionRule(WerewolfRule):
     def writePlayerWill(self):
         lone_wolf = self.game.entry.getPlayersByTruecharacter(Truecharacter.LONELYWEREWOLF)
         if lone_wolf is not None:
-            lone_wolf[0].writeWill("저는 외로운 늑대입니다. (자동 생성된 로그입니다.)", "비밀")
+            lone_wolf[0].writeWill("저는 외로운 늑대죠. (자동 생성된 로그입니다.)", "비밀")
 
     def nextTurn_2day(self):
         logging.info("2일째로 고고!")

@@ -57,41 +57,41 @@ class ExpansionRule(WerewolfRule):
     def writePlayerWill(self):
         lone_wolf = self.game.entry.getPlayersByTruecharacter(Truecharacter.LONELYWEREWOLF)
         if lone_wolf is not None:
-            lone_wolf[0].writeWill("Àú´Â ¿Ü·Î¿î ´Á´ëÀÔ´Ï´Ù. (ÀÚµ¿ »ı¼ºµÈ ·Î±×ÀÔ´Ï´Ù.)", "ºñ¹Ğ")
+            lone_wolf[0].writeWill("ì €ëŠ” ì™¸ë¡œìš´ ëŠ‘ëŒ€ì…ë‹ˆë‹¤.  (ìë™ ìƒì„±ëœ ë¡œê·¸ì…ë‹ˆë‹¤.)", "ë¹„ë°€")
 
     def nextTurn_2day(self):
-        logging.info("2ÀÏÂ°·Î °í°í!")
+        logging.info("2ì¼ì§¸ë¡œ ê³ ê³ !")
 
-        #ÀÏ¹İ ·Î±×¸¦ ¾²Áö ¾ÊÀº »ç¶÷À» Ã¼Å©ÇÑ´Ù.
+        #ì¼ë°˜ ë¡œê·¸ë¥¼ ì“°ì§€ ì•Šì€ ì‚¬ëŒì„ ì²´í¬í•œë‹¤.
         self.game.entry.checkNoCommentPlayer()
 
-        #Èñ»ı¾ç NPC ½À°İ
+        #í¬ìƒì–‘ NPC ìŠµê²©
         victim = self.game.entry.getVictim()
         victim.toDeathByWerewolf()
 
-        #µ¹¿¬»ç ½ÃÅ´
+        #ëŒì—°ì‚¬ ì‹œí‚´
         noMannerPlayers = self.game.entry.getNoMannerPlayers()
         for noMannerPlayer in noMannerPlayers:
-            noMannerPlayer.toDeath("µ¹¿¬ ")
+            noMannerPlayer.toDeath("ëŒì—° ")
 
-        #ÄÚ¸àÆ® ÃÊ±âÈ­
+        #ì½”ë©˜íŠ¸ ì´ˆê¸°í™”
         self.game.entry.initComment()
 
-        #3. °ÔÀÓ Á¤º¸ ¾÷µ¥ÀÌÆ®
-        self.game.setGameState("state", "°ÔÀÓÁß")
+        #3. ê²Œì„ ì •ë³´ ì—…ë°ì´íŠ¸
+        self.game.setGameState("state", "ê²Œì„ì¤‘")
         self.game.setGameState("day", self.game.day+1)
 
     def nextTurn_Xday(self):
-        logging.info("´ÙÀ½ ³¯·Î °í°í!")
-        #ÀÏ¹İ ·Î±×¸¦ ¾²Áö ¾ÊÀº »ç¶÷À» Ã¼Å©ÇÑ´Ù.
+        logging.info("ë‹¤ìŒ ë‚ ë¡œ ê³ ê³ !")
+        #ì¼ë°˜ ë¡œê·¸ë¥¼ ì“°ì§€ ì•Šì€ ì‚¬ëŒì„ ì²´í¬í•œë‹¤.
         self.game.entry.checkNoCommentPlayer()
 
-        #ÅõÇ¥ - »ì¾ÆÀÖ´Â Âü°¡ÀÚ°¡ ÅõÇ¥¸¦ Çß´ÂÁö Ã¼Å©, ¾È Çß´Ù¸é ·£´ı ÅõÇ¥
+        #íˆ¬í‘œ - ì‚´ì•„ìˆëŠ” ì°¸ê°€ìê°€ íˆ¬í‘œë¥¼ í–ˆëŠ”ì§€ ì²´í¬, ì•ˆ í–ˆë‹¤ë©´ ëœë¤ íˆ¬í‘œ
         victim = self.decideByMajority()
         if victim:
             if victim.truecharacter == Truecharacter.DIABLO:
                 if victim.awaken():
-                    logging.info("µğ¾Æºí·Î ½Â¸®")
+                    logging.info("ë””ì•„ë¸”ë¡œ ìŠ¹ë¦¬")
                     self.game.setGameState("win", "3")
                     if self.game.termOfDay == 60:
                         self.game.setGameState("state", GAME_STATE.TESTOVER)
@@ -100,35 +100,35 @@ class ExpansionRule(WerewolfRule):
                     self.game.entry.allocComment()
                     self.game.setGameState("day", self.game.day+1)
                     return
-            victim.toDeath("½ÉÆÇ")
+            victim.toDeath("ì‹¬íŒ")
 
-        #µ¹¿¬»ç ½ÃÅ´
+        #ëŒì—°ì‚¬ ì‹œí‚´
         noMannerPlayers = self.game.entry.getNoMannerPlayers()
         for noMannerPlayer in noMannerPlayers:
-            noMannerPlayer.toDeath("µ¹¿¬ ")
+            noMannerPlayer.toDeath("ëŒì—° ")
 
-        #ÄÚ¸àÆ® ÃÊ±âÈ­
+        #ì½”ë©˜íŠ¸ ì´ˆê¸°í™”
         self.game.entry.initComment()
 
-        #½À°İ!
+        #ìŠµê²©!
         assaultVictim = self.decideByWerewolf()
         if assaultVictim:
             logging.debug("assaultVictim: %s", assaultVictim)
             self.assaultByWerewolf(assaultVictim, victim)
 
-        #Á¾·á Á¶°Ç È®ÀÎ
-        #»ç¶÷!
+        #ì¢…ë£Œ ì¡°ê±´ í™•ì¸
+        #ì‚¬ëŒ!
         humanRace = self.game.entry.getEntryByRace(Race.HUMAN)
         #for human in humanRace :
         #    print human
 
-        #½À°İÀÚ!
+        #ìŠµê²©ì!
         werewolfRace = self.game.entry.getEntryByRace(Race.WEREWOLF)
         #for werewolf in werewolfRace :
         #    print werewolf
 
         if (len(humanRace) <= len(werewolfRace)) or not humanRace:
-            logging.info("ÀÎ¶û ½Â¸®")
+            logging.info("ì¸ë‘ ìŠ¹ë¦¬")
             self.game.setGameState("win", "1")
             if self.game.termOfDay == 60:
                 self.game.setGameState("state", GAME_STATE.TESTOVER)
@@ -137,7 +137,7 @@ class ExpansionRule(WerewolfRule):
             self.game.entry.allocComment()
 
         elif not werewolfRace:
-            logging.info("ÀÎ°£ ½Â¸®")
+            logging.info("ì¸ê°„ ìŠ¹ë¦¬")
             self.game.setGameState("win", "0")
             if self.game.termOfDay == 60:
                 self.game.setGameState("state", GAME_STATE.TESTOVER)
@@ -146,8 +146,8 @@ class ExpansionRule(WerewolfRule):
             self.game.entry.allocComment()
 
         else:
-            logging.info("°è¼Ó ÁøÇà")
-            #self.game.setGameState("state","°ÔÀÓÁß")
+            logging.info("ê³„ì† ì§„í–‰")
+            #self.game.setGameState("state","ê²Œì„ì¤‘")
 
         self.game.setGameState("day", self.game.day+1)
 
@@ -157,7 +157,7 @@ class ExpansionRule(WerewolfRule):
         guard = None
         hunterPlayer = self.game.entry.getPlayersByTruecharacter(Truecharacter.BODYGUARD)[0]    
 
-        if hunterPlayer.alive == "»ıÁ¸":
+        if hunterPlayer.alive == "ìƒì¡´":
             logging.debug("hunberPlayer: %s", hunterPlayer)
             guard = hunterPlayer.guard()
             if guard is not None:
@@ -165,23 +165,23 @@ class ExpansionRule(WerewolfRule):
                 logging.debug("guard: %s", guard)
 
         if assaultVictim.id == victim.id:
-            logging.debug("½À°İ ½ÇÆĞ: °í½À½Ç")
+            logging.debug("ìŠµê²© ì‹¤íŒ¨: ê³ ìŠµì‹¤")
         elif guard and assaultVictim.id == guard.id:
-            logging.debug("½À°İ ½ÇÆĞ: ¼±¹æ")
+            logging.debug("ìŠµê²© ì‹¤íŒ¨: ì„ ë°©")
         else:
-            logging.debug("½À°İ ¼º°ø: %s", assaultVictim)
-            assaultVictim.toDeath("½À°İ")
+            logging.debug("ìŠµê²© ì„±ê³µ: %s", assaultVictim)
+            assaultVictim.toDeath("ìŠµê²©")
 
     def decideByWerewolf(self):
         cursor = self.game.db.cursor
 
-        logging.debug("½À°İ!!!")
-        #½À°İÀÇ Èñ»ı¾çµé...
+        logging.debug("ìŠµê²©!!!")
+        #ìŠµê²©ì˜ í¬ìƒì–‘ë“¤...
         humanRace = self.game.entry.getEntryByRace(Race.HUMAN)
         logging.debug("humanlist: %s", [str(player) for player in humanRace])
 
-        #½À°İÀÚ!
-        werewolfPlayers = self.game.entry.getPlayersByTruecharacter(Truecharacter.WEREWOLF, "('»ıÁ¸')")
+        #ìŠµê²©ì!
+        werewolfPlayers = self.game.entry.getPlayersByTruecharacter(Truecharacter.WEREWOLF, "('ìƒì¡´')")
         readerwerewolfPlayer = self.game.entry.getPlayersByTruecharacter(Truecharacter.READERWEREWOLF)
         lonelywerewolfPlayer = self.game.entry.getPlayersByTruecharacter(Truecharacter.LONELYWEREWOLF)
         logging.debug("%s", werewolfPlayers)
@@ -192,24 +192,24 @@ class ExpansionRule(WerewolfRule):
         if lonelywerewolfPlayer:
             lonelywerewolfPlayer = lonelywerewolfPlayer[0]
 
-        #»ì¾Æ ÀÖ´Â ÀÎ¶ûÀÌ ÀÖÀ» ¶§¸¸ ½À°İÀ» ÁøÇàÇÑ´Ù.
-        if not werewolfPlayers and (not readerwerewolfPlayer or readerwerewolfPlayer.alive=="»ç¸Á") \
-                            and (not lonelywerewolfPlayer or lonelywerewolfPlayer.alive =="»ç¸Á"):
+        #ì‚´ì•„ ìˆëŠ” ì¸ë‘ì´ ìˆì„ ë•Œë§Œ ìŠµê²©ì„ ì§„í–‰í•œë‹¤.
+        if not werewolfPlayers and (not readerwerewolfPlayer or readerwerewolfPlayer.alive=="ì‚¬ë§") \
+                            and (not lonelywerewolfPlayer or lonelywerewolfPlayer.alive =="ì‚¬ë§"):
             return
 
-        #ÀÎ¶ûµéÀÌ ½À°İÀ» °áÁ¤Çß´ÂÁö È®ÀÎÇÑ´Ù.
+        #ì¸ë‘ë“¤ì´ ìŠµê²©ì„ ê²°ì •í–ˆëŠ”ì§€ í™•ì¸í•œë‹¤.
         for werewolfPlayer in werewolfPlayers:
-            #½À°İÀ» ¾ÈÇß´Ù¸é! ·£´ı ½À°İ ½ÃÀÛ
+            #ìŠµê²©ì„ ì•ˆí–ˆë‹¤ë©´! ëœë¤ ìŠµê²© ì‹œì‘
             if not werewolfPlayer.hasAssault():
                 werewolfPlayer.assaultRandom(humanRace)
-        if readerwerewolfPlayer and readerwerewolfPlayer.alive=="»ıÁ¸":
+        if readerwerewolfPlayer and readerwerewolfPlayer.alive=="ìƒì¡´":
             if not readerwerewolfPlayer.hasAssault():
                 readerwerewolfPlayer.assaultRandom(humanRace)
-        if lonelywerewolfPlayer and lonelywerewolfPlayer.alive=="»ıÁ¸":
+        if lonelywerewolfPlayer and lonelywerewolfPlayer.alive=="ìƒì¡´":
             if not lonelywerewolfPlayer.hasAssault():
                 lonelywerewolfPlayer.assaultRandom(humanRace)
 
-        #ÀÎ¶ûµéÀÌ °¡Àå ÁÁ¾ÆÇÏ´Â »ç¶÷À» Ã£´Â´Ù.
+        #ì¸ë‘ë“¤ì´ ê°€ì¥ ì¢‹ì•„í•˜ëŠ” ì‚¬ëŒì„ ì°¾ëŠ”ë‹¤.
         query = '''select `injured`, count(*)*2 as count from `zetyx_board_werewolf_deathNote` 
         where game = '%s' and day ='%s' 
         group by `injured` 
@@ -221,7 +221,7 @@ class ExpansionRule(WerewolfRule):
         result = cursor.fetchall()
         logging.debug(result)
 
-        if lonelywerewolfPlayer and lonelywerewolfPlayer.alive == "»ıÁ¸":
+        if lonelywerewolfPlayer and lonelywerewolfPlayer.alive == "ìƒì¡´":
             query = '''select `injured`, count(*) as count from `zetyx_board_werewolf_deathnotehalf` 
             where game = '%s' and day ='%s' 
             group by `injured` 

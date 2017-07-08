@@ -47,6 +47,9 @@
 			printMain += "<tr onMousedown=location.href='skin/werewolf/view_private_record.php?id=werewolf"+"&player="+member_no+"';><td style=font-family:굴림;font-size:9pt height=18 nowrap>&nbsp;<img src=images/n_record.gif border=0 align=absmiddle>&nbsp;&nbsp;게임 기록&nbsp;&nbsp;</td></tr>";
 			printHeight = printHeight + 16;
 
+			printMain += "<tr onMousedown=location.href='skin/werewolf/view_duo_record.php?id=werewolf"+"&player="+member_no+"';><td style=font-family:굴림;font-size:9pt height=18 nowrap>&nbsp;<img src=images/n_record.gif border=0 align=absmiddle>&nbsp;&nbsp;듀오 기록&nbsp;&nbsp;</td></tr>";
+			printHeight = printHeight + 16;
+
 			printMain += "<tr onMousedown=window.open('view_info2.php?member_no="+member_no+"','view_info','width=400,height=510,toolbar=no,scrollbars=yes');><td style=font-family:굴림;font-size:9pt height=18 nowrap>&nbsp;<img src=images/n_information.gif border=0 align=absmiddle>&nbsp;&nbsp;회원정보 보기&nbsp;&nbsp;</td></tr>";
 			printHeight = printHeight + 16;
 		}

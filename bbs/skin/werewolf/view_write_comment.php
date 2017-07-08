@@ -164,10 +164,17 @@ document.onload = initCommentType();
 document.querySelector("div[contenteditable]").addEventListener("paste", function(e) {
 	// cancel paste
 	e.preventDefault();
-	// get text representation of clipboard
-	var text = e.clipboardData.getData("text/plain");
-	// insert text manually
-	document.execCommand("insertHTML", false, text); 
+	
+	if(e.clipboardData) {
+		var text = e.clipboardData.getData("text/plain");
+		// insert text manually
+		document.execCommand("insertHTML", false, text);
+	}
+	else if(window.clipboardData) {
+		var text = window.clipboardData.getData("Text");
+		// insert text manually
+		document.execCommand('paste', false, text);
+	}
 });
 </script>
 

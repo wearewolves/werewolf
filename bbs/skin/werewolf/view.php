@@ -206,8 +206,8 @@
 			<!--
 			<span class="align-right">
 			-->
-				<? echo "사건 발생 직전 ".($gameinfo['delayBefore'] / 60)."분<br>"; ?>
-				<? echo "마을 시작 직후 ".($gameinfo['delayAfter'] / 60)."분"; ?>
+				<? echo "마을 시작 직후 ".($gameinfo['delayAfter'] / 60)."분<br>"; ?>
+				<? echo "사건 발생 직전 ".($gameinfo['delayBefore'] / 60)."분"; ?>
 			<!--
 			</span>
 			-->

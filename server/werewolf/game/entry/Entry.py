@@ -124,14 +124,14 @@ class Entry:
 
     def initComment(self):
         cursor = self.game.db.cursor
-        
+		
         query = """update `zetyx_board_werewolf_entry` 
         set comment = '0', normal = '0', memo  = '10' , secret = '40' , grave = '20', telepathy = '1', isConfirm = '0'
         where game = '%s'"""
         query %= (self.game.game)
         logging.debug(query)
         cursor.execute(query)
-        
+		
         query = """update `zetyx_board_werewolf_gameinfo` 
         set delayAfterUsed = '0', delayBeforeUsed = '0'
         where game = '%s'"""
@@ -141,14 +141,14 @@ class Entry:
 
     def allocComment(self):
         cursor = self.game.db.cursor
-        
+		
         query = """update `zetyx_board_werewolf_entry` 
         set normal = '20'
         where game = '%s'"""
         query %= (self.game.game)
         logging.debug(query)
         cursor.execute(query)
-        
+		
         query = """update `zetyx_board_werewolf_gameinfo` 
         set delayAfterUsed = '1'
         where game = '%s'"""
@@ -158,14 +158,14 @@ class Entry:
 
     def freeComment(self):
         cursor = self.game.db.cursor
-        
+		
         query = """update `zetyx_board_werewolf_entry` 
         set normal = '0'
         where game = '%s'"""
         query %= (self.game.game)
         logging.debug(query)
         cursor.execute(query)
-        
+		
         query = """update `zetyx_board_werewolf_gameinfo` 
         set delayBeforeUsed = '1'
         where game = '%s'"""
@@ -187,14 +187,18 @@ class Entry:
                 eval('resultList.append(%s(self.game, entry))'%role_name)
         return resultList
 
+    """
     def getAllEntry(self):
         cursor = self.db.cursor
         
-        query = "SELECT * FROM `zetyx_board_werewolf_entry` WHERE game ='%s' and  victim = '0'"
-        query %= (self.game.game)
+        query = "SELECT player FROM `zetyx_board_werewolf_entry` WHERE game ='%s' and  victim = '0'"
+        query%=self.game.game
         #print query
         cursor.execute(query)
-        return self.makePlayer(cursor.fetchall())       
+        allEntry = list(cursor.fetchall())
+        #print list(allEntry)
+        return allEntry        
+    """
 
     def getEntryByRace(self, truecharacter, alive="»ýÁ¸"):
         cursor = self.game.db.cursor

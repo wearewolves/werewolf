@@ -151,6 +151,10 @@
 										break;
 							case 3: $rule = "익스펜션";
 										break;
+							case 4: $rule = "신뢰도";
+										break;
+							case 5: $rule = "인스턴트";
+										break;
 						}
 
 						switch($gameinfo['win']){

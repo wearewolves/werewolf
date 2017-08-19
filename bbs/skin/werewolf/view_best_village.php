@@ -8,7 +8,7 @@
 	@extract($HTTP_SERVER_VARS); 
 	@extract($HTTP_ENV_VARS);
 
-// 제로보드 라이브러리 가져옴
+// 제로보드 라이브러리 가져옴 
 	$_zb_path = realpath("../../")."/";
 	include $_zb_path."lib.php";
 

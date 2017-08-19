@@ -8,7 +8,7 @@
 	@extract($HTTP_SERVER_VARS); 
 	@extract($HTTP_ENV_VARS);
 
-// 제로보드 라이브러리 가져옴 
+// 제로보드 라이브러리 가져옴
 	$_zb_path = realpath("../../")."/";
 	include $_zb_path."lib.php";
 
@@ -150,6 +150,10 @@
 							case 2: $rule = "햄스터"; 
 										break;
 							case 3: $rule = "익스펜션";
+										break;
+							case 4: $rule = "신뢰도";
+										break;
+							case 5: $rule = "인스턴트";
 										break;
 						}
 

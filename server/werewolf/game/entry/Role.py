@@ -30,7 +30,7 @@ class Truecharacter(object):
     WEREWOLF_CON = 17
 
     # 더미룰을 위한 더미 리스트 (인랑리스트, 기타리스트)
-    # 더미 인랑 리스트: 랑습룰시 더미 가능 
+    # 더미 인랑 리스트: 랑습룰시 더미 가능
     LIST_WEREWOLF = [WEREWOLF, LONELYWEREWOLF, READERWEREWOLF, WEREWOLF_CON]
     # 더미 기타 리스트: 어떠한 경우에도 더미가 되지 않음
     LIST_OTHERS = [WEREHAMSTER, DIABLO]
@@ -66,6 +66,31 @@ class Seer(Player):
         logging.debug(query)
         cursor.execute(query)
         return cursor.fetchone()
+
+    def seerRandom(self):
+        # 모든 인원을 찾는다
+        allEntry = getAllEntry()
+        # 랜덤 한 명을 고른다
+        while True:
+            targetPlayer = random.choice(allEntry)
+            if targetPlayer.character == self.character:
+                logging.debug("random assault choose oneself: %s -> %s", self, targetPlayer)
+            else:
+                break
+        logging.debug("random seer: %s -> %s", self, targetPlayer)
+        # race를 찾는다
+        cursor = self.game.db.cursor
+        query = "SELECT race FROM `zetyx_board_werewolf_truecharacter` WHERE no ='%s'"
+        query %= (targetPlayer.truecharacter)
+        logging.debug(query)
+        cursor.execute(query)
+        targetrace = cursor.fetchone()
+        # 설정한다
+        cursor2 = self.game.db.cursor
+        query2 = "INSERT INTO `zetyx_board_werewolf_revelation`(`game`,`day`,`type`,`prophet`,`mystery`,`result`) VALUES ('%s','%s','점' ,'%s','%s','%s');"
+        query2 %= (self.game.game, self.game.day, self.character, targetPlayer.character, targetrace)
+        logging.debug(query2)
+        cursor2.execute(query2)
 
 class Medium(Player):
     pass

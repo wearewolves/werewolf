@@ -33,30 +33,35 @@ class InstantRule(WerewolfRule):
         WerewolfRule.initGame(self)
         self.deletenormallog()
 
-		#점쟁이를 찾는다 
+        #점쟁이를 찾는다 
         seerPlayer = self.game.entry.getPlayersByTruecharacter(Truecharacter.SEER)[0]
         #랜덤으로 점설정을 해준다.
         seerPlayer.seerRandom()
 
-        # 2일째로 진행
-        victim = self.game.entry.getVictim()
-        victim.toDeathByWerewolf()
-        self.game.entry.initComment()
-        self.deleteNormallog()
-        self.game.setGameState("state", "게임중")
-        self.game.setGameState("day", self.game.day+1)
+        WerewolfRule.nextTurn(self)
 
-    def nextTurn_2day(self):
-        raise NotImplementedError("InstantRule must not call nextTurn_2day")
-
-        #희생양 NPC 습격
+		# 2일째로 진행
         #victim = self.game.entry.getVictim()
         #victim.toDeathByWerewolf()
-
         #self.game.entry.initComment()
-
+        #self.deleteNormallog()
         #self.game.setGameState("state", "게임중")
         #self.game.setGameState("day", self.game.day+1)
+
+    def nextTurn_2day(self):
+        logging.info("2일째로 고고!")
+
+        #self.nextTurn_Xday()
+
+        #희생양 NPC 습격
+        victim = self.game.entry.getVictim()
+        victim.toDeathByWerewolf()
+
+        self.game.entry.initComment()
+
+        #3. 게임 정보 업데이트
+        self.game.setGameState("state", "게임중")
+        self.game.setGameState("day", self.game.day+1)
 
     def nextTurn_Xday(self):
         logging.info("다음 날로 고고!")

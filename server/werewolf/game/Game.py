@@ -55,6 +55,11 @@ class Game:
                 deathtime = self.deathTime
             else:
                 deathtime = self.getTimetable()['reg_date'] + self.termOfDay
+            
+            # 디버그 서버일 경우엔 준비완료를 같게 한다
+            if config.server == "test group":
+                AllConfirmCounter = AllAlivePlayerCounter
+                
             # 준비 완료 OR 시간이 지남
             if((self.state == "게임중" and AllAlivePlayerCounter == AllConfirmCounter) or time.time() >= deathtime):
                 logging.debug("Alive players: %s", AllAlivePlayerCounter)

@@ -4,7 +4,6 @@ __all__ = ['Rule', 'RuleFactory',
            'ConfidenceRule',
            'InstantRule']
 
-
 import Rule
 import BasicRule
 import HamsterRule

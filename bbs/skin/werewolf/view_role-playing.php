@@ -9,7 +9,7 @@
 	$_zb_path = realpath("../../")."/";
 	include $_zb_path."lib.php";
 
-// DB 연결정보와 회원정보 가져옴
+// DB 연결정보와 회원정보 가져옴 
 	$connect = dbConn();
 	$member  = member_info();
 

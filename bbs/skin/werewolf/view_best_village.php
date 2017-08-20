@@ -2,7 +2,7 @@
 <head>
 <title>:: Best 마을 ::</title>
 <?
-// register_globals가 off일때를 위해 변수 재 정의
+// register_globals가 off일때를 위해 변수 재 정의 
 	@extract($HTTP_GET_VARS); 
 	@extract($HTTP_POST_VARS); 
 	@extract($HTTP_SERVER_VARS); 

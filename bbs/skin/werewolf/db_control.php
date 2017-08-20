@@ -15,6 +15,7 @@
 
 	mysql_query("update `zetyx_board_werewolf_rule` set min_player = '7', max_player = '8' where no = 5;");
 	
+	
 	echo "Update<br>";
 
 	mysql_close($connect);

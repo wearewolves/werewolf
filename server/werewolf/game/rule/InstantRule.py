@@ -33,7 +33,7 @@ class InstantRule(WerewolfRule):
         WerewolfRule.initGame(self)
         self.deletenormallog()
 
-		#점쟁이를 찾는다
+		#점쟁이를 찾는다 
         seerPlayer = self.game.entry.getPlayersByTruecharacter(Truecharacter.SEER)[0]
         #랜덤으로 점설정을 해준다.
         seerPlayer.seerRandom()

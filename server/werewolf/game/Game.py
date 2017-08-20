@@ -5,6 +5,7 @@ from werewolf.database.DATABASE     import DATABASE
 from werewolf.game.GAME_STATE       import GAME_STATE
 import time
 import logging
+import config
 
 class Game:
     def __init__(self, rec, db):

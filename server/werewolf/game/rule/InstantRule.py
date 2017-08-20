@@ -31,22 +31,40 @@ class InstantRule(WerewolfRule):
     def initGame(self):
         logging.info("init Instant Rule")
         WerewolfRule.initGame(self)
-        self.deletenormallog()
+        
+        cursor = self.game.db.cursor
+        query = """update `zetyx_board_werewolf_entry` set normal ='0' where game = '%s'"""
+        query %= (self.game.game)
+        logging.debug(query)
+        cursor.execute(query)
 
         #점쟁이를 찾는다
         seerPlayer = self.game.entry.getPlayersByTruecharacter(Truecharacter.SEER)[0]
         #랜덤으로 점설정을 해준다.
         seerPlayer.seerRandom()
 
-        WerewolfRule.nextTurn(self)
-
-		# 2일째로 진행 
+		# 날을 진행 
         #victim = self.game.entry.getVictim()
         #victim.toDeathByWerewolf()
-        #self.game.entry.initComment()
-        #self.deleteNormallog()
-        #self.game.setGameState("state", "게임중")
-        #self.game.setGameState("day", self.game.day+1)
+        self.game.entry.initComment()
+        self.game.setGameState("state", "게임중")
+        self.game.setGameState("day", self.game.day+1)
+        
+    def writePlayerWill(self):
+        allentry_list = self.game.entry.getAllEntry()
+        for entry_part in allentry_list:
+            entry_part.writeWill("생존 로그입니다. (자동 생성된 로그입니다.)", "일반")
+
+    def checkDelayToAllocComment(self):
+        logging.info("InstantRule CheckDelay")
+        logging.debug("game day: %d", self.game.day)
+        if self.game.day == 1:
+            logging.info("Instant deleteNormallog")
+            self.deleteNormallog()
+        else:
+            logging.info("Instant alloc")
+            self.game.entry.allocComment()
+            
 
     def nextTurn_2day(self):
         logging.info("2일째로 고고!")
@@ -59,26 +77,31 @@ class InstantRule(WerewolfRule):
 
         self.game.entry.initComment()
 
+        #습격!
+        assaultVictim = self.decideByWerewolf()
+        if assaultVictim:
+            logging.debug("assaultVictim: %s", assaultVictim)
+            self.assaultByWerewolf(assaultVictim, victim)
+
         #3. 게임 정보 업데이트
         self.game.setGameState("state", "게임중")
         self.game.setGameState("day", self.game.day+1)
 
     def nextTurn_Xday(self):
         logging.info("다음 날로 고고!")
-        
-        if self.game.day > 2:
-            #일반 로그를 쓰지 않은 사람을 체크한다.
-            self.game.entry.checkNoCommentPlayer()
+       
+        #일반 로그를 쓰지 않은 사람을 체크한다.
+        self.game.entry.checkNoCommentPlayer()
 
-            #투표 - 살아있는 참가자가 투표를 했는지 체크, 안 했다면 랜덤 투표
-            victim = self.decideByMajority()
-            if victim:
-                victim.toDeath("심판")
+        #투표 - 살아있는 참가자가 투표를 했는지 체크, 안 했다면 랜덤 투표
+        victim = self.decideByMajority()
+        if victim:
+            victim.toDeath("심판")
 
-            #돌연사 시킴
-            noMannerPlayers = self.game.entry.getNoMannerPlayers()
-            for noMannerPlayer in noMannerPlayers:
-                noMannerPlayer.toDeath("돌연 ")
+        #돌연사 시킴
+        noMannerPlayers = self.game.entry.getNoMannerPlayers()
+        for noMannerPlayer in noMannerPlayers:
+            noMannerPlayer.toDeath("돌연 ")
 
         #코멘트 초기화
         self.game.entry.initComment()

@@ -40,7 +40,7 @@ class InstantRule(WerewolfRule):
 
         WerewolfRule.nextTurn(self)
 
-		# 2일째로 진행
+		# 2일째로 진행 
         #victim = self.game.entry.getVictim()
         #victim.toDeathByWerewolf()
         #self.game.entry.initComment()

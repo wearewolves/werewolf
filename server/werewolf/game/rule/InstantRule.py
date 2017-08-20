@@ -217,9 +217,10 @@ class InstantRule(WerewolfRule):
         logging.debug("Injured: %s in %s", injured, [str(player) for player in injured_list])
         return self.game.entry.getCharacter(injured)
 
+    # 일반로그를 모두 없애고 comment 부분을 1로 체크해준다.(comment가 1이어야 돌연을 안 한다)
     def deleteNormallog(self):
         cursor = self.game.db.cursor
-        query = """update `zetyx_board_werewolf_entry` set normal ='0' where game = '%s'"""
+        query = """update `zetyx_board_werewolf_entry` set normal ='0' set comment = '1' where game = '%s'"""
         query %= (self.game.game)
         logging.debug(query)
         cursor.execute(query)

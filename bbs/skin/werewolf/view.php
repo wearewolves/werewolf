@@ -486,6 +486,17 @@
 			</div>
 		</div>
 	<?}?>
+	<?if($viewDay == 1 and ($gameinfo['rule']==5)){ ?>
+		<div class="viewState">
+			<div class="state"></div>
+			<div class="content">
+			<?
+				if ($gameinfo['players']==7) echo "아무래도 이 안에는 인랑 2명, 점쟁이 1명, 사냥꾼 1명, 복수자 1명, 마을사람 2명이 있는 것 같다.";
+				if ($gameinfo['players']==8) echo "아무래도 이 안에는 인랑 2명, 점쟁이 1명, 사냥꾼 1명, 복수자 1명, 마을사람 3명이 있는 것 같다.";
+			?>
+			</div>
+		</div>
+	<?}?>
 </div>
 
 

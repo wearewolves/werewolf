@@ -188,7 +188,7 @@ class Entry:
         return resultList
 
     def getAllEntry(self):
-        cursor = self.db.cursor
+        cursor = self.game.db.cursor
         
         query = "SELECT * FROM `zetyx_board_werewolf_entry` WHERE game ='%s' and  victim = '0'"
         query %= (self.game.game)

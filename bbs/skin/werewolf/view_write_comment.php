@@ -322,7 +322,7 @@ document.querySelector("div[contenteditable]").addEventListener("paste", functio
 <?}?>
 
 
-<?	if($gameinfo['state']=="게임중"  and $gameinfo['day']<>1 and $truecharacter['assault'] and !$assault and $viewDay == $gameinfo['day']  and $entry['alive']=="생존") {?>
+<?	if($gameinfo['state']=="게임중"  and ($gameinfo['day']<>1 or $gameinfo['rule']==5) and $truecharacter['assault'] and !$assault and $viewDay == $gameinfo['day']  and $entry['alive']=="생존") {?>
 <table width=<?=$width?> cellspacing=0 cellpadding=0>
 <form method=post name=assault action=<?="view.php"?>  enctype="multipart/form-data"    onsubmit="return formcheck(this)">
 <input type=hidden name=page value=<?=$page?>>
@@ -416,7 +416,7 @@ document.querySelector("div[contenteditable]").addEventListener("paste", functio
 </form>
 </table>
 <?}?>
-<?	if($gameinfo['state']=="게임중" and $truecharacter['guard'] and !$guard and $viewDay == $gameinfo['day'] and $entry['alive']=="생존"  and $gameinfo['day']<>1 ) {?>
+<?	if($gameinfo['state']=="게임중" and $truecharacter['guard'] and !$guard and $viewDay == $gameinfo['day'] and $entry['alive']=="생존"  and ($gameinfo['day']<>1 or $gameinfo['rule']==5) ) {?>
 <table width=<?=$width?> cellspacing=0 cellpadding=0>
 <form method=post name=guard action=<?="view.php"?>   enctype="multipart/form-data"   onsubmit="return formcheck(this)">
 <input type=hidden name=page value=<?=$page?>>

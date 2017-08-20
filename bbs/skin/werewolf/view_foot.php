@@ -22,7 +22,7 @@ if($secretmessage and (($secretmessage['to'] ==$entry['character'] and $entry['a
 
 
 <?	
-if(($gameinfo['state']=="게임중" and $truecharacter['forecast'] and $entry['alive']=="생존")or $gameinfo['state']=="게임끝" and $viewDay > 1){
+if(($gameinfo['state']=="게임중" and $truecharacter['forecast'] and $entry['alive']=="생존")or $gameinfo['state']=="게임끝" and $viewDay > 0){
 	$forecast_result =mysql_fetch_array(mysql_query("select * from $DB_revelation where game='$no' and day=$viewDay -1 and type = '점'"));
 
 	if($forecast_result ){
@@ -40,7 +40,7 @@ if(($gameinfo['state']=="게임중" and $truecharacter['forecast'] and $entry['aliv
 }?>
 
 <?	
-if(($gameinfo['state']=="게임중" and $truecharacter['forecast-odd'] and $entry['alive']=="생존") and $viewDay > 1  ){
+if(($gameinfo['state']=="게임중" and $truecharacter['forecast-odd'] and $entry['alive']=="생존") and $viewDay > 0  ){
 	$forecast_result =mysql_fetch_array(mysql_query("select * from $DB_revelation where game='$no' and day=$viewDay -1 and type = '점'"));
 
 	if($forecast_result ){
@@ -78,7 +78,7 @@ if(($gameinfo['state']=="게임중" and $truecharacter['forecast-odd'] and $entry['
 }?>
 
 
-<?	if(($gameinfo['state']=="게임중" and $truecharacter['guard'] and $entry['alive']=="생존") or $gameinfo['state']=="게임끝" and $viewDay > 2) {
+<?	if(($gameinfo['state']=="게임중" and $truecharacter['guard'] and $entry['alive']=="생존") or $gameinfo['state']=="게임끝" and $viewDay > 1) {
 		$guard_result =mysql_fetch_array(mysql_query("select * from $DB_guard where game='$no' and day=$viewDay - 1"));
 		$assault_result =mysql_fetch_array(mysql_query("select * from $DB_deathNote_result where game='$no' and day=$viewDay - 1"));
 		

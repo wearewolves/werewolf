@@ -51,6 +51,8 @@ class InstantRule(WerewolfRule):
         self.game.setGameState("day", self.game.day+1)
         
     def writePlayerWill(self):
+        # 생존로그가 필요하지 않지만 가시적으로 남기는 것
+        # 돌연 체크는 zetyx_board_werewolf_entry의 comment 1 값으로 체크한다
         allentry_list = self.game.entry.getAllEntry()
         for entry_part in allentry_list:
             entry_part.writeWill("생존 로그입니다. (자동 생성된 로그입니다.)", "일반")

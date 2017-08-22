@@ -187,18 +187,14 @@ class Entry:
                 eval('resultList.append(%s(self.game, entry))'%role_name)
         return resultList
 
-    """
     def getAllEntry(self):
-        cursor = self.db.cursor
+        cursor = self.game.db.cursor
         
-        query = "SELECT player FROM `zetyx_board_werewolf_entry` WHERE game ='%s' and  victim = '0'"
-        query%=self.game.game
-        #print query
+        query = "SELECT * FROM `zetyx_board_werewolf_entry` WHERE game ='%s' and  victim = '0'"
+        query %= (self.game.game)
+        logging.debug(query)
         cursor.execute(query)
-        allEntry = list(cursor.fetchall())
-        #print list(allEntry)
-        return allEntry        
-    """
+        return self.makePlayer(cursor.fetchall())       
 
     def getEntryByRace(self, truecharacter, alive="»ýÁ¸"):
         cursor = self.game.db.cursor

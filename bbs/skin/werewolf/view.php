@@ -310,7 +310,7 @@
 			<?}?>
 			
 
-			<?if($rule['no'] == 1 ){?>
+			<?if($rule['no'] == 1 or $rule['no'] == 5 ){?>
 				<?$death = mysql_fetch_array(mysql_query("select * from $DB_entry where game=$no and deathday = $viewDay-1 and deathtype ='심판'"));				
 				if($death){?>
 	<div class="viewState">
@@ -482,6 +482,17 @@
 				if ($gameinfo['players']==15) echo "아무래도 이 안에는 인랑 2명, 인랑 리더 1명, 외로운 늑대 1명, 광인 1명,<br>점쟁이 1명, 영매자 1명, 사냥꾼 1명, 복수자 1명, 촌장 1명, 귀족 1명, 보안관 1명, 마을사람 3명이 있는 것 같다.";
 				if ($gameinfo['players']==16) echo "아무래도 이 안에는 인랑 2명, 인랑 리더 1명, 외로운 늑대 1명, 광인 1명,<br>점쟁이 1명, 영매자 1명, 사냥꾼 1명, 복수자 1명, 촌장 1명, 귀족 1명, 마을사람 5명이 있는 것 같다.";
 				if ($gameinfo['players']==17) echo "아무래도 이 안에는 인랑 2명, 인랑 리더 1명, 외로운 늑대 1명, 광인 1명,<br>점쟁이 1명, 영매자 1명, 사냥꾼 1명, 복수자 1명, 촌장 1명, 귀족 1명, 마을사람 5명, 그리고 디아블로가 있는 것 같다.";
+			?>
+			</div>
+		</div>
+	<?}?>
+	<?if($viewDay == 1 and ($gameinfo['rule']==5)){ ?>
+		<div class="viewState">
+			<div class="state"></div>
+			<div class="content">
+			<?
+				if ($gameinfo['players']==7) echo "아무래도 이 안에는 인랑 2명, 점쟁이 1명,<br>사냥꾼 1명, 복수자 1명, 마을사람 2명이 있는 것 같다.";
+				if ($gameinfo['players']==8) echo "아무래도 이 안에는 인랑 2명, 점쟁이 1명,<br>사냥꾼 1명, 복수자 1명, 마을사람 3명이 있는 것 같다.";
 			?>
 			</div>
 		</div>

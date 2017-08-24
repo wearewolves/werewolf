@@ -33,7 +33,7 @@ class Game:
         self.db = db
 
     def nextTurn(self):
-        # 1일 마을에서 시간이 지난 경우.
+        # 1일 마을에서 시간이 지난 경우. 
         if self.useTimetable == 0 and time.time() >= (self.deathTime + self.termOfDay * self.day):
             if self.seal == "논의":
                 logging.debug("%s: 봉인 논의중..", self.game)

@@ -11,7 +11,7 @@ class RULE_NAME:
 
 class SUBRULE_NAME:
     ASSAULT_ONESELF = 1
-    NPC_ALLOCATION = 2 #dummy rule 
+    NPC_ALLOCATION = 2 #dummy rule
     TELEPATHY_NONE = 3
     SECRET_VOTE = 4
 
@@ -43,4 +43,7 @@ class RuleFactory:
         elif rule == RULE_NAME.INSTANT:
             from werewolf.game.rule.InstantRule import InstantRule
             return InstantRule(game)
+        else:
+            logging.error('The rule %s cannot be found in %s', rule, game)
+            raise KeyError(rule)
     getRule = staticmethod(getRule)

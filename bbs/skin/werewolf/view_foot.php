@@ -1,7 +1,7 @@
 <?=$hide_comment_end?>
 </div>
 
-<?//답장////////////////////////////////////////////////
+<?//답장/////////////////////////////////////////////////
 $sql = "select * from $DB_secretletter where `game`='".$no."' and `day`='".($viewDay-1)."'";
 $secretmessage=mysql_fetch_array(mysql_query($sql));
 

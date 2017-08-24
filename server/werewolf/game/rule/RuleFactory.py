@@ -43,4 +43,7 @@ class RuleFactory:
         elif rule == RULE_NAME.INSTANT:
             from werewolf.game.rule.InstantRule import InstantRule
             return InstantRule(game)
+        else:
+            logging.error('The rule %s cannot be found in %s', rule, game)
+            raise KeyError(rule)
     getRule = staticmethod(getRule)

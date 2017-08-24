@@ -47,7 +47,7 @@ if($totalCommentPage>=1) echo "</div>";
 	<col width=80></col><col width=></col><col width=70></col>
 	<tr align=center bgcolor=111111> 
 	  <td height=20 rowspan='4' valign='top'>
-	  <? // character image on/off
+	  <? // character image on/off 
 			if($entry) {
 				if($viewImage === "off") {
 					echo "<div style='width:100; height:100;'></div>";

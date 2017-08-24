@@ -3,7 +3,7 @@
 <script type="text/javascript" src="skin/<?=$id?>/js/image-picker.min.js"></script>
 <script type="text/javascript" src="skin/<?=$id?>/js/were-090114.js?ver=<?php echo filemtime('skin/'.$id.'/js/were-090114.js'); ?>"></script>
 <?
-	//----------------------------------------------------------------------
+	//---------------------------------------------------------------------- 
 	//데이터 초기화
 	$gameinfo=mysql_fetch_array(mysql_query("select * from $DB_gameinfo where game=$no"));
 	$rule=mysql_fetch_array(mysql_query("select * from $DB_rule where no=$gameinfo[rule]"));

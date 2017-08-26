@@ -310,7 +310,7 @@
 			<?}?>
 			
 
-			<?if($rule['no'] == 1 or $rule['no'] == 5 ){?>
+			<?if($rule['no'] == 1 ){?>
 				<?$death = mysql_fetch_array(mysql_query("select * from $DB_entry where game=$no and deathday = $viewDay-1 and deathtype ='심판'"));				
 				if($death){?>
 	<div class="viewState">
@@ -368,7 +368,7 @@
 	<?}}?>
 
 
-			<?if($rule['no'] == 3 ){?>
+			<?if($rule['no'] == 3 or $rule['no'] == 5 ){?>
 				<?$death = mysql_fetch_array(mysql_query("select * from $DB_entry where game=$no and deathday = $viewDay-1 and deathtype ='심판'"));				
 				if($death){?>
 					<div class="viewState">

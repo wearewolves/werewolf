@@ -28,6 +28,9 @@ class Truecharacter(object):
     SHERIFF = 15
     SEER_ODD = 16
     WEREWOLF_CON = 17
+    CRUELWEREWOLF = 18
+    HIDENOBILITY = 19
+
 
     # 더미룰을 위한 더미 리스트 (인랑리스트, 기타리스트)
     # 더미 인랑 리스트: 랑습룰시 더미 가능
@@ -256,4 +259,10 @@ class SeerOdd(Player):
     pass
 
 class WerewolfCon(Player):
+    pass
+
+class Cruelwerewolf(Werewolf):
+    pass
+
+class HideNobility(Nobility):
     pass

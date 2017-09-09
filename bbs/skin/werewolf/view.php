@@ -50,6 +50,8 @@
 
 		if($truecharacter['half-assault'])$halfassault =mysql_fetch_array(mysql_query("select * from $DB_deathNoteHalf where game='$no' and werewolf = '$entry[character]' and day='$gameinfo[day]'"));
 		if($truecharacter['assault-con'])$assaultCon =mysql_fetch_array(mysql_query("select * from $DB_deathNote where game='$no' and werewolf = '$entry[character]' and day='$gameinfo[day]'"));
+
+		if($truecharacter['mustkill'])$mustkill =mysql_fetch_array(mysql_query("select * from $DB_mustkill where game='$no'"));
 	}
 
 	if($gameinfo['state'] == "준비중") {
@@ -286,7 +288,16 @@
 			이제 당신은 당신의 본성을 깨닫게 된다.<br />
 			당신은 인간인가 아니면 인랑인가!<br />
 			<br />
-			<? if($entry)echo "당신은 <span style='border:solid 1;border-color:#333333;width:60px' align=center><font color =#000000> ". $truecharacter_list[$entry[truecharacter]]." </font></span>입니다.";?>
+			<? 
+			// 실제 직업과 표시가 다르게 나타내는 부분
+			$markjob = "";
+			if($entry)
+			{
+				$markjob = $truecharacter_list[$entry[truecharacter]];
+				if($markjob == "은거 귀족") $markjob = "마을사람";
+			}
+			if($markjob != "")echo "당신은 <span style='border:solid 1;border-color:#333333;width:60px' align=center><font color =#000000> ".$markjob." </font></span>입니다.";
+			?>
 		</div>
 	</div>
 	<?	}?>	
@@ -310,7 +321,7 @@
 			<?}?>
 			
 
-			<?if($rule['no'] == 1 ){?>
+			<?if($rule['no'] == 1){?>
 				<?$death = mysql_fetch_array(mysql_query("select * from $DB_entry where game=$no and deathday = $viewDay-1 and deathtype ='심판'"));				
 				if($death){?>
 	<div class="viewState">
@@ -368,7 +379,7 @@
 	<?}}?>
 
 
-			<?if($rule['no'] == 3 or $rule['no'] == 5 ){?>
+			<?if($rule['no'] == 3 or $rule['no'] == 5 or $rule['no'] == 6 ){?>
 				<?$death = mysql_fetch_array(mysql_query("select * from $DB_entry where game=$no and deathday = $viewDay-1 and deathtype ='심판'"));				
 				if($death){?>
 					<div class="viewState">
@@ -493,6 +504,21 @@
 			<?
 				if ($gameinfo['players']==7) echo "아무래도 이 안에는 인랑 2명, 점쟁이 1명,<br>사냥꾼 1명, 복수자 1명, 마을사람 2명이 있는 것 같다.";
 				if ($gameinfo['players']==8) echo "아무래도 이 안에는 인랑 2명, 점쟁이 1명,<br>사냥꾼 1명, 복수자 1명, 마을사람 3명이 있는 것 같다.";
+			?>
+			</div>
+		</div>
+	<?}?>
+	<?if($viewDay == 1 and ($gameinfo['rule']==6)){ ?>
+		<div class="viewState">
+			<div class="state"></div>
+			<div class="content">
+			<?
+				if ($gameinfo['players']==11) echo "아무래도 이 안에는, 마을사람이 4명, 인랑이 2명, 점쟁이가 1명,<br />영매자가 1명, 광인이 1명, 사냥꾼이 1명,<br />잔혹한 인랑이 1명 은거 귀족이 1명 있는 것 같다.";
+				if ($gameinfo['players']==12) echo "아무래도 이 안에는, 마을사람이 5명, 인랑이 2명, 점쟁이가 1명,<br />영매자가 1명, 광인이 1명, 사냥꾼이 1명,<br />잔혹한 인랑이 1명 은거 귀족이 1명 있는 것 같다."; 
+				if ($gameinfo['players']==13) echo "아무래도 이 안에는, 마을사람이 6명, 인랑이 2명, 점쟁이가 1명,<br />영매자가 1명, 광인이 1명, 사냥꾼이 1명,<br />잔혹한 인랑이 1명 은거 귀족이 1명 있는 것 같다.";
+				if ($gameinfo['players']==14) echo "아무래도 이 안에는, 마을사람이 7명, 인랑이 2명, 점쟁이가 1명,<br />영매자가 1명, 광인이 1명, 사냥꾼이 1명,<br />잔혹한 인랑이 1명 은거 귀족이 1명 있는 것 같다.";
+				if ($gameinfo['players']==15) echo "아무래도 이 안에는, 마을사람이 7명, 인랑이 3명, 점쟁이가 1명,<br />영매자가 1명, 광인이 1명, 사냥꾼이 1명,<br />잔혹한 인랑이 1명 은거 귀족이 1명 있는 것 같다.";
+				if ($gameinfo['players']==16) echo "아무래도 이 안에는, 마을사람이 6명, 인랑이 3명, 점쟁이가 1명,<br />영매자가 1명, 광인이 1명, 사냥꾼이 1명,<br />잔혹한 인랑이 1명 은거 귀족이 1명 초능력자가 2명 있는 것 같다.";
 			?>
 			</div>
 		</div>

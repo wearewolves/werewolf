@@ -8,6 +8,7 @@ class RULE_NAME:
     EXPANSION = 3
     CONFIDENCE = 4
     INSTANT = 5
+    MUSTKILL = 6
 
 class SUBRULE_NAME:
     ASSAULT_ONESELF = 1
@@ -43,6 +44,9 @@ class RuleFactory:
         elif rule == RULE_NAME.INSTANT:
             from werewolf.game.rule.InstantRule import InstantRule
             return InstantRule(game)
+        elif rule == RULE_NAME.MUSTKILL:
+            from werewolf.game.rule.MustkillRule import MustkillRule
+            return MustkillRule(game)
         else:
             logging.error('The rule %s cannot be found in %s', rule, game)
             raise KeyError(rule)

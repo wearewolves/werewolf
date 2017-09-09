@@ -10,4 +10,5 @@ import HamsterRule
 import ExpensionRule
 import ConfidenceRule
 import InstantRule
+import MustkillRule
 import RuleFactory

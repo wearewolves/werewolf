@@ -260,3 +260,4 @@ class MustkillRule(WerewolfRule):
 
         logging.debug("mustkill Injured: %s", result['target'])
         return self.game.entry.getCharacter(result['target'])
+        

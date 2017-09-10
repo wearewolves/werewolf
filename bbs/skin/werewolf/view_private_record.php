@@ -154,6 +154,7 @@
 					$result = "";
 					$deathType = "";
 					$death = '';
+					$temp_trueCharacter = "";
 
 					switch($entry['deathtype']){
 						case "심판": $deathType ="투표";
@@ -166,6 +167,8 @@
 						$death = $entry['deathday']."일째 사망-".$deathType;
 					else 
 						$death = "생존";
+
+					$temp_trueCharacter = $trueCharacterList[$entry['truecharacter']];
 
 					if($gameinfo['state'] == "게임끝"){
 						switch($gameinfo['win']){
@@ -188,11 +191,14 @@
 							$lost++;
 						}
 					}
+					else{
+						if($temp_trueCharacter == "은거 귀족") $temp_trueCharacter = "마을사람";
+					}
 				?>
 
 				<td><a href='../../view.php?id=<?=$id?>&no=<?=$entry['game']?>'><?=$game['subject']?></a></td>
 				<td><?=$character['character']?></td>
-				<td><?=$trueCharacterList[$entry['truecharacter']]?></td>
+				<td><?=$temp_trueCharacter?></td>
 				<td><?=$gameinfo['state']?></td>
 				<td><?=$death?></td>
 				<td class='<?=$style?>'><?=$result?></td>

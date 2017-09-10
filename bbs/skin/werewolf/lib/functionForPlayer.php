@@ -441,8 +441,8 @@
 	 if ($function == "mustkill" and $purpose and $entry['alive'] == "생존" and $truecharacter['mustkill'] and   !$mustkill){
 		@mysql_query("INSERT INTO `$DB_mustkill` ( `game` , `day` ,`target` ) VALUES ('$no', '$gameinfo[day]' , '$purpose' );") or die("참살 시도 중에 오류가 발생했습니다.");
 
-	   $comment = "잔혹한 인랑이 ".$character_list[$purpose]."씨에게 강한 살의를 느낀다.";
-	   writeCommnet($t_comment."_".$id,$no,$member[no],$member[name],$password,$comment,$server[ip],'메모',$entry['character']);
+	   $comment = "좋은 인간은 죽은 인간일 뿐이다. ".$character_list[$purpose]."!";
+	   writeCommnet($t_comment."_".$id,$no,$member[no],$member[name],$password,$comment,$server[ip],'비밀',$entry['character']);
 
 	   // 대상 파일 이름 정리
 	   if(!$setup[use_alllist]) $view_file_link="view.php"; else $view_file_link="zboard.php";
@@ -455,8 +455,8 @@
 		@mysql_query("delete from `$DB_mustkill`  where `game`= $no and `day`= $gameinfo[day]  ;") or die("참살 계획을 삭제 중에 오류가 발생했습니다.");
 
 	   //코맨트 입력
-	   $comment = $character_list[$mustkill['target']]."씨에 대한 살의가 사라진다.";
-	   writeCommnet($t_comment."_".$id,$no,$member[no],$member[name],$password,$comment,$server[ip],'메모',$entry['character']);
+	   $comment = $character_list[$mustkill['target']]."씨를 향한 강한 살의가 사라진다.";
+	   writeCommnet($t_comment."_".$id,$no,$member[no],$member[name],$password,$comment,$server[ip],'비밀',$entry['character']);
 
 	   // 대상 파일 이름 정리
 	   if(!$setup[use_alllist]) $view_file_link="view.php"; else $view_file_link="zboard.php";

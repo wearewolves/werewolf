@@ -27,34 +27,34 @@
     #@mysql_query($insert_data, $connect) or Error("신규 테이블 삽입 실패", "");
 
     // 데이터 확인
-    #$mustkill_load =
-    #"select * from `zetyx_board_werewolf_truecharacter`;";
+    $mustkill_load =
+    "select * from `zetyx_board_werewolf_truecharacter`;";
 	
-	#$result = mysql_query($mustkill_load, $connect);
+	$result = mysql_query($mustkill_load, $connect);
 
-	#while($temp = mysql_fetch_array($result)) {
-    #    echo $temp[no]." :: ".$temp['forecast-odd']." :: ".$temp['assault-con']." :: ".$temp['mustkill']."<br>";
-    #}
+	while($temp = mysql_fetch_array($result)) {
+        echo $temp[no]." :: ".$temp['forecast-odd']." :: ".$temp['assault-con']." :: ".$temp['mustkill']."<br>";
+    }
 
     // 테이블 추가
-	#$mustkill_schema = 
-	#"CREATE TABLE `zetyx_board_werewolf_mustkill` (
-	#`game` int(20) unsigned NOT NULL DEFAULT 0,
-	#`day` tinyint(5) unsigned NOT NULL DEFAULT 0,
-	#`target` int(20) unsigned NOT NULL DEFAULT 0
-    #) ENGINE=MyISAM;";
+	$mustkill_schema = 
+	"CREATE TABLE `zetyx_board_werewolf_mustkill` (
+	`game` int(20) unsigned NOT NULL DEFAULT 0,
+	`day` tinyint(5) unsigned NOT NULL DEFAULT 0,
+	`target` int(20) unsigned NOT NULL DEFAULT 0
+    ) ENGINE=MyISAM;";
     
-    #@mysql_query($mustkill_schema, $connect) or Error("신규 테이블 mustkill 만들기 실패", "");;
+    @mysql_query($mustkill_schema, $connect) or Error("신규 테이블 mustkill 만들기 실패", "");;
 
 
     // 데이터 확인
-	#$mustkill_schema_load = 
-	#"select * from `zetyx_board_werewolf_mustkill`";
+	$mustkill_schema_load = 
+	"select * from `zetyx_board_werewolf_mustkill`";
 	
-	#$result2 = mysql_query($mustkill_schema_load, $connect);
-	#while($temp = mysql_fetch_array($result2)) {
-	#	echo $temp[game]." :: ".$temp[day]." :: ".$temp[target]."<br>";
-    #}
+	$result2 = mysql_query($mustkill_schema_load, $connect);
+	while($temp = mysql_fetch_array($result2)) {
+		echo $temp[game]." :: ".$temp[day]." :: ".$temp[target]."<br>";
+    }
     
     #$rule_add_data = 
 	#"INSERT INTO `zetyx_board_werewolf_rule` (`no`, `name`, `min_player`, `max_player`) VALUES (6, '참살', 11, 16);";

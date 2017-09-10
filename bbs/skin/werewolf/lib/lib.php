@@ -428,6 +428,7 @@ $DB_detect = $t_board."_".$id."_detect";
 $DB_revenge= $t_board."_".$id."_revenge";
 $DB_deathNoteHalf  = $t_board."_".$id."_deathnotehalf";
 $DB_secretletter  = $t_board."_".$id."_secretletter";
+$DB_mustkill  = $t_board."_".$id."_mustkill";
 
 
 $truecharacter_list = DB_array("no","character","$DB_truecharacter");

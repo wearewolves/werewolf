@@ -182,7 +182,7 @@ class MustkillRule(WerewolfRule):
 
         #습격자!
         werewolfPlayers = self.game.entry.getPlayersByTruecharacter(Truecharacter.WEREWOLF, "('생존')")
-        cruelwerewolfPlayer = self.game.entry.getPlayersByTruecharacter(Truecharacter.CRUELWEREWOLF)
+        cruelwerewolfPlayer = self.game.entry.getPlayersByTruecharacter(Truecharacter.CRUELWEREWOLF, "('생존')")
         logging.debug("%s", werewolfPlayers)
 
         if cruelwerewolfPlayer:
@@ -258,5 +258,11 @@ class MustkillRule(WerewolfRule):
         if not result:
             return
 
-        logging.debug("mustkill Injured: %s", result['target'])
-        return self.game.entry.getCharacter(result['target'])
+        injured_list = []
+
+        for temp in result:
+            injured_list.append(temp['target'])
+        target_num = random.choice(injured_list)
+
+        #logging.debug("mustkill Injured: %s", result['target'])
+        return self.game.entry.getCharacter(target_num)

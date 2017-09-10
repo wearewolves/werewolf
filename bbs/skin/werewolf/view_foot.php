@@ -70,7 +70,7 @@ if(($gameinfo['state']=="∞‘¿”¡ﬂ" and $truecharacter['forecast-odd'] and $entry['
 		<span>
 			<?
 				echo $character_list[$mediumism[character]];
-				if($mediumism[truecharacter]==5 or $mediumism[truecharacter]==9 or $mediumism[truecharacter]==10 or $mediumism[truecharacter]==14) echo " ææ¥¬ ¿Œ∂˚"; else echo " ææ¥¬ ¿Œ∞£";
+				if($mediumism[truecharacter]==5 or $mediumism[truecharacter]==9 or $mediumism[truecharacter]==10 or $mediumism[truecharacter]==14 or $mediumism[truecharacter]==18) echo " ææ¥¬ ¿Œ∂˚"; else echo " ææ¥¬ ¿Œ∞£";
 			?>
 		</span>
 	</div>

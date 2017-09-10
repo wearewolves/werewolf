@@ -915,6 +915,106 @@ if($gameinfo['state']=="게임중"  and $gameinfo['day']<>1 and $truecharacter['ass
 </table>
 <?}?>
 
+<?
+// 참살룰 직업 //////////////////////////////////////////.
+//잔혹한 인랑////////////////////////////////////////////////
+?>
+<?	if($gameinfo['state']=="게임중" and $gameinfo['day']<>1 and $truecharacter['mustkill'] and !$mustkill and $viewDay == $gameinfo['day'] and $entry['alive']=="생존" ) {?>
+<table width=<?=$width?> cellspacing=0 cellpadding=0>
+<form method=post name=mustkill action=<?="view.php"?>   enctype="multipart/form-data"   onsubmit="return formcheck(this)">
+<input type=hidden name=page value=<?=$page?>>
+<input type=hidden name=id value=<?=$id?>>
+<input type=hidden name=no value=<?=$no?>>
+<input type=hidden name=select_arrange value=<?=$select_arrange?>>
+<input type=hidden name=desc value=<?=$desc?>>
+<input type=hidden name=page_num value=<?=$page_num?>>
+<input type=hidden name=keyword value="<?=$keyword?>">
+<input type=hidden name=category value="<?=$category?>">
+<input type=hidden name=sn value="<?=$sn?>">
+<input type=hidden name=ss value="<?=$ss?>">
+<input type=hidden name=sc value="<?=$sc?>">
+<input type=hidden name=mode value="<?=$mode?>"> 
+<input type=hidden name=function value="mustkill">
+
+<tr bgcolor=111111>
+	<td height=30 colspan=2>
+	<table border=0 cellspacing=0 cellpadding=0 width=100% height=100%>
+	<tr>
+		<td align=center width=80><font class=red_8>참살</td>
+		<td align=left>
+			<font class=red_8>
+			<?
+				$assaultCharacter =  DB_array("no","no","$DB_truecharacter where race  = 1");
+//echo "\$assaultCharacter:";print_r($assaultCharacter);echo "<br>";
+
+			$orderCondition ="in (";
+
+			foreach($assaultCharacter  as $t_assault){
+				$orderCondition.=$t_assault.",";
+			}
+			$orderCondition.=")";
+
+			$orderCondition = str_replace(",)", ")", $orderCondition);
+//echo "\$orderCondition:".$orderCondition."<br>";
+
+
+			$assault_list =  DB_array("no","character","$DB_entry where game = $no and alive='생존' and truecharacter $orderCondition");	
+			$assault_list = array_values($assault_list);
+			
+			// 2017/09/10 epi : 랑습룰 체크 부분
+			$CheckAssaultWerewolf = checkSubRule($gameinfo['subRule'], 1);
+//echo "\$assault_list:";print_r($assault_list);echo "<br><br>";
+?>
+			
+			
+			
+			
+			<?if($CheckAssaultWerewolf){?>
+				<?=DBselect("purpose","","character",$character_list,"$DB_entry where game=$no and alive = '생존'","font-size:9pt;width=100","","");?>
+			<? }else {?>
+				<?=DBselect("purpose","","character",$character_list,"$DB_entry where game=$no and alive = '생존'","font-size:9pt;width=100","",$assault_list);?>
+			<?}?>
+			 에게 살의를 갖는다.
+		<td align=center width=70><font class=red_8><input type=submit rows=5 <?if($browser){?>class=red_submit_s<?}?> value='참살한다' accesskey="f"></td>
+	</tr></table>
+	</td>
+</tr>
+</form>
+</table>
+<?	}elseif($mustkill and $mustkill['day'] == $viewDay){?>
+<table width=<?=$width?> cellspacing=0 cellpadding=0>
+<form method=post name=mustkillCancel action=<?="view.php"?>  enctype="multipart/form-data"  onsubmit="return formcheck(this)">
+<input type=hidden name=page value=<?=$page?>>
+<input type=hidden name=id value=<?=$id?>>
+<input type=hidden name=no value=<?=$no?>>
+<input type=hidden name=select_arrange value=<?=$select_arrange?>>
+<input type=hidden name=desc value=<?=$desc?>>
+<input type=hidden name=page_num value=<?=$page_num?>>
+<input type=hidden name=keyword value="<?=$keyword?>">
+<input type=hidden name=category value="<?=$category?>">
+<input type=hidden name=sn value="<?=$sn?>">
+<input type=hidden name=ss value="<?=$ss?>">
+<input type=hidden name=sc value="<?=$sc?>">
+<input type=hidden name=mode value="<?=$mode?>"> 
+<input type=hidden name=function value="mustkillCancel">
+<tr bgcolor=111111>
+	<td height=30 colspan=2>
+	<table border=0 cellspacing=0 cellpadding=0 width=100% height=100%>
+	<tr>
+		<td align=center width=80>참살</td>
+		<td><font class=red_8>
+
+
+
+				<?=$character_list[$mustkill['target']]?>씨에게 강한 살의를 느끼고 있다.</font></td>
+		<td align=center width=70><font class=red_8><input type=submit rows=5 <?if($browser){?>class=red_submit_s<?}?> value='취소한다' accesskey="f"></td>
+	</tr></table>
+	</td>
+</tr>
+</form>
+</table>
+<?}?>
+
 
 
 

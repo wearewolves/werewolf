@@ -155,6 +155,8 @@
 										break;
 							case 5: $rule = "인스턴트";
 										break;
+							case 6: $rule = "참살";
+										break;
 						}
 
 						switch($gameinfo['win']){

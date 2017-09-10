@@ -56,8 +56,8 @@
 	"select * from `zetyx_board_werewolf_mustkill`";
 	
 	$result2 = mysql_query($mustkill_schema_load, $connect);
-	while($temp = mysql_fetch_array($result2)) {
-		echo $temp[game]." :: ".$temp[day]." :: ".$temp[target]."<br>";
+	while($temp1 = mysql_fetch_array($result2)) {
+		echo $temp1[game]." :: ".$temp1[day]." :: ".$temp1[target]."<br>";
     }
     
     $rule_add_data = 

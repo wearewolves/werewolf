@@ -182,7 +182,7 @@ class MustkillRule(WerewolfRule):
 
         #습격자!
         werewolfPlayers = self.game.entry.getPlayersByTruecharacter(Truecharacter.WEREWOLF, "('생존')")
-        cruelwerewolfPlayer = self.game.entry.getPlayersByTruecharacter(Truecharacter.CRUELWEREWOLF)
+        cruelwerewolfPlayer = self.game.entry.getPlayersByTruecharacter(Truecharacter.CRUELWEREWOLF, "('생존')")
         logging.debug("%s", werewolfPlayers)
 
         if cruelwerewolfPlayer:

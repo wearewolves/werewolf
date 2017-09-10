@@ -264,5 +264,5 @@ class WerewolfCon(Player):
 class Cruelwerewolf(Werewolf):
     pass
 
-class HideNobility(Nobility):
+class Hidenobility(Nobility):
     pass

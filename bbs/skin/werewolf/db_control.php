@@ -48,13 +48,13 @@
 
 
     // 데이터 확인
-	#$mustkill_schema_load = 
-	#"select * from `zetyx_board_werewolf_mustkill`";
+	$mustkill_schema_load = 
+	"select * from `zetyx_board_werewolf_mustkill`";
 	
-	#$result2 = mysql_query($mustkill_schema_load, $connect);
-	#while($temp = mysql_fetch_array($result2)) {
-	#	echo $temp[game]." :: ".$temp[day]." :: ".$temp[target]."<br>";
-    #}
+	$result2 = mysql_query($mustkill_schema_load, $connect);
+	while($temp = mysql_fetch_array($result2)) {
+		echo $temp[game]." :: ".$temp[day]." :: ".$temp[target]."<br>";
+    }
     
     #$rule_add_data = 
 	#"INSERT INTO `zetyx_board_werewolf_rule` (`no`, `name`, `min_player`, `max_player`) VALUES (6, '참살', 11, 16);";

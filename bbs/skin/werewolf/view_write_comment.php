@@ -970,11 +970,11 @@ if($gameinfo['state']=="게임중"  and $gameinfo['day']<>1 and $truecharacter['ass
 			
 			
 			<?if($CheckAssaultWerewolf){?>
-				<?=DBselect("injured","","character",$character_list,"$DB_entry where game=$no and alive = '생존'","font-size:9pt;width=100","","");?>
+				<?=DBselect("purpose","","character",$character_list,"$DB_entry where game=$no and alive = '생존'","font-size:9pt;width=100","","");?>
 			<? }else {?>
-				<?=DBselect("injured","","character",$character_list,"$DB_entry where game=$no and alive = '생존'","font-size:9pt;width=100","",$assault_list);?>
+				<?=DBselect("purpose","","character",$character_list,"$DB_entry where game=$no and alive = '생존'","font-size:9pt;width=100","",$assault_list);?>
 			<?}?>
-			 을 참살 대상으로 지목한다.
+			 에게 살의를 갖는다.
 		<td align=center width=70><font class=red_8><input type=submit rows=5 <?if($browser){?>class=red_submit_s<?}?> value='참살한다' accesskey="f"></td>
 	</tr></table>
 	</td>
@@ -1006,7 +1006,7 @@ if($gameinfo['state']=="게임중"  and $gameinfo['day']<>1 and $truecharacter['ass
 
 
 
-				<?=$character_list[$detect['target']]?>씨에게 강한 살의를 느끼고 있다.</font></td>
+				<?=$character_list[$mustkill['target']]?>씨에게 강한 살의를 느끼고 있다.</font></td>
 		<td align=center width=70><font class=red_8><input type=submit rows=5 <?if($browser){?>class=red_submit_s<?}?> value='취소한다' accesskey="f"></td>
 	</tr></table>
 	</td>

@@ -258,5 +258,11 @@ class MustkillRule(WerewolfRule):
         if not result:
             return
 
-        logging.debug("mustkill Injured: %s", result['target'])
-        return self.game.entry.getCharacter(result['target'])
+        injured_list = []
+
+        for temp in result:
+            injured_list.append(temp['target'])
+        target_num = random.choice(injured_list)
+
+        #logging.debug("mustkill Injured: %s", result['target'])
+        return self.game.entry.getCharacter(target_num)

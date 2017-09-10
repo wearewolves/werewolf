@@ -10,21 +10,25 @@
 	// DB 연결정보 가져옴
     $connect = dbConn();
     
-    #$gameinfo_add_mustkill = 
-    #"ALTER TABLE `zetyx_board_werewolf_truecharacter` DROP `mustkill`";
-    #"ALTER TABLE `zetyx_board_werewolf_truecharacter` ADD `mustkill` int(1) unsigned NOT NULL DEFAULT 0;";
-    #@mysql_query($gameinfo_add_mustkill, $connect) or Error("신규 컬럼 삽입 실패", "");
+    $gameinfo_add_mustkill = 
+    "ALTER TABLE `zetyx_board_werewolf_truecharacter` ADD
+    (`forecast-odd` int(1) unsigned NOT NULL DEFAULT 0,
+    `assault-con` int(1) unsigned NOT NULL DEFAULT 0,
+    `mustkill` int(1) unsigned NOT NULL DEFAULT 0);";
+    @mysql_query($gameinfo_add_mustkill, $connect) or Error("신규 컬럼 삽입 실패", "");
 
     // 칼럼 추가
-	#$insert_data = 
-    #"INSERT INTO `zetyx_board_werewolf_truecharacter` 
-    #(`no`, `race`, `wintype`, `character`, `secretchat`, `forecast`, 
-    #`mediumism`, `assault`, `guard`, `telepathy`, `detect`, `revenge`, `half-assault`, 
-    #`secretletter`, `double-vote`, `forecast-odd`, `assault-con`, `mustkill`) VALUES
-    #(18, 1, 1, '잔혹한 인랑', 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1),
-    #(19, 0, 0, '은거 귀족', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);";
+	$insert_data = 
+    "INSERT INTO `zetyx_board_werewolf_truecharacter` 
+    (`no`, `race`, `wintype`, `character`, `secretchat`, `forecast`, 
+    `mediumism`, `assault`, `guard`, `telepathy`, `detect`, `revenge`, `half-assault`, 
+    `secretletter`, `double-vote`, `forecast-odd`, `assault-con`, `mustkill`) VALUES
+    (16, 0, 0, '홀수 점쟁이', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0),
+    (17, 1, 1, '이상한 인랑', 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0),
+    (18, 1, 1, '잔혹한 인랑', 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1),
+    (19, 0, 0, '은거 귀족', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);";
 	
-    #@mysql_query($insert_data, $connect) or Error("신규 테이블 삽입 실패", "");
+    @mysql_query($insert_data, $connect) or Error("신규 테이블 삽입 실패", "");
 
     // 데이터 확인
     $mustkill_load =
@@ -37,14 +41,14 @@
     }
 
     // 테이블 추가
-	$mustkill_schema = 
-	"CREATE TABLE `zetyx_board_werewolf_mustkill` (
-	`game` int(20) unsigned NOT NULL DEFAULT 0,
-	`day` tinyint(5) unsigned NOT NULL DEFAULT 0,
-	`target` int(20) unsigned NOT NULL DEFAULT 0
-    ) ENGINE=MyISAM;";
+	#$mustkill_schema = 
+	#"CREATE TABLE `zetyx_board_werewolf_mustkill` (
+	#`game` int(20) unsigned NOT NULL DEFAULT 0,
+	#`day` tinyint(5) unsigned NOT NULL DEFAULT 0,
+	#`target` int(20) unsigned NOT NULL DEFAULT 0
+    #) ENGINE=MyISAM;";
     
-    @mysql_query($mustkill_schema, $connect) or Error("신규 테이블 mustkill 만들기 실패", "");;
+    #@mysql_query($mustkill_schema, $connect) or Error("신규 테이블 mustkill 만들기 실패", "");;
 
 
     // 데이터 확인
@@ -52,14 +56,14 @@
 	"select * from `zetyx_board_werewolf_mustkill`";
 	
 	$result2 = mysql_query($mustkill_schema_load, $connect);
-	while($temp = mysql_fetch_array($result2)) {
-		echo $temp[game]." :: ".$temp[day]." :: ".$temp[target]."<br>";
+	while($temp1 = mysql_fetch_array($result2)) {
+		echo $temp1[game]." :: ".$temp1[day]." :: ".$temp1[target]."<br>";
     }
     
-    #$rule_add_data = 
-	#"INSERT INTO `zetyx_board_werewolf_rule` (`no`, `name`, `min_player`, `max_player`) VALUES (6, '참살', 11, 16);";
+    $rule_add_data = 
+	"INSERT INTO `zetyx_board_werewolf_rule` (`no`, `name`, `min_player`, `max_player`) VALUES (6, '참살', 11, 16);";
 
-	#@mysql_query($rule_add_data, $connect) or Error("참살룰 데이터 삽입 실패", "");
+	@mysql_query($rule_add_data, $connect) or Error("참살룰 데이터 삽입 실패", "");
 	
 	mysql_close($connect);
 ?>

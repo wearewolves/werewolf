@@ -87,7 +87,7 @@ if(($gameinfo['state']=="게임중" and $truecharacter['forecast-odd'] and $entry['
 			<div class="DisplayBoard alignleft">
 				<span class="head">보호 결과</span>
 				<span>
-					<?if($mustkill_result[target] == $guard_result[purpose]) echo "어젯밤 ".$character_list[$guard_result[purpose]]." 씨를 향한 보호가 소용없었다!?";
+					<?if($mustkill_result and $mustkill_result[target] == $guard_result[purpose]) echo "어젯밤 ".$character_list[$guard_result[purpose]]." 씨를 향한 보호가 소용없었다!?";
 					elseif($assault_result[injured] == $guard_result[purpose]) echo "어젯밤 ".$character_list[$guard_result[purpose]]." 씨를 향한 인랑의 습격을 막았다!";
 					else echo "어젯밤 ".$character_list[$guard_result[purpose]]." 씨 주변에서는 아무 일도 일어나지 않았다.";?>
 				</span>

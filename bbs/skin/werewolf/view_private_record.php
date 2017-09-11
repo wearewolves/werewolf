@@ -191,9 +191,11 @@
 					}
 					
 					$temp_trueCharacter = $trueCharacterList[$entry['truecharacter']];
-
+					
 					if($gameinfo['state'] == "게임중"){
-						if($temp_trueCharacter == "은거 귀족") $temp_trueCharacter = "마을사람";
+						if($temp_trueCharacter == "은거 귀족"){
+							$temp_trueCharacter = "마을사람";
+						}
 					}
 				?>
 

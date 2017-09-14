@@ -26,7 +26,7 @@ class MustkillRule(WerewolfRule):
             if number < 15:
                 rolelist += [Truecharacter.HUMAN] * (number-11)
             if number == 15:
-                rolelist += [Truecharacter.HUMAN] * 3 + [Truecharacter.WEREWOLF]
+                rolelist += [Truecharacter.HUMAN] * 2 + [Truecharacter.WEREWOLF] + [Truecharacter.CHIEF]
         logging.debug('The MustKill rolelist for %d: %s', number, rolelist)
         assert len(rolelist) == number, "The number of role is not proper"
         return rolelist

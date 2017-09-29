@@ -532,6 +532,10 @@ function getCookie(c_name)
  * 초기화 함수 
  */
 $(function(){
+	$(window).on("beforeunload", function(){
+    if($('#memoedit').text()) return "나가시겠습니까? 올리지 않은 로그는 저장되지 않습니다.";
+  });
+	
 	$('#soundOn').click(function(){
 		setCookie('sound','on',7);
 		$('#selectSound').css("visibility", "visible");
@@ -710,7 +714,6 @@ $(function(){
 				$("."+event.target.value).filter("."+this.value).fadeOut();
 		});
 	});
-
 	$("#memoedit").keyup(function(event) {
 		//if($(this).val() == "봉인 제안") {
 		if($(this).text() == "봉인 제안") {

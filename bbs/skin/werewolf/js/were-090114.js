@@ -384,6 +384,11 @@ function printCommentType(typeName,typeValue){
 	}
 }
 
+function addLine(){
+	var row = $('#memoedit').attr('rows');
+	$('#memoedit').attr('rows', row + 1);
+}
+
 function checkCommentType(){
 	try{
 		var radioButton = $('#writeComment input[type^=radio]');
@@ -532,16 +537,10 @@ function getCookie(c_name)
  * 초기화 함수 
  */
 $(function(){
+	
 	$(window).on("beforeunload", function(){
-    if($('#memoedit').text()) return "ss";
+    if($('#memoedit').text()) return "나가시겠습니까? 올리지 않은 로그는 저장되지 않습니다.";
   });
-	$('#memoedit').keypress(function(e) {
-		if (e.which == 13) 
-		{
-			e.preventDefault();
-			document.body.createTextRange().pasteHTML("<br/>");    
-		}
-   });
 	
 	$('#soundOn').click(function(){
 		setCookie('sound','on',7);

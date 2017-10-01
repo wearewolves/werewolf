@@ -539,7 +539,7 @@ $(function(){
 		if (e.which == 13) 
 		{
 			e.preventDefault();
-			document.selection.createRange().pasteHTML("<br/>");    
+			document.body.createTextRange().pasteHTML("<br/>");    
 		}
    });
 	

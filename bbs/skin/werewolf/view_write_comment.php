@@ -127,11 +127,9 @@ if($totalCommentPage>=1) echo "</div>";
 		 <?=$hide_c_password_end?>
 	  <tr bgcolor=111111>
 			<td width=100%>
-			<div name="memoedit" id="memoedit" contenteditable></div>
-			<textarea name="memo" id="memo" <?=size(40)?> rows="5" class="red_commentw" style="display: none;"></textarea>
+			<textarea name="memo" id="memo" <?=size(40)?> rows="5" class="red_commentw"></textarea>
 			</td>
-			
-	</tr>
+		</tr>
 
 	 <tr align=center bgcolor=111111> 
 	  <td width="100%" align='left'>
@@ -139,7 +137,10 @@ if($totalCommentPage>=1) echo "</div>";
 	  <table>
 		<tr>
 			<td width="100px">
-				<input type="button" onclick="fillComment(writeComment)" rows=5 <?if($browser){?>class=red_submit<?}?> value='보내기(s)' accesskey="s">
+				<input type="button" rows=5 onclick="addLine()" <?if($browser){?>class=red_submit<?}?> value='창 늘리기(z) ▼'  accesskey="z">
+			</td>
+			<td width="100px">
+				<input type="button" onclick="submitComment(writeComment)" rows=5 <?if($browser){?>class=red_submit<?}?> value='보내기(s)' accesskey="s">
 			</td>
 			<td>
 				 <input type="button" onclick="fastsendComment()" rows=5 style="font-size:10;"  value='비상용 보내기' title="보내기 버튼으로 로그가 올라가지 않을 때 사용하십시오.">
@@ -159,23 +160,6 @@ if($totalCommentPage>=1) echo "</div>";
 <script>
 checkCommentType();
 document.onload = initCommentType();
-
-// Paste text only
-document.querySelector("div[contenteditable]").addEventListener("paste", function(e) {
-	// cancel paste
-	e.preventDefault();
-	
-	if(e.clipboardData) {
-		var text = e.clipboardData.getData("text/plain");
-		// insert text manually
-		document.execCommand("insertHTML", false, text);
-	}
-	else if(window.clipboardData) {
-		var text = window.clipboardData.getData("Text");
-		// insert text manually
-		document.execCommand('paste', false, text);
-	}
-});
 </script>
 
 <?}?>

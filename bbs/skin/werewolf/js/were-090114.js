@@ -266,14 +266,7 @@ function BuildError(){
 	//alert("에러가 발생했습니다!!!!!!! \n\nreadyState:"+ this.req.readyState + "\nstatus: "+ this.req.status +"\nheaders: "+ this.req.getAllResponseHeaders());
 }
 
-// New Comment box (#memoedit)
-function fillComment(obj) {
-	document.getElementById('memo').value = document.getElementById('memoedit').innerText;
-	submitComment(obj);
-}
-
 function fastsendComment() {
-	document.getElementById('memo').value = document.getElementById('memoedit').innerText;
 	document.getElementById("writeComment").submit();
 }
 
@@ -337,8 +330,7 @@ function write_ok(){
 	var xmlDoc = this.req.responseXML.documentElement;
 
 	if(xmlDoc.getElementsByTagName('result')[0].firstChild.nodeValue == "true"){
-		// initialize memoedit
-		$("#memoedit").empty();
+		$("#memo").empty();
 		writeComment.memo.value = "";
 		postMemo = "";
 
@@ -385,8 +377,8 @@ function printCommentType(typeName,typeValue){
 }
 
 function addLine(){
-	var row = $('#memoedit').attr('rows');
-	$('#memoedit').attr('rows', parseInt(row) + 1);
+	var row = $('#memo').attr('rows');
+	$('#memo').attr('rows', parseInt(row) + 1);
 }
 
 function checkCommentType(){
@@ -406,40 +398,40 @@ function setColor(type){
 	switch (type)
 	{
 	case "일반":
-		$("#memoedit").css("backgroundColor","#fff");
-		$("#memoedit").css("color","#000");
+		$("#memo").css("backgroundColor","#fff");
+		$("#memo").css("color","#000");
 		break;
 	case "메모":
-		$("#memoedit").css("backgroundColor","#DEDB9C");
-		$("#memoedit").css("color","#000");
+		$("#memo").css("backgroundColor","#DEDB9C");
+		$("#memo").css("color","#000");
 		break;
 	case "사망":
-		$("#memoedit").css("backgroundColor","#9D9D9D");
-		$("#memoedit").css("color","#000");
+		$("#memo").css("backgroundColor","#9D9D9D");
+		$("#memo").css("color","#000");
 		break;
 	case "비밀":
-		$("#memoedit").css("backgroundColor","#F77");
-		$("#memoedit").css("color","#000");
+		$("#memo").css("backgroundColor","#F77");
+		$("#memo").css("color","#000");
 		break;
 	case "텔레":
-		$("#memoedit").css("backgroundColor","#93B4B7");
-		$("#memoedit").css("color","#000");
+		$("#memo").css("backgroundColor","#93B4B7");
+		$("#memo").css("color","#000");
 		break;
 	case "알림":
-		$("#memoedit").css("backgroundColor","#121212");
-		$("#memoedit").css("color","");
+		$("#memo").css("backgroundColor","#121212");
+		$("#memo").css("color","");
 		break;	
 	case "편지":
-		$("#memoedit").css("backgroundColor","#A6E1C4");
-		$("#memoedit").css("color","#000");
+		$("#memo").css("backgroundColor","#A6E1C4");
+		$("#memo").css("color","#000");
 		break;	
 	case "답변":
-		$("#memoedit").css("backgroundColor","#A6E1C4");
-		$("#memoedit").css("color","#000");
+		$("#memo").css("backgroundColor","#A6E1C4");
+		$("#memo").css("color","#000");
 		break;
 	case "봉인제안":
-		$("#memoedit").css("backgroundColor","#D2F3A2");
-		$("#memoedit").css("color","#000");
+		$("#memo").css("backgroundColor","#D2F3A2");
+		$("#memo").css("color","#000");
 		break;
 	}
 	return true;
@@ -539,7 +531,7 @@ function getCookie(c_name)
 $(function(){
 	
 	$(window).on("beforeunload", function(){
-    if($('#memoedit').text()) return "나가시겠습니까? 올리지 않은 로그는 저장되지 않습니다.";
+    if($('#memo').text()) return "나가시겠습니까? 올리지 않은 로그는 저장되지 않습니다.";
   });
 	
 	$('#soundOn').click(function(){
@@ -720,7 +712,7 @@ $(function(){
 				$("."+event.target.value).filter("."+this.value).fadeOut();
 		});
 	});
-	$("#memoedit").keyup(function(event) {
+	$("#memo").keyup(function(event) {
 		//if($(this).val() == "봉인 제안") {
 		if($(this).text() == "봉인 제안") {
 			var r = confirm("봉인을 제안하시겠습니까? 봉인은 게임 진행을 중단시키는 것입니다.\n\n봉인을 제안하면 봉인을 찬성,반대하는 투표가 시작됩니다.\n사건 발생 시간까지 찬성표가 과반수보다 많으면 게임이 봉인됩니다.\n봉인 논의는 한 게임당 한번만 가능합니다.");

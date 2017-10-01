@@ -533,8 +533,15 @@ function getCookie(c_name)
  */
 $(function(){
 	$(window).on("beforeunload", function(){
-    if($('#memoedit').text()) return "나가시겠습니까? 올리지 않은 로그는 저장되지 않습니다.";
+    if($('#memoedit').text()) return "ss";
   });
+	$('#memoedit').keypress(function(e) {
+		if (e.which == 13) 
+		{
+			e.preventDefault();
+			document.selection.createRange().pasteHTML("<br/>");    
+		}
+   });
 	
 	$('#soundOn').click(function(){
 		setCookie('sound','on',7);

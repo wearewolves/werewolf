@@ -267,6 +267,7 @@ function BuildError(){
 }
 
 function fastsendComment() {
+	$(window).unbind('beforeunload');
 	document.getElementById("writeComment").submit();
 }
 
@@ -378,7 +379,7 @@ function printCommentType(typeName,typeValue){
 
 function addLine(){
 	var row = $('#memo').attr('rows');
-	$('#memo').attr('rows', parseInt(row) + 1);
+	$('#memo').attr('rows', parseInt(row) + 4);
 }
 
 function checkCommentType(){
@@ -530,7 +531,7 @@ function getCookie(c_name)
  */
 $(function(){
 	
-	$(window).on("beforeunload", function(){
+	$(window).bind("beforeunload", function(){
     if($('#memo').text()) return "나가시겠습니까? 올리지 않은 로그는 저장되지 않습니다.";
   });
 	

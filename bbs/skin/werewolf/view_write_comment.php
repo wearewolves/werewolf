@@ -127,7 +127,7 @@ if($totalCommentPage>=1) echo "</div>";
 		 <?=$hide_c_password_end?>
 	  <tr bgcolor=111111>
 			<td width=100%>
-			<textarea name="memoedit" id="memoedit" <?=size(40)?> rows="5" class="red_commentw"></textarea>
+			<textarea name="memo" id="memo" <?=size(40)?> rows="5" class="red_commentw"></textarea>
 			</td>
 		</tr>
 
@@ -140,7 +140,7 @@ if($totalCommentPage>=1) echo "</div>";
 				<input type="button" rows=5 onclick="addLine()" <?if($browser){?>class=red_submit<?}?> value='창 늘리기(z) ▼'  accesskey="z">
 			</td>
 			<td width="100px">
-				<input type="button" onclick="fillComment(writeComment)" rows=5 <?if($browser){?>class=red_submit<?}?> value='보내기(s)' accesskey="s">
+				<input type="button" onclick="submitComment(writeComment)" rows=5 <?if($browser){?>class=red_submit<?}?> value='보내기(s)' accesskey="s">
 			</td>
 			<td>
 				 <input type="button" onclick="fastsendComment()" rows=5 style="font-size:10;"  value='비상용 보내기' title="보내기 버튼으로 로그가 올라가지 않을 때 사용하십시오.">

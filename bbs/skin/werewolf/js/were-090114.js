@@ -386,7 +386,7 @@ function printCommentType(typeName,typeValue){
 
 function addLine(){
 	var row = $('#memoedit').attr('rows');
-	$('#memoedit').attr('rows', row + 1);
+	$('#memoedit').attr('rows', parseInt(row) + 1);
 }
 
 function checkCommentType(){

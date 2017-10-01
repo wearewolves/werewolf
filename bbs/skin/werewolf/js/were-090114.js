@@ -532,7 +532,7 @@ function getCookie(c_name)
 $(function(){
 	
 	$(window).bind("beforeunload", function(){
-    if($('#memo').text()) return "나가시겠습니까? 올리지 않은 로그는 저장되지 않습니다.";
+    if($('#memo').val()) return "나가시겠습니까? 올리지 않은 로그는 저장되지 않습니다.";
   });
 	
 	$('#soundOn').click(function(){
@@ -763,6 +763,7 @@ $(function(){
 		var eventChooser = event.keyCode;
 
 	    if (eventChooser == 116) {
+			$(window).unbind('beforeunload');
 			alert("트래픽을 위해 새로 고침 사용을 자제해 주세요.");
 			if (!window.netscape)
 			{	

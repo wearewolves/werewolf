@@ -15,8 +15,9 @@ class MustkillRule(WerewolfRule):
         logging.debug("MustKillRule")
 
     def getTruecharacterList(self, number):
+        #16인은 다시 바뀔 수 있기에 우선 다른 루트를 타게 그냥 둔다
         if number == 16:
-            rolelist = [Truecharacter.HUMAN] * 6 + [Truecharacter.FREEMASONS] * 2 +\
+            rolelist = [Truecharacter.HUMAN] * 7 + [Truecharacter.CHIEF] +\
                        [Truecharacter.SEER, Truecharacter.MEDIUM, Truecharacter.BODYGUARD, Truecharacter.HIDENOBILITY] +\
                        [Truecharacter.WEREWOLF] * 2 + [Truecharacter.POSSESSED] + [Truecharacter.CRUELWEREWOLF]
         else:

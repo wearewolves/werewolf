@@ -36,3 +36,5 @@ INSERT INTO `zetyx_board_werewolf_rule` (`no`, `name`, `min_player`, `max_player
 (2, '햄스터', 11, 17),
 (3, '익스펜션', 9, 17),
 (4, '신뢰도', 11, 17);
+(5, '인스턴트', 7, 8);
+(6, '참살', 11, 16);

@@ -127,7 +127,7 @@ if($totalCommentPage>=1) echo "</div>";
 		 <?=$hide_c_password_end?>
 	  <tr bgcolor=111111>
 			<td width=100%>
-			<textarea name="memo" id="memo" height=100% rows="5" class="red_commentw"></textarea>
+			<textarea name="memo" id="memo" style="height:6em;" rows="5" class="red_commentw"></textarea>
 			</td>
 		</tr>
 

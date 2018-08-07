@@ -125,9 +125,9 @@ if($totalCommentPage>=1) echo "</div>";
 		</td></tr></table></td>
 	  </tr>
 		 <?=$hide_c_password_end?>
-	  <tr bgcolor=111111 id="memotr" >
+	  <tr bgcolor=111111 >
 			<td width=100%>
-			<textarea name="memo" id="memo" rows="5" class="red_commentw"></textarea>
+			<textarea name="memo" id="memo" rows="4" class="red_commentw"></textarea>
 			</td>
 		</tr>
 
@@ -137,7 +137,7 @@ if($totalCommentPage>=1) echo "</div>";
 	  <table>
 		<tr>
 			<td width="100px">
-				<input type="button" rows=5 onclick="addLine()" <?if($browser){?>class=red_submit<?}?> value='창 늘리기(z) ▼'  accesskey="z">
+				<input type="button" rows=4 onclick="addLine()" <?if($browser){?>class=red_submit<?}?> value='창 늘리기(z) ▼'  accesskey="z">
 			</td>
 			<td width="100px">
 				<input type="button" onclick="submitComment(writeComment)" rows=5 <?if($browser){?>class=red_submit<?}?> value='보내기(s)' accesskey="s">
@@ -158,11 +158,6 @@ if($totalCommentPage>=1) echo "</div>";
 
 
 <script>
-var textarea = document.getElementById('memo');
-new ResizeSensor(textarea, function() {
-	document.getElementById('memotr').style.height = textarea.clientHeight;
-});
-
 checkCommentType();
 document.onload = initCommentType();
 </script>

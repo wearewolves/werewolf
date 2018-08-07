@@ -159,8 +159,8 @@ if($totalCommentPage>=1) echo "</div>";
 
 <script>
 var textarea = document.getElementById('memo');
-new ResizeSensor(e, function() {
-	document.getElementById('memotr').style.height = e.clientHeight;
+new ResizeSensor(textarea, function() {
+	document.getElementById('memotr').style.height = textarea.clientHeight;
 });
 
 checkCommentType();

@@ -125,9 +125,9 @@ if($totalCommentPage>=1) echo "</div>";
 		</td></tr></table></td>
 	  </tr>
 		 <?=$hide_c_password_end?>
-	  <tr bgcolor=111111>
+	  <tr bgcolor=111111 id="memotr" >
 			<td width=100%>
-			<textarea name="memo" id="memo" style="height:6em;" rows="5" class="red_commentw"></textarea>
+			<textarea name="memo" id="memo" rows="5" class="red_commentw"></textarea>
 			</td>
 		</tr>
 
@@ -158,6 +158,11 @@ if($totalCommentPage>=1) echo "</div>";
 
 
 <script>
+var textarea = document.getElementById('memo');
+new ResizeSensor(e, function() {
+	document.getElementById('memotr').style.height = e.clientHeight;
+});
+
 checkCommentType();
 document.onload = initCommentType();
 </script>

@@ -1,7 +1,6 @@
 <script type="text/javascript" src="skin/<?=$id?>/js/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="skin/<?=$id?>/js/jquery.floatbox.js"></script>
 <script type="text/javascript" src="skin/<?=$id?>/js/image-picker.min.js"></script>
-<script type="text/javascript" src="skin/<?=$id?>/js/ResizeSensor.js"></script>
 <script type="text/javascript" src="skin/<?=$id?>/js/were-090114.js?ver=<?php echo filemtime('skin/'.$id.'/js/were-090114.js'); ?>"></script>
 <?
 	//---------------------------------------------------------------------- 

@@ -279,6 +279,10 @@ label, .buttonCommentPage{cursor: pointer;}
 	display: inline-block;
 }
 
+#memo{
+	resize:vertical;
+}
+
 #script{
 	float:left;
 	width:95%;

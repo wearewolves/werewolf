@@ -5,15 +5,15 @@ if($totalCommentPage>=1) echo "</div>";
 
 <?
 	$termOfDay="";
-	floor($gameinfo['termOfDay']/86400 ) and $termOfDay .= floor($gameinfo['termOfDay']/86400 )."ì¼";
-	floor(($gameinfo['termOfDay']%86400)/3600 ) and $termOfDay .= floor(($gameinfo['termOfDay']%86400)/3600 )."ì‹œê°„";
-	(($gameinfo['termOfDay']/60)%60) and $termOfDay .= (($gameinfo['termOfDay']/60)%60 ."ë¶„");
-	$gameinfo['termOfDay']%60 and $termOfDay.= ($gameinfo['termOfDay'] % 60 ."ì´ˆ" )  ;
+	floor($gameinfo['termOfDay']/86400 ) and $termOfDay .= floor($gameinfo['termOfDay']/86400 )."ÀÏ";
+	floor(($gameinfo['termOfDay']%86400)/3600 ) and $termOfDay .= floor(($gameinfo['termOfDay']%86400)/3600 )."½Ã°£";
+	(($gameinfo['termOfDay']/60)%60) and $termOfDay .= (($gameinfo['termOfDay']/60)%60 ."ºĞ");
+	$gameinfo['termOfDay']%60 and $termOfDay.= ($gameinfo['termOfDay'] % 60 ."ÃÊ" )  ;
 
-	if($gameinfo['state']=="ê²Œì„ë" and $entry)$writeComment = 5;
+	if($gameinfo['state']=="°ÔÀÓ³¡" and $entry)$writeComment = 5;
 	elseif($entry[memo]){$writeComment = 1;}
-	elseif($entry['alive']=="ìƒì¡´" and ($entry['normal'] or ($truecharacter['secretchat'] and $entry['secret']) or ($truecharacter['telepathy'] and $entry['telepathy']))){ $writeComment =2;}
-	elseif($entry['alive']=="ì‚¬ë§" and $entry['grave']) $writeComment = 3;
+	elseif($entry['alive']=="»ıÁ¸" and ($entry['normal'] or ($truecharacter['secretchat'] and $entry['secret']) or ($truecharacter['telepathy'] and $entry['telepathy']))){ $writeComment =2;}
+	elseif($entry['alive']=="»ç¸Á" and $entry['grave']) $writeComment = 3;
 	elseif($is_admin) $writeComment = 4;
 	else $writeComment =0 ;
 
@@ -62,19 +62,19 @@ if($totalCommentPage>=1) echo "</div>";
 	 </tr>
 
 	 <? $printCommentType ="";
-	if($gameinfo['state']=="ê²Œì„ë" or $gameinfo['state']=="ë´‰ì¸" or $gameinfo['state']=="ë²„ê·¸" ){
-		if($entry)$printCommentType .="<INPUT TYPE=radio ID=c_type NAME=c_type value=ì¼ë°˜ checked onclick=setColor('ì¼ë°˜')> ì¼ë°˜ ($entry[normal]/20)</input>" ;
-		if($is_admin)$printCommentType .="<INPUT TYPE=radio ID=c_type ID=c_type NAME=c_type  $checked value=ì•Œë¦¼ onclick=setColor('ì•Œë¦¼')> ì•Œë¦¼</input>" ;
+	if($gameinfo['state']=="°ÔÀÓ³¡" or $gameinfo['state']=="ºÀÀÎ" or $gameinfo['state']=="¹ö±×" ){
+		if($entry)$printCommentType .="<INPUT TYPE=radio ID=c_type NAME=c_type value=ÀÏ¹İ checked onclick=setColor('ÀÏ¹İ')> ÀÏ¹İ ($entry[normal]/20)</input>" ;
+		if($is_admin)$printCommentType .="<INPUT TYPE=radio ID=c_type ID=c_type NAME=c_type  $checked value=¾Ë¸² onclick=setColor('¾Ë¸²')> ¾Ë¸²</input>" ;
 	}
 	 else	{
-		if($entry['alive']=="ìƒì¡´" ){		
+		if($entry['alive']=="»ıÁ¸" ){		
 			if($entry[normal]){
-				$printCommentType .="<INPUT TYPE=radio ID=c_type NAME=c_type value=ì¼ë°˜  onclick=setColor('ì¼ë°˜')>ì¼ë°˜($entry[normal]/20)</input>" ;
+				$printCommentType .="<INPUT TYPE=radio ID=c_type NAME=c_type value=ÀÏ¹İ  onclick=setColor('ÀÏ¹İ')>ÀÏ¹İ($entry[normal]/20)</input>" ;
 			}
 			if($truecharacter['secretchat'] and $entry[secret] ){
-				$printCommentType .="<INPUT TYPE=radio ID=c_type NAME=c_type value=ë¹„ë°€  onclick=setColor('ë¹„ë°€')>ë¹„ë°€($entry[secret]/40)</input>" ;
+				$printCommentType .="<INPUT TYPE=radio ID=c_type NAME=c_type value=ºñ¹Ğ  onclick=setColor('ºñ¹Ğ')>ºñ¹Ğ($entry[secret]/40)</input>" ;
 			}
-			if($truecharacter['telepathy'] and  $entry[telepathy])$printCommentType .="<INPUT TYPE=radio ID=c_type NAME=c_type value=í…”ë ˆ onclick=setColor('í…”ë ˆ')>í…”ë ˆíŒŒì‹œ($entry[telepathy]/1)</input>" ;
+			if($truecharacter['telepathy'] and  $entry[telepathy])$printCommentType .="<INPUT TYPE=radio ID=c_type NAME=c_type value=ÅÚ·¹ onclick=setColor('ÅÚ·¹')>ÅÚ·¹ÆÄ½Ã($entry[telepathy]/1)</input>" ;
 
 			if($truecharacter['secretletter']){
 				$sql = "select * from $DB_secretletter where `game`='".$no."' and `day`='".$gameinfo[day]."' and `from` = ".$entry['character']."";
@@ -82,34 +82,34 @@ if($totalCommentPage>=1) echo "</div>";
 
 
 				if(!$secretletter){
-					$printCommentType .="<INPUT TYPE=radio ID=c_type NAME=c_type value=í¸ì§€ onclick=setColor('í¸ì§€')>í¸ì§€</input>" ;
-					$printCommentType .=DBselect("secretletterTo","","character",$character_list,"$DB_entry where game=$no and alive = 'ìƒì¡´'","font-size:9pt;width=100","",$entry['character']);
+					$printCommentType .="<INPUT TYPE=radio ID=c_type NAME=c_type value=ÆíÁö onclick=setColor('ÆíÁö')>ÆíÁö</input>" ;
+					$printCommentType .=DBselect("secretletterTo","","character",$character_list,"$DB_entry where game=$no and alive = '»ıÁ¸'","font-size:9pt;width=100","",$entry['character']);
 				}
 			}
 
 			$sql = "select * from $DB_secretletter where `game`='".$no."' and `day`='".($viewDay-1)."'";
 			$secretmessage=mysql_fetch_array(mysql_query($sql));
 
-			if($secretmessage and $secretmessage['to'] ==$entry['character']  and $secretmessage['answer']==0 )$printCommentType .="<INPUT TYPE=radio ID=c_type NAME=c_type value=ë‹µë³€  onclick=setColor('í¸ì§€')>ë‹µì¥</input>" ;
+			if($secretmessage and $secretmessage['to'] ==$entry['character']  and $secretmessage['answer']==0 )$printCommentType .="<INPUT TYPE=radio ID=c_type NAME=c_type value=´äº¯  onclick=setColor('ÆíÁö')>´äÀå</input>" ;
 
 		}
-		if($entry['alive']=="ì‚¬ë§" and $entry[grave] ){
-			$printCommentType .="<INPUT TYPE=radio ID=c_type NAME=c_type value=ì‚¬ë§ checked onclick=setColor('ì‚¬ë§')>ì‚¬ë§($entry[grave]/20)</input>" ;
+		if($entry['alive']=="»ç¸Á" and $entry[grave] ){
+			$printCommentType .="<INPUT TYPE=radio ID=c_type NAME=c_type value=»ç¸Á checked onclick=setColor('»ç¸Á')>»ç¸Á($entry[grave]/20)</input>" ;
 		}
 
-		if($entry and $entry[memo]>0 )$printCommentType .="<INPUT TYPE=radio ID=c_type NAME=c_type value=ë©”ëª¨ onclick=setColor('ë©”ëª¨')>ë©”ëª¨($entry[memo]/10)</input>" ;
+		if($entry and $entry[memo]>0 )$printCommentType .="<INPUT TYPE=radio ID=c_type NAME=c_type value=¸Ş¸ğ onclick=setColor('¸Ş¸ğ')>¸Ş¸ğ($entry[memo]/10)</input>" ;
 
 		if(!$entry) $checked = "checked";
 		if($is_admin){
-//			$printCommentType .="<INPUT TYPE=radio NAME=c_type value=ë¹„ë°€ checked onclick=setColor('ë¹„ë°€')>ë¹„ë°€($entry[secret]/40)</input>" ;
-			$printCommentType .="<INPUT TYPE=radio ID=c_type NAME=c_type  $checked value=ì•Œë¦¼ onclick=setColor('ì•Œë¦¼')>ì•Œë¦¼</input>" ;
+//			$printCommentType .="<INPUT TYPE=radio NAME=c_type value=ºñ¹Ğ checked onclick=setColor('ºñ¹Ğ')>ºñ¹Ğ($entry[secret]/40)</input>" ;
+			$printCommentType .="<INPUT TYPE=radio ID=c_type NAME=c_type  $checked value=¾Ë¸² onclick=setColor('¾Ë¸²')>¾Ë¸²</input>" ;
 		}
-		if($gameinfo['state']=="ê²Œì„ì¤‘" and $gameinfo['seal'] == 'ë…¼ì˜' and $entry and $entry['seal']>0){
-			$printCommentType .="<INPUT TYPE=radio ID=c_type NAME=c_type value=ë´‰ì¸ì œì•ˆ  onclick=setColor('ë´‰ì¸ì œì•ˆ')>ë´‰ì¸ ë…¼ì˜(".$entry['seal']."/5)</input>" ;
+		if($gameinfo['state']=="°ÔÀÓÁß" and $gameinfo['seal'] == '³íÀÇ' and $entry and $entry['seal']>0){
+			$printCommentType .="<INPUT TYPE=radio ID=c_type NAME=c_type value=ºÀÀÎÁ¦¾È  onclick=setColor('ºÀÀÎÁ¦¾È')>ºÀÀÎ ³íÀÇ(".$entry['seal']."/5)</input>" ;
 		}
 	 }
 
-	 //ì¼ë°˜ 
+	 //ÀÏ¹İ 
 		 //if(!$truecharacter['secretchat'] and !$truecharacter['telepathy']){?>
 	 <tr align=center bgcolor=111111> 
 	  <td align="left"><div id='selectCommentType'><?=$printCommentType?></div></td>
@@ -127,7 +127,7 @@ if($totalCommentPage>=1) echo "</div>";
 		 <?=$hide_c_password_end?>
 	  <tr bgcolor=111111 >
 			<td width=100%>
-      <textarea name="memo" id="memo" rows="4" class="red_commentw"></textarea>
+			<textarea name="memo" id="memo" rows="4" class="red_commentw"></textarea>
 			</td>
 		</tr>
 
@@ -137,13 +137,13 @@ if($totalCommentPage>=1) echo "</div>";
 	  <table>
 		<tr>
 			<td width="100px">
-				<input type="button" rows=4 onclick="addLine()" <?if($browser){?>class=red_submit<?}?> value='ì°½ ëŠ˜ë¦¬ê¸°(z) â–¼'  accesskey="z">
+				<input type="button" rows=4 onclick="addLine()" <?if($browser){?>class=red_submit<?}?> value='Ã¢ ´Ã¸®±â(z) ¡å'  accesskey="z">
 			</td>
 			<td width="100px">
-				<input type="button" onclick="submitComment(writeComment)" rows=5 <?if($browser){?>class=red_submit<?}?> value='ë³´ë‚´ê¸°(s)' accesskey="s">
+				<input type="button" onclick="submitComment(writeComment)" rows=5 <?if($browser){?>class=red_submit<?}?> value='º¸³»±â(s)' accesskey="s">
 			</td>
 			<td>
-				 <input type="button" onclick="fastsendComment()" rows=5 style="font-size:10;"  value='ë¹„ìƒìš© ë³´ë‚´ê¸°' title="ë³´ë‚´ê¸° ë²„íŠ¼ìœ¼ë¡œ ë¡œê·¸ê°€ ì˜¬ë¼ê°€ì§€ ì•Šì„ ë•Œ ì‚¬ìš©í•˜ì‹­ì‹œì˜¤.">
+				 <input type="button" onclick="fastsendComment()" rows=5 style="font-size:10;"  value='ºñ»ó¿ë º¸³»±â' title="º¸³»±â ¹öÆ°À¸·Î ·Î±×°¡ ¿Ã¶ó°¡Áö ¾ÊÀ» ¶§ »ç¿ëÇÏ½Ê½Ã¿À.">
 			</td>
 		</tr>
 	  </table>
@@ -167,7 +167,7 @@ document.onload = initCommentType();
 
 
 
-<?	if ($gameinfo['state']=="ê²Œì„ì¤‘" and $gameinfo['day']<>1 and $viewDay == $gameinfo['day']  and $entry['alive']=="ìƒì¡´" and !$vote) {?>
+<?	if ($gameinfo['state']=="°ÔÀÓÁß" and $gameinfo['day']<>1 and $viewDay == $gameinfo['day']  and $entry['alive']=="»ıÁ¸" and !$vote) {?>
 <table width=<?=$width?> cellspacing=0 cellpadding=0>
 <form method=post name=vote action=<?="view.php"?>  enctype="multipart/form-data"  onsubmit="return formcheck(this)">
 <input type=hidden name=page value=<?=$page?>>
@@ -188,12 +188,12 @@ document.onload = initCommentType();
 	<td height=30 colspan=2>
 	<table border=0 cellspacing=0 cellpadding=0 width=100% height=100%>
 	<tr>
-		<td align=center width=80><font class=red_8>íˆ¬í‘œ</td>
+		<td align=center width=80><font class=red_8>ÅõÇ¥</td>
 		<td align=left>
-			<font class=red_8><?=DBselect("candidacy","","character",$character_list,"$DB_entry where game=$no and alive = 'ìƒì¡´'","font-size:9pt;width=100","",$entry['character']);?>
-			 ì˜ ì´ë¦„ì„ íˆ¬í‘œ ìš©ì§€ì— ì ì–´ ë‚¸ë‹¤.
+			<font class=red_8><?=DBselect("candidacy","","character",$character_list,"$DB_entry where game=$no and alive = '»ıÁ¸'","font-size:9pt;width=100","",$entry['character']);?>
+			 ÀÇ ÀÌ¸§À» ÅõÇ¥ ¿ëÁö¿¡ Àû¾î ³½´Ù.
 		</td>
-		<td align=center width=70><font class=red_8><input type=submit rows=5 <?if($browser){?>class=red_submit_s<?}?> value='íˆ¬í‘œí•˜ê¸°' accesskey="v"></td>
+		<td align=center width=70><font class=red_8><input type=submit rows=5 <?if($browser){?>class=red_submit_s<?}?> value='ÅõÇ¥ÇÏ±â' accesskey="v"></td>
 	</tr></table>
 	</td>
 </tr>
@@ -220,9 +220,9 @@ document.onload = initCommentType();
 	<td height=30 colspan=2>
 	<table border=0 cellspacing=0 cellpadding=0 width=100% height=100%>
 	<tr>
-		<td align=center width=80>íˆ¬í‘œ</td>
-		<td><font class=red_8><?=$character_list[$vote[candidacy]]?>ì—ê²Œ í‘œë¥¼ ë˜ì¡ŒìŠµë‹ˆë‹¤.</td>
-		<td align=center width=70><font class=red_8><input type=submit rows=5 <?if($browser){?>class=red_submit_s<?}?> value='ì·¨ì†Œí•œë‹¤' accesskey="v"></td>
+		<td align=center width=80>ÅõÇ¥</td>
+		<td><font class=red_8><?=$character_list[$vote[candidacy]]?>¿¡°Ô Ç¥¸¦ ´øÁ³½À´Ï´Ù.</td>
+		<td align=center width=70><font class=red_8><input type=submit rows=5 <?if($browser){?>class=red_submit_s<?}?> value='Ãë¼ÒÇÑ´Ù' accesskey="v"></td>
 	</tr></table>
 	</td>
 </tr>
@@ -230,15 +230,15 @@ document.onload = initCommentType();
 </table>
 <?}?>
 
-<?	if($gameinfo['state']=="ê²Œì„ì¤‘" and $truecharacter['forecast'] and !$forecast and $viewDay == $gameinfo['day'] and $entry['alive']=="ìƒì¡´") {?>
+<?	if($gameinfo['state']=="°ÔÀÓÁß" and $truecharacter['forecast'] and !$forecast and $viewDay == $gameinfo['day'] and $entry['alive']=="»ıÁ¸") {?>
 
 <?if($truecharacter['forecast']) {
-	$forecastArray = DB_array("mystery","mystery","$DB_revelation where game='$no' and prophet='$entry[character]' and type = 'ì '");
+	$forecastArray = DB_array("mystery","mystery","$DB_revelation where game='$no' and prophet='$entry[character]' and type = 'Á¡'");
 
 	if($forecastArray )	$orderCondition = orderCondition($forecastArray);
 	else 						$orderCondition = "in (0)";
 
-	//echo DBselect("mystery","","character",$character_list,"$DB_entry where game=$no and alive = 'ìƒì¡´' and victim = 0 and `character`  not $orderCondition","font-size:9pt;width=100","",$entry['character']);
+	//echo DBselect("mystery","","character",$character_list,"$DB_entry where game=$no and alive = '»ıÁ¸' and victim = 0 and `character`  not $orderCondition","font-size:9pt;width=100","",$entry['character']);
 }?>
 
 <table width=<?=$width?> cellspacing=0 cellpadding=0>
@@ -261,14 +261,14 @@ document.onload = initCommentType();
 	<td height=30 colspan=2>
 	<table border=0 cellspacing=0 cellpadding=0 width=100% height=100%>
 	<tr>
-		<td align=center width=80><font class=red_8>ì </td>
+		<td align=center width=80><font class=red_8>Á¡</td>
 		<td align=left>
 
 
-			<font class=red_8><?=DBselect("mystery","","character",$character_list,"$DB_entry where game=$no and alive = 'ìƒì¡´' and victim = 0 and `character`  not $orderCondition","font-size:9pt;width=100","",$entry['character']);?>
-			 <!--ì˜ ì •ì²´ì„ ì•Œì•„ë‚´ê¸° ìœ„í•´ ì ë¥¼ ì³ë³¸ë‹¤.-->
+			<font class=red_8><?=DBselect("mystery","","character",$character_list,"$DB_entry where game=$no and alive = '»ıÁ¸' and victim = 0 and `character`  not $orderCondition","font-size:9pt;width=100","",$entry['character']);?>
+			 <!--ÀÇ Á¤Ã¼À» ¾Ë¾Æ³»±â À§ÇØ Á¡¸¦ ÃÄº»´Ù.-->
 		</td>
-		<td align=center width=70><font class=red_8><input type=submit rows=5 <?if($browser){?>class=red_submit_s<?}?> value='ì ì¹˜ê¸°' accesskey="f"></td>
+		<td align=center width=70><font class=red_8><input type=submit rows=5 <?if($browser){?>class=red_submit_s<?}?> value='Á¡Ä¡±â' accesskey="f"></td>
 	</tr></table>
 	</td>
 </tr>
@@ -295,9 +295,9 @@ document.onload = initCommentType();
 	<td height=30 colspan=2>
 	<table border=0 cellspacing=0 cellpadding=0 width=100% height=100%>
 	<tr>
-		<td align=center width=80>ì  ëŒ€ìƒ </td>
+		<td align=center width=80>Á¡ ´ë»ó </td>
 		<td><font class=red_8><?=$character_list[$forecast['mystery']]?></font></td>
-		<td align=center width=70><font class=red_8><input type=submit rows=5 <?if($browser){?>class=red_submit_s<?}?> value='ì·¨ì†Œí•œë‹¤' accesskey="f"></td>
+		<td align=center width=70><font class=red_8><input type=submit rows=5 <?if($browser){?>class=red_submit_s<?}?> value='Ãë¼ÒÇÑ´Ù' accesskey="f"></td>
 	</tr></table>
 	</td>
 </tr>
@@ -306,7 +306,7 @@ document.onload = initCommentType();
 <?}?>
 
 
-<?	if($gameinfo['state']=="ê²Œì„ì¤‘"  and ($gameinfo['day']<>1 or $gameinfo['rule']==5) and $truecharacter['assault'] and !$assault and $viewDay == $gameinfo['day']  and $entry['alive']=="ìƒì¡´") {?>
+<?	if($gameinfo['state']=="°ÔÀÓÁß"  and ($gameinfo['day']<>1 or $gameinfo['rule']==5) and $truecharacter['assault'] and !$assault and $viewDay == $gameinfo['day']  and $entry['alive']=="»ıÁ¸") {?>
 <table width=<?=$width?> cellspacing=0 cellpadding=0>
 <form method=post name=assault action=<?="view.php"?>  enctype="multipart/form-data"    onsubmit="return formcheck(this)">
 <input type=hidden name=page value=<?=$page?>>
@@ -327,7 +327,7 @@ document.onload = initCommentType();
 	<td height=30 colspan=2>
 	<table border=0 cellspacing=0 cellpadding=0 width=100% height=100%>
 	<tr>
-		<td align=center width=80><font class=red_8>ì‚´í•´</td>
+		<td align=center width=80><font class=red_8>»ìÇØ</td>
 		<td align=left>
 			<font class=red_8>
 <?
@@ -345,10 +345,10 @@ document.onload = initCommentType();
 //echo "\$orderCondition:".$orderCondition."<br>";
 
 
-			$assault_list =  DB_array("no","character","$DB_entry where game = $no and alive='ìƒì¡´' and truecharacter $orderCondition");	
+			$assault_list =  DB_array("no","character","$DB_entry where game = $no and alive='»ıÁ¸' and truecharacter $orderCondition");	
 			$assault_list = array_values($assault_list);
 			
-			// 2017/05/07 epi : ë‘ìŠµë£° ì²´í¬ ë¶€ë¶„
+			// 2017/05/07 epi : ¶û½À·ê Ã¼Å© ºÎºĞ
 			$CheckAssaultWerewolf = checkSubRule($gameinfo['subRule'], 1);
 //echo "\$assault_list:";print_r($assault_list);echo "<br><br>";
 ?>
@@ -357,13 +357,13 @@ document.onload = initCommentType();
 			
 			
 			<?if($CheckAssaultWerewolf){?>
-				<?=DBselect("injured","","character",$character_list,"$DB_entry where game=$no and alive = 'ìƒì¡´'","font-size:9pt;width=100","","");?>
+				<?=DBselect("injured","","character",$character_list,"$DB_entry where game=$no and alive = '»ıÁ¸'","font-size:9pt;width=100","","");?>
 			<? }else {?>
-				<?=DBselect("injured","","character",$character_list,"$DB_entry where game=$no and alive = 'ìƒì¡´'","font-size:9pt;width=100","",$assault_list);?>
+				<?=DBselect("injured","","character",$character_list,"$DB_entry where game=$no and alive = '»ıÁ¸'","font-size:9pt;width=100","",$assault_list);?>
 			<?}?>
-			 ì„ ì‚´í•´ ëŒ€ìƒìœ¼ë¡œ ì§€ëª©í•œë‹¤.
+			 À» »ìÇØ ´ë»óÀ¸·Î Áö¸ñÇÑ´Ù.
 		</td>
-		<td align=center width=70><font class=red_8><input type=submit rows=5 <?if($browser){?>class=red_submit_s<?}?> value='ì§€ëª©í•˜ê¸°' accesskey="f"></td>
+		<td align=center width=70><font class=red_8><input type=submit rows=5 <?if($browser){?>class=red_submit_s<?}?> value='Áö¸ñÇÏ±â' accesskey="f"></td>
 	</tr></table>
 	</td>
 </tr>
@@ -390,17 +390,17 @@ document.onload = initCommentType();
 	<td height=30 colspan=2>
 	<table border=0 cellspacing=0 cellpadding=0 width=100% height=100%>
 	<tr>
-		<td align=center width=80>ì‚´í•´ ê³„íš</td>
+		<td align=center width=80>»ìÇØ °èÈ¹</td>
 		<td><font class=red_8>
-				ë‹¹ì‹ ì€ <?=$character_list[$assault[injured]]?>ì˜ ëª©ì„ ë…¸ë¦¬ê³  ìˆìŠµë‹ˆë‹¤.</font></td>
-		<td align=center width=70><font class=red_8><input type=submit rows=5 <?if($browser){?>class=red_submit_s<?}?> value='ì·¨ì†Œí•œë‹¤' accesskey="f"></td>
+				´ç½ÅÀº <?=$character_list[$assault[injured]]?>ÀÇ ¸ñÀ» ³ë¸®°í ÀÖ½À´Ï´Ù.</font></td>
+		<td align=center width=70><font class=red_8><input type=submit rows=5 <?if($browser){?>class=red_submit_s<?}?> value='Ãë¼ÒÇÑ´Ù' accesskey="f"></td>
 	</tr></table>
 	</td>
 </tr>
 </form>
 </table>
 <?}?>
-<?	if($gameinfo['state']=="ê²Œì„ì¤‘" and $truecharacter['guard'] and !$guard and $viewDay == $gameinfo['day'] and $entry['alive']=="ìƒì¡´"  and ($gameinfo['day']<>1 or $gameinfo['rule']==5) ) {?>
+<?	if($gameinfo['state']=="°ÔÀÓÁß" and $truecharacter['guard'] and !$guard and $viewDay == $gameinfo['day'] and $entry['alive']=="»ıÁ¸"  and ($gameinfo['day']<>1 or $gameinfo['rule']==5) ) {?>
 <table width=<?=$width?> cellspacing=0 cellpadding=0>
 <form method=post name=guard action=<?="view.php"?>   enctype="multipart/form-data"   onsubmit="return formcheck(this)">
 <input type=hidden name=page value=<?=$page?>>
@@ -421,12 +421,12 @@ document.onload = initCommentType();
 	<td height=30 colspan=2>
 	<table border=0 cellspacing=0 cellpadding=0 width=100% height=100%>
 	<tr>
-		<td align=center width=80><font class=red_8>ë³´í˜¸</td>
+		<td align=center width=80><font class=red_8>º¸È£</td>
 		<td align=left>
-			<font class=red_8><?=DBselect("purpose","","character",$character_list,"$DB_entry where game=$no and alive = 'ìƒì¡´'","font-size:9pt;width=100","",$entry['character']);?>
-			 ì„ ë³´í˜¸í•œë‹¤.
+			<font class=red_8><?=DBselect("purpose","","character",$character_list,"$DB_entry where game=$no and alive = '»ıÁ¸'","font-size:9pt;width=100","",$entry['character']);?>
+			 À» º¸È£ÇÑ´Ù.
 		</td>
-		<td align=center width=70><font class=red_8><input type=submit rows=5 <?if($browser){?>class=red_submit_s<?}?> value='ë³´í˜¸í•œë‹¤' accesskey="f"></td>
+		<td align=center width=70><font class=red_8><input type=submit rows=5 <?if($browser){?>class=red_submit_s<?}?> value='º¸È£ÇÑ´Ù' accesskey="f"></td>
 	</tr></table>
 	</td>
 </tr>
@@ -452,10 +452,10 @@ document.onload = initCommentType();
 	<td height=30 colspan=2>
 	<table border=0 cellspacing=0 cellpadding=0 width=100% height=100%>
 	<tr>
-		<td align=center width=80>ë³´í˜¸</td>
+		<td align=center width=80>º¸È£</td>
 		<td><font class=red_8>
-				ë‹¹ì‹ ì€ <?=$character_list[$guard[purpose]]?>ì”¨ì˜ ì£¼ë³€ì—ì„œ ê²½ê³„ë¥¼ ì„œê³  ìˆìŠµë‹ˆë‹¤.</font></td>
-		<td align=center width=70><font class=red_8><input type=submit rows=5 <?if($browser){?>class=red_submit_s<?}?> value='ì·¨ì†Œí•œë‹¤' accesskey="f"></td>
+				´ç½ÅÀº <?=$character_list[$guard[purpose]]?>¾¾ÀÇ ÁÖº¯¿¡¼­ °æ°è¸¦ ¼­°í ÀÖ½À´Ï´Ù.</font></td>
+		<td align=center width=70><font class=red_8><input type=submit rows=5 <?if($browser){?>class=red_submit_s<?}?> value='Ãë¼ÒÇÑ´Ù' accesskey="f"></td>
 	</tr></table>
 	</td>
 </tr>
@@ -463,34 +463,34 @@ document.onload = initCommentType();
 </table>
 <?}?>
 
-<?//	ì´ˆëŠ¥ë ¥ì ì •ë³´ ì¶œë ¥
-	if($gameinfo['state']=="ê²Œì„ì¤‘"  and $entry['truecharacter'] == 7 and $viewDay == $gameinfo['day']  and $entry['alive']=="ìƒì¡´" and 0){
+<?//	ÃÊ´É·ÂÀÚ Á¤º¸ Ãâ·Â
+	if($gameinfo['state']=="°ÔÀÓÁß"  and $entry['truecharacter'] == 7 and $viewDay == $gameinfo['day']  and $entry['alive']=="»ıÁ¸" and 0){
 
-		//ë‚´ê°€ ì§€ê¸ˆ  ì°¸ì—¬ì¤‘ì¸  ê²Œì„ì´ê³  and ì´ˆëŠ¥ë ¥ì´ê³  and ë‚˜ ì´ì™¸ì˜
+		//³»°¡ Áö±İ  Âü¿©ÁßÀÎ  °ÔÀÓÀÌ°í and ÃÊ´É·ÂÀÌ°í and ³ª ÀÌ¿ÜÀÇ
 		$sql = "select `character` from `zetyx_board_werewolf_entry` where game = $no and truecharacter = 7 and player != $member[no] ";
 		$pair = mysql_fetch_array(mysql_query($sql));
 		?>
 		<div class='DisplayBoard' >
-			ë‹¹ì‹ ì˜ í˜ì–´ëŠ” <?=$character_list[$pair[0]];?> ë‹˜ ì…ë‹ˆë‹¤.
+			´ç½ÅÀÇ Æä¾î´Â <?=$character_list[$pair[0]];?> ´Ô ÀÔ´Ï´Ù.
 		</div>
 
 	<div class="DisplayBoard">
-		<h1>ì‹œìŠ¤í…œì—ì„œ ì¶œë ¥ëœ ë©”ì‹œì§€(ì , ì˜ë§¤, ë³´í˜¸ ê²°ê³¼ ë“±)ë¥¼ ê·¸ëŒ€ë¡œ ê¸ì–´ì™€ì„œ ì¸ìš©í•˜ëŠ” ê²ƒì€ ê¸ˆì§€ì…ë‹ˆë‹¤. </h1>
+		<h1>½Ã½ºÅÛ¿¡¼­ Ãâ·ÂµÈ ¸Ş½ÃÁö(Á¡, ¿µ¸Å, º¸È£ °á°ú µî)¸¦ ±×´ë·Î ±Ü¾î¿Í¼­ ÀÎ¿ëÇÏ´Â °ÍÀº ±İÁöÀÔ´Ï´Ù. </h1>
 	</div>
 <?}?>
 
-<?	if( ($guard_result and $assault_result) or ($forecast_result and ($entry['alive']=="ìƒì¡´")) or ($mediumism and ($entry['alive']=="ìƒì¡´")) ) {?>
+<?	if( ($guard_result and $assault_result) or ($forecast_result and ($entry['alive']=="»ıÁ¸")) or ($mediumism and ($entry['alive']=="»ıÁ¸")) ) {?>
 	<div class="DisplayBoard">
-		<h1>ì‹œìŠ¤í…œì—ì„œ ì¶œë ¥ëœ ë©”ì‹œì§€(ì , ì˜ë§¤, ë³´í˜¸ ê²°ê³¼ ë“±)ë¥¼ ê·¸ëŒ€ë¡œ ê¸ì–´ì™€ì„œ ì¸ìš©í•˜ëŠ” ê²ƒì€ ê¸ˆì§€ì…ë‹ˆë‹¤. </h1>
+		<h1>½Ã½ºÅÛ¿¡¼­ Ãâ·ÂµÈ ¸Ş½ÃÁö(Á¡, ¿µ¸Å, º¸È£ °á°ú µî)¸¦ ±×´ë·Î ±Ü¾î¿Í¼­ ÀÎ¿ëÇÏ´Â °ÍÀº ±İÁöÀÔ´Ï´Ù. </h1>
 	</div>
 <?	}?>
 
 
 <?
-// ìµìŠ¤íœì…˜ ì§ì—… //////////////////////////////////////////.
-//ì¸ë‘ ë¦¬ë”////////////////////////////////////////////////
+// ÀÍ½ºÆæ¼Ç Á÷¾÷ //////////////////////////////////////////.
+//ÀÎ¶û ¸®´õ////////////////////////////////////////////////
 ?>
-<?	if($gameinfo['state']=="ê²Œì„ì¤‘" and $truecharacter['detect'] and !$detect and $viewDay == $gameinfo['day'] and $entry['alive']=="ìƒì¡´" ) {?>
+<?	if($gameinfo['state']=="°ÔÀÓÁß" and $truecharacter['detect'] and !$detect and $viewDay == $gameinfo['day'] and $entry['alive']=="»ıÁ¸" ) {?>
 <table width=<?=$width?> cellspacing=0 cellpadding=0>
 <form method=post name=guard action=<?="view.php"?>   enctype="multipart/form-data"   onsubmit="return formcheck(this)">
 <input type=hidden name=page value=<?=$page?>>
@@ -511,7 +511,7 @@ document.onload = initCommentType();
 	<td height=30 colspan=2>
 	<table border=0 cellspacing=0 cellpadding=0 width=100% height=100%>
 	<tr>
-		<td align=center width=80><font class=red_8>ê°ì§€</td>
+		<td align=center width=80><font class=red_8>°¨Áö</td>
 		<td align=left>
 			<font class=red_8>
 			<?
@@ -530,7 +530,7 @@ document.onload = initCommentType();
 
 
 
-			$assault_list =  DB_array("no","character","$DB_entry where game = $no and alive='ìƒì¡´' and truecharacter $orderCondition");	
+			$assault_list =  DB_array("no","character","$DB_entry where game = $no and alive='»ıÁ¸' and truecharacter $orderCondition");	
 			$assault_list = array_values($assault_list);
 //echo "\$assault_list:";print_r($assault_list);echo "<br><br>";
 ?>
@@ -538,9 +538,9 @@ document.onload = initCommentType();
 			
 			
 			
-			<?=DBselect("purpose","","character",$character_list,"$DB_entry where game=$no and alive = 'ìƒì¡´'","font-size:9pt;width=100","",$assault_list);?>
+			<?=DBselect("purpose","","character",$character_list,"$DB_entry where game=$no and alive = '»ıÁ¸'","font-size:9pt;width=100","",$assault_list);?>
 					</td>
-		<td align=center width=70><font class=red_8><input type=submit rows=5 <?if($browser){?>class=red_submit_s<?}?> value='ê°ì§€í•œë‹¤' accesskey="f"></td>
+		<td align=center width=70><font class=red_8><input type=submit rows=5 <?if($browser){?>class=red_submit_s<?}?> value='°¨ÁöÇÑ´Ù' accesskey="f"></td>
 	</tr></table>
 	</td>
 </tr>
@@ -566,13 +566,13 @@ document.onload = initCommentType();
 	<td height=30 colspan=2>
 	<table border=0 cellspacing=0 cellpadding=0 width=100% height=100%>
 	<tr>
-		<td align=center width=80>ê°ì§€</td>
+		<td align=center width=80>°¨Áö</td>
 		<td><font class=red_8>
 
 
 
-				<?=$character_list[$detect['target']]?>ì”¨ì˜ ëƒ„ìƒˆë¥¼ ë§¡ê³  ìˆë‹¤.</font></td>
-		<td align=center width=70><font class=red_8><input type=submit rows=5 <?if($browser){?>class=red_submit_s<?}?> value='ì·¨ì†Œí•œë‹¤' accesskey="f"></td>
+				<?=$character_list[$detect['target']]?>¾¾ÀÇ ³¿»õ¸¦ ¸Ã°í ÀÖ´Ù.</font></td>
+		<td align=center width=70><font class=red_8><input type=submit rows=5 <?if($browser){?>class=red_submit_s<?}?> value='Ãë¼ÒÇÑ´Ù' accesskey="f"></td>
 	</tr></table>
 	</td>
 </tr>
@@ -582,8 +582,8 @@ document.onload = initCommentType();
 
 
 
-<?//ë³µìˆ˜ì////////////////////////////////////////////////?>
-<?	if($gameinfo['state']=="ê²Œì„ì¤‘" and $truecharacter['revenge'] and !$revenge and $viewDay == $gameinfo['day'] and $entry['alive']=="ìƒì¡´"  ) {?>
+<?//º¹¼öÀÚ////////////////////////////////////////////////?>
+<?	if($gameinfo['state']=="°ÔÀÓÁß" and $truecharacter['revenge'] and !$revenge and $viewDay == $gameinfo['day'] and $entry['alive']=="»ıÁ¸"  ) {?>
 <table width=<?=$width?> cellspacing=0 cellpadding=0>
 <form method=post name=guard action=<?="view.php"?>   enctype="multipart/form-data"   onsubmit="return formcheck(this)">
 <input type=hidden name=page value=<?=$page?>>
@@ -604,11 +604,11 @@ document.onload = initCommentType();
 	<td height=30 colspan=2>
 	<table border=0 cellspacing=0 cellpadding=0 width=100% height=100%>
 	<tr>
-		<td align=center width=80><font class=red_8>ë³µìˆ˜</td>
+		<td align=center width=80><font class=red_8>º¹¼ö</td>
 		<td align=left>
-			<font class=red_8><?=DBselect("purpose","","character",$character_list,"$DB_entry where game=$no and alive = 'ìƒì¡´'","font-size:9pt;width=100","",$entry['character']);?>
+			<font class=red_8><?=DBselect("purpose","","character",$character_list,"$DB_entry where game=$no and alive = '»ıÁ¸'","font-size:9pt;width=100","",$entry['character']);?>
 		</td>
-		<td align=center width=70><font class=red_8><input type=submit rows=5 <?if($browser){?>class=red_submit_s<?}?> value='ë…¸ë ¤ë³¸ë‹¤' accesskey="f"></td>
+		<td align=center width=70><font class=red_8><input type=submit rows=5 <?if($browser){?>class=red_submit_s<?}?> value='³ë·Áº»´Ù' accesskey="f"></td>
 	</tr></table>
 	</td>
 </tr>
@@ -634,10 +634,10 @@ document.onload = initCommentType();
 	<td height=30 colspan=2>
 	<table border=0 cellspacing=0 cellpadding=0 width=100% height=100%>
 	<tr>
-		<td align=center width=80>ë³µìˆ˜</td>
+		<td align=center width=80>º¹¼ö</td>
 		<td><font class=red_8>
-				ë‹¹ì‹ ì€ <?=$character_list[$revenge['target']]?>ì”¨ë¥¼ ë…¸ë ¤ë³´ê³  ìˆë‹¤.</font></td>
-		<td align=center width=70><font class=red_8><input type=submit rows=5 <?if($browser){?>class=red_submit_s<?}?> value='ì·¨ì†Œí•œë‹¤' accesskey="f"></td>
+				´ç½ÅÀº <?=$character_list[$revenge['target']]?>¾¾¸¦ ³ë·Áº¸°í ÀÖ´Ù.</font></td>
+		<td align=center width=70><font class=red_8><input type=submit rows=5 <?if($browser){?>class=red_submit_s<?}?> value='Ãë¼ÒÇÑ´Ù' accesskey="f"></td>
 	</tr></table>
 	</td>
 </tr>
@@ -645,9 +645,9 @@ document.onload = initCommentType();
 </table>
 <?}?>
 
-<?//ë°˜ìª½ ìŠµê²©////////////////////////////////////////////////?>
+<?//¹İÂÊ ½À°İ////////////////////////////////////////////////?>
 
-<?	if($gameinfo['state']=="ê²Œì„ì¤‘"  and $truecharacter['half-assault'] and !$halfassault and $viewDay == $gameinfo['day']  and $entry['alive']=="ìƒì¡´"and $gameinfo['day']<>1) {?>
+<?	if($gameinfo['state']=="°ÔÀÓÁß"  and $truecharacter['half-assault'] and !$halfassault and $viewDay == $gameinfo['day']  and $entry['alive']=="»ıÁ¸"and $gameinfo['day']<>1) {?>
 <table width=<?=$width?> cellspacing=0 cellpadding=0>
 <form method=post name=assault action=<?="view.php"?>  enctype="multipart/form-data"    onsubmit="return formcheck(this)">
 <input type=hidden name=page value=<?=$page?>>
@@ -668,13 +668,13 @@ document.onload = initCommentType();
 	<td height=30 colspan=2>
 	<table border=0 cellspacing=0 cellpadding=0 width=100% height=100%>
 	<tr>
-		<td align=center width=80><font class=red_8>ì‚´í•´</td>
+		<td align=center width=80><font class=red_8>»ìÇØ</td>
 		<td align=left>
 			<font class=red_8>			
-			<?=DBselect("injuredhalf","","character",$character_list,"$DB_entry where game=$no and alive = 'ìƒì¡´'","font-size:9pt;width=100","",$entry['character']);?>			
-			 ì„ ì‚´í•´ ëŒ€ìƒìœ¼ë¡œ ì§€ëª©í•œë‹¤.
+			<?=DBselect("injuredhalf","","character",$character_list,"$DB_entry where game=$no and alive = '»ıÁ¸'","font-size:9pt;width=100","",$entry['character']);?>			
+			 À» »ìÇØ ´ë»óÀ¸·Î Áö¸ñÇÑ´Ù.
 		</td>
-		<td align=center width=70><font class=red_8><input type=submit rows=5 <?if($browser){?>class=red_submit_s<?}?> value='ì§€ëª©í•˜ê¸°' accesskey="f"></td>
+		<td align=center width=70><font class=red_8><input type=submit rows=5 <?if($browser){?>class=red_submit_s<?}?> value='Áö¸ñÇÏ±â' accesskey="f"></td>
 	</tr></table>
 	</td>
 </tr>
@@ -701,10 +701,10 @@ document.onload = initCommentType();
 	<td height=30 colspan=2>
 	<table border=0 cellspacing=0 cellpadding=0 width=100% height=100%>
 	<tr>
-		<td align=center width=80>ì‚´í•´ ê³„íš</td>
+		<td align=center width=80>»ìÇØ °èÈ¹</td>
 		<td><font class=red_8>
-				ë‹¹ì‹ ì€ <?=$character_list[$halfassault[injured]]?>ì˜ ëª©ì„ ë…¸ë¦¬ê³  ìˆìŠµë‹ˆë‹¤.</font></td>
-		<td align=center width=70><font class=red_8><input type=submit rows=5 <?if($browser){?>class=red_submit_s<?}?> value='ì·¨ì†Œí•œë‹¤' accesskey="f"></td>
+				´ç½ÅÀº <?=$character_list[$halfassault[injured]]?>ÀÇ ¸ñÀ» ³ë¸®°í ÀÖ½À´Ï´Ù.</font></td>
+		<td align=center width=70><font class=red_8><input type=submit rows=5 <?if($browser){?>class=red_submit_s<?}?> value='Ãë¼ÒÇÑ´Ù' accesskey="f"></td>
 	</tr></table>
 	</td>
 </tr>
@@ -714,16 +714,16 @@ document.onload = initCommentType();
 
 
 <?
-// ì‹ ë¢°ë„ //////////////////////////////////////////.
-// í™€ ìˆ˜ ì ìŸì´////////////////////////////////////////////////
-	if($gameinfo['state']=="ê²Œì„ì¤‘" and $truecharacter['forecast-odd'] and !$forecastOdd and $viewDay == $gameinfo['day'] and $viewDay%2 == 1 and $entry['alive']=="ìƒì¡´") {?>
+// ½Å·Úµµ //////////////////////////////////////////.
+// È¦ ¼ö Á¡ÀïÀÌ////////////////////////////////////////////////
+	if($gameinfo['state']=="°ÔÀÓÁß" and $truecharacter['forecast-odd'] and !$forecastOdd and $viewDay == $gameinfo['day'] and $viewDay%2 == 1 and $entry['alive']=="»ıÁ¸") {?>
 <? if($truecharacter['forecast-odd']) {
-	$forecastArray = DB_array("mystery","mystery","$DB_revelation where game='$no' and prophet='$entry[character]' and type = 'ì '");
+	$forecastArray = DB_array("mystery","mystery","$DB_revelation where game='$no' and prophet='$entry[character]' and type = 'Á¡'");
 
 	if($forecastArray )	$orderCondition = orderCondition($forecastArray);
 	else 						$orderCondition = "in (0)";
 
-	//echo DBselect("mystery","","character",$character_list,"$DB_entry where game=$no and alive = 'ìƒì¡´' and victim = 0 and `character`  not $orderCondition","font-size:9pt;width=100","",$entry['character']);
+	//echo DBselect("mystery","","character",$character_list,"$DB_entry where game=$no and alive = '»ıÁ¸' and victim = 0 and `character`  not $orderCondition","font-size:9pt;width=100","",$entry['character']);
 }?>
 
 <table width=<?=$width?> cellspacing=0 cellpadding=0>
@@ -746,27 +746,27 @@ document.onload = initCommentType();
 	<td height=30 colspan=2>
 	<table border=0 cellspacing=0 cellpadding=0 width=100% height=100%>
 	<tr>
-		<td align=center width=80><font class=red_8>ì </td>
+		<td align=center width=80><font class=red_8>Á¡</td>
 		<td align=left>
 
 
-			<font class=red_8><?=DBselect("mystery","","character",$character_list,"$DB_entry where game=$no and alive = 'ìƒì¡´' and victim = 0 and `character`  not $orderCondition","font-size:9pt;width=100","",$entry['character']);?>
-			 <!--ì˜ ì •ì²´ì„ ì•Œì•„ë‚´ê¸° ìœ„í•´ ì ë¥¼ ì³ë³¸ë‹¤.-->
+			<font class=red_8><?=DBselect("mystery","","character",$character_list,"$DB_entry where game=$no and alive = '»ıÁ¸' and victim = 0 and `character`  not $orderCondition","font-size:9pt;width=100","",$entry['character']);?>
+			 <!--ÀÇ Á¤Ã¼À» ¾Ë¾Æ³»±â À§ÇØ Á¡¸¦ ÃÄº»´Ù.-->
 		</td>
-		<td align=center width=70><font class=red_8><input type=submit rows=5 <?if($browser){?>class=red_submit_s<?}?> value='ì ì¹˜ê¸°' accesskey="f"></td>
+		<td align=center width=70><font class=red_8><input type=submit rows=5 <?if($browser){?>class=red_submit_s<?}?> value='Á¡Ä¡±â' accesskey="f"></td>
 	</tr></table>
 	</td>
 </tr>
 </form>
 </table>
-<? }elseif($gameinfo['state']=="ê²Œì„ì¤‘" and $truecharacter['forecast-odd'] and !$forecastOdd and $viewDay == $gameinfo['day'] and $viewDay%2 == 0 and $entry['alive']=="ìƒì¡´"){?>
+<? }elseif($gameinfo['state']=="°ÔÀÓÁß" and $truecharacter['forecast-odd'] and !$forecastOdd and $viewDay == $gameinfo['day'] and $viewDay%2 == 0 and $entry['alive']=="»ıÁ¸"){?>
 <table width=<?=$width?> cellspacing=0 cellpadding=0>
 <tr bgcolor=111111>
 	<td height=30 colspan=2>
 	<table border=0 cellspacing=0 cellpadding=0 width=100% height=100%>
 	<tr>
-		<td align=center width=80>ì  </td>
-		<td><font class=red_8>ì§ìˆ˜ ë‚ ì—ëŠ” ì ì„ ë³¼ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.</font></td>
+		<td align=center width=80>Á¡ </td>
+		<td><font class=red_8>Â¦¼ö ³¯¿¡´Â Á¡À» º¼ ¼ö ¾ø½À´Ï´Ù.</font></td>
 		<td align=center width=70></td>
 	</tr></table>
 	</td>
@@ -795,9 +795,9 @@ document.onload = initCommentType();
 	<td height=30 colspan=2>
 	<table border=0 cellspacing=0 cellpadding=0 width=100% height=100%>
 	<tr>
-		<td align=center width=80>ì  ëŒ€ìƒ </td>
+		<td align=center width=80>Á¡ ´ë»ó </td>
 		<td><font class=red_8><?=$character_list[$forecastOdd['mystery']]?></font></td>
-		<td align=center width=70><font class=red_8><input type=submit rows=5 <?if($browser){?>class=red_submit_s<?}?> value='ì·¨ì†Œí•œë‹¤' accesskey="f"></td>
+		<td align=center width=70><font class=red_8><input type=submit rows=5 <?if($browser){?>class=red_submit_s<?}?> value='Ãë¼ÒÇÑ´Ù' accesskey="f"></td>
 	</tr></table>
 	</td>
 </tr>
@@ -809,7 +809,7 @@ document.onload = initCommentType();
 <?
 //
 
-if($gameinfo['state']=="ê²Œì„ì¤‘"  and $gameinfo['day']<>1 and $truecharacter['assault-con'] and !$assaultCon and $viewDay == $gameinfo['day']  and $entry['alive']=="ìƒì¡´") {?>
+if($gameinfo['state']=="°ÔÀÓÁß"  and $gameinfo['day']<>1 and $truecharacter['assault-con'] and !$assaultCon and $viewDay == $gameinfo['day']  and $entry['alive']=="»ıÁ¸") {?>
 <table width=<?=$width?> cellspacing=0 cellpadding=0>
 <form method=post name=assault action=<?="view.php"?>  enctype="multipart/form-data"    onsubmit="return formcheck(this)">
 <input type=hidden name=page value=<?=$page?>>
@@ -830,7 +830,7 @@ if($gameinfo['state']=="ê²Œì„ì¤‘"  and $gameinfo['day']<>1 and $truecharacter['
 	<td height=30 colspan=2>
 	<table border=0 cellspacing=0 cellpadding=0 width=100% height=100%>
 	<tr>
-		<td align=center width=80><font class=red_8>ì‚´í•´</td>
+		<td align=center width=80><font class=red_8>»ìÇØ</td>
 		<td align=left>
 			<font class=red_8>
 <?
@@ -850,7 +850,7 @@ if($gameinfo['state']=="ê²Œì„ì¤‘"  and $gameinfo['day']<>1 and $truecharacter['
 
 
 
-			$assault_list =  DB_array("no","character","$DB_entry where game = $no and alive='ìƒì¡´' and truecharacter $orderCondition");	
+			$assault_list =  DB_array("no","character","$DB_entry where game = $no and alive='»ıÁ¸' and truecharacter $orderCondition");	
 			$assault_list = array_values($assault_list);
 //echo "\$assault_list:";print_r($assault_list);echo "<br><br>";
 ?>
@@ -858,10 +858,10 @@ if($gameinfo['state']=="ê²Œì„ì¤‘"  and $gameinfo['day']<>1 and $truecharacter['
 			
 			
 			
-			<?=DBselect("injured","","character",$character_list,"$DB_entry where game=$no and alive = 'ìƒì¡´'","font-size:9pt;width=100","",$assault_list);?>
-			 ì„ ì‚´í•´ ëŒ€ìƒìœ¼ë¡œ ì§€ëª©í•œë‹¤.
+			<?=DBselect("injured","","character",$character_list,"$DB_entry where game=$no and alive = '»ıÁ¸'","font-size:9pt;width=100","",$assault_list);?>
+			 À» »ìÇØ ´ë»óÀ¸·Î Áö¸ñÇÑ´Ù.
 		</td>
-		<td align=center width=70><font class=red_8><input type=submit rows=5 <?if($browser){?>class=red_submit_s<?}?> value='ì§€ëª©í•˜ê¸°' accesskey="f"></td>
+		<td align=center width=70><font class=red_8><input type=submit rows=5 <?if($browser){?>class=red_submit_s<?}?> value='Áö¸ñÇÏ±â' accesskey="f"></td>
 	</tr></table>
 	</td>
 </tr>
@@ -888,10 +888,10 @@ if($gameinfo['state']=="ê²Œì„ì¤‘"  and $gameinfo['day']<>1 and $truecharacter['
 	<td height=30 colspan=2>
 	<table border=0 cellspacing=0 cellpadding=0 width=100% height=100%>
 	<tr>
-		<td align=center width=80>ì‚´í•´ ê³„íš</td>
+		<td align=center width=80>»ìÇØ °èÈ¹</td>
 		<td><font class=red_8>
-				ë‹¹ì‹ ì€ <?=$character_list[$assaultCon[injured]]?>ì˜ ëª©ì„ ë…¸ë¦¬ê³  ìˆìŠµë‹ˆë‹¤.</font></td>
-		<td align=center width=70><font class=red_8><input type=submit rows=5 <?if($browser){?>class=red_submit_s<?}?> value='ì·¨ì†Œí•œë‹¤' accesskey="f"></td>
+				´ç½ÅÀº <?=$character_list[$assaultCon[injured]]?>ÀÇ ¸ñÀ» ³ë¸®°í ÀÖ½À´Ï´Ù.</font></td>
+		<td align=center width=70><font class=red_8><input type=submit rows=5 <?if($browser){?>class=red_submit_s<?}?> value='Ãë¼ÒÇÑ´Ù' accesskey="f"></td>
 	</tr></table>
 	</td>
 </tr>
@@ -900,10 +900,10 @@ if($gameinfo['state']=="ê²Œì„ì¤‘"  and $gameinfo['day']<>1 and $truecharacter['
 <?}?>
 
 <?
-// ì°¸ì‚´ë£° ì§ì—… //////////////////////////////////////////.
-//ì”í˜¹í•œ ì¸ë‘////////////////////////////////////////////////
+// Âü»ì·ê Á÷¾÷ //////////////////////////////////////////.
+//ÀÜÈ¤ÇÑ ÀÎ¶û////////////////////////////////////////////////
 ?>
-<?	if($gameinfo['state']=="ê²Œì„ì¤‘" and $gameinfo['day']<>1 and $truecharacter['mustkill'] and !$mustkill and $viewDay == $gameinfo['day'] and $entry['alive']=="ìƒì¡´" ) {?>
+<?	if($gameinfo['state']=="°ÔÀÓÁß" and $gameinfo['day']<>1 and $truecharacter['mustkill'] and !$mustkill and $viewDay == $gameinfo['day'] and $entry['alive']=="»ıÁ¸" ) {?>
 <table width=<?=$width?> cellspacing=0 cellpadding=0>
 <form method=post name=mustkill action=<?="view.php"?>   enctype="multipart/form-data"   onsubmit="return formcheck(this)">
 <input type=hidden name=page value=<?=$page?>>
@@ -924,7 +924,7 @@ if($gameinfo['state']=="ê²Œì„ì¤‘"  and $gameinfo['day']<>1 and $truecharacter['
 	<td height=30 colspan=2>
 	<table border=0 cellspacing=0 cellpadding=0 width=100% height=100%>
 	<tr>
-		<td align=center width=80><font class=red_8>ì°¸ì‚´</td>
+		<td align=center width=80><font class=red_8>Âü»ì</td>
 		<td align=left>
 			<font class=red_8>
 			<?
@@ -942,10 +942,10 @@ if($gameinfo['state']=="ê²Œì„ì¤‘"  and $gameinfo['day']<>1 and $truecharacter['
 //echo "\$orderCondition:".$orderCondition."<br>";
 
 
-			$assault_list =  DB_array("no","character","$DB_entry where game = $no and alive='ìƒì¡´' and truecharacter $orderCondition");	
+			$assault_list =  DB_array("no","character","$DB_entry where game = $no and alive='»ıÁ¸' and truecharacter $orderCondition");	
 			$assault_list = array_values($assault_list);
 			
-			// 2017/09/10 epi : ë‘ìŠµë£° ì²´í¬ ë¶€ë¶„
+			// 2017/09/10 epi : ¶û½À·ê Ã¼Å© ºÎºĞ
 			$CheckAssaultWerewolf = checkSubRule($gameinfo['subRule'], 1);
 //echo "\$assault_list:";print_r($assault_list);echo "<br><br>";
 ?>
@@ -954,12 +954,12 @@ if($gameinfo['state']=="ê²Œì„ì¤‘"  and $gameinfo['day']<>1 and $truecharacter['
 			
 			
 			<?if($CheckAssaultWerewolf){?>
-				<?=DBselect("purpose","","character",$character_list,"$DB_entry where game=$no and alive = 'ìƒì¡´'","font-size:9pt;width=100","","");?>
+				<?=DBselect("purpose","","character",$character_list,"$DB_entry where game=$no and alive = '»ıÁ¸'","font-size:9pt;width=100","","");?>
 			<? }else {?>
-				<?=DBselect("purpose","","character",$character_list,"$DB_entry where game=$no and alive = 'ìƒì¡´'","font-size:9pt;width=100","",$assault_list);?>
+				<?=DBselect("purpose","","character",$character_list,"$DB_entry where game=$no and alive = '»ıÁ¸'","font-size:9pt;width=100","",$assault_list);?>
 			<?}?>
-			 ì—ê²Œ ì‚´ì˜ë¥¼ ê°–ëŠ”ë‹¤.
-		<td align=center width=70><font class=red_8><input type=submit rows=5 <?if($browser){?>class=red_submit_s<?}?> value='ì°¸ì‚´í•œë‹¤' accesskey="f"></td>
+			 ¿¡°Ô »ìÀÇ¸¦ °®´Â´Ù.
+		<td align=center width=70><font class=red_8><input type=submit rows=5 <?if($browser){?>class=red_submit_s<?}?> value='Âü»ìÇÑ´Ù' accesskey="f"></td>
 	</tr></table>
 	</td>
 </tr>
@@ -985,13 +985,13 @@ if($gameinfo['state']=="ê²Œì„ì¤‘"  and $gameinfo['day']<>1 and $truecharacter['
 	<td height=30 colspan=2>
 	<table border=0 cellspacing=0 cellpadding=0 width=100% height=100%>
 	<tr>
-		<td align=center width=80>ì°¸ì‚´</td>
+		<td align=center width=80>Âü»ì</td>
 		<td><font class=red_8>
 
 
 
-				<?=$character_list[$mustkill['target']]?>ì”¨ì—ê²Œ ê°•í•œ ì‚´ì˜ë¥¼ ëŠë¼ê³  ìˆë‹¤.</font></td>
-		<td align=center width=70><font class=red_8><input type=submit rows=5 <?if($browser){?>class=red_submit_s<?}?> value='ì·¨ì†Œí•œë‹¤' accesskey="f"></td>
+				<?=$character_list[$mustkill['target']]?>¾¾¿¡°Ô °­ÇÑ »ìÀÇ¸¦ ´À³¢°í ÀÖ´Ù.</font></td>
+		<td align=center width=70><font class=red_8><input type=submit rows=5 <?if($browser){?>class=red_submit_s<?}?> value='Ãë¼ÒÇÑ´Ù' accesskey="f"></td>
 	</tr></table>
 	</td>
 </tr>
@@ -1003,13 +1003,13 @@ if($gameinfo['state']=="ê²Œì„ì¤‘"  and $gameinfo['day']<>1 and $truecharacter['
 
 
 
-<?//ì¤€ë¹„////////////////////////////////////////////////?>
-<? if($gameinfo['useTimetable'] and $entry['alive']=="ìƒì¡´" and $gameinfo['state']=="ê²Œì„ì¤‘"){?>
+<?//ÁØºñ////////////////////////////////////////////////?>
+<? if($gameinfo['useTimetable'] and $entry['alive']=="»ıÁ¸" and $gameinfo['state']=="°ÔÀÓÁß"){?>
 	<div class="DisplayBoard">
 	<?	if($entry['isConfirm']){
-		echo "[ì¤€ë¹„ ì™„ë£Œ. ëª¨ë“  í”Œë ˆì´ì–´ê°€ ì¤€ë¹„ë¥¼ ëë‚¼ ë•Œê¹Œì§€ ê¸°ë‹¤ë ¤ì£¼ì„¸ìš”.] <br><br> <span><a href=$PHP_SELF?id=$id&no=$no&function=isConfirm&password=$password>ì¤€ë¹„ ì·¨ì†Œ</a></span>";
+		echo "[ÁØºñ ¿Ï·á. ¸ğµç ÇÃ·¹ÀÌ¾î°¡ ÁØºñ¸¦ ³¡³¾ ¶§±îÁö ±â´Ù·ÁÁÖ¼¼¿ä.] <br><br> <span><a href=$PHP_SELF?id=$id&no=$no&function=isConfirm&password=$password>ÁØºñ Ãë¼Ò</a></span>";
 	}elseif($entry  and !$entry['isConfirm']){
-		echo "[ëª¨ë“  í”Œë ˆì´ì–´ê°€ ì¤€ë¹„ ì™„ë£Œë¥¼ ëˆ„ë¥´ë©´ ë‹¤ìŒ ë‚ ë¡œ ë„˜ì–´ê°‘ë‹ˆë‹¤.] <br><br> <span><a href=$PHP_SELF?id=$id&no=$no&function=isConfirm&password=$password>ì¤€ë¹„ ì™„ë£Œ</a></span>&nbsp;&nbsp;&nbsp;&nbsp;";	
+		echo "[¸ğµç ÇÃ·¹ÀÌ¾î°¡ ÁØºñ ¿Ï·á¸¦ ´©¸£¸é ´ÙÀ½ ³¯·Î ³Ñ¾î°©´Ï´Ù.] <br><br> <span><a href=$PHP_SELF?id=$id&no=$no&function=isConfirm&password=$password>ÁØºñ ¿Ï·á</a></span>&nbsp;&nbsp;&nbsp;&nbsp;";	
 	}?>
 </div>
 <?}?>

@@ -1,5 +1,0 @@
-*.pyc
-.travis.yml
-README.md
-deploy.sh
-staging.sh

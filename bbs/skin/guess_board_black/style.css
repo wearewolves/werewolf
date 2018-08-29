@@ -63,7 +63,7 @@ A:hover   {color:#BEBEBE;text-decoration:none;}
 * comment  스타일 시트
 *********************************************/
 .comment {width:100%;border-bottom:1px solid #151515;}
-.comment td{font-size:12px;font-family:tahoma;letter-spacing:0px;}
+.comment td{font-size:12px;letter-spacing:0px;}
 .comment .name{font-style:bold;font-size:11pt;color:#999999;}
 
 /*********************************************
@@ -123,7 +123,7 @@ A:hover   {color:#BEBEBE;text-decoration:none;}
 
 .commentBodyContents .notice .message{background-color:#121212;margin-left:0px;max-width:576px;}
 
-.commentBodyContents .normal .ct,.commentBodyContents .normal .message{background-color:#121212}
+/*.commentBodyContents .normal .ct,.commentBodyContents .normal .message{background-color:#121212}*/
 
 .notice	.ct,.notice .message{background-color:#121212}
 

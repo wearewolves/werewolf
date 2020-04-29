@@ -15,7 +15,7 @@ script:
 - npm install gulp -g
 - npm install vinyl-ftp gulp-util minimist --save-dev
 - chmod +x staging.sh
-- "./staging.sh  $STAGING_FTP_USER  $STAGING_FTP_PASSWORD"
+# - "./staging.sh  $STAGING_FTP_USER  $STAGING_FTP_PASSWORD"
 before_deploy:
 - rm server/config.py
 - chmod +x deploy.sh

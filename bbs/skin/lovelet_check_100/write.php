@@ -4,7 +4,7 @@
 ?>
 <?if($member[level] <> 8 and $member[level]<> 9) error("신규회원 또는 돌연사 한 사람만 출석도장을 찍을 수 있습니다.");?>
 
-<?if(date('H') <= 2 or  date('H')>= 20){?>
+<?if(true){?>
 <table width=250 border="0" cellspacing="0" cellpadding="0">
 <form method=post name=write action=write_ok.php onsubmit="return check_submit();" enctype=multipart/form-data>
 <input type=hidden name=page value=<?=$page?>>

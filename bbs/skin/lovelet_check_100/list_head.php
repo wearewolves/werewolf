@@ -18,13 +18,13 @@ if ('' != $keyword) {
 	$suddenDeathCount[0];				
 
 	switch($suddenDeathCount[0]){
-		case 0: $checkDaysSuddenDeathPlayer = 3;// 신규 가입자
+		case 0: $checkDaysSuddenDeathPlayer = 1;// 신규 가입자
 					break;
-		case 1: $checkDaysSuddenDeathPlayer = 7;// 돌연사 1회
+		case 1: $checkDaysSuddenDeathPlayer = 2;// 돌연사 1회
 					break;
-		case 2: $checkDaysSuddenDeathPlayer = 10;// 돌연사 2회
+		case 2: $checkDaysSuddenDeathPlayer = 3;// 돌연사 2회
 					break;
-		case 3: $checkDaysSuddenDeathPlayer = 14;// 돌연사 3회
+		case 3: $checkDaysSuddenDeathPlayer = 4;// 돌연사 3회
 					break;
 		case 4: // 멤버 정보 삭제
 				@mysql_query("delete from $member_table where no='$member[no]'") or error(mysql_error());

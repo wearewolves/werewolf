@@ -1,6 +1,7 @@
 <html>
 <head>
 <title>:: 수다의 전당 ::</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0/">
 <?
 // register_globals가 off일때를 위해 변수 재 정의
 	@extract($HTTP_GET_VARS); 

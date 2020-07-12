@@ -41,13 +41,13 @@ if($notice[1]) { ?>
 <h1>게임의 재미를 반감 하는 금지 행동들</h1>
 인랑은 설득과 거짓말을 하거나 당하면서 판단, 추리하는 사유를 즐기는 게임입니다.<br />
 이런 인랑의 즐거움을 방해하는 행동들을 금지합니다.<br/>
-<ol>
-	<ul type="disc">
-			<? foreach($mannerNotice as $manner)
-				echo "<li class='alert'>".$manner."</li>";
-			?>	
-	</ul>
-</ol>
+
+<ul type="disc">
+		<? foreach($mannerNotice as $manner)
+			echo "<li class='alert'>".$manner."</li>";
+		?>	
+</ul>
+
 </div>
 
 <?if($is_admin){

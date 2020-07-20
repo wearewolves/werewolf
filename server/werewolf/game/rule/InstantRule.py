@@ -84,6 +84,39 @@ class InstantRule(WerewolfRule):
         if assaultVictim:
             logging.debug("assaultVictim: %s", assaultVictim)
             self.assaultByWerewolf(assaultVictim, victim)
+            
+        #종료 조건 확인
+        #사람!
+        humanRace = self.game.entry.getEntryByRace(Race.HUMAN)
+        #for human in humanRace :
+        #    print human
+
+        #습격자!
+        werewolfRace = self.game.entry.getEntryByRace(Race.WEREWOLF)
+        #for werewolf in werewolfRace :
+        #    print werewolf
+
+        if (len(humanRace) <= len(werewolfRace)) or not humanRace:
+            logging.info("인랑 승리")
+            self.game.setGameState("win", "1")
+            if self.game.termOfDay == 60:
+                self.game.setGameState("state", GAME_STATE.TESTOVER)
+            else:
+                self.game.setGameState("state", GAME_STATE.GAMEOVER)
+            self.game.entry.allocComment()
+
+        elif not werewolfRace:
+            logging.info("인간 승리")
+            self.game.setGameState("win", "0")
+            if self.game.termOfDay == 60:
+                self.game.setGameState("state", GAME_STATE.TESTOVER)
+            else:
+                self.game.setGameState("state", GAME_STATE.GAMEOVER)
+            self.game.entry.allocComment()
+
+        else:
+            logging.info("계속 진행")
+            #self.game.setGameState("state","게임중")
 
         #3. 게임 정보 업데이트
         self.game.setGameState("state", "게임중")

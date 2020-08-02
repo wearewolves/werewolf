@@ -1,6 +1,6 @@
-[![Build Status](https://travis-ci.org/wearewolves/werewolf.svg?branch=master)](https://travis-ci.org/wearewolves/werewolf)
+![Publish Website](https://github.com/wearewolves/werewolf/workflows/Publish%20Website/badge.svg)
 
-# werewolf6.cafe24.co.kr
+# werewolf6.cafe24.com
 "인랑"의 "30분 서버"의 소스입니다.
 
 ## 개발

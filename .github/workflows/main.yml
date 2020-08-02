@@ -18,5 +18,11 @@ jobs:
         ftp-server:   ${{ secrets.FTP_SERVER }}
         ftp-username: ${{ secrets.FTP_USERNAME }}
         ftp-password: ${{ secrets.FTP_PASSWORD }}
-            
+    - name: executing remote ssh commands using password
+      uses: appleboy/ssh-action@master
+      with:
+        host:     ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        script:  chmod 755 www/server/next.cgi
     

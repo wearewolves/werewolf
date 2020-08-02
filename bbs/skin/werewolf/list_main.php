@@ -1,44 +1,44 @@
 <? /////////////////////////////////////////////////////////////////////////
  /*
- ëª©ë¡ì„ ì¶œë ¥í•˜ëŠ” ë¶€ë¶„ìž…ë‹ˆë‹¤.
- ëª©ë¡ì€ ì—¬ëŸ¬ê°œì´ê¸° ë•Œë¬¸ì— ì´ íŒŒì¼ì„ ê³„ì† ì½ì–´ì„œ ì¶œë ¥í•©ë‹ˆë‹¤.
- ìˆœí™˜ì´ ë˜ë„ë¡ ìž˜ ìž‘ì„±í•˜ì…”ì•¼ í•©ë‹ˆë‹¤.
- ì•„ëž˜ëŠ” HTML ì•ˆì— ê·¸ëŒ€ë¡œ ì‚¬ìš©í•´ì£¼ì‹œë©´ ìˆœí™˜ì„ í•˜ë©´ì„œ ì¶œë ¥ì„ í•©ë‹ˆë‹¤.
+ ¸ñ·ÏÀ» Ãâ·ÂÇÏ´Â ºÎºÐÀÔ´Ï´Ù.
+ ¸ñ·ÏÀº ¿©·¯°³ÀÌ±â ¶§¹®¿¡ ÀÌ ÆÄÀÏÀ» °è¼Ó ÀÐ¾î¼­ Ãâ·ÂÇÕ´Ï´Ù.
+ ¼øÈ¯ÀÌ µÇµµ·Ï Àß ÀÛ¼ºÇÏ¼Å¾ß ÇÕ´Ï´Ù.
+ ¾Æ·¡´Â HTML ¾È¿¡ ±×´ë·Î »ç¿ëÇØÁÖ½Ã¸é ¼øÈ¯À» ÇÏ¸é¼­ Ãâ·ÂÀ» ÇÕ´Ï´Ù.
 
- <?=$number?> : ê°€ìƒë²ˆí˜¸. ì¦‰ ìˆœì„œëŒ€ë¡œ ë‚˜ì˜¤ëŠ” ë²ˆí˜¸
- * <?=$data[no]?> : ì ˆëŒ€ë²ˆí˜¸, ì ˆëŒ€ ë°”ë€Œì§€ ì•ŠëŠ” ë²ˆí˜¸..
- * <?=$loop_number?> : í˜„ìž¬ ì„ íƒë˜ì–´ ìžˆëŠ” ê¸€ì´ë¼ë„ ë²ˆí˜¸ë¡œ ë‚˜ì˜¤ê²Œ
- <?=$name?> : ë©”ì¼ì´ ë§í¬ë˜ì–´ ìžˆëŠ” ì´ë¦„ * ì›ëž˜ ê·¸ëŒ€ë¡œ <?=$data[name]?>
- <?=$email?> : ë©”ì¼.. ê±°ì˜ ì§ì ‘ ì“¸ì¼ì€ ì—†ìŒ;;
- <?=$subject?> : ë§í¬ê°€ ë˜ì–´ ìžˆëŠ” ì œëª©  * ì›ëž˜ ê·¸ëŒ€ë¡œ <?=$data[suject]?>
- <?=$memo?> : ë‚´ìš© ë¶€ë¶„
- <?=$hit?> : ì¡°íšŒìˆ˜
- <?=$vote?> : ì¶”ì²œìˆ˜
- <?=$ip?> : ì•„í”¼ì£¼ì†Œ
- <?=$comment_num?> : ê°„ë‹¨í•œ ë‹µê¸€ ìˆ˜ [ ] ê°€ ë‘˜ëŸ¬ì‹¸ì—¬ ìžˆëŠ”ê²ƒ;; <?=$data[comment_num]?> ì€ ìˆ«ìžë§Œ;;
- <?=$reg_date?> : ê¸€ì“´ ë‚ ìž
- <?=$category_name?> : ì¹´í…Œê³ ë¦¬ ì´ë¦„
+ <?=$number?> : °¡»ó¹øÈ£. Áï ¼ø¼­´ë·Î ³ª¿À´Â ¹øÈ£
+ * <?=$data[no]?> : Àý´ë¹øÈ£, Àý´ë ¹Ù²îÁö ¾Ê´Â ¹øÈ£..
+ * <?=$loop_number?> : ÇöÀç ¼±ÅÃµÇ¾î ÀÖ´Â ±ÛÀÌ¶óµµ ¹øÈ£·Î ³ª¿À°Ô
+ <?=$name?> : ¸ÞÀÏÀÌ ¸µÅ©µÇ¾î ÀÖ´Â ÀÌ¸§ * ¿ø·¡ ±×´ë·Î <?=$data[name]?>
+ <?=$email?> : ¸ÞÀÏ.. °ÅÀÇ Á÷Á¢ ¾µÀÏÀº ¾øÀ½;;
+ <?=$subject?> : ¸µÅ©°¡ µÇ¾î ÀÖ´Â Á¦¸ñ  * ¿ø·¡ ±×´ë·Î <?=$data[suject]?>
+ <?=$memo?> : ³»¿ë ºÎºÐ
+ <?=$hit?> : Á¶È¸¼ö
+ <?=$vote?> : ÃßÃµ¼ö
+ <?=$ip?> : ¾ÆÇÇÁÖ¼Ò
+ <?=$comment_num?> : °£´ÜÇÑ ´ä±Û ¼ö [ ] °¡ µÑ·¯½Î¿© ÀÖ´Â°Í;; <?=$data[comment_num]?> Àº ¼ýÀÚ¸¸;;
+ <?=$reg_date?> : ±Û¾´ ³¯ÀÚ
+ <?=$category_name?> : Ä«Å×°í¸® ÀÌ¸§
 
- <?=$face_image?> : í˜„ìž¬ íšŒì›ìƒíƒœì˜ ì•„ì´ì½˜;;
+ <?=$face_image?> : ÇöÀç È¸¿ø»óÅÂÀÇ ¾ÆÀÌÄÜ;;
 
- <?=$insert?> : ë‹µê¸€ì¼ê²½ìš° í•œì¹¸ì”© ë“¤ì–´ê°€ëŠ” ê¹Šì´ë¥¼ ì¶œë ¥í•©ë‹ˆë‹¤.
- <?=$icon?>   : í˜„ìž¬ ê¸€ì˜ ìƒíƒœì— ë”°ë¼ì„œ ì•„ì´ì½˜ì„ ì¶œë ¥í•©ë‹ˆë‹¤.
+ <?=$insert?> : ´ä±ÛÀÏ°æ¿ì ÇÑÄ­¾¿ µé¾î°¡´Â ±íÀÌ¸¦ Ãâ·ÂÇÕ´Ï´Ù.
+ <?=$icon?>   : ÇöÀç ±ÛÀÇ »óÅÂ¿¡ µû¶ó¼­ ¾ÆÀÌÄÜÀ» Ãâ·ÂÇÕ´Ï´Ù.
 
- ë°”êµ¬ë‹ˆì™€ ì¹´í…Œê³ ë¦¬ì˜ ê²½ìš° ì‚¬ìš©í•˜ì§€ ì•ŠëŠ” ìˆ˜ê°€ ìžˆìœ¼ë¯€ë¡œ ìˆ¨ê²¨ë†“ì„ë•Œ ì“°ëŠ” ë³€ìˆ˜;;
- <?=$hide_cart_start?> ë‚´ìš© <?=$hide_cart_end?> : start ì™€ end ì‚¬ì´ì—ëŠ” ì‚¬ë¼ì§;; ë°”êµ¬ë‹ˆ
- <?=$hide_category_start?> ë‚´ìš© <?=$hide_category_end?> : Startì™€ end ì‚¬ì´ì—ëŠ” ì‚¬ë¼ì§;; ë°”êµ¬ë‹ˆ
+ ¹Ù±¸´Ï¿Í Ä«Å×°í¸®ÀÇ °æ¿ì »ç¿ëÇÏÁö ¾Ê´Â ¼ö°¡ ÀÖÀ¸¹Ç·Î ¼û°Ü³õÀ»¶§ ¾²´Â º¯¼ö;;
+ <?=$hide_cart_start?> ³»¿ë <?=$hide_cart_end?> : start ¿Í end »çÀÌ¿¡´Â »ç¶óÁü;; ¹Ù±¸´Ï
+ <?=$hide_category_start?> ³»¿ë <?=$hide_category_end?> : Start¿Í end »çÀÌ¿¡´Â »ç¶óÁü;; ¹Ù±¸´Ï
 
 
- ì°¸ê³ : old_head.gif : ì›ë³¸ê¸€ì´ë©´ì„œ 12ì‹œê°„ì´ ë„˜ì€ ê¸€ì˜ ì•„ì´ì½˜
-       new_head.gif : 12ì‹œê°„ì— ì ížˆ ëª¨ë“  ê¸€. ì›ë³¸/ë‹µê¸€ ìƒê´€ì—†ì´
-       reply_head.gif : 12ì‹œê°„ì´ ì§€ë‚œ ë‹µê¸€ì˜ ì•„ì´ì½˜
-       reply_new_head.gif : 12ì‹œê°„ì´ ì§€ë‚˜ì§€ ì•Šì€ ë‹µê¸€ì˜ ì•„ì´ì½˜;;
-       notice_head.gif : ê³µì§€ì‚¬í•­ì¼ë•Œ ì•„ì´ì½˜
-       secret_head.gif : ë¹„ë°€ê¸€ì„ë•Œ ë‚˜íƒ€ë‚˜ëŠ” ì•„ì´ì½˜
-       arror.gif : í˜„ìž¬ ë¦¬ìŠ¤íŠ¸ì—ì„œ ì„ íƒë˜ì–´ ìžˆëŠ” ê¸€ ì•žì— ë¶™ëŠ” ì•„ì´ì½˜
+ Âü°í: old_head.gif : ¿øº»±ÛÀÌ¸é¼­ 12½Ã°£ÀÌ ³ÑÀº ±ÛÀÇ ¾ÆÀÌÄÜ
+       new_head.gif : 12½Ã°£¿¡ ÀûÈ÷ ¸ðµç ±Û. ¿øº»/´ä±Û »ó°ü¾øÀÌ
+       reply_head.gif : 12½Ã°£ÀÌ Áö³­ ´ä±ÛÀÇ ¾ÆÀÌÄÜ
+       reply_new_head.gif : 12½Ã°£ÀÌ Áö³ªÁö ¾ÊÀº ´ä±ÛÀÇ ¾ÆÀÌÄÜ;;
+       notice_head.gif : °øÁö»çÇ×ÀÏ¶§ ¾ÆÀÌÄÜ
+       secret_head.gif : ºñ¹Ð±ÛÀ»¶§ ³ªÅ¸³ª´Â ¾ÆÀÌÄÜ
+       arror.gif : ÇöÀç ¸®½ºÆ®¿¡¼­ ¼±ÅÃµÇ¾î ÀÖ´Â ±Û ¾Õ¿¡ ºÙ´Â ¾ÆÀÌÄÜ
  */
 ///////////////////////////////////////////////////////////////////////// ?>
-<!-- ëª©ë¡ ë¶€ë¶„ ì‹œìž‘ -->
+<!-- ¸ñ·Ï ºÎºÐ ½ÃÀÛ -->
 <?
 	$gameinfo=mysql_fetch_array(mysql_query("SELECT  *  FROM  $DB_gameinfo AS gameinfo,$DB_rule  AS rule WHERE game = $data[no] AND gameinfo.rule = rule.no"));
 	
@@ -48,9 +48,9 @@
 	$termDay = floor($gameinfo['termOfDay'] / 86400);
 	$termHour = floor(($gameinfo['termOfDay'] % 86400)/3600);
 	$termMin = floor(($gameinfo['termOfDay'] % 3600 )/60);
-	if($termDay)$termString = $termDay."ì¼";
-	if($termHour)$termString = $termHour."ì‹œê°„";
-	if($termMin)$termString = $termMin."ë¶„";
+	if($termDay)$termString = $termDay."ÀÏ";
+	if($termHour)$termString = $termHour."½Ã°£";
+	if($termMin)$termString = $termMin."ºÐ";
 	
 	//deathTime 
 	$deathTime =date("m",$gameinfo['deathtime'])."-".date("d",$gameinfo['deathtime'])."  ".date("H",$gameinfo['deathtime']).":".date("i",$gameinfo['deathtime']);
@@ -59,11 +59,11 @@
 	$accidentTime =$gameinfo['deathtime'] + $gameinfo['termOfDay']*$gameinfo['day'];
 	$accidentTime = date("H",$accidentTime).":".date("i",$accidentTime)."";
 
-	//ê²Œìž„ ìƒíƒœ
-	if($gameinfo['state'] =="ê²Œìž„ì¤‘"){
+	//°ÔÀÓ »óÅÂ
+	if($gameinfo['state'] =="°ÔÀÓÁß"){
 		$styleClass = "roomPlaying";
-		$gameState = $gameinfo['day']." æ—¥";
-		$alivePlayerCount=mysql_fetch_array(mysql_query("SELECT  count(*)  FROM  $DB_entry WHERE game = $data[no] AND alive ='ìƒì¡´'"));
+		$gameState = $gameinfo['day']." ìí";
+		$alivePlayerCount=mysql_fetch_array(mysql_query("SELECT  count(*)  FROM  $DB_entry WHERE game = $data[no] AND alive ='»ýÁ¸'"));
 		$alivePlayerCount = $alivePlayerCount[0];
 		$deathPlayerCount = $gameinfo['players'] - $alivePlayerCount ;
 
@@ -72,26 +72,26 @@
 			<table class="<?=$styleClass?>">
 				<tr  align="center" height="25">
 					<td class="number" nowrap class="number" rowspan=2><?=$number?></td>
-					<td class="enter"  rowspan=2><b>ì§„í–‰ ì¤‘</b><br><?=$gameState?></td>
+					<td class="enter"  rowspan=2><b>ÁøÇà Áß</b><br><?=$gameState?></td>
 					<td class="name text"  align=left colspan=4>
 						<?=$insert?><?=$icon?>
-						<?="<a href=view.php?id=$id&no=$data[no]&viewImage=off title='ì´ë¯¸ì§€ ì—†ì´ ê²Œìž„ì„ ì¦ê¸°ëŠ” ëª¨ë“œìž…ë‹ˆë‹¤.'>[T]</a>"?>&nbsp;<?=$subject?>
+						<?="<a href=view.php?id=$id&no=$data[no]&viewImage=off title='ÀÌ¹ÌÁö ¾øÀÌ °ÔÀÓÀ» Áñ±â´Â ¸ðµåÀÔ´Ï´Ù.'>[T]</a>"?>&nbsp;<?=$subject?>
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<span class="icons heart" title="ìƒì¡´ìž"></span> <?=$alivePlayerCount?>
-						<span class="icons death" title="ì‚¬ë§ìž"></span> <?=$deathPlayerCount?>
+						<span class="icons heart" title="»ýÁ¸ÀÚ"></span> <?=$alivePlayerCount?>
+						<span class="icons death" title="»ç¸ÁÀÚ"></span> <?=$deathPlayerCount?>
 					</td>
 					<td><span class="icons clock"></span> <?=$deathTime?></td>
 					<td><?=$gameinfo['name']?></td>
-					<td><?=	$termString?> ë§ˆì„</td>
+					<td><?=	$termString?> ¸¶À»</td>
 				</tr>
 			</table>
 		</td></tr>		
 		<?
 	}
-	elseif($gameinfo['state'] =="ì¤€ë¹„ì¤‘"){
+	elseif($gameinfo['state'] =="ÁØºñÁß"){
 		$styleClass = "roomReady";
 		$gameState = $gameinfo['state'];	
 		$fontColor ="";
@@ -103,26 +103,26 @@
 					<td class="enter"  rowspan=2><?="<a href=view.php?id=$id&no=$data[no]><img src='skin/werewolf/ready.gif' border=0></a>"?> </td>
 					<td class="name text"  align=left colspan=4>
 						<?=$insert?><?=$icon?>
-						<?="<a href=view.php?id=$id&no=$data[no]&viewImage=off title='ì´ë¯¸ì§€ ì—†ì´ ê²Œìž„ì„ ì¦ê¸°ëŠ” ëª¨ë“œìž…ë‹ˆë‹¤.'>[T]</a>"?>&nbsp;<?=$subject?>
+						<?="<a href=view.php?id=$id&no=$data[no]&viewImage=off title='ÀÌ¹ÌÁö ¾øÀÌ °ÔÀÓÀ» Áñ±â´Â ¸ðµåÀÔ´Ï´Ù.'>[T]</a>"?>&nbsp;<?=$subject?>
 					</td>
 				</tr>
 				<tr>
 					<td><span class="icons player"></span><?=$gameinfo['players']?>/ <?=$gameinfo['max_player']?></td>
 					<td><span class="icons clock"></span> <?=$deathTime?></td>
 					<td><?=$gameinfo['name']?></td>
-					<td><?=	$termString?> ë§ˆì„</td>
+					<td><?=	$termString?> ¸¶À»</td>
 				</tr>
 			</table>
 		</td></tr>
 		<?
 	}
-	elseif($gameinfo['state'] =="ë²„ê·¸"){
+	elseif($gameinfo['state'] =="¹ö±×"){
 		$bestIcon = "";
 		if(($gameinfo['good'] >= floor(($gameinfo['players']-1)* 0.75))) $bestIcon="<img src='skin/$id/best.gif'>";
 		$styleClass ="roomEnd";
 
 	
-		$gameState = "ë²„ê·¸";
+		$gameState = "¹ö±×";
 		$fontColor ="red";
 		?>
 		<tr  align="center" height="25"  class="<?=$styleClass?>">
@@ -136,22 +136,22 @@
 		</tr>
 		<?
 	}
-	elseif($gameinfo['state'] =="ê²Œìž„ë"){
+	elseif($gameinfo['state'] =="°ÔÀÓ³¡"){
 		$bestIcon = "";
 		if(($gameinfo['good'] >= floor(($gameinfo['players']-1)* 0.75))) $bestIcon="<img src='skin/$id/best.gif'>";
 		$styleClass ="roomEnd";
 
 		switch($gameinfo['win']){
-			case 0: $gameState = "ì¸ê°„ì˜ ìŠ¹";
+			case 0: $gameState = "ÀÎ°£ÀÇ ½Â";
 						$fontColor="#384887";
 						break;
-			case 1: $gameState = "ì¸ëž‘ì˜ ìŠ¹"; 
+			case 1: $gameState = "ÀÎ¶ûÀÇ ½Â"; 
 						$fontColor ="#BB3333";
 						break;
-			case 2: $gameState = "í–„ìŠ¤í„° ìŠ¹";
+			case 2: $gameState = "ÇÜ½ºÅÍ ½Â";
 						$fontColor ="#FFCC99";
 						break;
-			case 3: $gameState = "ë””ì•„ë¸”ë¡œ";
+			case 3: $gameState = "µð¾Æºí·Î";
 						$fontColor ="red";
 						break;
 		}?>
@@ -166,4 +166,18 @@
 		</tr>
 		<?
 	}
+        else{?>
+		<tr  align="center" height="25"  class="<?=$styleClass?>">
+			<td nowrap class="number"><?=$number?></td>
+			<?=$hide_cart_start?>
+				<td class="number"><input type="checkbox" name="cart" value="<?=$data[no]?>"></td>
+			<?=$hide_cart_end?>
+			<td class="text"><?=$insert?><?=$icon?><?=$subject?><font class="number">&nbsp;&nbsp;<?=$comment_num?></font></td>
+			<td class="text"><?=$face_image?><?=$name?></td>
+			<td><?=$reg_date?></td>
+			<td><?=$vote?></td>
+			<td><?=$hit?></td>
+		</tr>
+ 	<?
+        }
 ?>

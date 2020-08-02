@@ -166,18 +166,4 @@
 		</tr>
 		<?
 	}
-        else{?>
-		<tr  align="center" height="25"  class="<?=$styleClass?>">
-			<td nowrap class="number"><?=$number?></td>
-			<?=$hide_cart_start?>
-				<td class="number"><input type="checkbox" name="cart" value="<?=$data[no]?>"></td>
-			<?=$hide_cart_end?>
-			<td class="text"><?=$insert?><?=$icon?><?=$subject?><font class="number">&nbsp;&nbsp;<?=$comment_num?></font></td>
-			<td class="text"><?=$face_image?><?=$name?></td>
-			<td><?=$reg_date?></td>
-			<td><?=$vote?></td>
-			<td><?=$hit?></td>
-		</tr>
- 	<?
-        }
 ?>

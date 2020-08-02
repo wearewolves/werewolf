@@ -422,6 +422,7 @@ ini_set('session.auto_start','1');
 	<link rel="shortcut icon" type="image/x-icon" href="http://werewolf5.cafe24.com/favicon.ico" />
 	<?if($setup[use_formmail]) echo $zbLayerScript;?>
 	<?if($scriptfile) include "script/".$scriptfile;?>
+	<script data-ad-client="ca-pub-3021572587821084" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 </head>
 <body topmargin='0'  leftmargin='0' marginwidth='0' marginheight='0' <?=$body?><?
 

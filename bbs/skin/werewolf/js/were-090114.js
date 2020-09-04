@@ -439,8 +439,21 @@ function setColor(type){
 }
 
 function initCommentType(){
-	checkCommentType();
-	setColor($(":radio[name='c_type']:checked").attr("value"));	
+	try{
+		var radioButton = $('#writeComment input[type^=radio]');
+		var checkedButton;
+		if(radioButton.is("[value*=비밀]")){
+			radioButton.filter("[value*=비밀]").attr("checked",true);
+			checkedButton = radioButton.filter("[value*=비밀]")
+		}
+		else{
+			radioButton.filter(":first").attr("checked",true);
+			checkedButton = radioButton.filter(":first")
+		}
+		setColor(checkedButton.val());
+	}catch(e){
+		console.log(e)
+	}
 }
 
 var logloader;

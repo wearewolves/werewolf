@@ -159,7 +159,7 @@ if($totalCommentPage>=1) echo "</div>";
 
 <script>
 $(function(){
-	checkCommentType();
+	// checkCommentType();
 	initCommentType();
 })
 </script>

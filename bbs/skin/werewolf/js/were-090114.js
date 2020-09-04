@@ -440,7 +440,7 @@ function setColor(type){
 
 function initCommentType(){
 	checkCommentType();
-	setColor($(':radio:checked').attr("value"));	
+	setColor($(":radio[name='c_type']:checked").attr("value"));	
 }
 
 var logloader;

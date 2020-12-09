@@ -108,6 +108,7 @@ foreach ($ch as $key => $value)
 $ch[lastBuildDate] = get_date(time());
 
 require_once("config/path_setup.php");
+require_once("config/server_setup.php");
 
 include $_zb_path."lib.php";
 

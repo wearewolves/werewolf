@@ -40,7 +40,7 @@ function crypt_md5($msg,$heslo){
 	echo "\n"; 
 	return($sifra); 
 } 
-$secretKey="very good funny exciting game i will be great game designer.I love you.";
+$secretKey=$server['ip'];
 
 // Example of usage... 
 /*

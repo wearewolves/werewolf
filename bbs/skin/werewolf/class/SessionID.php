@@ -1,10 +1,7 @@
 <?
 class SessionID{
-	var $secretKey;
 
 	function SessionID(){
-		//$this->secretKey="secretKey";
-		$this->secretKey = "very good funny exciting game i will be great game designer.I love you.";
 	}
 
 	// ¾ÏÈ£È­  ////////////////////////////
@@ -63,10 +60,10 @@ class SessionID{
 	echo "Unencoded = $uncrypted"; // returns This is a very long message (etc) 
 	*/
 
-	function getSID($game , $day, $lastComment, $member, $viewMode){
+	function getSID($game , $day, $lastComment, $member, $viewMode, $secretKey){
 
 		$SID =  $game ."<||>". $day ."<||>". $lastComment ."<||>". $member."<||>". $viewMode;
-		$SID = $this->crypt_md5($SID, $this->secretKey);
+		$SID = $this->crypt_md5($SID, $secretKey);
 		$SID = base64_encode($SID) ; 
 //		$SID = urlencode($SID);
 		return $SID;

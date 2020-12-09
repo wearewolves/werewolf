@@ -127,7 +127,7 @@ echo "<?xml version=\"1.0\" encoding=\"$ch[encoding]\"?>\n";
 echo "  <channel>\n";
 
 
-$secretKey="very good funny exciting game i will be great game designer.I love you.";
+$secretKey=$server['ip'];
 $UNSID  = $SID;
 //$UNSID = urldecode($UNSID);
 

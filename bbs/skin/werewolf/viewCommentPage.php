@@ -136,9 +136,11 @@ echo "  <channel>\n";
 
 $secretKey=$server['ip'];
 $UNSID  = $SID;
+
 //$UNSID = urldecode($UNSID);
 
 $UNSID = base64_decode($UNSID);
+
 //$UNSID = decrypt_md5(base64_decode($SID), $secretKey); 
 $UNSID = decrypt_md5($UNSID, $secretKey); 
 //$UNSID =unserialize($UNSID);
@@ -174,6 +176,60 @@ $DB_truecharacter=$t_board."_".$id."_truecharacter";
 
 $truecharacter_list = DB_array("no","character","$DB_truecharacter");
 
+
+$verification = true;
+
+if($player){
+	$login_info=mysql_fetch_array(mysql_query("SELECT * from zetyx_board_werewolf_loginlog WHERE ismember = $player ORDER BY NO DESC LIMIT 1"));
+
+	if($login_info['ip'] <> $server['ip']){
+		$verification = false;
+	}
+}
+
+if($player ==1)$is_admin = true;
+else $is_admin = false;
+
+$gameinfo=mysql_fetch_array(mysql_query("select * from $DB_gameinfo where game=$no"));
+$entry=@mysql_fetch_array(mysql_query("select * from $DB_entry where game=$game and player = $player"));
+
+if($entry['character']) $character = $entry['character'];
+else $character = 0;
+
+if($gameinfo['state'] == "준비중") {
+	if($is_admin and $viewMode) {
+		if($viewMode == "all") $viewMode = "all";
+		elseif($viewMode == "del") $viewMode = "del";
+		else $viewMode = "일반";
+	}
+	else $viewMode = "일반";
+}
+elseif($gameinfo['state'] == "게임중") {
+	if($entry) {
+		if($entry['alive'] == "사망") $viewMode = "death";
+		else {
+			if($truecharacter['telepathy']) $viewMode = "tele";
+			elseif($truecharacter['secretchat']) $viewMode = "sec";
+			elseif($truecharacter['secretletter']) $viewMode = "letter";
+			else $viewMode = "일반";
+		}
+	}
+	elseif($is_admin and $viewMode) {
+		if($viewMode == "all") $viewMode = "all";
+		elseif($viewMode == "death") $viewMode = "death";
+		elseif($viewMode == "tele") $viewMode = "tele";
+		elseif($viewMode == "sec") $viewMode = "sec";
+		elseif($viewMode == "memo") $viewMode = "memo";
+		elseif($viewMode == "del") $viewMode = "del";
+		elseif($viewMode == "test") $viewMode = "test";
+		elseif($viewMode == "letter") $viewMode = "letter";
+		else $viewMode = "일반";
+	}
+	else $viewMode = "일반";
+}
+elseif($gameinfo['state'] == "게임끝" and !$viewMode) $viewMode = "일반";
+
+
 if($viewMode == "all") $commentType = "('일반','알림','봉인제안','비밀','사망','텔레','메모','편지','답변')";
 elseif($viewMode == "death") $commentType = "('일반','알림','봉인제안','사망')";
 elseif($viewMode == "tele") $commentType = "('일반','알림','봉인제안','텔레')";
@@ -182,28 +238,19 @@ elseif($viewMode == "sec") $commentType = "('일반','알림','봉인제안','비밀')";
 elseif($viewMode == "memo") $commentType = "('일반','알림','봉인제안','메모')";
 else $commentType = "('일반','알림','봉인제안')";
 
-if($player ==1)$is_admin = true;
-else $is_admin = false;
-
-$entry=@mysql_fetch_array(mysql_query("select * from $DB_entry where game=$game and player = $player"));
 
 $memo = rawurldecode(iconv("UTF-8","CP949",$memo));
 $c_type = rawurldecode(iconv("UTF-8","CP949",$c_type));
 
 
-if($entry['character']) $character = $entry['character'];
-else $character = 0;
-
-if(substr_count ( $UNSID,"<||>") == 4){
+if(substr_count ( $UNSID,"<||>") == 4 and $verification){
 
 	$readLatest = $HTTP_COOKIE_VARS['readLatest'];
 	if(!$readLatest or $readLatest <0 or 20 < $readLatest or !is_numeric($readLatest)) $readLatest = 10;
 
 
 	for($count = 1; $count > 0 ; $count-- ){
-		$DBLastComment = mysql_fetch_array(mysql_query("select max(comment) from $DB_wereCommentType where `game`='$no' and (`type` in $commentType or `character` ='$character') "));
-
-		$gameinfo=mysql_fetch_array(mysql_query("select * from $DB_gameinfo where game=$no"));
+		$v_lastComment = mysql_fetch_array(mysql_query("select max(comment) from $DB_wereCommentType where `game`='$no' and (`type` in $commentType or `character` ='$character') "));		
 		echo "<result>true</result>\n";
 		
 		if(true){

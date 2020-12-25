@@ -206,6 +206,8 @@ if($gameinfo['state'] == "준비중") {
 }
 elseif($gameinfo['state'] == "게임중") {
 	if($entry) {
+		$truecharacter =mysql_fetch_array(mysql_query("select * from $DB_truecharacter where no=$entry[truecharacter]"));
+
 		if($entry['alive'] == "사망") $viewMode = "death";
 		else {
 			if($truecharacter['telepathy']) $viewMode = "tele";
@@ -262,10 +264,7 @@ if(substr_count ( $UNSID,"<||>") == 4 and $verification){
 				if($gameinfo['state'] == "게임중" && $viewChar != $character && !$is_admin) $checkChar .= "AND type != '봉인제안' ";
 				
 			if(!$member[no]) $member[no] = 0;
-			
-			if($entry and $gameinfo['state'] == "게임중"){
-				$truecharacter =mysql_fetch_array(mysql_query("select * from $DB_truecharacter where no=$entry[truecharacter]"));
-			}
+
 
 			if($gameinfo['useTimetable'] == 0){
 				if($gameinfo['state']== "준비중" ){

@@ -180,7 +180,7 @@ $truecharacter_list = DB_array("no","character","$DB_truecharacter");
 $verification = true;
 
 if($player){
-	$login_info=mysql_fetch_array(mysql_query("SELECT * from zetyx_board_werewolf_loginlog WHERE ismember = $player ORDER BY NO DESC LIMIT 1"));
+	$login_info=mysql_fetch_array(mysql_query("SELECT * from zetyx_board_werewolf_loginlog WHERE ismember = $player and ip = '".$server['ip']."' ORDER BY NO DESC LIMIT 1"));
 
 	if($login_info['ip'] <> $server['ip']){
 		$verification = false;

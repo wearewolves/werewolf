@@ -199,7 +199,7 @@
 	.viewState{border-bottom: solid 1px #222;text-align:left;min-height:25px;line-height:140%;width:100%;padding:5px 0px;}
 	.viewState .state{float:left;width:120px;height:18px;padding:2px 5px;background:#111;color:#A30;}
 	* html .viewState .state{float:left;width:130px;height:18px;padding:2px 5px;background:#111;color:#A30;}
-	.viewState .content{margin-left:135;}
+	.viewState .content{margin-left:135;word-break: keep-all;word-wrap: break-word;}
 	/* span.align-right{display:flex;text-align:right;} */
 
 #commentContainer{width:95%;text-align:left;margin-left:auto;	margin-right:auto;}

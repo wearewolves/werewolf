@@ -218,9 +218,9 @@ function goto_characterSet($DB, $sort) {
 
 <br>
 
-<table width='100%'>
-<tr><td><?=nl2br($characterSet['memo'])?></td></tr>
-</table>
+<article style="word-break: keep-all;word-wrap: break-word;">
+<?=($characterSet['memo'])?>
+</article>
 
 <br>
 
@@ -243,7 +243,7 @@ function goto_characterSet($DB, $sort) {
 	
 		while($character=mysql_fetch_array($temp_result)){?>
 			<tr>
-				<td rowspan=2><img src='character/<?=$set."/".$character['half_image']?>'></img></td>
+				<td rowspan=2><img src='character/<?=$set."/".$character['half_image']?>' width="100px" height="100px"></img></td>
 				<td rowspan=2 style="border-right:1px solid #151515;text-align:center;"><?=$character['character']?></td>
 				<td><?=nl2br($character['greeting'])?></td>
 			</tr>

@@ -128,7 +128,7 @@ echo "<?xml version=\"1.0\" encoding=\"$ch[encoding]\"?>\n";
 echo "  <channel>\n";
 
 
-$secretKey=$server['ip'];
+$secretKey= $_zb_path;
 $UNSID  = $SID;
 //$UNSID = urldecode($UNSID);
 

@@ -134,7 +134,7 @@ header ('Content-Type: text/xml');
 echo "<?xml version=\"1.0\" encoding=\"$ch[encoding]\"?>\n";
 echo "  <channel>\n";
 
-$secretKey=$server['ip'];
+$secretKey= $_zb_path;
 $UNSID  = $SID;
 
 //$UNSID = urldecode($UNSID);
@@ -150,7 +150,7 @@ $UNSID = decrypt_md5($UNSID, $secretKey);
 
  $game = $key[0];
  $day = $key[1];
- $lastComment = $key[2];
+ $login_ip = $key[2];
  $player = $key[3];
  $viewMode = $key[4];
 
@@ -180,15 +180,15 @@ $truecharacter_list = DB_array("no","character","$DB_truecharacter");
 $verification = true;
 
 if($player){
-	$login_info=mysql_fetch_array(mysql_query("SELECT * from zetyx_board_werewolf_loginlog WHERE ismember = $player and ip = '".$server['ip']."' ORDER BY NO DESC LIMIT 1"));
+	$login_info=mysql_fetch_array(mysql_query("SELECT * from zetyx_board_werewolf_loginlog WHERE ismember = $player ORDER BY NO DESC LIMIT 1"));
 
-	if($login_info['ip'] <> $server['ip']){
+	if($login_info['ip'] <> $login_ip){
 		$verification = false;
 	}
-}
 
-if($player ==1)$is_admin = true;
-else $is_admin = false;
+	if($player ==1)$is_admin = true;
+	else $is_admin = false;
+}
 
 $gameinfo=mysql_fetch_array(mysql_query("select * from $DB_gameinfo where game=$no"));
 $entry=@mysql_fetch_array(mysql_query("select * from $DB_entry where game=$game and player = $player"));
@@ -252,7 +252,6 @@ if(substr_count ( $UNSID,"<||>") == 4 and $verification){
 
 
 	for($count = 1; $count > 0 ; $count-- ){
-		$v_lastComment = mysql_fetch_array(mysql_query("select max(comment) from $DB_wereCommentType where `game`='$no' and (`type` in $commentType or `character` ='$character') "));		
 		echo "<result>true</result>\n";
 		
 		if(true){

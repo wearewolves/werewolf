@@ -40,7 +40,7 @@ function crypt_md5($msg,$heslo){
 	echo "\n"; 
 	return($sifra); 
 } 
-$secretKey=$server['ip'];
+$secretKey= $_zb_path;
 
 // Example of usage... 
 /*

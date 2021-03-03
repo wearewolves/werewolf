@@ -736,7 +736,7 @@ else $character = 0;
 	$sql = "select max(comment) from $DB_comment_type where `game`='$no' and (`type` in $commentType or `character` = '".$character."')";
 	$lastComment = mysql_fetch_array(mysql_query($sql));
 	
-	$SID = $SessionID->getSID($gameinfo['game'],$viewDay,$lastComment['0'],$member['no'],$viewMode, $server['ip']);
+	$SID = $SessionID->getSID($gameinfo['game'],$viewDay,$lastComment['0'],$member['no'],$viewMode, $_zb_path);
 	//echo $sql."<br>";
 	//echo $gameinfo['game']."".$viewDay." ".$lastComment['0']." ".$member['no']."".$viewMode;
 	$test = urlencode($SID);

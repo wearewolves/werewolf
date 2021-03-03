@@ -732,13 +732,14 @@ if($is_admin and 0){
 if($entry['character']) $character = $entry['character'];
 else $character = 0;
 
-//	$lastComment = mysql_fetch_array(mysql_query("select max(reg_date) from $t_comment"."_$id where `parent`='$no'"));
-	$sql = "select max(comment) from $DB_comment_type where `game`='$no' and (`type` in $commentType or `character` = '".$character."')";
-	$lastComment = mysql_fetch_array(mysql_query($sql));
+	if($member['no']){
+		$login_info=mysql_fetch_array(mysql_query("SELECT * from zetyx_board_werewolf_loginlog WHERE ismember = ".$member['no']." ORDER BY NO DESC LIMIT 1"));
+		$login_ip = $login_info['ip'];
+	}
 	
-	$SID = $SessionID->getSID($gameinfo['game'],$viewDay,$lastComment['0'],$member['no'],$viewMode, $_zb_path);
+	$SID = $SessionID->getSID($gameinfo['game'],$viewDay,$login_ip,$member['no'],$viewMode, $_zb_path);
 	//echo $sql."<br>";
-	//echo $gameinfo['game']."".$viewDay." ".$lastComment['0']." ".$member['no']."".$viewMode;
+	//echo $gameinfo['game']."".$viewDay." ".$login_ip." ".$member['no']."".$viewMode;
 	$test = urlencode($SID);
 ?>
 <bgsound src="#" id="soundeffect" loop=1 autostart="true" ></bgsound>

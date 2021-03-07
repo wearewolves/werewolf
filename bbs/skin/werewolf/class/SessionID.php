@@ -60,9 +60,9 @@ class SessionID{
 	echo "Unencoded = $uncrypted"; // returns This is a very long message (etc) 
 	*/
 
-	function getSID($game , $day, $lastComment, $member, $viewMode, $secretKey){
+	function getSID($game , $day, $lastComment, $member, $viewMode, $login_ip, $secretKey){
 
-		$SID =  $game ."<||>". $day ."<||>". $lastComment ."<||>". $member."<||>". $viewMode;
+		$SID =  $game ."<||>". $day ."<||>". $lastComment ."<||>". $member."<||>". $viewMode."<||>". $login_ip;
 		$SID = $this->crypt_md5($SID, $secretKey);
 		$SID = base64_encode($SID) ; 
 //		$SID = urlencode($SID);

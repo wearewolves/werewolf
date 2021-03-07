@@ -145,6 +145,7 @@ $UNSID = decrypt_md5($UNSID, $secretKey);
  $lastComment = $key[2];
  $player = $key[3];
  $viewMode = $key[4];
+ $login_ip = $key[5];
 
 $no=$game;
 $viewDay=$day;
@@ -197,7 +198,7 @@ if(substr_count ( $UNSID,"<||>") == 4){
 		if(($day == $gameinfo['day']) and  ($lastComment <> $DBLastComment[0])){
 			echo "<result>true</result>\n";
 
-			$SID = $gameinfo[game]."<||>".$gameinfo[day]."<||>".$DBLastComment[0]."<||>".$player."<||>".$viewMode;
+			$SID = $gameinfo[game]."<||>".$gameinfo[day]."<||>".$DBLastComment[0]."<||>".$player."<||>".$viewMode."<||>".$DBLastComment[0];
 			$SID = crypt_md5($SID, $secretKey);
 			$SID = base64_encode($SID) ; 
 			//$SID = urlencode($SID);

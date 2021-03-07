@@ -36,6 +36,7 @@ require_once("config/path_setup.php");
 require_once("config/server_setup.php");
 
 require_once("class/SessionID.php");
+$SessionID= new SessionID();
 
 include $_zb_path."lib.php";
 

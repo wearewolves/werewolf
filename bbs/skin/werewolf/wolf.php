@@ -188,7 +188,7 @@ $c_type = rawurldecode(iconv("UTF-8","CP949",$c_type));
 if($entry['character']) $character = $entry['character'];
 else $character = 0;
 
-if(substr_count ( $UNSID,"<||>") == 4){
+if(substr_count ( $UNSID,"<||>") == 5){
 
 	for($count = 1; $count > 0 ; $count-- ){
 		$DBLastComment = mysql_fetch_array(mysql_query("select max(comment) from $DB_wereCommentType where `game`='$no' and (`type` in $commentType or `character` ='$character') "));

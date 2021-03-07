@@ -57,7 +57,7 @@ echo "  <channel>\n";
 
 
 $secretKey= $_zb_path;
- $key = $SessionID->decrypt_SID($SID);
+ $key = $SessionID->decrypt_SID($SID, $secretKey);
 
  $game = $key[0];
  $day = $key[1];

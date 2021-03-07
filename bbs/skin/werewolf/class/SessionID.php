@@ -68,5 +68,12 @@ class SessionID{
 //		$SID = urlencode($SID);
 		return $SID;
 	} 
+
+	function decrypt_SID($SID){
+		$UNSID = base64_decode($SID);
+		$UNSID = decrypt_md5($UNSID, $secretKey);
+		$key = explode("<||>", $UNSID);
+		return $key;
+	}
 }
 ?>

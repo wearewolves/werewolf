@@ -173,6 +173,8 @@ $ch[lastBuildDate] = get_date(time());
 require_once("config/path_setup.php");
 require_once("config/server_setup.php");
 
+require_once("class/SessionID.php");
+
 include $_zb_path."lib.php";
 //$logfile = @fopen("1-log.txt","a");
 @fwrite($logfile,"[".$SID."]코멘트 작성 요청\n"); 

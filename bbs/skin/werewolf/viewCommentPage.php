@@ -118,6 +118,8 @@ $ch[lastBuildDate] = get_date(time());
 require_once("config/path_setup.php");
 require_once("config/server_setup.php");
 
+require_once("class/SessionID.php");
+
 include $_zb_path."lib.php";
 
 if (!empty($_SERVER['SERVER_SOFTWARE']) && strstr($_SERVER['SERVER_SOFTWARE'], 'Apache/2')){

@@ -67,7 +67,6 @@ $secretKey= $_zb_path;
  $login_ip = $key[5];
 
 $no=$game;
-$viewDay=$day;
 $id="werewolf";
 
 //$link = connectDB();
@@ -86,14 +85,7 @@ $DB_wereCommentType = $DB_wereComment."_commentType";
 $DB_character=$t_board."_".$id."_character";
 $DB_truecharacter=$t_board."_".$id."_truecharacter";
 
-
-if($viewMode == "all") $commentType = "('일반','알림','봉인제안','비밀','사망','텔레','메모','편지','답변')";
-elseif($viewMode == "death") $commentType = "('일반','알림','봉인제안','사망')";
-elseif($viewMode == "tele") $commentType = "('일반','알림','봉인제안','텔레')";
-elseif($viewMode == "letter") $commentType = "('일반','알림','봉인제안','편지','답변')";
-elseif($viewMode == "sec") $commentType = "('일반','알림','봉인제안','비밀')";
-elseif($viewMode == "memo") $commentType = "('일반','알림','봉인제안','메모')";
-else $commentType = "('일반','알림','봉인제안')";
+$commentType = $SessionID->commentType($SID, $secretKey);
 
 if($player ==1)$is_admin = true;
 else $is_admin = false;
@@ -138,7 +130,6 @@ if($SessionID->verification($SID, $secretKey)){
 				$commentData=mysql_fetch_array(mysql_query("select * from $DB_wereComment where no='$commentDataType[comment]'"));
 				$commentDate = date("Y-m-d H:i:s",$commentData['reg_date']);
 
-				//echo "<ddd><![CDATA[$commentDataType[comment]]]></ddd>";
 				if($commentDataType[type] =="알림" or $commentDataType[type] =="봉인제안"){
 					echo "<item>";
 						echo "<type><![CDATA[$commentDataType[type]]]></type>";

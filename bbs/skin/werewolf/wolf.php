@@ -3,18 +3,6 @@ function get_date($t)
 {
 	return date('D, d M Y H:i:s ', $t) . "+0900";
 }
-function cut_string($str, $length)
-{ 
-	if ($length < 0) return $str;
-	if ($length == 0) return "";
-	if (strlen($str) <= $length) return $str;
-	for($i = 0; $i < $length; $i++)
-	{
-		if (ord($str[$i]) > 127) $over++;
-	}
-	$tmp = chop(substr($str, 0, $length - $over % 2));
-	return $tmp . "...(생략)";
-}
 
 
 function connectDB() 
@@ -35,69 +23,6 @@ function connectDB()
 }
 */
 
-function incision_sort($arr, $col)
-{
-   // Source from php.net
-   for($k = 0; $k < sizeof($arr)-1; $k++){
-	   // $arr[$k+1] is possibly in the wrong place. Take it out.
-	   $t = $arr[$k+1];
-	   $i = $k;   
-	  
-	   // Push $arr[i] to the right until we find the right place for $t.
-	   while($i >= 0 && $arr[$i][$col] < $t[$col]){
-		   $arr[$i+1] = $arr[$i];
-		   $i--;
-	   }
-	  
-	   // Insert $t into the right place.
-	   $arr[$i+1] = $t;                           
-   }// End sort
-   return $arr;       
-}
-
-function bytexor($a,$b,$l){ 
-	$c=""; 
-
-	for($i=0;$i<$l;$i++) { 
-		$c.=$a{$i}^$b{$i}; 
-	} 
-	return($c); 
-} 
-
-function binmd5($val){ 
-	return(pack("H*",md5($val))); 
-} 
-
-function decrypt_md5($msg,$heslo){ 
-	$key=$heslo;$sifra=""; 
-	$key1=binmd5($key); 
-
-	while($msg) { 
-		$m=substr($msg,0,16); 
-		$msg=substr($msg,16); 
-		$sifra.=$m=bytexor($m,$key1,16); 
-		$key1=binmd5($key.$key1.$m); 
-	 }
-	 
-	echo "\n"; 
-	return($sifra); 
-} 
-
-function crypt_md5($msg,$heslo){ 
-	$key=$heslo;$sifra=""; 
-	$key1=binmd5($key); 
-
-	while($msg) { 
-		$m=substr($msg,0,16); 
-		$msg=substr($msg,16); 
-		$sifra.=bytexor($m,$key1,16); 
-		$key1=binmd5($key.$key1.$m); 
-	} 
-	echo "\n"; 
-	return($sifra); 
-} 
-
-
 $ch[encoding] = "EUC-KR";
 
 foreach ($ch as $key => $value) 
@@ -109,6 +34,9 @@ $ch[lastBuildDate] = get_date(time());
 
 require_once("config/path_setup.php");
 require_once("config/server_setup.php");
+
+require_once("class/SessionID.php");
+$SessionID= new SessionID();
 
 include $_zb_path."lib.php";
 
@@ -129,25 +57,16 @@ echo "  <channel>\n";
 
 
 $secretKey= $_zb_path;
-$UNSID  = $SID;
-//$UNSID = urldecode($UNSID);
-
-$UNSID = base64_decode($UNSID);
-//$UNSID = decrypt_md5(base64_decode($SID), $secretKey); 
-$UNSID = decrypt_md5($UNSID, $secretKey); 
-//$UNSID =unserialize($UNSID);
-
-//	list($game, $day, $count,$member,$viewMode) = split("<||>", $UNSID);
- $key = explode("<||>", $UNSID);
+ $key = $SessionID->decrypt_SID($SID, $secretKey);
 
  $game = $key[0];
  $day = $key[1];
  $lastComment = $key[2];
  $player = $key[3];
  $viewMode = $key[4];
+ $login_ip = $key[5];
 
 $no=$game;
-$viewDay=$day;
 $id="werewolf";
 
 //$link = connectDB();
@@ -166,14 +85,7 @@ $DB_wereCommentType = $DB_wereComment."_commentType";
 $DB_character=$t_board."_".$id."_character";
 $DB_truecharacter=$t_board."_".$id."_truecharacter";
 
-
-if($viewMode == "all") $commentType = "('일반','알림','봉인제안','비밀','사망','텔레','메모','편지','답변')";
-elseif($viewMode == "death") $commentType = "('일반','알림','봉인제안','사망')";
-elseif($viewMode == "tele") $commentType = "('일반','알림','봉인제안','텔레')";
-elseif($viewMode == "letter") $commentType = "('일반','알림','봉인제안','편지','답변')";
-elseif($viewMode == "sec") $commentType = "('일반','알림','봉인제안','비밀')";
-elseif($viewMode == "memo") $commentType = "('일반','알림','봉인제안','메모')";
-else $commentType = "('일반','알림','봉인제안')";
+$commentType = $SessionID->commentType($SID, $secretKey);
 
 if($player ==1)$is_admin = true;
 else $is_admin = false;
@@ -187,7 +99,7 @@ $c_type = rawurldecode(iconv("UTF-8","CP949",$c_type));
 if($entry['character']) $character = $entry['character'];
 else $character = 0;
 
-if(substr_count ( $UNSID,"<||>") == 4){
+if($SessionID->verification($SID, $secretKey)){
 
 	for($count = 1; $count > 0 ; $count-- ){
 		$DBLastComment = mysql_fetch_array(mysql_query("select max(comment) from $DB_wereCommentType where `game`='$no' and (`type` in $commentType or `character` ='$character') "));
@@ -197,12 +109,14 @@ if(substr_count ( $UNSID,"<||>") == 4){
 		if(($day == $gameinfo['day']) and  ($lastComment <> $DBLastComment[0])){
 			echo "<result>true</result>\n";
 
-			$SID = $gameinfo[game]."<||>".$gameinfo[day]."<||>".$DBLastComment[0]."<||>".$player."<||>".$viewMode;
-			$SID = crypt_md5($SID, $secretKey);
-			$SID = base64_encode($SID) ; 
-			//$SID = urlencode($SID);
-			//	echo "<SID><![CDATA[$SID]]></SID>\n";
-			echo "<SID>$SID</SID>\n";
+			if($player){
+				$login_info=mysql_fetch_array(mysql_query("SELECT * from zetyx_board_werewolf_loginlog WHERE ismember = ".$player." ORDER BY NO DESC LIMIT 1"));
+				$login_ip = $login_info['ip'];
+			}
+
+			$SID = $SessionID->getSID($gameinfo['game'],$gameinfo[day],$DBLastComment[0],$player,$viewMode,$login_ip, $secretKey);
+
+			echo "<SID><![CDATA[$SID]]></SID>\n";
 			echo "<sound>play</sound>\n";
 
 			if($entry and $gameinfo['state'] == "게임중"){
@@ -216,7 +130,6 @@ if(substr_count ( $UNSID,"<||>") == 4){
 				$commentData=mysql_fetch_array(mysql_query("select * from $DB_wereComment where no='$commentDataType[comment]'"));
 				$commentDate = date("Y-m-d H:i:s",$commentData['reg_date']);
 
-				//echo "<ddd><![CDATA[$commentDataType[comment]]]></ddd>";
 				if($commentDataType[type] =="알림" or $commentDataType[type] =="봉인제안"){
 					echo "<item>";
 						echo "<type><![CDATA[$commentDataType[type]]]></type>";

@@ -118,6 +118,8 @@ $ch[lastBuildDate] = get_date(time());
 require_once("config/path_setup.php");
 require_once("config/server_setup.php");
 
+require_once("class/SessionID.php");
+
 include $_zb_path."lib.php";
 
 if (!empty($_SERVER['SERVER_SOFTWARE']) && strstr($_SERVER['SERVER_SOFTWARE'], 'Apache/2')){
@@ -150,9 +152,10 @@ $UNSID = decrypt_md5($UNSID, $secretKey);
 
  $game = $key[0];
  $day = $key[1];
- $login_ip = $key[2];
+ $lastComment = $key[2];
  $player = $key[3];
  $viewMode = $key[4];
+ $login_ip = $key[5];
 
 $no=$game;
 $viewDay=$day;
@@ -245,7 +248,7 @@ $memo = rawurldecode(iconv("UTF-8","CP949",$memo));
 $c_type = rawurldecode(iconv("UTF-8","CP949",$c_type));
 
 
-if(substr_count ( $UNSID,"<||>") == 4 and $verification){
+if(substr_count ( $UNSID,"<||>") == 5 and $verification){
 
 	$readLatest = $HTTP_COOKIE_VARS['readLatest'];
 	if(!$readLatest or $readLatest <0 or 20 < $readLatest or !is_numeric($readLatest)) $readLatest = 10;

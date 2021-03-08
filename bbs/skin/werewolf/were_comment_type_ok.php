@@ -173,6 +173,8 @@ $ch[lastBuildDate] = get_date(time());
 require_once("config/path_setup.php");
 require_once("config/server_setup.php");
 
+require_once("class/SessionID.php");
+
 include $_zb_path."lib.php";
 //$logfile = @fopen("1-log.txt","a");
 @fwrite($logfile,"[".$SID."]코멘트 작성 요청\n"); 
@@ -208,6 +210,7 @@ $UNSID = decrypt_md5($UNSID, $secretKey);
  $lastComment = $key[2];
  $player = $key[3];
  $viewMode = $key[4];
+ $login_ip = $key[5];
 
 $no=$game;
 $viewDay=$day;
@@ -280,7 +283,7 @@ $DBLastComment = mysql_fetch_array(mysql_query("select max(comment) from $DB_wer
 				echo "<result>alert</result>\n";
 				echo "<alert>같은 내용의 글은 등록할 수 없습니다.</alert>";
 	}
-	elseif(($entry or $is_admin) and (substr_count ( $UNSID,"<||>") == 4)) {
+	elseif(($entry or $is_admin) and (substr_count ( $UNSID,"<||>") == 5)) {
 		echo "<result>true</result>\n";
 		@fwrite($logfile,"[".$SID."]코멘트 작성 시작\n"); 
 

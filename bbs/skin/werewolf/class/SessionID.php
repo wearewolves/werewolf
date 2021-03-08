@@ -98,7 +98,7 @@ class SessionID{
 			}
 		}
 
-		return substr_count ( $UNSID,"<||>") == 5 and $verification
+		return substr_count ( $UNSID,"<||>") == 5 and $verification;
 	}
 
 	function commentType($SID, $secretKey){
@@ -125,7 +125,7 @@ class SessionID{
 		$viewMode = $key[4];
 		$login_ip = $key[5];
 
-		$gameinfo=mysql_fetch_array(mysql_query("select * from $DB_gameinfo where game=$no"));
+		$gameinfo=mysql_fetch_array(mysql_query("select * from $DB_gameinfo where game=$game"));
 		$entry=@mysql_fetch_array(mysql_query("select * from $DB_entry where game=$game and player = $player"));
 
 		if($entry['character']) $character = $entry['character'];

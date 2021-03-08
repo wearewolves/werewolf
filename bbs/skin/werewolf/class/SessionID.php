@@ -75,5 +75,11 @@ class SessionID{
 		$key = explode("<||>", $UNSID);
 		return $key;
 	}
+
+	function verification($SID, $secretKey){
+		$UNSID = base64_decode($SID);
+		$UNSID = $this->decrypt_md5($UNSID, $secretKey);
+		return substr_count ( $UNSID,"<||>") == 5;
+	}
 }
 ?>

@@ -3,19 +3,6 @@ function get_date($t)
 {
 	return date('D, d M Y H:i:s ', $t) . "+0900";
 }
-function cut_string($str, $length)
-{ 
-	if ($length < 0) return $str;
-	if ($length == 0) return "";
-	if (strlen($str) <= $length) return $str;
-	for($i = 0; $i < $length; $i++)
-	{
-		if (ord($str[$i]) > 127) $over++;
-	}
-	$tmp = chop(substr($str, 0, $length - $over % 2));
-	return $tmp . "...(생략)";
-}
-
 
 function connectDB() 
 {
@@ -35,67 +22,6 @@ function connectDB()
 }
 */
 
-function incision_sort($arr, $col)
-{
-   // Source from php.net
-   for($k = 0; $k < sizeof($arr)-1; $k++){
-	   // $arr[$k+1] is possibly in the wrong place. Take it out.
-	   $t = $arr[$k+1];
-	   $i = $k;   
-	  
-	   // Push $arr[i] to the right until we find the right place for $t.
-	   while($i >= 0 && $arr[$i][$col] < $t[$col]){
-		   $arr[$i+1] = $arr[$i];
-		   $i--;
-	   }
-	  
-	   // Insert $t into the right place.
-	   $arr[$i+1] = $t;                           
-   }// End sort
-   return $arr;       
-}
-
-function bytexor($a,$b,$l){ 
-	$c=""; 
-
-	for($i=0;$i<$l;$i++) { 
-		$c.=$a{$i}^$b{$i}; 
-	} 
-	return($c); 
-} 
-
-function binmd5($val){ 
-	return(pack("H*",md5($val))); 
-} 
-
-function decrypt_md5($msg,$heslo){ 
-	$key=$heslo;$sifra=""; 
-	$key1=binmd5($key); 
-
-	while($msg) { 
-		$m=substr($msg,0,16); 
-		$msg=substr($msg,16); 
-		$sifra.=$m=bytexor($m,$key1,16); 
-		$key1=binmd5($key.$key1.$m); 
-	 }
-	 
-	echo "\n"; 
-	return($sifra); 
-} 
-
-function crypt_md5($msg,$heslo){ 
-	$key=$heslo;$sifra=""; 
-	$key1=binmd5($key); 
-
-	while($msg) { 
-		$m=substr($msg,0,16); 
-		$msg=substr($msg,16); 
-		$sifra.=bytexor($m,$key1,16); 
-		$key1=binmd5($key.$key1.$m); 
-	} 
-	echo "\n"; 
-	return($sifra); 
-} 
 function DB_array($key,$value,$db){
 	$temp_result=mysql_query("select * from $db ");
 
@@ -119,6 +45,7 @@ require_once("config/path_setup.php");
 require_once("config/server_setup.php");
 
 require_once("class/SessionID.php");
+$SessionID= new SessionID();
 
 include $_zb_path."lib.php";
 
@@ -137,25 +64,11 @@ echo "<?xml version=\"1.0\" encoding=\"$ch[encoding]\"?>\n";
 echo "  <channel>\n";
 
 $secretKey= $_zb_path;
-$UNSID  = $SID;
+$key = $SessionID->decrypt_SID($SID, $secretKey);
 
-//$UNSID = urldecode($UNSID);
-
-$UNSID = base64_decode($UNSID);
-
-//$UNSID = decrypt_md5(base64_decode($SID), $secretKey); 
-$UNSID = decrypt_md5($UNSID, $secretKey); 
-//$UNSID =unserialize($UNSID);
-
-//	list($game, $day, $count,$member,$viewMode) = split("<||>", $UNSID);
- $key = explode("<||>", $UNSID);
-
- $game = $key[0];
- $day = $key[1];
- $lastComment = $key[2];
- $player = $key[3];
- $viewMode = $key[4];
- $login_ip = $key[5];
+$game = $key[0];
+$day = $key[1];
+$player = $key[3];
 
 $no=$game;
 $viewDay=$day;
@@ -179,76 +92,26 @@ $DB_truecharacter=$t_board."_".$id."_truecharacter";
 
 $truecharacter_list = DB_array("no","character","$DB_truecharacter");
 
-
-$verification = true;
-
 if($player){
-	$login_info=mysql_fetch_array(mysql_query("SELECT * from zetyx_board_werewolf_loginlog WHERE ismember = $player ORDER BY NO DESC LIMIT 1"));
-
-	if($login_info['ip'] <> $login_ip){
-		$verification = false;
-	}
-
 	if($player ==1)$is_admin = true;
 	else $is_admin = false;
 }
 
-$gameinfo=mysql_fetch_array(mysql_query("select * from $DB_gameinfo where game=$no"));
+$gameinfo=@mysql_fetch_array(mysql_query("select * from $DB_gameinfo where game=$no"));
 $entry=@mysql_fetch_array(mysql_query("select * from $DB_entry where game=$game and player = $player"));
 
 if($entry['character']) $character = $entry['character'];
 else $character = 0;
 
-if($gameinfo['state'] == "준비중") {
-	if($is_admin and $viewMode) {
-		if($viewMode == "all") $viewMode = "all";
-		elseif($viewMode == "del") $viewMode = "del";
-		else $viewMode = "일반";
-	}
-	else $viewMode = "일반";
-}
-elseif($gameinfo['state'] == "게임중") {
-	if($entry) {
-		$truecharacter =mysql_fetch_array(mysql_query("select * from $DB_truecharacter where no=$entry[truecharacter]"));
-
-		if($entry['alive'] == "사망") $viewMode = "death";
-		else {
-			if($truecharacter['telepathy']) $viewMode = "tele";
-			elseif($truecharacter['secretchat']) $viewMode = "sec";
-			elseif($truecharacter['secretletter']) $viewMode = "letter";
-			else $viewMode = "일반";
-		}
-	}
-	elseif($is_admin and $viewMode) {
-		if($viewMode == "all") $viewMode = "all";
-		elseif($viewMode == "death") $viewMode = "death";
-		elseif($viewMode == "tele") $viewMode = "tele";
-		elseif($viewMode == "sec") $viewMode = "sec";
-		elseif($viewMode == "memo") $viewMode = "memo";
-		elseif($viewMode == "del") $viewMode = "del";
-		elseif($viewMode == "test") $viewMode = "test";
-		elseif($viewMode == "letter") $viewMode = "letter";
-		else $viewMode = "일반";
-	}
-	else $viewMode = "일반";
-}
-elseif($gameinfo['state'] == "게임끝" and !$viewMode) $viewMode = "일반";
-
-
-if($viewMode == "all") $commentType = "('일반','알림','봉인제안','비밀','사망','텔레','메모','편지','답변')";
-elseif($viewMode == "death") $commentType = "('일반','알림','봉인제안','사망')";
-elseif($viewMode == "tele") $commentType = "('일반','알림','봉인제안','텔레')";
-elseif($viewMode == "letter") $commentType = "('일반','알림','봉인제안','편지','답변')";
-elseif($viewMode == "sec") $commentType = "('일반','알림','봉인제안','비밀')";
-elseif($viewMode == "memo") $commentType = "('일반','알림','봉인제안','메모')";
-else $commentType = "('일반','알림','봉인제안')";
+$viewMode = $SessionID->viewMode($SID, $secretKey);
+$commentType = $SessionID->commentType($viewMode);
 
 
 $memo = rawurldecode(iconv("UTF-8","CP949",$memo));
 $c_type = rawurldecode(iconv("UTF-8","CP949",$c_type));
 
 
-if(substr_count ( $UNSID,"<||>") == 5 and $verification){
+if($SessionID->verification($SID, $secretKey)){
 
 	$readLatest = $HTTP_COOKIE_VARS['readLatest'];
 	if(!$readLatest or $readLatest <0 or 20 < $readLatest or !is_numeric($readLatest)) $readLatest = 10;

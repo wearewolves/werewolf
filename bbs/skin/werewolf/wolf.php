@@ -63,7 +63,6 @@ $secretKey= $_zb_path;
  $day = $key[1];
  $lastComment = $key[2];
  $player = $key[3];
- $viewMode = $key[4];
  $login_ip = $key[5];
 
 $no=$game;
@@ -85,7 +84,8 @@ $DB_wereCommentType = $DB_wereComment."_commentType";
 $DB_character=$t_board."_".$id."_character";
 $DB_truecharacter=$t_board."_".$id."_truecharacter";
 
-$commentType = $SessionID->commentType($SID, $secretKey);
+$viewMode = $SessionID->viewMode($SID, $secretKey);
+$commentType = $SessionID->commentType($viewMode);
 
 if($player ==1)$is_admin = true;
 else $is_admin = false;
@@ -108,11 +108,6 @@ if($SessionID->verification($SID, $secretKey)){
 
 		if(($day == $gameinfo['day']) and  ($lastComment <> $DBLastComment[0])){
 			echo "<result>true</result>\n";
-
-			if($player){
-				$login_info=mysql_fetch_array(mysql_query("SELECT * from zetyx_board_werewolf_loginlog WHERE ismember = ".$player." ORDER BY NO DESC LIMIT 1"));
-				$login_ip = $login_info['ip'];
-			}
 
 			$SID = $SessionID->getSID($gameinfo['game'],$gameinfo[day],$DBLastComment[0],$player,$viewMode,$login_ip, $secretKey);
 

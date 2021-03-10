@@ -5,7 +5,7 @@ class SessionID{
 	}
 
 	// 암호화  ////////////////////////////
-	private function bytexor($a,$b,$l){ 
+	function bytexor($a,$b,$l){ 
 		$c=""; 
 
 		for($i=0;$i<$l;$i++) { 
@@ -14,11 +14,11 @@ class SessionID{
 		return($c); 
 	} 
 
-	private function binmd5($val){ 
+	function binmd5($val){ 
 		return(pack("H*",md5($val))); 
 	} 
 
-	private function decrypt_md5($msg,$heslo){ 
+	function decrypt_md5($msg,$heslo){ 
 		$key=$heslo;$sifra=""; 
 		$key1=$this->binmd5($key); 
 
@@ -32,7 +32,7 @@ class SessionID{
 		return($sifra); 
 	} 
 
-	private function crypt_md5($msg,$heslo){ 
+	function crypt_md5($msg,$heslo){ 
 		$key=$heslo;$sifra=""; 
 		$key1=$this->binmd5($key); 
 
@@ -60,7 +60,7 @@ class SessionID{
 	echo "Unencoded = $uncrypted"; // returns This is a very long message (etc) 
 	*/
 
-	public function getSID($game , $day, $lastComment, $member, $viewMode, $login_ip, $secretKey){
+	function getSID($game , $day, $lastComment, $member, $viewMode, $login_ip, $secretKey){
 
 		$SID =  $game ."<||>". $day ."<||>". $lastComment ."<||>". $member."<||>". $viewMode."<||>". $login_ip;
 		$SID = $this->crypt_md5($SID, $secretKey);
@@ -69,14 +69,14 @@ class SessionID{
 		return $SID;
 	} 
 
-	public function decrypt_SID($SID, $secretKey){
+	function decrypt_SID($SID, $secretKey){
 		$UNSID = base64_decode($SID);
 		$UNSID = $this->decrypt_md5($UNSID, $secretKey);
 		$key = explode("<||>", $UNSID);
 		return $key;
 	}
 
-	public function verification($SID, $secretKey){
+	function verification($SID, $secretKey){
 		$verification = true;
 
 		$UNSID = base64_decode($SID);
@@ -101,7 +101,7 @@ class SessionID{
 		return substr_count ( $UNSID,"<||>") == 5 and $verification;
 	}
 
-	public function viewMode($SID, $secretKey){
+	function viewMode($SID, $secretKey){
 		$id="werewolf";
 
 		$t_board ="zetyx_board";
@@ -172,7 +172,7 @@ class SessionID{
 		return $viewMode;
 	}
 
-	public function commentType($viewMode){
+	function commentType($viewMode){
 		if($viewMode == "all") $commentType = "('일반','알림','봉인제안','비밀','사망','텔레','메모','편지','답변')";
 		elseif($viewMode == "death") $commentType = "('일반','알림','봉인제안','사망')";
 		elseif($viewMode == "tele") $commentType = "('일반','알림','봉인제안','텔레')";

@@ -658,8 +658,13 @@ if($is_admin and 0){
 					if($data['truecharacter'] == 15 and $temp_vote['candidacy']) echo "x2";
 
 					$temp_seervote=mysql_fetch_array(mysql_query("select * from `$DB_seervote` where `game` = $no and `day` = $viewDay-1 and `voter` = $t;"));
-					echo $character_list[$temp_seervote['candidacy']];
-					if($data['truecharacter'] == 15 and $temp_seervote['candidacy']) echo "x2";
+					if($temp_seervote['candidacy']) {
+						echo $character_list[$temp_seervote['candidacy']];
+						if($data['truecharacter'] == 15 and $temp_seervote['candidacy']) echo "x2";
+					}
+					else 
+						echo "&nbsp;";
+					
 				}
 			}
 			else {
@@ -668,8 +673,12 @@ if($is_admin and 0){
 				if($data['truecharacter'] == 15 and $temp_vote['candidacy'] and $viewMode == "all") echo "x2";
 
 				$temp_seervote=mysql_fetch_array(mysql_query("select * from `$DB_seervote` where `game` = $no and `day` = $viewDay-1 and `voter` = $t;"));
-				echo $character_list[$temp_seervote['candidacy']];
-				if($data['truecharacter'] == 15 and $temp_seervote['candidacy'] and $viewMode == "all") echo "x2";
+				if($temp_seervote['candidacy']) {
+					echo $character_list[$temp_seervote['candidacy']];
+					if($data['truecharacter'] == 15 and $temp_seervote['candidacy']) echo "x2";
+				}
+				else 
+					echo "&nbsp;";
 			}
 			echo "</td>";
 
@@ -735,8 +744,12 @@ if($is_admin and 0){
 					if($data['truecharacter'] == 15 and $temp_vote['candidacy']) echo "x2";
 
 					$temp_seervote=mysql_fetch_array(mysql_query("select * from `$DB_seervote` where `game` = $no and `day` = $viewDay-1 and `voter` = $t;"));
-					echo $character_list[$temp_seervote['candidacy']];
-					if($data['truecharacter'] == 15 and $temp_seervote['candidacy']) echo "x2";
+					if($temp_seervote['candidacy']) {
+						echo $character_list[$temp_seervote['candidacy']];
+						if($data['truecharacter'] == 15 and $temp_seervote['candidacy']) echo "x2";
+					}
+					else 
+						echo "&nbsp;";
 				}
 			}
 			else {
@@ -745,8 +758,12 @@ if($is_admin and 0){
 				if($data['truecharacter'] == 15 and $temp_vote['candidacy'] and $viewMode == "all") echo "x2";
 
 				$temp_seervote=mysql_fetch_array(mysql_query("select * from `$DB_seervote` where `game` = $no and `day` = $viewDay-1 and `voter` = $t;"));
-				echo $character_list[$temp_seervote['candidacy']];
-				if($data['truecharacter'] == 15 and $temp_seervote['candidacy'] and $viewMode == "all") echo "x2";
+				if($temp_seervote['candidacy']) {
+					echo $character_list[$temp_seervote['candidacy']];
+					if($data['truecharacter'] == 15 and $temp_seervote['candidacy']) echo "x2";
+				}
+				else 
+					echo "&nbsp;";
 			}
 			echo "</td>";
 

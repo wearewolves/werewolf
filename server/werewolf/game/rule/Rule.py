@@ -170,6 +170,52 @@ class WerewolfRule(Rule):
         logging.debug('Candidacy: %s in %s', candidacy, [str(player) for player in candidacy_list])
         return self.game.entry.getCharacter(candidacy)
 
+    def decideByPublicSeer(self):
+        # 공공점 체크
+        publicSeer = getSubrule(SUBRULE_NAME.PUBLIC_SEER, self.game)
+        if not publicSeer:
+            return
+            
+        cursor = self.game.db.cursor
+
+        logging.info("점투표!")
+        alivePlayers = self.game.entry.getAliveEntry()
+
+        #살아 있는 사람이 1명 초과일 경우에만 투표를 진행한다.
+        if len(alivePlayers) < 2:
+            return
+
+        #가장 표를 많이 받은 사람을 찾는다.
+        query = '''select `candidacy`, count(*) as count from `zetyx_board_werewolf_seervote` 
+        where game = '%s' and day ='%s' 
+        group by `candidacy` 
+        order by `count`  DESC '''
+        query %= (self.game.game, self.game.day)
+        logging.debug(query)
+
+        cursor.execute(query)
+        result = cursor.fetchall()
+        logging.debug(result)
+        #print result
+
+        #결과 없으면 return
+        if not result:
+            return
+
+        count = 0
+        seercandidacy_list = []
+
+        for temp in result:
+            if count <= temp['count']:
+                count = temp['count']
+                logging.debug("count: %s", count)
+            else:
+                break
+            seercandidacy_list.append(temp['candidacy'])
+        seercandidacy = random.choice(seercandidacy_list)
+        logging.debug('seerCandidacy: %s in %s', seercandidacy, [str(player) for player in seercandidacy_list])
+        return self.game.entry.getCharacter(seercandidacy)
+
     def decideByWerewolf(self):
         cursor = self.game.db.cursor
 

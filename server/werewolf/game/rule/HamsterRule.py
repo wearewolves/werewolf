@@ -45,7 +45,7 @@ class HamsterRule(BasicRule):
     def nextTurn(self):
         if self.game.state == GAME_STATE.READY:
             if self.min_players <= self.game.players and self.game.players <= self.max_players:
-                logging.info("ê²Œìž„ ì´ˆê¸°í™” ì‹œìž‘")
+                logging.info("°ÔÀÓ ÃÊ±âÈ­ ½ÃÀÛ")
                 self.initGame()
             else:
                 self.game.deleteGame()
@@ -67,73 +67,82 @@ class HamsterRule(BasicRule):
         self.deleteTelepathy()
 
     def nextTurn_2day(self):
-        logging.info("2ì¼ì§¸ë¡œ ê³ ê³ !")
+        logging.info("2ÀÏÂ°·Î °í°í!")
 
-        #ì¼ë°˜ ë¡œê·¸ë¥¼ ì“°ì§€ ì•Šì€ ì‚¬ëžŒì„ ì²´í¬í•œë‹¤.
+        #ÀÏ¹Ý ·Î±×¸¦ ¾²Áö ¾ÊÀº »ç¶÷À» Ã¼Å©ÇÑ´Ù.
         self.game.entry.checkNoCommentPlayer()
 
-        #í¬ìƒì–‘ NPC ìŠµê²©
+        #Èñ»ý¾ç NPC ½À°Ý
         victim = self.game.entry.getVictim()
         victim.toDeathByWerewolf()
+        
+        publicSeer = self.decideByPublicSeer()
+        if publicSeer:
+            seerPlayer = self.game.entry.getPlayersByTruecharacter(Truecharacter.SEER)[0]
+            publicSeer.toSeer(seerPlayer)
 
-        #í–„ìŠ¤í„°
+        #ÇÜ½ºÅÍ
         hamsterPlayer = self.game.entry.getPlayersByTruecharacter(Truecharacter.WEREHAMSTER)[0]
 
-        #í–„ ë¹”!
+        #ÇÜ ºö!
         self.assaultByForecast(hamsterPlayer)
 
-        #ëŒì—°ì‚¬ ì‹œí‚´ 
+        #µ¹¿¬»ç ½ÃÅ´ 
         noMannerPlayers = self.game.entry.getNoMannerPlayers()
         for noMannerPlayer in noMannerPlayers:
-            noMannerPlayer.toDeath("ëŒì—° ")
+            noMannerPlayer.toDeath("µ¹¿¬ ")
 
-        #ì½”ë©˜íŠ¸ ì´ˆê¸°í™”
+        #ÄÚ¸àÆ® ÃÊ±âÈ­
         self.game.entry.initComment()
         self.deleteTelepathy()
 
-        #3. ê²Œìž„ ì •ë³´ ì—…ë°ì´íŠ¸
-        self.game.setGameState("state", "ê²Œìž„ì¤‘")
+        #3. °ÔÀÓ Á¤º¸ ¾÷µ¥ÀÌÆ®
+        self.game.setGameState("state", "°ÔÀÓÁß")
         self.game.setGameState("day", self.game.day+1)
 
     def nextTurn_Xday(self):
-        logging.info("ë‹¤ìŒ ë‚ ë¡œ ê³ ê³ !")
+        logging.info("´ÙÀ½ ³¯·Î °í°í!")
 
-        #ì¼ë°˜ ë¡œê·¸ë¥¼ ì“°ì§€ ì•Šì€ ì‚¬ëžŒì„ ì²´í¬í•œë‹¤.
+        #ÀÏ¹Ý ·Î±×¸¦ ¾²Áö ¾ÊÀº »ç¶÷À» Ã¼Å©ÇÑ´Ù.
         self.game.entry.checkNoCommentPlayer()
 
-        #íˆ¬í‘œ - ì‚´ì•„ìžˆëŠ” ì°¸ê°€ìžê°€ íˆ¬í‘œë¥¼ í–ˆëŠ”ì§€ ì²´í¬, ì•ˆ í–ˆë‹¤ë©´ ëžœë¤ íˆ¬í‘œ
+        #ÅõÇ¥ - »ì¾ÆÀÖ´Â Âü°¡ÀÚ°¡ ÅõÇ¥¸¦ Çß´ÂÁö Ã¼Å©, ¾È Çß´Ù¸é ·£´ý ÅõÇ¥
         victim = self.decideByMajority()
         if victim:
-            victim.toDeath("ì‹¬íŒ")
+            victim.toDeath("½ÉÆÇ")
 
-        #ëŒì—°ì‚¬ ì‹œí‚´
+        publicSeer = self.decideByPublicSeer()
+        if publicSeer:
+            seerPlayer = self.game.entry.getPlayersByTruecharacter(Truecharacter.SEER)[0]
+            publicSeer.toSeer(seerPlayer)
+
         noMannerPlayers = self.game.entry.getNoMannerPlayers()
         for noMannerPlayer in noMannerPlayers:
-            noMannerPlayer.toDeath("ëŒì—° ")
+            noMannerPlayer.toDeath("µ¹¿¬ ")
         
-        #ì½”ë©˜íŠ¸ ì´ˆê¸°í™”
+        #ÄÚ¸àÆ® ÃÊ±âÈ­
         self.game.entry.initComment()
         self.deleteTelepathy()
 
-        #í–„ìŠ¤í„°
+        #ÇÜ½ºÅÍ
         hamsterPlayer = self.game.entry.getPlayersByTruecharacter(Truecharacter.WEREHAMSTER)[0]
 
-        #í–„ ë¹”!
+        #ÇÜ ºö!
         self.assaultByForecast(hamsterPlayer)
 
-        #ìŠµê²©!
+        #½À°Ý!
         assaultVictim = self.decideByWerewolf()
         if assaultVictim:
             logging.debug("assaultVictim: %s", assaultVictim)
             self.assaultByWerewolfAndHamster(assaultVictim, victim, hamsterPlayer)
 
-        #ì¢…ë£Œ ì¡°ê±´ í™•ì¸
-        #ì‚¬ëžŒ!
+        #Á¾·á Á¶°Ç È®ÀÎ
+        #»ç¶÷!
         humanRace = self.game.entry.getEntryByRace(Race.HUMAN)
         #for human in humanRace :
         #    print human
 
-        #ìŠµê²©ìž!
+        #½À°ÝÀÚ!
         werewolfRace = self.game.entry.getEntryByRace(Race.WEREWOLF)
         #for werewolf in werewolfRace :
         #    print werewolf
@@ -144,11 +153,11 @@ class HamsterRule(BasicRule):
             else:
                 self.game.setGameState("state", GAME_STATE.GAMEOVER)
 
-            if hamsterPlayer.alive == "ìƒì¡´":
-                logging.info("í–„ìŠ¤í„° ìŠ¹ë¦¬")
+            if hamsterPlayer.alive == "»ýÁ¸":
+                logging.info("ÇÜ½ºÅÍ ½Â¸®")
                 self.game.setGameState("win", "2")
             else:
-                logging.info("ì¸ëž‘ ìŠ¹ë¦¬")
+                logging.info("ÀÎ¶û ½Â¸®")
                 self.game.setGameState("win", "1")
 
             self.game.entry.allocComment()
@@ -159,27 +168,27 @@ class HamsterRule(BasicRule):
             else:
                 self.game.setGameState("state", GAME_STATE.GAMEOVER)
 
-            if hamsterPlayer.alive == "ìƒì¡´":
-                logging.info("í–„ìŠ¤í„° ìŠ¹ë¦¬")
+            if hamsterPlayer.alive == "»ýÁ¸":
+                logging.info("ÇÜ½ºÅÍ ½Â¸®")
                 self.game.setGameState("win", "2")
             else:
-                logging.info("ì¸ê°„ ìŠ¹ë¦¬")
+                logging.info("ÀÎ°£ ½Â¸®")
                 self.game.setGameState("win", "0")
 
             self.game.entry.allocComment()
 
         else:
-            logging.info("ê³„ì† ì§„í–‰")
-            #self.game.setGameState("state","ê²Œìž„ì¤‘")
+            logging.info("°è¼Ó ÁøÇà")
+            #self.game.setGameState("state","°ÔÀÓÁß")
 
         self.game.setGameState("day", self.game.day+1)
 
     def assaultByForecast(self, hamsterPlayer):
-        logging.debug("í–„ë¹”!!")
+        logging.debug("ÇÜºö!!")
         forecastTarget = {}
         seerPlayer = self.game.entry.getPlayersByTruecharacter(Truecharacter.SEER)[0]
 
-        if seerPlayer.alive == "ìƒì¡´":
+        if seerPlayer.alive == "»ýÁ¸":
             logging.debug("seerPlayer: %s", seerPlayer)
             forecastTarget = seerPlayer.openEye()
             logging.debug("forecastTarget: %s", forecastTarget)
@@ -189,11 +198,11 @@ class HamsterRule(BasicRule):
 
         logging.debug("hamsterPlayer: %s", hamsterPlayer)
 
-        if forecastTarget and hamsterPlayer.alive == "ìƒì¡´" and hamsterPlayer.id == forecastTarget.id:
-            logging.debug("í–„ë¹” ì„±ê³µ: %s", hamsterPlayer)
-            hamsterPlayer.toDeath("ìŠµê²©")
+        if forecastTarget and hamsterPlayer.alive == "»ýÁ¸" and hamsterPlayer.id == forecastTarget.id:
+            logging.debug("ÇÜºö ¼º°ø: %s", hamsterPlayer)
+            hamsterPlayer.toDeath("½À°Ý")
         else:
-            logging.debug("í–„ë¹” ì‹¤íŒ¨")
+            logging.debug("ÇÜºö ½ÇÆÐ")
 
     def assaultByWerewolfAndHamster(self, assaultVictim, victim, hamsterPlayer):
         self.game.entry.recordAssaultResult(assaultVictim)
@@ -201,7 +210,7 @@ class HamsterRule(BasicRule):
         guard = None
         hunterPlayer = self.game.entry.getPlayersByTruecharacter(Truecharacter.BODYGUARD)[0]
 
-        if hunterPlayer.alive == "ìƒì¡´":
+        if hunterPlayer.alive == "»ýÁ¸":
             logging.debug("hunterPlayer: %s", hunterPlayer)
             guard = hunterPlayer.guard()
             if guard is not None:
@@ -209,11 +218,11 @@ class HamsterRule(BasicRule):
                 logging.debug("guard: %s", guard)
 
         if assaultVictim.id == victim.id:
-            logging.debug("ìŠµê²© ì‹¤íŒ¨: ê³ ìŠµì‹¤")
+            logging.debug("½À°Ý ½ÇÆÐ: °í½À½Ç")
         elif guard and assaultVictim.id == guard.id:
-            logging.debug("ìŠµê²© ì‹¤íŒ¨: ì„ ë°©")
+            logging.debug("½À°Ý ½ÇÆÐ: ¼±¹æ")
         elif assaultVictim.id == hamsterPlayer.id:
-            logging.debug("ìŠµê²© ì‹¤íŒ¨: ì ë¹”")
+            logging.debug("½À°Ý ½ÇÆÐ: Á¡ºö")
         else:
-            logging.debug("ìŠµê²© ì„±ê³µ: %s", assaultVictim)
-            assaultVictim.toDeath("ìŠµê²©")
+            logging.debug("½À°Ý ¼º°ø: %s", assaultVictim)
+            assaultVictim.toDeath("½À°Ý")

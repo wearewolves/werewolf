@@ -46,8 +46,56 @@
 	movepage("$view_file_link?id=$id&page=$page&page_num=$page_num&select_arrange=$select_arrange&desc=$des&sn=$sn&ss=$ss&sc=$sc&keyword=$keyword&no=$no&category=$category&password=$password");
 	 }
 
+	 // 2021/07/26 epi : 공공점 체크 부분
+	 $CheckPublicSeer = checkSubRule($gameinfo['subRule'], 5);
+
+// 플레이어 점치기 투표
+if ($function == "seervote" and $entry['alive'] == "생존" and !$seervote and $CheckPublicSeer){
+	 if($truecharacter['double-vote']){
+		 $sql = "INSERT INTO `$DB_seervote` ( `game` , `day` , `voter` ,  `candidacy`) VALUES ('$no', '$gameinfo[day]','$entry[character]' , '$seercandidacy' );";
+		 @mysql_query($sql) or die("점치기 투표 정보를 입력 중에 오류가 발생했습니다.");		 
+
+		 $sql = "INSERT INTO `$DB_seervote` ( `game` , `day` , `voter` ,  `candidacy`) VALUES ('$no', '$gameinfo[day]','$entry[character]' , '$seercandidacy' );";
+		 @mysql_query($sql) or die("점치기 투표 정보를 입력 중에 오류가 발생했습니다.");
+
+		 //코맨트 입력
+		 $comment = "보안관이 ".$character_list[$seercandidacy]."씨의 정체를 2배로 궁금해합니다.";
+	 }else{
+		 $sql = "INSERT INTO `$DB_seervote` ( `game` , `day` , `voter` ,  `candidacy`) VALUES ('$no', '$gameinfo[day]','$entry[character]' , '$seercandidacy' );";
+		 @mysql_query($sql) or die("점치기 투표 정보를 입력 중에 오류가 발생했습니다.");
+		 
+		 //코맨트 입력
+		 $comment = $character_list[$entry[character]]."님이 ".$character_list[$seercandidacy]."씨의 정체를 궁금해합니다.";
+
+	 }
+
+	writeCommnet($t_comment."_".$id,$no,$member[no],$member[name],$password,$comment,$server[ip],'메모',$entry['character']);
+
+	// 대상 파일 이름 정리
+	if(!$setup[use_alllist]) $view_file_link="view.php"; else $view_file_link="zboard.php";
+
+	// 페이지 이동
+movepage("$view_file_link?id=$id&page=$page&page_num=$page_num&select_arrange=$select_arrange&desc=$des&sn=$sn&ss=$ss&sc=$sc&keyword=$keyword&no=$no&category=$category&password=$password");
+ }
+
+// 플레이어 점치기 투표취소
+	 if ($function == "seervoteCancel" and $entry['alive'] == "생존" and $seervote and $CheckPublicSeer){
+		 @mysql_query(
+		"delete from `$DB_seervote`  where `game`= $no and `day`= $gameinfo[day] and  `voter` = $entry[character] ;") or die("점치기 투표 정보를 삭제 중에 오류가 발생했습니다.");
+
+		//코맨트 입력
+		$comment = $character_list[$entry[character]]."님이 점괘를 얻기위한 주문을 멈추었습니다.";
+		writeCommnet($t_comment."_".$id,$no,$member[no],$member[name],$password,$comment,$server[ip],'메모',$entry['character']);
+
+		// 대상 파일 이름 정리
+		if(!$setup[use_alllist]) $view_file_link="view.php"; else $view_file_link="zboard.php";
+
+		// 페이지 이동	
+	movepage("$view_file_link?id=$id&page=$page&page_num=$page_num&select_arrange=$select_arrange&desc=$des&sn=$sn&ss=$ss&sc=$sc&keyword=$keyword&no=$no&category=$category&password=$password");
+	 }
+
 // 플레이어 점치기
-	 if ($function == "forecast" and $mystery and $entry['alive'] == "생존" and $truecharacter['forecast']  and  !$forecast ){
+	 if ($function == "forecast" and $mystery and $entry['alive'] == "생존" and $truecharacter['forecast']  and  !$forecast and !$CheckPublicSeer){
 		$target_entry = mysql_fetch_array(mysql_query("select * from $DB_entry where `game`='$no' and `character` = '$mystery'")) or die("select * from $DB_entry where `game`='$no' and `character` = '$mystery'");
 		$target_truecharacter =mysql_fetch_array(mysql_query("select * from $DB_truecharacter where no='$target_entry[truecharacter]'"));
 
@@ -67,7 +115,7 @@
 	 }
 
 // 점치기 취소
-	if ($function == "forecastCancel" and $entry['alive'] == "생존" and $forecast){
+	if ($function == "forecastCancel" and $entry['alive'] == "생존" and $forecast and !$CheckPublicSeer){
 	   @mysql_query("delete from $DB_revelation where game=$no and `day`= $gameinfo[day] and prophet  = $entry[character] and type ='점' limit 1;") or die("참가자 기록을 삭제 하는 중에 오류가 발생했습니다.delete from $DB_bug where bug=$no limit 1;");
 
 		//코맨트 입력
@@ -83,7 +131,7 @@
 	}	
 	
 // 플레이어 점치기
-	 if ($function == "forecastOdd" and $mystery and $entry['alive'] == "생존" and $truecharacter['forecast-odd']  and  !$forecastOdd and $viewDay%2 == 1 ){
+	 if ($function == "forecastOdd" and $mystery and $entry['alive'] == "생존" and $truecharacter['forecast-odd']  and  !$forecastOdd and $viewDay%2 == 1 and !$CheckPublicSeer){
 		$target_entry = mysql_fetch_array(mysql_query("select * from $DB_entry where `game`='$no' and `character` = '$mystery'")) or die("select * from $DB_entry where `game`='$no' and `character` = '$mystery'");
 		$target_truecharacter =mysql_fetch_array(mysql_query("select * from $DB_truecharacter where no='$target_entry[truecharacter]'"));
 
@@ -103,7 +151,7 @@
 	 }
 
 // 점치기 취소
-	if ($function == "forecastOddCancel" and $entry['alive'] == "생존" and $forecastOdd and $viewDay%2 == 1){
+	if ($function == "forecastOddCancel" and $entry['alive'] == "생존" and $forecastOdd and $viewDay%2 == 1 and !$CheckPublicSeer){
 	   @mysql_query("delete from $DB_revelation where game=$no and `day`= $gameinfo[day] and prophet  = $entry[character] and type ='점' limit 1;") or die("참가자 기록을 삭제 하는 중에 오류가 발생했습니다.delete from $DB_bug where bug=$no limit 1;");
 
 		//코맨트 입력

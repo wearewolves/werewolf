@@ -68,6 +68,13 @@ class ExpansionRule(WerewolfRule):
         #희생양 NPC 습격
         victim = self.game.entry.getVictim()
         victim.toDeathByWerewolf()
+        
+        #점 투표 
+        publicSeer = self.decideByPublicSeer()
+        if publicSeer:
+            #점쟁이를 찾는다 
+            seerPlayer = self.game.entry.getPlayersByTruecharacter(Truecharacter.SEER)[0]
+            publicSeer.toSeer(seerPlayer)
 
         #돌연사 시킴
         noMannerPlayers = self.game.entry.getNoMannerPlayers()
@@ -102,6 +109,13 @@ class ExpansionRule(WerewolfRule):
                     return
             victim.toDeath("심판")
 
+        #점 투표 
+        publicSeer = self.decideByPublicSeer()
+        if publicSeer:
+            #점쟁이를 찾는다 
+            seerPlayer = self.game.entry.getPlayersByTruecharacter(Truecharacter.SEER)[0]
+            publicSeer.toSeer(seerPlayer)
+            
         #돌연사 시킴
         noMannerPlayers = self.game.entry.getNoMannerPlayers()
         for noMannerPlayer in noMannerPlayers:

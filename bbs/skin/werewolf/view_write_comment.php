@@ -232,6 +232,69 @@ if($totalCommentPage>=1) echo "</div>";
 </table>
 <?}?>
 
+<?	if ($gameinfo['state']=="게임중" and $viewDay == $gameinfo['day']  and $entry['alive']=="생존" and !$seervote) {?>
+<table width=<?=$width?> cellspacing=0 cellpadding=0>
+<form method=post name=vote action=<?="view.php"?>  enctype="multipart/form-data"  onsubmit="return formcheck(this)">
+<input type=hidden name=page value=<?=$page?>>
+<input type=hidden name=id value=<?=$id?>>
+<input type=hidden name=no value=<?=$no?>>
+<input type=hidden name=select_arrange value=<?=$select_arrange?>>
+<input type=hidden name=desc value=<?=$desc?>>
+<input type=hidden name=page_num value=<?=$page_num?>>
+<input type=hidden name=keyword value="<?=$keyword?>">
+<input type=hidden name=category value="<?=$category?>">
+<input type=hidden name=sn value="<?=$sn?>">
+<input type=hidden name=ss value="<?=$ss?>">
+<input type=hidden name=sc value="<?=$sc?>">
+<input type=hidden name=mode value="<?=$mode?>"> 
+<input type=hidden name=function value="seervote">
+
+<tr bgcolor=111111>
+	<td height=30 colspan=2>
+	<table border=0 cellspacing=0 cellpadding=0 width=100% height=100%>
+	<tr>
+		<td align=center width=80><font class=red_8>점</td>
+		<td align=left>
+			<font class=red_8><?=DBselect("candidacy","","character",$character_list,"$DB_entry where game=$no and alive = '생존'","font-size:9pt;width=100","",$entry['character']);?>
+			 의 정체는 무엇일까?
+		</td>
+		<td align=center width=70><font class=red_8><input type=submit rows=5 <?if($browser){?>class=red_submit_s<?}?> value='점치기' accesskey="v"></td>
+	</tr></table>
+	</td>
+</tr>
+</form>
+</table>
+<?	}elseif($seervote){?>
+<table width=<?=$width?> cellspacing=0 cellpadding=0>
+<form method=post name=seervoteCancel action=<?="view.php"?>  enctype="multipart/form-data"  onsubmit="return formcheck(this)">
+<input type=hidden name=page value=<?=$page?>>
+<input type=hidden name=id value=<?=$id?>>
+<input type=hidden name=no value=<?=$no?>>
+<input type=hidden name=select_arrange value=<?=$select_arrange?>>
+<input type=hidden name=desc value=<?=$desc?>>
+<input type=hidden name=page_num value=<?=$page_num?>>
+<input type=hidden name=keyword value="<?=$keyword?>">
+<input type=hidden name=category value="<?=$category?>">
+<input type=hidden name=sn value="<?=$sn?>">
+<input type=hidden name=ss value="<?=$ss?>">
+<input type=hidden name=sc value="<?=$sc?>">
+<input type=hidden name=mode value="<?=$mode?>"> 
+<input type=hidden name=function value="seervoteCancel">
+
+<tr bgcolor=111111>
+	<td height=30 colspan=2>
+	<table border=0 cellspacing=0 cellpadding=0 width=100% height=100%>
+	<tr>
+		<td align=center width=80>점 희망</td>
+		<td><font class=red_8><?=$character_list[$seervote[candidacy]]?>의 정체를 궁금해 하는 중</td>
+		<td align=center width=70><font class=red_8><input type=submit rows=5 <?if($browser){?>class=red_submit_s<?}?> value='취소한다' accesskey="v"></td>
+	</tr></table>
+	</td>
+</tr>
+</form>
+</table>
+<?}?>
+
 <?	if($gameinfo['state']=="게임중" and $truecharacter['forecast'] and !$forecast and $viewDay == $gameinfo['day'] and $entry['alive']=="생존") {?>
 
 <?if($truecharacter['forecast']) {

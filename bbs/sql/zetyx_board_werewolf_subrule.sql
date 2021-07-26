@@ -32,3 +32,4 @@ INSERT INTO `zetyx_board_werewolf_subrule` (`no`, `name`) VALUES
 (2, 'NPC 직업 랜덤 부여'),
 (3, '텔레파시 사용 불가'),
 (4, '비밀 투표');
+(5, '점쟁이 능력 공공화');

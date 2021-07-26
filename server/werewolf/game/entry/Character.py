@@ -109,3 +109,19 @@ class Player(Character):
         query %= (self.game.game, self.game.day, self.character, targetPlayer.character)
         logging.debug(query)
         cursor.execute(query)
+
+    def toSeer(self, seer):
+        cursor = self.game.db.cursor
+        query = "SELECT race FROM `zetyx_board_werewolf_truecharacter` WHERE no ='%s'"
+        query %= (self.truecharacter)
+        logging.debug(query)
+        cursor.execute(query)
+        targetrace = cursor.fetchone()
+
+        # 설정한다
+        cursor2 = self.game.db.cursor
+        query2 = "INSERT INTO `zetyx_board_werewolf_revelation` ( `game`,`day`,`type`,`prophet`,`mystery`,`result`) VALUES ('%s', '%s','%s' ,'%s','%s','%s');"
+        query2 %= (self.game.game, self.game.day, '점', seer.character, self.character, targetrace['race'])
+		logging.debug(query2)
+        logging.debug(query2)
+        cursor2.execute(query2)

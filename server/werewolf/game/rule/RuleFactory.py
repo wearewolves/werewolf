@@ -15,6 +15,7 @@ class SUBRULE_NAME:
     NPC_ALLOCATION = 2 #dummy rule
     TELEPATHY_NONE = 3
     SECRET_VOTE = 4
+    PUBLIC_SEER = 5
 
 def getSubrule(rule, game):
     cursor = game.db.cursor

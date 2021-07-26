@@ -13,6 +13,9 @@
 	
 	// Check subrules
 	$CheckSecretVote = checkSubRule($gameinfo['subRule'], 4);
+
+	$CheckPublicSeer = checkSubRule($gameinfo['subRule'], 5);
+
 	//----------------------------------------------------------------------
 	//세팅
 	//마을 사람 이미지가 있는 주소
@@ -36,6 +39,7 @@
 	if($entry and ($gameinfo['state'] == "게임중" or $gameinfo['state'] == "버그" or $gameinfo['state'] == "테스트")){
 		$truecharacter =mysql_fetch_array(mysql_query("select * from $DB_truecharacter where no=$entry[truecharacter]"));
 		$vote =mysql_fetch_array(mysql_query("select * from $DB_vote where game=$no and voter = $entry[character] and day = $gameinfo[day]"));
+		$seervote =mysql_fetch_array(mysql_query("select * from $DB_seervote where game=$no and voter = $entry[character] and day = $gameinfo[day]"));
 
 		if($truecharacter['forecast'])$forecast =mysql_fetch_array(mysql_query("select * from $DB_revelation where game='$no' and prophet='$entry[character]' and day='$gameinfo[day]' and type = '점'"));
 		if($truecharacter['forecast-odd'])$forecastOdd =mysql_fetch_array(mysql_query("select * from $DB_revelation where game='$no' and prophet='$entry[character]' and day='$gameinfo[day]' and type = '점'"));
@@ -426,6 +430,16 @@
 	</div>	
 	<?}}?>
 
+	<?if($CheckPublicSeer){?>
+		<?$PublcSeerResult = mysql_fetch_array(mysql_query("select * from $DB_revelation where game='$no' and day=$viewDay -1 and type = '점'"));				
+				if($PublcSeerResult){?>
+	<div class="viewState">
+		<div class="state"></div>
+		<div class="content">				
+		<?echo $character_list[$PublcSeerResult['mystery']]." 씨가 점설정이 되었습니다.<br>" ;?>
+		</div>
+	</div>	
+				<?}?>
 
 
 	<?	}?>	
@@ -534,7 +548,7 @@ if($is_admin and 0){
 	$tableMaker = new TableMaker;
 	$tableMaker->setTableStyle("werewolfStyle");
 
-	$tableHead = array("No","<a href='$PHP_SELF?id=$id&no=$no&viewDay=$viewDay&viewMode=$viewMode' >마을 사람</a>","상태","투표 대상","&nbsp;","&nbsp;");
+	$tableHead = array("No","<a href='$PHP_SELF?id=$id&no=$no&viewDay=$viewDay&viewMode=$viewMode' >마을 사람</a>","상태","투표 대상","&nbsp;","&nbsp;","&nbsp;");
 	$tableCol ="<col width=17><col width=120></col><col width=100></col><col width=125></col><col width=120></col><col width=></col>";
 	$tableBody= array();
 
@@ -561,6 +575,17 @@ if($is_admin and 0){
 			else 
 				$candidacy = "&nbsp;";
 
+			if($CheckPublicSeer){
+				$temp_seervote=mysql_fetch_array(mysql_query("select * from `$DB_seervote` where `game` = $no and `day` = $viewDay-1 and `voter` = $t;"));
+				if($temp_seervote['candidacy'])
+					$seercandidacy =$character_list[$temp_seervote['candidacy']];
+				else 
+					$seercandidacy = "&nbsp;";
+			}
+			else{
+				$seercandidacy ="&nbsp;";
+			}
+
 			if($viewMode=="all"){
 				$playerName ="<a href=skin/".$id."/view_private_record.php?id=".$id."&player=$data[player]>".$data[name]."</a>";
 				if($is_admin) 	$playerName .= "<a href=skin/".$id."/view_ip_overlap.php?id=".$id."&player=$data[player]>-IP</a>";
@@ -580,7 +605,7 @@ if($is_admin and 0){
 			else 
 				$playerName ="&nbsp;";
 
-			$tableBody[] = array($i,"<a href='$PHP_SELF?id=$id&no=$no&viewDay=$viewDay&viewMode=$viewMode&viewChar=$t' >$character_list[$t]</a>",$alive,$candidacy,$playerName,$job);
+			$tableBody[] = array($i,"<a href='$PHP_SELF?id=$id&no=$no&viewDay=$viewDay&viewMode=$viewMode&viewChar=$t' >$character_list[$t]</a>",$alive,$candidacy,$seercandidacy,$playerName,$job);
 			++$i;		
 		}
 	$tableMaker->printTable($tableHead,$tableBody,$tableCol);
@@ -591,7 +616,7 @@ if($is_admin and 0){
 <table id="playerList">
 	<col width=17><col width=140></col><col width=100></col><col width=125></col><col width=120></col><col width=></col>
 	<thead>
-		<tr><td>No</td><td><?="<a href='$PHP_SELF?id=$id&no=$no&viewDay=$viewDay&viewMode=$viewMode' >"?>마을 사람</a></td><td>상태</td><td>투표 대상</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+		<tr><td>No</td><td><?="<a href='$PHP_SELF?id=$id&no=$no&viewDay=$viewDay&viewMode=$viewMode' >"?>마을 사람</a></td><td>상태</td><td>투표 대상</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
 	</thead>
 	<tbody>
 <?	// 플레이어 출력
@@ -631,12 +656,20 @@ if($is_admin and 0){
 					$temp_vote=mysql_fetch_array(mysql_query("select * from `$DB_vote` where `game` = $no and `day` = $viewDay-1 and `voter` = $t;"));
 					echo $character_list[$temp_vote['candidacy']];
 					if($data['truecharacter'] == 15 and $temp_vote['candidacy']) echo "x2";
+
+					$temp_seervote=mysql_fetch_array(mysql_query("select * from `$DB_seervote` where `game` = $no and `day` = $viewDay-1 and `voter` = $t;"));
+					echo $character_list[$temp_seervote['candidacy']];
+					if($data['truecharacter'] == 15 and $temp_seervote['candidacy']) echo "x2";
 				}
 			}
 			else {
 				$temp_vote=mysql_fetch_array(mysql_query("select * from `$DB_vote` where `game` = $no and `day` = $viewDay-1 and `voter` = $t;"));
 				echo $character_list[$temp_vote['candidacy']];
 				if($data['truecharacter'] == 15 and $temp_vote['candidacy'] and $viewMode == "all") echo "x2";
+
+				$temp_seervote=mysql_fetch_array(mysql_query("select * from `$DB_seervote` where `game` = $no and `day` = $viewDay-1 and `voter` = $t;"));
+				echo $character_list[$temp_seervote['candidacy']];
+				if($data['truecharacter'] == 15 and $temp_seervote['candidacy'] and $viewMode == "all") echo "x2";
 			}
 			echo "</td>";
 
@@ -700,12 +733,20 @@ if($is_admin and 0){
 					$temp_vote=mysql_fetch_array(mysql_query("select * from `$DB_vote` where `game` = $no and `day` = $viewDay-1 and `voter` = $t;"));
 					echo $character_list[$temp_vote['candidacy']];
 					if($data['truecharacter'] == 15 and $temp_vote['candidacy']) echo "x2";
+
+					$temp_seervote=mysql_fetch_array(mysql_query("select * from `$DB_seervote` where `game` = $no and `day` = $viewDay-1 and `voter` = $t;"));
+					echo $character_list[$temp_seervote['candidacy']];
+					if($data['truecharacter'] == 15 and $temp_seervote['candidacy']) echo "x2";
 				}
 			}
 			else {
 				$temp_vote=mysql_fetch_array(mysql_query("select * from `$DB_vote` where `game` = $no and `day` = $viewDay-1 and `voter` = $t;"));
 				echo $character_list[$temp_vote['candidacy']];
 				if($data['truecharacter'] == 15 and $temp_vote['candidacy'] and $viewMode == "all") echo "x2";
+
+				$temp_seervote=mysql_fetch_array(mysql_query("select * from `$DB_seervote` where `game` = $no and `day` = $viewDay-1 and `voter` = $t;"));
+				echo $character_list[$temp_seervote['candidacy']];
+				if($data['truecharacter'] == 15 and $temp_seervote['candidacy'] and $viewMode == "all") echo "x2";
 			}
 			echo "</td>";
 

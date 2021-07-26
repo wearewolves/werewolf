@@ -439,7 +439,7 @@
 		<?echo $character_list[$PublcSeerResult['mystery']]." 씨가 점설정이 되었습니다.<br>" ;?>
 		</div>
 	</div>	
-				<?}?>
+				<?}}?>
 
 
 	<?	}?>	

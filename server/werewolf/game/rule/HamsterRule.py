@@ -51,15 +51,9 @@ class HamsterRule(BasicRule):
                 self.game.deleteGame()
         elif self.game.state==GAME_STATE.PLAYING:
             if self.game.day == 1:
-                if self.game.players == 17:
-                    self.nextTurn_2day()
-                else:
-                    BasicRule.nextTurn_2day(self)
+                self.nextTurn_2day()
             else:
-                if self.game.players == 17:
-                    self.nextTurn_Xday()
-                else:
-                    BasicRule.nextTurn_Xday(self)
+                self.nextTurn_Xday()
 
     def initGame(self):
         logging.info("init Hamstar Rule")

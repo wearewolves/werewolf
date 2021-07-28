@@ -122,8 +122,10 @@ class MustkillRule(WerewolfRule):
         werewolfRace = self.game.entry.getEntryByRace(Race.WEREWOLF)
         #for werewolf in werewolfRace :
         #    print werewolf
+        ##광인우위일시 인랑승 코드: 문제시 지울것
+        posessedPlayer = self.game.entry.getPlayersByTruecharacter(Truecharacter.POSSESSED)
 
-        if (len(humanRace) <= len(werewolfRace)) or not humanRace:
+        if (len(humanRace) <= len(werewolfRace)) or not humanRace or (posessedPlayer and len(humanRace) - 1 <= len(werewolfRace)):
             logging.info("인랑 승리")
             self.game.setGameState("win", "1")
             if self.game.termOfDay == 60:

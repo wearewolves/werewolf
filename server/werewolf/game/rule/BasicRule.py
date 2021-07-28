@@ -118,7 +118,10 @@ class BasicRule(WerewolfRule):
         #for werewolf in werewolfRace :
         #    print werewolf
 
-        if (len(humanRace) <= len(werewolfRace)) or not humanRace:
+        ##±¤ÀÎ¿ìÀ§ÀÏ½Ã ÀÎ¶û½Â ÄÚµå: ¹®Á¦½Ã Áö¿ï°Í
+        posessedPlayer = self.game.entry.getPlayersByTruecharacter(Truecharacter.POSSESSED)
+
+        if (len(humanRace) <= len(werewolfRace)) or not humanRace or (posessedPlayer and len(humanRace) - 1 <= len(werewolfRace)):
             logging.info("ÀÎ¶û ½Â¸®")
             self.game.setGameState("win", "1")
             if self.game.termOfDay == 60:

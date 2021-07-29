@@ -121,18 +121,18 @@ class BasicRule(WerewolfRule):
         ##광인우위일시 인랑승 코드: 문제시 지울것
         possessedPlayer = self.game.entry.getPlayersByTruecharacter(Truecharacter.POSSESSED)[0]
 
-        if (len(humanRace) <= len(werewolfRace)) or not humanRace or (possessedPlayer.alive == "생존" and len(humanRace) - 1 <= len(werewolfRace)):
-            logging.info("인랑 승리")
-            self.game.setGameState("win", "1")
+        if not werewolfRace:
+            logging.info("인간 승리")
+            self.game.setGameState("win", "0")
             if self.game.termOfDay == 60:
                 self.game.setGameState("state", GAME_STATE.TESTOVER)
             else:
                 self.game.setGameState("state", GAME_STATE.GAMEOVER)
             self.game.entry.allocComment()
 
-        elif not werewolfRace:
-            logging.info("인간 승리")
-            self.game.setGameState("win", "0")
+        elif (len(humanRace) <= len(werewolfRace)) or not humanRace or (possessedPlayer.alive == "생존" and len(humanRace) - 1 <= len(werewolfRace)):
+            logging.info("인랑 승리")
+            self.game.setGameState("win", "1")
             if self.game.termOfDay == 60:
                 self.game.setGameState("state", GAME_STATE.TESTOVER)
             else:

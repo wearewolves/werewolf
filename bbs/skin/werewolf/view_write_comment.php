@@ -145,6 +145,7 @@ if($totalCommentPage>=1) echo "</div>";
 			<td>
 				 <input type="button" onclick="fastsendComment()" rows=5 style="font-size:10;"  value='비상용 보내기' title="보내기 버튼으로 로그가 올라가지 않을 때 사용하십시오.">
 			</td>
+			<span id="memoLength">0자</span>
 		</tr>
 	  </table>
 	  
@@ -161,6 +162,9 @@ if($totalCommentPage>=1) echo "</div>";
 	$(function(){
     checkCommentType();
 		initCommentType();
+		$("#memo").on("change keyup paste",function(){
+			$("#memoLength").text($(this).val().length + "자")
+		})
   });
 </script>
 

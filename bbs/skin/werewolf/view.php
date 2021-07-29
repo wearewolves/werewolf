@@ -477,7 +477,7 @@
 			</div>
 	</div>
 	<?}?>
-	<?if($viewDay == 1 and ($gameinfo['rule']==1 or $gameinfo['rule']==2)){ ?>
+	<?if($viewDay == 1 and ($gameinfo['rule']==1)){ ?>
 		<div class="viewState">
 			<div class="state"></div>
 			<div class="content">
@@ -488,6 +488,21 @@
 				if ($gameinfo['players']==14) echo "아무래도 이 안에는, 마을사람이 8명, 인랑이 2명, 점쟁이가 1명,<br />영매자가 1명, 광인이 1명, 사냥꾼이 1명 있는 것 같다.";
 				if ($gameinfo['players']==15) echo "아무래도 이 안에는, 마을사람이 8명, 인랑이 3명, 점쟁이가 1명,<br />영매자가 1명, 광인이 1명, 사냥꾼이 1명 있는 것 같다.";
 				if ($gameinfo['players']==16) echo "아무래도 이 안에는, 마을사람이 7명, 인랑이 3명, 점쟁이가 1명,<br />영매자가 1명, 광인이 1명, 사냥꾼이 1명, 초능력자가 2명 있는 것 같다.";
+			?>
+			</div>
+		</div>
+	<?}?>
+	<?if($viewDay == 1 and ($gameinfo['rule']==2)){ ?>
+		<div class="viewState">
+			<div class="state"></div>
+			<div class="content">
+			<?
+				if ($gameinfo['players']==11) echo "아무래도 이 안에는, 마을사람이 4명, 인랑이 2명, 점쟁이가 1명,<br />영매자가 1명, 광인이 1명, 사냥꾼이 1명, 햄스터가 1마리 있는 것 같다.";
+				if ($gameinfo['players']==12) echo "아무래도 이 안에는, 마을사람이 5명, 인랑이 2명, 점쟁이가 1명,<br />영매자가 1명, 광인이 1명, 사냥꾼이 1명, 햄스터가 1마리 있는 것 같다."; 
+				if ($gameinfo['players']==13) echo "아무래도 이 안에는, 마을사람이 6명, 인랑이 2명, 점쟁이가 1명,<br />영매자가 1명, 광인이 1명, 사냥꾼이 1명, 햄스터가 1마리 있는 것 같다.";
+				if ($gameinfo['players']==14) echo "아무래도 이 안에는, 마을사람이 7명, 인랑이 2명, 점쟁이가 1명,<br />영매자가 1명, 광인이 1명, 사냥꾼이 1명, 햄스터가 1마리 있는 것 같다.";
+				if ($gameinfo['players']==15) echo "아무래도 이 안에는, 마을사람이 7명, 인랑이 3명, 점쟁이가 1명,<br />영매자가 1명, 광인이 1명, 사냥꾼이 1명, 햄스터가 1마리 있는 것 같다.";
+				if ($gameinfo['players']==16) echo "아무래도 이 안에는, 마을사람이 6명, 인랑이 3명, 점쟁이가 1명,<br />영매자가 1명, 광인이 1명, 사냥꾼이 1명, 초능력자가 2명, 햄스터가 1마리 있는 것 같다.";
 				if ($gameinfo['players']==17) echo "아무래도 이 안에는, 마을사람이 7명, 인랑이 3명, 점쟁이가 1명, 영매자가 1명,<br />광인이 1명, 사냥꾼이 1명, 초능력자가 2명, 햄스터가 1마리 있는 것 같다.";
 			?>
 			</div>

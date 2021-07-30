@@ -28,5 +28,10 @@
 
 	@mysql_query($rule_add_data, $connect) or Error("서브룰 공공점", "");
 	
+	$mustkill =
+	"Update `zetyx_board_werewolf_truecharacter` set character = '흉포한 인랑' where character = '잔혹한 인랑' ;";
+
+	@mysql_query($mustkill, $connect) or Error("잔혹한 인랑 이름 변경", "");
+	
 	mysql_close($connect);
 ?>

@@ -970,7 +970,7 @@ if($gameinfo['state']=="∞‘¿”¡ﬂ"  and $gameinfo['day']<>1 and $truecharacter['ass
 
 <?
 // ¬¸ªÏ∑Í ¡˜æ˜ //////////////////////////////////////////.
-//¿‹»§«— ¿Œ∂˚////////////////////////////////////////////////
+//»‰∆˜«— ¿Œ∂˚////////////////////////////////////////////////
 ?>
 <?	if($gameinfo['state']=="∞‘¿”¡ﬂ" and $gameinfo['day']<>1 and $truecharacter['mustkill'] and !$mustkill and $viewDay == $gameinfo['day'] and $entry['alive']=="ª˝¡∏" ) {?>
 <table width=<?=$width?> cellspacing=0 cellpadding=0>

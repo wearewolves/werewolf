@@ -258,7 +258,7 @@ class MustkillRule(WerewolfRule):
         if cruelwerewolfPlayer:
             cruelwerewolfPlayer = cruelwerewolfPlayer[0]
 
-        #살아 있는 잔혹한 인랑이 있을 때만 참살을 진행한다.
+        #살아 있는 흉포한 인랑이 있을 때만 참살을 진행한다.
         if not cruelwerewolfPlayer:
             return
 

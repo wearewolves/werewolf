@@ -236,9 +236,10 @@ if($totalCommentPage>=1) echo "</div>";
 </table>
 <?}?>
 
-<?	if ($gameinfo['state']=="게임중" and $viewDay == $gameinfo['day']  and $entry['alive']=="생존" and !$seervote) {?>
+
+<?	if ($gameinfo['state']=="게임중" and $viewDay == $gameinfo['day']  and $entry['alive']=="생존" and !$seervote and $CheckPublicSeer) {?>
 <table width=<?=$width?> cellspacing=0 cellpadding=0>
-<form method=post name=vote action=<?="view.php"?>  enctype="multipart/form-data"  onsubmit="return formcheck(this)">
+<form method=post name=seervote action=<?="view.php"?>  enctype="multipart/form-data"  onsubmit="return formcheck(this)">
 <input type=hidden name=page value=<?=$page?>>
 <input type=hidden name=id value=<?=$id?>>
 <input type=hidden name=no value=<?=$no?>>
@@ -268,7 +269,7 @@ if($totalCommentPage>=1) echo "</div>";
 </tr>
 </form>
 </table>
-<?	}elseif($seervote){?>
+<?	}elseif($seervote and $CheckPublicSeer){?>
 <table width=<?=$width?> cellspacing=0 cellpadding=0>
 <form method=post name=seervoteCancel action=<?="view.php"?>  enctype="multipart/form-data"  onsubmit="return formcheck(this)">
 <input type=hidden name=page value=<?=$page?>>
@@ -299,7 +300,7 @@ if($totalCommentPage>=1) echo "</div>";
 </table>
 <?}?>
 
-<?	if($gameinfo['state']=="게임중" and $truecharacter['forecast'] and !$forecast and $viewDay == $gameinfo['day'] and $entry['alive']=="생존") {?>
+<?	if($gameinfo['state']=="게임중" and $truecharacter['forecast'] and !$forecast and $viewDay == $gameinfo['day'] and $entry['alive']=="생존" and !$CheckPublicSeer) {?>
 
 <?if($truecharacter['forecast']) {
 	$forecastArray = DB_array("mystery","mystery","$DB_revelation where game='$no' and prophet='$entry[character]' and type = '점'");
@@ -343,7 +344,7 @@ if($totalCommentPage>=1) echo "</div>";
 </tr>
 </form>
 </table>
-<?	}elseif($forecast ){?>
+<?	}elseif($forecast and !$CheckPublicSeer ){?>
 <table width=<?=$width?> cellspacing=0 cellpadding=0>
 <form method=post name=forecastCancel action=<?="view.php"?>  enctype="multipart/form-data"  onsubmit="return formcheck(this)">
 <input type=hidden name=page value=<?=$page?>>
